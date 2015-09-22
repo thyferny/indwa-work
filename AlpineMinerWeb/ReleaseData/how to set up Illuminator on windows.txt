@@ -1,0 +1,3 @@
+1.unzip the data.tgz file 
+2.copy the data folder and war file(AlpineMinerWeb.war) and instal_web30_windows.bat to the same folder
+3.run the bat file and setup following the instruction.

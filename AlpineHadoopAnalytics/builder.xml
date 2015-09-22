@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AlpineHadoopAnalytics.makejar" default="movejar"
+	basedir=".">
+
+	<target name="makejar" description="Create a jar for the AlpineHadoopAnalytics">
+ 
+		<jar jarfile="AlpineHadoopAnalytics.jar"  basedir="./bin"  />
+			  
+	</target>
+
+	<target name="movejar" depends="makejar">
+	<!--because there amight be some error for the latest AlpineDataAnalysis code,
+	this function will be open only when we do build for the release and test
+	It is better for the UI to use the stable not the latest jar files  -->
+	 
+		<copy file="AlpineHadoopAnalytics.jar" todir="./../AlpineMinerWeb/WebContent/WEB-INF/lib" />
+
+		<move file="AlpineHadoopAnalytics.jar" todir="./../AlpineMinerUI/lib" />
+		 
+	</target>
+
+</project>

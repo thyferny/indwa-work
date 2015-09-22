@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="61" Y="20" name="DB Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303205878689">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="winequality_red"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="183" Y="113" name="Linear Regression" type="com.alpine.miner.gef.runoperator.linearregression.LinearRegressionOperator" uuid="1303205901393">
+<Parameter key="dependentColumn" value="quality"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="columnNames" value="sulphates,residual sugar,fixed acidity,density,free sulfur dioxide,alcohol,total sulfur dioxide,chlorides,citric acid,volatile acidity,pH"/>
+<Parameter key="isStepWise" value="false"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="winequality_red"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="fixed acidity" type="NUMERIC(10,2)"/>
+<Field name="volatile acidity" type="NUMERIC(10,2)"/>
+<Field name="citric acid" type="NUMERIC(10,2)"/>
+<Field name="residual sugar" type="NUMERIC(10,2)"/>
+<Field name="chlorides" type="NUMERIC(10,3)"/>
+<Field name="free sulfur dioxide" type="NUMERIC(10,2)"/>
+<Field name="total sulfur dioxide" type="NUMERIC(10,2)"/>
+<Field name="density" type="NUMERIC(10,5)"/>
+<Field name="pH" type="NUMERIC(10,2)"/>
+<Field name="sulphates" type="NUMERIC(10,2)"/>
+<Field name="alcohol" type="NUMERIC(10,2)"/>
+<Field name="quality" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="DB Table" target="Linear Regression"/>
+</Process>

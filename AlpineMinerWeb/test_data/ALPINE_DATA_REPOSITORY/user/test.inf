@@ -1,0 +1,10 @@
+#
+#Tue Jul 26 11:57:48 PDT 2011
+groups=IT,
+login=test
+lastName=user
+password=test
+firstName=test
+description=testing, testing.
+email=test@nomail.com
+notification=true

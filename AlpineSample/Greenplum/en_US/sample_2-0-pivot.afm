@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="84" Y="99" name="credit" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324491458364_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="credit"/>
+<Parameter key="userName" value="gpadmin"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="59" Y="226" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324491598998_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="demographics"/>
+<Parameter key="userName" value="gpadmin"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="269" Y="158" name="Table Join" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1324491957514">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="demo_demographics_a" operID="1324491598998_0" schema="demo" table="demographics"/>
+<JoinTableModel alias="demo_credit_a" operID="1324491458364_0" schema="demo" table="credit"/>
+<JoinColumnModel columnName="id" columnType="BIGINT" newColumnName="id" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="name" columnType="TEXT" newColumnName="name" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="age" columnType="BIGINT" newColumnName="age" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="num_dep" columnType="INTEGER" newColumnName="num_dep" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="edu" columnType="INTEGER" newColumnName="edu" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="times90dayslate" columnType="INTEGER" newColumnName="times90dayslate" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="revolving_util" columnType="NUMERIC" newColumnName="revolving_util" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="debt_ratio" columnType="NUMERIC" newColumnName="debt_ratio" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="credit_lines" columnType="INTEGER" newColumnName="credit_lines" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="monthly_income" columnType="NUMERIC" newColumnName="monthly_income" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="times30dayslate_2years" columnType="INTEGER" newColumnName="times30dayslate_2years" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="srsdlqncy" columnType="INTEGER" newColumnName="srsdlqncy" tableAlias="demo_credit_a"/>
+<JoinConditionModel andOr="" column1="demo_demographics_a.id" column2="demo_credit_a.id" condition="=" joinType="JOIN" tableAlias1="demo_demographics_a" tableAlias2="demo_credit_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="demographics"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="credit"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="405" Y="158" name="Variable" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1324492001889">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_variable"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<QuantileModel>
+<QuantileItem columnName="credit_lines" isCreateNewColumn="true" newColumnName="credit_lines_bin" numberOfBin="3" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+</QuantileItem>
+<QuantileItem columnName="monthly_income" isCreateNewColumn="true" newColumnName="monthly_income_bin" numberOfBin="5" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="4" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="5" binType="0" values=""/>
+</QuantileItem>
+</QuantileModel>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="name"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="num_dep"/>
+<selectedColumnName columnName="edu"/>
+<selectedColumnName columnName="times90dayslate"/>
+<selectedColumnName columnName="revolving_util"/>
+<selectedColumnName columnName="debt_ratio"/>
+<selectedColumnName columnName="credit_lines"/>
+<selectedColumnName columnName="monthly_income"/>
+<selectedColumnName columnName="times30dayslate_2years"/>
+<selectedColumnName columnName="srsdlqncy"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="djc"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="564" Y="158" name="NumericToText" type="com.alpine.miner.gef.runoperator.field.IntegerToTextOperator" uuid="1324493329356">
+<Parameter key="modifyOriginTable" value="false"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_num_to_text"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="credit_lines_bin,monthly_income_bin"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="djc_variable"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="credit_lines_bin" type="INTEGER"/>
+<Field name="monthly_income_bin" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="754" Y="158" name="Pivot" type="com.alpine.miner.gef.runoperator.field.PivotOperator" uuid="1324493400443">
+<Parameter key="pivotColumn" value="credit_lines_bin"/>
+<Parameter key="groupByColumn" value="monthly_income_bin"/>
+<Parameter key="aggregateColumn" value="srsdlqncy"/>
+<Parameter key="aggregateType" value="avg"/>
+<Parameter key="useArray" value="false"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_pivot"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="djc_num_to_text"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="credit_lines_bin" type="TEXT"/>
+<Field name="monthly_income_bin" type="TEXT"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="demographics" target="Table Join"/>
+<Link source="credit" target="Table Join"/>
+<Link source="Table Join" target="Variable"/>
+<Link source="Variable" target="NumericToText"/>
+<Link source="NumericToText" target="Pivot"/>
+</Process>

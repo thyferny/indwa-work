@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="107" Y="206" name="数据表 " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303194732664">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="val_analysis"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="292" Y="120" name="值分析 " type="com.alpine.miner.gef.runoperator.field.ValueAnalysisOperator" uuid="1303194746905">
+<Parameter key="columnNames" value="dt,b,r,n,small int,vc,ch,dp,Timestamp,i"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="val_analysis"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="small int" type="SMALLINT"/>
+<Field name="i" type="INTEGER"/>
+<Field name="b" type="BIGINT"/>
+<Field name="n" type="NUMERIC(10,2)"/>
+<Field name="r" type="REAL"/>
+<Field name="dp" type="DOUBLE PRECISION"/>
+<Field name="dt" type="DATE"/>
+<Field name="Timestamp" type="TIMESTAMP"/>
+<Field name="ch" type="CHAR(10)"/>
+<Field name="vc" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="286" Y="208" name="频率分析 " type="com.alpine.miner.gef.runoperator.field.FrequencyAnalysisOperator" uuid="1303194750953">
+<Parameter key="columnNames" value="dt,b,r,n,small int,vc,ch,dp,Timestamp,i"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="val_analysis"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="small int" type="SMALLINT"/>
+<Field name="i" type="INTEGER"/>
+<Field name="b" type="BIGINT"/>
+<Field name="n" type="NUMERIC(10,2)"/>
+<Field name="r" type="REAL"/>
+<Field name="dp" type="DOUBLE PRECISION"/>
+<Field name="dt" type="DATE"/>
+<Field name="Timestamp" type="TIMESTAMP"/>
+<Field name="ch" type="CHAR(10)"/>
+<Field name="vc" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="284" Y="303" name="直方图分析 " type="com.alpine.miner.gef.runoperator.field.HistogramOperator" uuid="1303194754297">
+<ColumnBinsModel>
+<ColumnBin bin="10" columnName="b" isMax="false" isMin="false" max="100.0" min="0.0" type="0" width="1.0"/>
+<ColumnBin bin="10" columnName="r" isMax="false" isMin="false" max="100.0" min="0.0" type="0" width="1.0"/>
+<ColumnBin bin="10" columnName="n" isMax="false" isMin="false" max="100.0" min="0.0" type="0" width="1.0"/>
+<ColumnBin bin="10" columnName="small int" isMax="false" isMin="false" max="100.0" min="0.0" type="0" width="1.0"/>
+<ColumnBin bin="10" columnName="dp" isMax="false" isMin="false" max="100.0" min="0.0" type="0" width="1.0"/>
+<ColumnBin bin="10" columnName="i" isMax="false" isMin="false" max="100.0" min="0.0" type="0" width="1.0"/>
+</ColumnBinsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="val_analysis"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="small int" type="SMALLINT"/>
+<Field name="i" type="INTEGER"/>
+<Field name="b" type="BIGINT"/>
+<Field name="n" type="NUMERIC(10,2)"/>
+<Field name="r" type="REAL"/>
+<Field name="dp" type="DOUBLE PRECISION"/>
+<Field name="dt" type="DATE"/>
+<Field name="Timestamp" type="TIMESTAMP"/>
+<Field name="ch" type="CHAR(10)"/>
+<Field name="vc" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表 " target="值分析 "/>
+<Link source="数据表 " target="频率分析 "/>
+<Link source="数据表 " target="直方图分析 "/>
+</Process>

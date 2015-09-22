@@ -1,0 +1,10 @@
+#
+#Tue Jan 17 15:39:02 CST 2012
+passwordText=rO0ABXQACm1pbmVyX2RlbW8\=
+userNameText=miner_demo
+engineCombo=Netezza
+connNameText=demo_nz
+portText=5480
+jdbc=
+hostText=127.0.0.1
+dbNameText=miner_demodb

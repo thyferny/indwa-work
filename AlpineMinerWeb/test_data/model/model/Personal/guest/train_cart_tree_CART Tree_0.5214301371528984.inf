@@ -1,0 +1,14 @@
+#
+#Thu Dec 08 11:29:06 CST 2011
+id=0.5214301371528984
+modifiesTime=1323314946203
+resourceType=Personal
+flowName=train_cart_tree
+algorithmName=DecisionTreeModel
+categories=
+modifiedUser=guest
+modelName=CART Tree
+version=1
+createTime=1323314946203
+groupName=
+createUser=guest

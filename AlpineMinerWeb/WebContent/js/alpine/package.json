@@ -1,0 +1,6 @@
+{
+    "name": "alpine",
+    "description": "Alpine dojo modules",
+    "version": "1.0",
+    "dojoBuild": "alpine.profile.js"
+}

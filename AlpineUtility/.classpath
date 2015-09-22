@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/json-lib-2.2.3-jdk13.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/httpasyncclient-4.0-beta3.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/httpasyncclient-cache-4.0-beta3.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/httpclient-4.2.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/httpclient-cache-4.2.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/httpcore-4.2.2.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/httpcore-nio-4.2.2.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/hadoop-0.20.2-core.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/pig-0.10.0-withouthadoop.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/gson-1.7.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_45">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/javax.ws.rs.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-client-1.8.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-core-1.8.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-json-1.8.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-multipart-1.17.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

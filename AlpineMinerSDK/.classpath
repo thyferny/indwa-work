@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineDataAnalysis"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineUtility"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineHadoopAnalytics"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpinePig"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/gson-1.7.1.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/hadoop-0.20.2-core.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/pig-0.10.0-withouthadoop.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/javax.ws.rs.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-client-1.8.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-core-1.8.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-json-1.8.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jersey-multipart-1.17.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

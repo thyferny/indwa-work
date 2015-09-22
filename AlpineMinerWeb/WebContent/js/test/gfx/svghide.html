@@ -1,0 +1,84 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<title>A Sample ToolTip using dijit and dojox.gfx</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		@import "../../dojo/resources/dojo.css";
+		@import "../../dijit/tests/css/dijitTests.css";
+		@import "../../dijit/themes/tundra/tundra.css";
+		.tooltipBody {
+			color:#fff;
+		}
+	</style>
+	<script type="text/javascript" djConfig="parseOnLoad:true, isDebug:true" src="../../dojo/dojo.js"></script>
+	<script type="text/javascript">
+  		dojo.require("dojox.gfx");
+		dojo.require("dojox.gfx.move");
+ 
+		function showhidechildren(){
+			
+		//	alert("dblclick");
+			var blue_rect=this.child;
+		//	blue_rect.rawNode.display="none";//block in dom and inline in scg 	q
+		
+		
+		  var newValue = 	blue_rect.rawNode.getAttributeNS(null, 'display')
+
+         if ('none' != newValue)
+         {
+            newValue = 'none';
+         }
+         else
+         {
+            newValue = 'inline';
+         }
+
+			blue_rect.rawNode.setAttributeNS(null, 'display', newValue);
+
+			//this._hideAnim = dojo.fadeOut({ node:this.domNode, duration:150 });
+		//	this._showAnim = dojo.fadeIn({ node:this.domNode, duration:75 });
+		 
+			//dojo.fadeOut({ node:blue_rect.parent , duration:150 });
+			
+		}
+
+		function example1(){
+			
+		    var surfaceHolder = dojo.byId('container');
+			var surface = dojox.gfx.createSurface(surfaceHolder, 300, 300);//创建surface
+
+			var rect = { x: 0, y: 0, width: 100, height: 100 }; //定义一个矩形
+			var red_rect = surface.createRect(rect);//创建矩形
+
+			red_rect.setFill([255, 0, 0, 0.5]);//设置填充
+			red_rect.setStroke({color: "blue", width: 10, join: "round" });//设置外部填充的颜色
+		 
+ 		
+			red_rect.connect("ondblclick",red_rect,showhidechildren);
+			
+			
+			
+			rect = { x: 200, y: 100, width: 100, height: 100 }; //定义一个矩形
+			var blue_rect = surface.createRect(rect);//创建矩形
+			red_rect.child=blue_rect;
+			blue_rect.setFill([0, 0, 222, 0.5]);//设置填充
+			blue_rect.setStroke({color: "red", width: 10, join: "round" });//设置外部填充的颜色
+
+		};
+
+	 		dojo.addOnLoad(example1);
+
+	 
+	</script>
+	
+</head>
+<body class="tundra">
+
+	<h1>dojox.gfx: A Sample svg hide and show</h1>
+ 
+	
+		<div id="container"></div>	
+ 
+ 
+</body>
+</html>

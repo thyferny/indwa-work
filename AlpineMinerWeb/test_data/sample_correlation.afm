@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="2.3">
+<Operator X="154" Y="54" name="DB Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303196417968">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="water_treatment_filtered_data"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+</Operator>
+<Operator X="300" Y="61" name="Correlation Analysis" type="com.alpine.miner.gef.runoperator.field.CorrelationAnalysisOperator" uuid="1303196427049">
+<Parameter key="columnNames" value="performance input sediments to primary settler,performance input Biological demand of oxygen to secondary sett,input conductivity to secondary settler,global performance input sediments,output pH,input Biological demand of oxygen to primary settler,input sediments to plant,input volatile supended solids to plant,input Biological demand of oxygen to plant,input suspended solids to plant,input conductivity to plant,input Biological demand of oxygen to secondary settler,output chemical demand of oxygen,input suspended solids to secondary settler,input sediments to secondary settler,input pH to primary settler,performance input suspended solids to primary settler,output sediments,output conductivity,input volatile supended solids to secondary settler,output Biological demand of oxygen,input sediments to primary settler,output suspended solids,global performance input chemical demand of oxygen,input pH to plant,output volatile supended solids,input Zinc to plant,input volatile supended solids to primary settler,performance input chemical demand of oxygen to secondary settle,performance input Biological demand of oxygen in primary settle,input suspended solids to primary settler,input chemical demand of oxygen to plant,input conductivity to primary settler,input pH to secondary settler,input chemical demand of oxygen to secondary settler,input flow to plant,global performance input Biological demand of oxygen,global performance input suspended solids"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="water_treatment_filtered_data"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="input flow to plant" type="INTEGER"/>
+<Field name="input Zinc to plant" type="NUMERIC(10,2)"/>
+<Field name="input pH to plant" type="NUMERIC(10,2)"/>
+<Field name="input Biological demand of oxygen to plant" type="INTEGER"/>
+<Field name="input chemical demand of oxygen to plant" type="INTEGER"/>
+<Field name="input suspended solids to plant" type="INTEGER"/>
+<Field name="input volatile supended solids to plant" type="NUMERIC(10,2)"/>
+<Field name="input sediments to plant" type="NUMERIC(10,2)"/>
+<Field name="input conductivity to plant" type="INTEGER"/>
+<Field name="input pH to primary settler" type="NUMERIC(10,2)"/>
+<Field name="input Biological demand of oxygen to primary settler" type="INTEGER"/>
+<Field name="input suspended solids to primary settler" type="INTEGER"/>
+<Field name="input volatile supended solids to primary settler" type="NUMERIC(10,2)"/>
+<Field name="input sediments to primary settler" type="NUMERIC(10,2)"/>
+<Field name="input conductivity to primary settler" type="INTEGER"/>
+<Field name="input pH to secondary settler" type="NUMERIC(10,2)"/>
+<Field name="input Biological demand of oxygen to secondary settler" type="INTEGER"/>
+<Field name="input chemical demand of oxygen to secondary settler" type="INTEGER"/>
+<Field name="input suspended solids to secondary settler" type="INTEGER"/>
+<Field name="input volatile supended solids to secondary settler" type="NUMERIC(10,2)"/>
+<Field name="input sediments to secondary settler" type="NUMERIC(10,2)"/>
+<Field name="input conductivity to secondary settler" type="INTEGER"/>
+<Field name="output pH" type="NUMERIC(10,2)"/>
+<Field name="output Biological demand of oxygen" type="INTEGER"/>
+<Field name="output chemical demand of oxygen" type="INTEGER"/>
+<Field name="output suspended solids" type="INTEGER"/>
+<Field name="output volatile supended solids" type="NUMERIC(10,2)"/>
+<Field name="output sediments" type="NUMERIC(10,2)"/>
+<Field name="output conductivity" type="INTEGER"/>
+<Field name="performance input Biological demand of oxygen in primary settle" type="NUMERIC(10,2)"/>
+<Field name="performance input suspended solids to primary settler" type="NUMERIC(10,2)"/>
+<Field name="performance input sediments to primary settler" type="NUMERIC(10,2)"/>
+<Field name="performance input Biological demand of oxygen to secondary sett" type="NUMERIC(10,2)"/>
+<Field name="performance input chemical demand of oxygen to secondary settle" type="NUMERIC(10,2)"/>
+<Field name="global performance input Biological demand of oxygen" type="NUMERIC(10,2)"/>
+<Field name="global performance input chemical demand of oxygen" type="NUMERIC(10,2)"/>
+<Field name="global performance input suspended solids" type="NUMERIC(10,2)"/>
+<Field name="global performance input sediments" type="NUMERIC(10,2)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="DB Table" target="Correlation Analysis"/>
+</Process>

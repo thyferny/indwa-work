@@ -1,0 +1,16 @@
+#
+#Mon Aug 15 09:12:59 PDT 2011
+engineCombo=Oracle
+dbNameText=orcl
+id=demo_oracle
+modifiesTime=1313424779621
+resourceType=Public
+passwordText=rO0ABXQACm1pbmVyX2RlbW8\=
+portText=1521
+categories=
+modifiedUser=guest
+userNameText=miner_demo
+createTime=1310399607888
+hostText=127.0.0.1
+connNameText=demo_oracle
+createUser=guest

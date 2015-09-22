@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AlpineDataAnalysis.makejar" default="movejar"
+	basedir=".">
+
+	<target name="makejar" description="Create a jar for the AlpineDataAnalysis project">
+		<jar jarfile="AlpineUtility.jar" basedir="./bin" />
+	</target>
+
+	<target name="movejar" depends="makejar">
+	<!--because there amight be some error for the latest AlpineDataAnalysis code,
+	this function will be open only when we do build for the release and test
+	It is better for the UI to use the stable not the latest jar files  -->
+		<!--copy file="AlpineUtility.jar" todir="./../AlpineDataAnalysisTest/lib" />
+		<copy file="AlpineUtility.jar" todir="./../AlpineMinerWeb/WebContent/WEB-INF/lib" />
+		<move file="AlpineUtility.jar" todir="./../AlpineMinerUI/lib" /-->
+		
+		<copy file="AlpineUtility.jar" todir="./../AlpineMinerUnitTest/lib" />
+		<move file="AlpineUtility.jar" todir="./../AlpineDataAnalysisTest/lib" />
+	</target> 
+</project>

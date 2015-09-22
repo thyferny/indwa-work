@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="62" Y="23" name="credit" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324416491133_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="credit"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="41" Y="122" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324416494300_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="demographics"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="166" Y="63" name="Table Join" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1324416538479">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="demo_credit_a" operID="1324416491133_0" schema="demo" table="credit"/>
+<JoinTableModel alias="demo_demographics_a" operID="1324416494300_0" schema="demo" table="demographics"/>
+<JoinColumnModel columnName="times90dayslate" columnType="INTEGER" newColumnName="times90dayslate" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="revolving_util" columnType="NUMERIC" newColumnName="revolving_util" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="debt_ratio" columnType="NUMERIC" newColumnName="debt_ratio" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="credit_lines" columnType="INTEGER" newColumnName="credit_lines" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="monthly_income" columnType="NUMERIC" newColumnName="monthly_income" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="times30dayslate_2years" columnType="INTEGER" newColumnName="times30dayslate_2years" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="srsdlqncy" columnType="INTEGER" newColumnName="srsdlqncy" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="id" columnType="BIGINT" newColumnName="id" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="age" columnType="BIGINT" newColumnName="age" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="num_dep" columnType="INTEGER" newColumnName="num_dep" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="edu" columnType="INTEGER" newColumnName="edu" tableAlias="demo_demographics_a"/>
+<JoinConditionModel andOr="" column1="demo_demographics_a.id" column2="demo_credit_a.id" condition="=" joinType="JOIN" tableAlias1="demo_demographics_a" tableAlias2="demo_credit_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="credit"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="demographics"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</InPutFieldList>
+</Operator>
+<Operator X="273" Y="63" name="Normalization" type="com.alpine.miner.gef.runoperator.field.NormalizationOperator" uuid="1324416689520">
+<Parameter key="method" value="Z-Transformation"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_norm"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="credit_lines"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="552" Y="63" name="Random Sampling" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1324416911871">
+<Parameter key="sampleCount" value="2"/>
+<Parameter key="sampleSizeType" value="ROW"/>
+<Parameter key="sampleSize" value="20000"/>
+<Parameter key="consistent" value="false"/>
+<Parameter key="replacement" value="false"/>
+<Parameter key="disjoint" value="true"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_samp"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_norm"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="519" Y="173" name="train" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1324416923768">
+<Parameter key="selectedTable" value="demo.djc_samp_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="652" Y="170" name="validate" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1324416928334">
+<Parameter key="selectedTable" value="demo.djc_samp_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="572" Y="447" name="Goodness Of Fit" type="com.alpine.miner.gef.runoperator.model.evaluator.GoodnessOfFitOperator" uuid="1324417115609">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="463" Y="300" name="Logistic Regression" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionOperator" uuid="1324417477593">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="goodValue" value="1"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="columnNames" value="credit_lines,debt_ratio,edu,monthly_income,revolving_util,times30dayslate_2years,times90dayslate"/>
+<Parameter key="isStepWise" value="false"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<Model>rO0ABXNyACpjb20uYWxwaW5lLmRhdGFtaW5pbmcuYXBpLmltcGwuRW5naW5lTW9kZWxyBs7TjRuF&#13;
+xwIAA0wABW1vZGVsdAAmTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9vcGVyYXRvci9Nb2RlbDtMAAlt&#13;
+b2RlbFR5cGV0ABJMamF2YS9sYW5nL1N0cmluZztMAARuYW1lcQB+AAJ4cHNyAERjb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcub3BlcmF0b3IucmVncmVzc2lvbnMuTG9naXN0aWNSZWdyZXNzaW9uTW9kZWxE&#13;
+QrslYdam2fEaAgAVRAAJY2hpU3F1YXJlWgAPaW1wcm92ZW1lbnRTdG9wWgAOaW50ZXJjZXB0QWRk&#13;
+ZWRKAAlpdGVyYXRpb25EAA1tb2RlbERldmlhbmNlRAAMbnVsbERldmlhbmNlWgAMdXNlQ0Z1bmN0&#13;
+aW9uTAAYYWxsVHJhbnNmb3JtTWFwX3ZhbHVlS2V5dAATTGphdmEvdXRpbC9IYXNoTWFwO1sABGJl&#13;
+dGF0AAJbRFsAC2NvbHVtbk5hbWVzdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wAEGNvbHVtbk5hbWVz&#13;
+QXJyYXl0ABVMamF2YS91dGlsL0FycmF5TGlzdDtMAA5kYXRhU291cmNlSW5mb3QAJ0xjb20vYWxw&#13;
+aW5lL3V0aWxpdHkvZGIvSURhdGFTb3VyY2VJbmZvO0wABGdvb2RxAH4AAkwAGmludGVyYWN0aW9u&#13;
+Q29sdW1uQ29sdW1uTWFwcQB+AAVMABdpbnRlcmFjdGlvbkNvbHVtbkV4cE1hcHEAfgAFTAAObXVs&#13;
+dGlEQlV0aWxpdHl0ACdMY29tL2FscGluZS91dGlsaXR5L2RiL0lNdWx0aURCVXRpbGl0eTtMAApv&#13;
+bGREYXRhU2V0dAAiTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9kYi9EYXRhU2V0O1sABnBWYWx1ZXEA&#13;
+fgAGWwANc3RhbmRhcmRFcnJvcnEAfgAGWwANd2FsZFN0YXRpc3RpY3EAfgAGWwAGelZhbHVlcQB+&#13;
+AAZ4cgA9Y29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLnRyYWluaW5nLkJpbmFyeVByZWRp&#13;
+Y3Rpb25Nb2RlbDqM5dkRy007AgABRAAJdGhyZXNob2xkeHIAMmNvbS5hbHBpbmUuZGF0YW1pbmlu&#13;
+Zy5vcGVyYXRvci50cmFpbmluZy5QcmVkaWN0aW9uQRaIqfO+9IACAAB4cgAsY29tLmFscGluZS5k&#13;
+YXRhbWluaW5nLm9wZXJhdG9yLkFic3RyYWN0TW9kZWz2i8GBtSDbHAIAAUwADWhlYWRlckRhdGFT&#13;
+ZXR0ACRMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL0RCRGF0YVNldDt4cgArY29tLmFscGluZS5k&#13;
+YXRhbWluaW5nLm9wZXJhdG9yLk91dHB1dE9iamVjdFuP2rT89nduAgABTAAGc291cmNlcQB+AAJ4&#13;
+cHBzcgAiY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkRCRGF0YVNldKMtNq6RCGCMAgAHTAAHYXZl&#13;
+cmFnZXEAfgAFTAAHY29sdW1uc3QAIkxjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1ucztM&#13;
+AAdtYXhpbXVtcQB+AAVMAAdtaW5pbXVtcQB+AAVMAANzdW1xAH4ABUwABXRhYmxldAAgTGNvbS9h&#13;
+bHBpbmUvZGF0YW1pbmluZy9kYi9UYWJsZTtMAAh2YXJpYW5jZXEAfgAFeHIAKGNvbS5hbHBpbmUu&#13;
+ZGF0YW1pbmluZy5kYi5BYnN0cmFjdERhdGFTZXQgXHHM0QEvBAIABFoAG2NvbXB1dGVkQWxsQ29s&#13;
+dW1uU3RhdGlzdGljc1oAFWNvbXB1dGVkQWxsU3RhdGlzdGljc0wABWlkTWFwdAAPTGphdmEvdXRp&#13;
+bC9NYXA7TAANc3RhdGlzdGljc01hcHEAfgAWeHEAfgAQcAAAc3IAEWphdmEudXRpbC5IYXNoTWFw&#13;
+BQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhyZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAAB4&#13;
+c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHBzcgAjY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkNv&#13;
+bHVtbnNJbXAgscwk+1aF3QIAAUwAB2NvbHVtbnN0ABBMamF2YS91dGlsL0xpc3Q7eHBzcgAUamF2&#13;
+YS51dGlsLkxpbmtlZExpc3QMKVNdSmCIIgMAAHhwdwQAAAAIc3IAJmNvbS5hbHBpbmUuZGF0YW1p&#13;
+bmluZy5kYi5OdW1lcmljQ29sdW1uAAAAAAAAAAECAAJaAAhjYXRlZ29yeUwAB21hcHBpbmd0ACJM&#13;
+Y29tL2FscGluZS9kYXRhbWluaW5nL2RiL01hcHBpbmc7eHIAJ2NvbS5hbHBpbmUuZGF0YW1pbmlu&#13;
+Zy5kYi5BYnN0cmFjdENvbHVtbt7a3ZGEwHRqAgAHRAAMZGVmYXVsdFZhbHVlSQAFaW5kZXhaAAdz&#13;
+cGVjaWFsSQAJdmFsdWVUeXBlTAALY29sdW1uU3RhdHNxAH4AHEwABG5hbWVxAH4AAkwAC3NwZWNp&#13;
+YWxOYW1lcQB+AAJ4cAAAAAAAAAAAAAAAAAAAAAADc3EAfgAedwQAAAABc3IAK2NvbS5hbHBpbmUu&#13;
+ZGF0YW1pbmluZy5kYi5OdW1lcmljQ29sdW1uU3RhdHNtt8FTBNnewgIAB0oACm1heENvdW50ZXJK&#13;
+AARtb2RlRAAKc3F1YXJlZFN1bUQAA3N1bUkADHZhbHVlQ291bnRlckwABmNvbHVtbnQAIUxjb20v&#13;
+YWxwaW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1uO1sABnNjb3Jlc3QAAltKeHAAAAAAAAAAAP//////&#13;
+////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AA90aW1lczkwZGF5c2xhdGVwAHNyACRjb20uYWxw&#13;
+aW5lLmRhdGFtaW5pbmcuZGIuTWFwcGluZ0ltcGxjcjXO4I0QCwIAAkwAEGluZGV4VG9TeW1ib2xN&#13;
+YXBxAH4AHEwAEHN5bWJvbFRvSW5kZXhNYXBxAH4AFnhwc3IAE2phdmEudXRpbC5BcnJheUxpc3R4&#13;
+gdIdmcdhnQMAAUkABHNpemV4cAAAAAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNx&#13;
+AH4AIAAAAAAAAAAAAAAAAQAAAAADc3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAA&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAOcmV2b2x2aW5nX3V0aWxwAHNxAH4AKnNxAH4ALAAAAAB3&#13;
+BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAAAgAAAAADc3EA&#13;
+fgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAK&#13;
+ZGVidF9yYXRpb3AAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAADHcIAAAAEAAA&#13;
+AAB4c3EAfgAgAAAAAAAAAAAAAAADAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAAAP//////&#13;
+////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAxjcmVkaXRfbGluZXNwAHNxAH4AKnNxAH4ALAAA&#13;
+AAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAABAAAAAAD&#13;
+c3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4&#13;
+dAAObW9udGhseV9pbmNvbWVwAHNxAH4AKnNxAH4ALAAAAAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3&#13;
+CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAABQAAAAADc3EAfgAedwQAAAABc3EAfgAlAAAAAAAA&#13;
+AAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAWdGltZXMzMGRheXNsYXRlXzJ5ZWFy&#13;
+c3AAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAg&#13;
+AAAAAAAAAAAAAAAKAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAAAP//////////AAAAAAAA&#13;
+AAAAAAAAAAAAAAAAAABwcHh0AANlZHVwAHNxAH4AKnNxAH4ALAAAAAB3BAAAAAp4c3EAfgAYP0AA&#13;
+AAAAAAx3CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAABgEAAAADc3EAfgAedwQAAAABc3EAfgAl&#13;
+AAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAJc3JzZGxxbmN5dAAVQUxQ&#13;
+SU5FX0RFUEVOREVOVF9OQU1FAXNxAH4AKnNxAH4ALAAAAAJ3BAAAAAp0AAExdAABMHhzcQB+ABg/&#13;
+QAAAAAAADHcIAAAAEAAAAAJxAH4AYHNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAF&#13;
+dmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAAAcQB+AGFzcQB+AGMAAAAB&#13;
+eHhwcHBzcgAgY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkRCVGFibGWR8DfFtWUDWQIABkoABHNp&#13;
+emVMAAhwYXNzd29yZHEAfgACTAAJdGFibGVOYW1lcQB+AAJMAAN1cmxxAH4AAkwACHVzZXJOYW1l&#13;
+cQB+AAJMAA53aGVyZUNvbmRpdGlvbnEAfgACeHIAKmNvbS5hbHBpbmUuZGF0YW1pbmluZy5kYi5B&#13;
+YnN0cmFjdERhdGFUYWJsZb0fAwR6evoqAgACTAAHY29sdW1uc3EAfgAcTAAQdW51c2VkQ29sdW1u&#13;
+TGlzdHEAfgAceHBzcQB+ACwAAAALdwQAAAAQc3EAfgAgAAAAAAAAAAAAAAAAAAAAAANzcQB+AB53&#13;
+BAAAAAFzcQB+ACUAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AKXAA&#13;
+cQB+ACtzcQB+ACAAAAAAAAAAAAAAAAEAAAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA////&#13;
+//////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgAycABxAH4AM3NxAH4AIAAAAAAAAAAAAAAA&#13;
+AgAAAAADc3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAA&#13;
+AAAAcHB4cQB+ADlwAHEAfgA6c3EAfgAgAAAAAAAAAAAAAAADAAAAAANzcQB+AB53BAAAAAFzcQB+&#13;
+ACUAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AQHAAcQB+AEFzcQB+&#13;
+ACAAAAAAAAAAAAAAAAQAAAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA//////////8AAAAA&#13;
+AAAAAAAAAAAAAAAAAAAAAHBweHEAfgBHcABxAH4ASHNxAH4AIAAAAAAAAAAAAAAABQAAAAADc3EA&#13;
+fgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4cQB+&#13;
+AE5wAHEAfgBPc3EAfgAgAAAAAAAAAAAAAAAGAQAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAA&#13;
+AP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AXHEAfgBdAXEAfgBec3EAfgAgAAAA&#13;
+AAAAAAAAAAAHAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAAAP//////////AAAAAAAAAAAA&#13;
+AAAAAAAAAAAAAABwcHh0AAJpZHAAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAA&#13;
+DHcIAAAAEAAAAAB4c3EAfgAgAAAAAAAAAAAAAAAIAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAA&#13;
+AAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AANhZ2VwAHNxAH4AKnNxAH4ALAAA&#13;
+AAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAACQAAAAAD&#13;
+c3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4&#13;
+dAAHbnVtX2RlcHAAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAADHcIAAAAEAAA&#13;
+AAB4c3EAfgAgAAAAAAAAAAAAAAAKAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAAAP//////&#13;
+////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AVXAAcQB+AFZ4c3EAfgAedwQAAAAAeP//////&#13;
+////dAAGYWRsc0RhdAAVInB1YmxpYyIuImRqY19zYW1wXzAidAAwamRiYzpwb3N0Z3Jlc3FsOi8v&#13;
+MTkyLjE2OC4xLjE0ODo1NDMyL3N0b3J5Ym9hcmRzdAAHZ3BhZG1pbnBwP+AAAAAAAABAqQ7+T9WB&#13;
+JAEBAAAAAAAAAAZAxhZl0l0m0EDMWiVmUocZAXNxAH4AGD9AAAAAAAAMdwgAAAAQAAAAAHh1cgAC&#13;
+W0Q+powUq2NaHgIAAHhwAAAACEAA3aZr9KTQv8KA2asueWBAAvtg3xpnjL+tuZgof1+8vvt0LG1F&#13;
+A5W/eH4iKLjcR7+Axoz+Z4zawBJYFbJjt9B1cgATW0xqYXZhLmxhbmcuU3RyaW5nO63SVufpHXtH&#13;
+AgAAeHAAAAAHcQB+AClxAH4AMnEAfgA5cQB+AEBxAH4AR3EAfgBOcQB+AFVzcQB+ACwAAAAHdwQA&#13;
+AAAKcQB+AClxAH4AMnEAfgA5cQB+AEBxAH4AR3EAfgBOcQB+AFV4c3IALWNvbS5hbHBpbmUudXRp&#13;
+bGl0eS5kYi5EYXRhU291cmNlSW5mb0dyZWVucGx1bSlGA+Cf1XivAgAAeHIAMGNvbS5hbHBpbmUu&#13;
+dXRpbGl0eS5kYi5BYnN0cmFjdERhdGFTb3VyY2VJbmZvUEdHUKW943SMV6+LAgABTAAGbG9jYWxl&#13;
+dAASTGphdmEvdXRpbC9Mb2NhbGU7eHBwdAABMXNxAH4AGD9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+&#13;
+ABg/QAAAAAAADHcIAAAAEAAAAAB4c3IALWNvbS5hbHBpbmUudXRpbGl0eS5kYi5NdWx0aURCR3Jl&#13;
+ZW5wbHVtVXRpbGl0eZEPqFZfTtdVAgAAeHIAMGNvbS5hbHBpbmUudXRpbGl0eS5kYi5BYnN0cmFj&#13;
+dE11bHRpREJVdGlsaXR5R1BQR+3eV9hHM/WeAgAAeHBzcQB+ABJwAQBzcQB+ABg/QAAAAAAADHcI&#13;
+AAAAEAAAAAB4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHBzcQB+ABtzcQB+AB53BAAAAAhxAH4A&#13;
+a3EAfgBucQB+AHFxAH4AdHEAfgB3cQB+AHpxAH4AlXEAfgB9eHBwcHEAfgBpcHVxAH4AngAAAAgy&#13;
+5jJHj3CsXz/Yga6+LOHCMyW5HYlw/tI/pyIk7JAHCD+zqcmeZcJSP+0hIIEabb4/5Ce1XWvVETAI&#13;
+NzS3i+ajdXEAfgCeAAAACD+wk59OtFEkP8U00Z6o6nk/sznYzhaEfD+drl5lZqLhPu8Hp6j9iUA/&#13;
+qyxpdyAqPD+RZ3fZ6xKcP7mOAVrz6KV1cQB+AJ4AAAAIQJCQJtIzdKE/6FzA05yfLECPMV9fZtjm&#13;
+QBAMHJET/NVACQyZoA2ujz+J/2GIj+qUP8268pcxt+xAoH09XNtufXVxAH4AngAAAAhAQEdz3VAi&#13;
+Dr/r69Si9XY5QD+YBsW1QhTAAAYNI5dAoL/8T+XK3IVLv7zX010XYhi/3tghgXTJucBG+IKCzkun&#13;
+cHQAE0xvZ2lzdGljIFJlZ3Jlc3Npb24=</Model>
+</Operator>
+<Operator X="445" Y="440" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1324575083293">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="columnValue" value="1"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="721" Y="442" name="LIFT" type="com.alpine.miner.gef.runoperator.model.evaluator.LIFTOperator" uuid="1325011932080">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="columnValue" value="1"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="232" Y="302" name="Logistic Regression Prediction" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionPredictOperator" uuid="1325012225750">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_logistic_prediction"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_norm"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="credit" target="Table Join"/>
+<Link source="demographics" target="Table Join"/>
+<Link source="Normalization" target="Random Sampling"/>
+<Link source="Random Sampling" target="train"/>
+<Link source="Random Sampling" target="validate"/>
+<Link source="validate" target="Goodness Of Fit"/>
+<Link source="train" target="Logistic Regression"/>
+<Link source="Table Join" target="Normalization"/>
+<Link source="validate" target="ROC"/>
+<Link source="Logistic Regression" target="Goodness Of Fit"/>
+<Link source="Logistic Regression" target="ROC"/>
+<Link source="Logistic Regression" target="LIFT"/>
+<Link source="validate" target="LIFT"/>
+<Link source="Normalization" target="Logistic Regression Prediction"/>
+<Link source="Logistic Regression" target="Logistic Regression Prediction"/>
+</Process>

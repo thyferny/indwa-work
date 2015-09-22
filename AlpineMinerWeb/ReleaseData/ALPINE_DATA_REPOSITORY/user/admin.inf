@@ -1,0 +1,11 @@
+#
+#Thu Oct 25 11:04:37 CST 2012
+notification=false
+groups=Business,IT,Marketing,Samples,
+email=test@nomail.com
+login=admin
+description=admin
+firstName=admin
+password=rO0ABXQAC2FscGluZWFkbWlu
+lastName=admin
+roleSet=modeler,admin,

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="1.00">
+<Operator X="180" Y="39" name="Db Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303266906613">
+<Parameter key="system" value="Oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="tableName" value="QUANTILE_TEST_01"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="QUANTILE_TEST_01"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="D" type="DATE"/>
+<Field name="T" type="DATE"/>
+<Field name="TS" type="DATE"/>
+<Field name="I" type="NUMBER(22,0)"/>
+<Field name="R" type="REAL"/>
+<Field name="TX" type="VARCHAR2(10)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="311" Y="134" name="Variable Operator" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303266912541">
+<QuantileModel>
+<QuantileItem columnName="TX" isCreateNewColumn="true" newColumnName="TX_bin" numberOfBin="2" quantileType="0">
+<QuantileItemBinCategory binIndex="1" binType="1" values="Tuesday,Monday,Wednesday,Thursday,Friday"/>
+<QuantileItemBinCategory binIndex="2" binType="2" values=""/>
+</QuantileItem>
+<QuantileItem columnName="I" isCreateNewColumn="true" newColumnName="I_bin" numberOfBin="1" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+</QuantileItem>
+<QuantileItem columnName="TS" isCreateNewColumn="false" newColumnName="TS_bin" numberOfBin="3" quantileType="0">
+<QuantileItemBinDateTime binIndex="1" binType="0" endDate="11/30/1990" endTime="10:39:28" startDate="12/30/1889" startTime="10:39:28"/>
+<QuantileItemBinDateTime binIndex="2" binType="0" endDate="11/30/2000" endTime="10:39:57" startDate="11/30/1990" startTime="10:39:57"/>
+<QuantileItemBinDateTime binIndex="3" binType="0" endDate="11/30/2010" endTime="10:40:19" startDate="11/30/2000" startTime="10:40:19"/>
+</QuantileItem>
+</QuantileModel>
+<Parameter key="fieldList" value="st&amp;&amp;new_i"/>
+<Parameter key="expressionList" value="CASE WHEN TX = 'Saturday' OR tx = 'Sunday' THEN 'Weekend' ELSE 'Weekday' END&amp;&amp;i*r"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="dataTypeList" value="VARCHAR2&amp;&amp;NUMBER"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="var_view"/>
+<Parameter key="selectedFieldList" value="D,T,TS,I,R,TX"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="QUANTILE_TEST_01"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="D" type="DATE"/>
+<Field name="T" type="DATE"/>
+<Field name="TS" type="DATE"/>
+<Field name="I" type="NUMBER(22,0)"/>
+<Field name="R" type="REAL"/>
+<Field name="TX" type="VARCHAR2(10)"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="var_view"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="D" type="DATE"/>
+<Field name="T" type="DATE"/>
+<Field name="TS" type="DATE"/>
+<Field name="I" type="NUMBER(22,0)"/>
+<Field name="R" type="REAL"/>
+<Field name="TX" type="VARCHAR2(10)"/>
+<Field name="st" type="VARCHAR2"/>
+<Field name="new_i" type="NUMBER"/>
+<Field name="TX_bin" type="NUMBER"/>
+<Field name="I_bin" type="NUMBER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Link source="Db Table" target="Variable Operator"/>
+</Process>

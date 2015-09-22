@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="2.3">
+<Operator X="75" Y="89" name="stock" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1315966416750_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="stock"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+</Operator>
+<Operator X="183" Y="89" name="Time Series" type="com.alpine.miner.gef.runoperator.timeseries.TimeSeriesOperator" uuid="1315966426187">
+<Parameter key="d" value="0"/>
+<Parameter key="groupColumn" value="code"/>
+<Parameter key="q" value="2"/>
+<Parameter key="valueColumn" value="price"/>
+<Parameter key="p" value="5"/>
+<Parameter key="threshold" value="1000"/>
+<Parameter key="idColumn" value="date"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="stock"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="code" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="340" Y="89" name="TimeSeries Prediction" type="com.alpine.miner.gef.runoperator.timeseries.TimeSeriesPredictOperator" uuid="1315966454187">
+<Parameter key="aheadNumber" value="10"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="outputTable" value="time_series_output"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="time_series_output"/>
+<Parameter key="tableType" value=""/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</InPutFieldList>
+</Operator>
+<Link source="stock" target="Time Series"/>
+<Link source="Time Series" target="TimeSeries Prediction"/>
+</Process>

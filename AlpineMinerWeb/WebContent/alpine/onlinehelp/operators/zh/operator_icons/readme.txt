@@ -1,0 +1,1 @@
+The icons will come from com.alpine.miner.help

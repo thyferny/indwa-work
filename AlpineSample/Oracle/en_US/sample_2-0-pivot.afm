@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="84" Y="99" name="credit" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324491458364_0">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="CREDIT"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="59" Y="226" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324491598998_0">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="DEMOGRAPHICS"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="269" Y="158" name="Table Join" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1324491957514">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="MINER_DEMO_DEMOGRAPHICS_a" operID="1324491598998_0" schema="MINER_DEMO" table="DEMOGRAPHICS"/>
+<JoinTableModel alias="MINER_DEMO_CREDIT_a" operID="1324491458364_0" schema="MINER_DEMO" table="CREDIT"/>
+<JoinColumnModel columnName="ID" columnType="NUMBER(0,-127)" newColumnName="ID" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="NAME" columnType="VARCHAR2(30)" newColumnName="NAME" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="AGE" columnType="NUMBER(0,-127)" newColumnName="AGE" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="NUM_DEP" columnType="NUMBER(0,-127)" newColumnName="NUM_DEP" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="EDU" columnType="NUMBER(0,-127)" newColumnName="EDU" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="TIMES90DAYSLATE" columnType="NUMBER(0,-127)" newColumnName="TIMES90DAYSLATE" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="REVOLVING_UTIL" columnType="REAL" newColumnName="REVOLVING_UTIL" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="DEBT_RATIO" columnType="REAL" newColumnName="DEBT_RATIO" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="CREDIT_LINES" columnType="NUMBER(0,-127)" newColumnName="CREDIT_LINES" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="MONTHLY_INCOME" columnType="REAL" newColumnName="MONTHLY_INCOME" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="TIMES30DAYSLATE_2YEARS" columnType="NUMBER(0,-127)" newColumnName="TIMES30DAYSLATE_2YEARS" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="SRSDLQNCY" columnType="NUMBER(0,-127)" newColumnName="SRSDLQNCY" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinConditionModel andOr="" column1="MINER_DEMO_DEMOGRAPHICS_a.ID" column2="MINER_DEMO_CREDIT_a.ID" condition="=" joinType="JOIN" tableAlias1="MINER_DEMO_DEMOGRAPHICS_a" tableAlias2="MINER_DEMO_CREDIT_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DEMOGRAPHICS"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="NUM_DEP" type="NUMBER(22,0)"/>
+<Field name="EDU" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="CREDIT"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(22,0)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(22,0)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(22,0)"/>
+<Field name="SRSDLQNCY" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="405" Y="158" name="Variable" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1324492001889">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC_VARIABLE"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<QuantileModel>
+<QuantileItem columnName="CREDIT_LINES" isCreateNewColumn="true" newColumnName="CREDIT_LINES_bin" numberOfBin="3" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0"/>
+<QuantileItemBinNumeric binIndex="2" binType="0"/>
+<QuantileItemBinNumeric binIndex="3" binType="0"/>
+</QuantileItem>
+<QuantileItem columnName="MONTHLY_INCOME" isCreateNewColumn="true" newColumnName="MONTHLY_INCOME_bin" numberOfBin="5" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0"/>
+<QuantileItemBinNumeric binIndex="2" binType="0"/>
+<QuantileItemBinNumeric binIndex="3" binType="0"/>
+<QuantileItemBinNumeric binIndex="4" binType="0"/>
+<QuantileItemBinNumeric binIndex="5" binType="0"/>
+</QuantileItem>
+</QuantileModel>
+<DerivedFieldsModel>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="NAME"/>
+<selectedColumnName columnName="AGE"/>
+<selectedColumnName columnName="NUM_DEP"/>
+<selectedColumnName columnName="EDU"/>
+<selectedColumnName columnName="TIMES90DAYSLATE"/>
+<selectedColumnName columnName="REVOLVING_UTIL"/>
+<selectedColumnName columnName="DEBT_RATIO"/>
+<selectedColumnName columnName="CREDIT_LINES"/>
+<selectedColumnName columnName="MONTHLY_INCOME"/>
+<selectedColumnName columnName="TIMES30DAYSLATE_2YEARS"/>
+<selectedColumnName columnName="SRSDLQNCY"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="524" Y="158" name="NumericToText" type="com.alpine.miner.gef.runoperator.field.IntegerToTextOperator" uuid="1325892735325">
+<Parameter key="modifyOriginTable" value="false"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC_NUM2TXT"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="CREDIT_LINES_bin,MONTHLY_INCOME_bin"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_VARIABLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="NUMBER(0,-127)"/>
+<Field name="CREDIT_LINES_bin" type="INTEGER"/>
+<Field name="MONTHLY_INCOME_bin" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="672" Y="158" name="Pivot" type="com.alpine.miner.gef.runoperator.field.PivotOperator" uuid="1325892772622">
+<Parameter key="pivotColumn" value="CREDIT_LINES_bin"/>
+<Parameter key="groupByColumn" value="MONTHLY_INCOME_bin"/>
+<Parameter key="aggregateColumn" value="SRSDLQNCY"/>
+<Parameter key="aggregateType" value="avg"/>
+<Parameter key="useArray" value="false"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC_PIVOT"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_NUM2TXT"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="NUMBER(0,-127)"/>
+<Field name="CREDIT_LINES_bin" type="VARCHAR2"/>
+<Field name="MONTHLY_INCOME_bin" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="demographics" target="Table Join"/>
+<Link source="credit" target="Table Join"/>
+<Link source="Table Join" target="Variable"/>
+<Link source="Variable" target="NumericToText"/>
+<Link source="NumericToText" target="Pivot"/>
+</Process>

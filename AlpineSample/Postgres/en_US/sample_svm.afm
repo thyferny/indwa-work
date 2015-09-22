@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="1.1.1">
+<Operator X="71" Y="125" name="svm_cl" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303889512702_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="svm_cl"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_cl"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="96" Y="322" name="svm_nd" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303889620640_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="svm_nd"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_nd"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="80" Y="487" name="svm_reg" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303889622202_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="svm_reg"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_reg"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="c" type="DOUBLE PRECISION"/>
+<Field name="d" type="DOUBLE PRECISION"/>
+<Field name="e" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="327" Y="324" name="SVM Novelty Detection" type="com.alpine.miner.gef.runoperator.svm.SVMNoveltyDetectionOperator" uuid="1303889627812">
+<Parameter key="IDColumn" value="id"/>
+<Parameter key="nu" value="0.001"/>
+<Parameter key="eta" value="0.05"/>
+<Parameter key="gamma" value="0.1"/>
+<Parameter key="degree" value="2"/>
+<Parameter key="kernelType" value="1"/>
+<Parameter key="columnNames" value="b,a"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_nd"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="231" Y="133" name="SVM Classification" type="com.alpine.miner.gef.runoperator.svm.SVMClassificationOperator" uuid="1303889630171">
+<Parameter key="IDColumn" value="id"/>
+<Parameter key="nu" value="0.2"/>
+<Parameter key="eta" value="0.05"/>
+<Parameter key="dependentColumn" value="label"/>
+<Parameter key="gamma" value="0.1"/>
+<Parameter key="degree" value="2"/>
+<Parameter key="kernelType" value="1"/>
+<Parameter key="columnNames" value="b,a"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_cl"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="321" Y="485" name="SVM Regression" type="com.alpine.miner.gef.runoperator.svm.SVMRegressionOperator" uuid="1303889636937">
+<Parameter key="IDColumn" value="id"/>
+<Parameter key="nu" value="0.001"/>
+<Parameter key="eta" value="0.2"/>
+<Parameter key="dependentColumn" value="label"/>
+<Parameter key="gamma" value="0.1"/>
+<Parameter key="degree" value="2"/>
+<Parameter key="slambda" value="0.2"/>
+<Parameter key="kernelType" value="1"/>
+<Parameter key="columnNames" value="d,e,b,c,a"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_reg"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="c" type="DOUBLE PRECISION"/>
+<Field name="d" type="DOUBLE PRECISION"/>
+<Field name="e" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="166" Y="29" name="SVM Prediction" type="com.alpine.miner.gef.runoperator.svm.SVMPredictOperator" uuid="1303889655374">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="svm_cl_predict"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_cl"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_cl_predict"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="215" Y="230" name="SVM Prediction 1" type="com.alpine.miner.gef.runoperator.svm.SVMPredictOperator" uuid="1303889659265">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="svm_nd_predict"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_nd"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_nd_predict"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="206" Y="419" name="SVM Prediction 2" type="com.alpine.miner.gef.runoperator.svm.SVMPredictOperator" uuid="1303889662858">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="svm_reg_predict"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_reg"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="c" type="DOUBLE PRECISION"/>
+<Field name="d" type="DOUBLE PRECISION"/>
+<Field name="e" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_reg_predict"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="c" type="DOUBLE PRECISION"/>
+<Field name="d" type="DOUBLE PRECISION"/>
+<Field name="e" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="314" Y="36" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1303889861155">
+<Parameter key="useModel" value="true"/>
+<Parameter key="dependentColumn" value="label"/>
+<Parameter key="columnValue" value="1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_cl"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="415" Y="80" name="LIFT" type="com.alpine.miner.gef.runoperator.model.evaluator.LIFTOperator" uuid="1303889863171">
+<Parameter key="useModel" value="true"/>
+<Parameter key="dependentColumn" value="label"/>
+<Parameter key="columnValue" value="1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="svm_cl"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="a" type="DOUBLE PRECISION"/>
+<Field name="b" type="DOUBLE PRECISION"/>
+<Field name="label" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="svm_cl" target="SVM Classification"/>
+<Link source="svm_cl" target="SVM Prediction"/>
+<Link source="SVM Classification" target="SVM Prediction"/>
+<Link source="svm_nd" target="SVM Novelty Detection"/>
+<Link source="svm_reg" target="SVM Regression"/>
+<Link source="svm_reg" target="SVM Prediction 2"/>
+<Link source="SVM Regression" target="SVM Prediction 2"/>
+<Link source="svm_nd" target="SVM Prediction 1"/>
+<Link source="SVM Novelty Detection" target="SVM Prediction 1"/>
+<Link source="SVM Classification" target="ROC"/>
+<Link source="SVM Classification" target="LIFT"/>
+<Link source="svm_cl" target="ROC"/>
+<Link source="svm_cl" target="LIFT"/>
+</Process>

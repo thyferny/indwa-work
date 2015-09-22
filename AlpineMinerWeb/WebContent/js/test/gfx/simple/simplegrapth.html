@@ -1,0 +1,163 @@
+﻿<html>
+<head>
+<title>Example 2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/resources/dojo.css";
+	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.6/tests/css/dijitTests.css";
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js" djConfig="isDebug: true"></script>
+
+<script type="text/javascript">
+dojo.require("dojox.gfx");
+dojo.require("dojox.data.dom");
+
+var managerNum = 2;
+var workerNum = 3;
+var surfaceHeight = 600;
+var surfaceWidth = 800;
+var iconHeight = 48;
+var iconWidth = 48;
+var maxNum = 16;
+
+var surface;
+
+function drawGraph(){
+	dojox.data.dom.removeChildren(dojo.byId("container"));
+	surface = dojox.gfx.createSurface("container", surfaceWidth, surfaceHeight);//创建surface
+	drawIcons();
+	drawLinks();
+}
+
+function drawIcons(){
+	drawMangers();
+	drawWorkers();
+	drawYou();
+}
+
+function drawMangers(){
+	var interspace = surfaceWidth/(managerNum + 1);
+	var x = 0;
+	var y = 0;
+	
+	for(var i=0;i<managerNum;i++){
+		var image = surface.createImage({
+            width: iconWidth,
+            height: iconHeight,
+            src: "image/manager.jpg"
+        });
+		x += interspace;
+		//move the image of arrow to the right place
+		image.setTransform(dojox.gfx.matrix.translate(x, y));
+	}	
+}
+
+function drawWorkers(){	
+	var interspace = surfaceWidth/(workerNum + 1);
+	var x = 0;
+	var y = surfaceHeight/3*2;
+	for(var i=0;i<workerNum;i++){
+		var image = surface.createImage({
+            width: iconWidth,
+            height: iconHeight,
+            src: "image/worker.jpg"
+        });
+		x += interspace;
+		//move the image of arrow to the right place
+		image.setTransform(dojox.gfx.matrix.translate(x, y));
+	}	
+}
+
+function drawYou(){
+	var y = surfaceHeight/3;
+	var x = surfaceWidth/2;
+	var image = surface.createImage({
+            width: iconWidth,
+            height: iconHeight,
+            src: "image/you.jpg"
+        });
+		//move the image of arrow to the right place
+    image.setTransform(dojox.gfx.matrix.translate(x, y));
+}
+
+function drawLinks(){
+	drawFromManagers();
+	drawToWorkers();
+}
+
+function drawFromManagers(){	
+	var interspace = surfaceWidth/(managerNum + 1);
+	var endx = surfaceWidth/2 + iconWidth/2; 
+	var endy = surfaceHeight/3;
+	for(var i=0;i<managerNum;i++){
+		var startx = interspace + i*interspace + iconWidth/2;
+		var starty = 0+ iconHeight;
+		
+		surface.createPath()
+			.moveTo(startx, starty)
+			.curveTo(startx, (starty + endy)/2, endx, (starty + endy)/2, endx, endy)
+			.setStroke({ color: "red", width: 1 })
+			.setFill(null)
+			;
+		
+	}
+}
+
+function drawToWorkers(){
+	var interspace = surfaceWidth/(workerNum + 1);
+	var startx = surfaceWidth/2 + iconWidth/2; 
+	var starty = surfaceHeight/3 + iconHeight;
+	
+	for(var i=0;i<workerNum;i++){
+		var endx = interspace + i*interspace + iconWidth/2;
+		var endy = surfaceHeight/3*2;
+		
+		surface.createPath()
+			.moveTo(startx, starty)
+			.curveTo(startx, (starty + endy)/2, endx, (starty + endy)/2, endx, endy)
+			.setStroke({ color: "blue", width: 1 })
+			;
+		
+	}
+}
+
+function addManager(){	
+	if(managerNum<maxNum){
+		managerNum++;
+		drawGraph();
+	}else{
+		alert("别加啦，只能这么多啦");
+	}
+}
+
+function addWorker(){
+	if(workerNum<maxNum){
+		workerNum++;
+		drawGraph();
+	}else{
+		alert("别加啦，只能这么多啦");
+	}		
+}
+
+dojo.addOnLoad(drawGraph);
+
+</script>
+</head>
+<body>
+	<h1>dojox.gfx Example 2</h1>
+	<hr></hr>
+	<table>
+		<tr>
+			<td>
+				<button type="button" onclick="addManager()">增加经理</button>
+			</td>
+			<td>
+				<button type="button" onclick="addWorker()">增加员工</button>
+			</td>
+		</tr>
+
+	</table>
+	<hr></hr>
+	<div id="container"></div>
+</body>
+</html>

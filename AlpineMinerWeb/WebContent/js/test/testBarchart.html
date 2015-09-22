@@ -1,0 +1,102 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>Bar Chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/barchart.js"></script>
+  <script type="text/javascript" src= "../alpine/visual/datagrid.js"></script>
+   <script type="text/javascript" src= "../alpine/result.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+			dojo.require("dojox.charting.Chart");
+            dojo.require("dojox.charting.axis2d.Default");
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("dojox.charting.plot2d.Grid");
+			dojo.require("dojox.charting.themes.PlotKit.orange");
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.form.RangeSlider");
+			dojo.require("dijit.form.HorizontalRuleLabels");
+			dojo.require("dijit.form.HorizontalRule");
+			dojo.require("dijit.layout.ContentPane");
+			dojo.require("dijit.layout.TabContainer");
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+			dojo.require("dojox.grid.DataGrid"); 
+			dojo.require("dojox.charting.Chart");
+			dojo.require("dojox.charting.DataSeries");
+
+			dojo.require("dojox.charting.widget.Legend");
+
+			dojo.require("dojox.charting.axis2d.Default");
+
+			dojo.require("dojox.charting.plot2d.Markers");
+			dojo.require("dojox.charting.plot2d.Columns");
+			dojo.require("dojox.charting.plot2d.Pie");
+			dojo.require("dojox.charting.plot2d.Lines");
+
+
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.MoveSlice");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.charting.action2d.Shake");
+			dojo.require("dojox.charting.plot2d.ClusteredColumns");
+
+			dojo.require("dojox.charting.themes.Bahamation");
+			dojo.require("dojox.charting.themes.PlotKit.orange");
+			dojo.require("dojo.data.ItemFileWriteStore");
+
+			dojo.require("dijit.form.NumberSpinner");
+			dojo.require("dijit.form.Textarea"); 
+
+
+			dojo.require("dojox.charting.plot2d.Grid");
+			 
+var result=  {"visualData":{"description":"","hGrid":false,"markers":false,"maxX":"","maxY":"","minX":"","minY":"","series":[{"YValues":[23000,23000,93000,73000],"seriesValue":"east "},{"YValues":[23000,8900,18000,12000],"seriesValue":"north "},{"YValues":[50400,40400,13000,33000],"seriesValue":"south "},{"YValues":[33000,33000,35000,25000],"seriesValue":"west "}],"seriesName":"region","title":"Bar Chart","vGrid":false,"visualizationType":2,"xAxisTitle":"quarter","xLabels":[["1","1"],["2","2"],["3","3"],["4","4"]],"yAxisTitle":"sales","yLabels":[]},"visualType":2,"out_id":1.3111293415231035E12,"out_title":"Bar Chart"} 
+	; 
+	
+	var chart;
+			makeObjects = function(){
+				
+				
+				fillOutPutPan(dijit.byId("chart"),
+						result
+				);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body class="tundra">
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 800px; height: 500px;"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

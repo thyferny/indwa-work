@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "alpine_miner", "alpine_miner.vcproj", "{AF9C0F47-3FD0-424C-9176-E8E7223286FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF9C0F47-3FD0-424C-9176-E8E7223286FD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF9C0F47-3FD0-424C-9176-E8E7223286FD}.Debug|Win32.Build.0 = Debug|Win32
+		{AF9C0F47-3FD0-424C-9176-E8E7223286FD}.Release|Win32.ActiveCfg = Release|Win32
+		{AF9C0F47-3FD0-424C-9176-E8E7223286FD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

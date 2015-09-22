@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="69" Y="130" name="数据表" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719718562">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="AGGREGATETEST"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="188" Y="245" name="聚合器" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1277719718578">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="aggt_view"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="SHOP_ID"/>
+<parentFieldList columnName="SHOP_ID"/>
+<parentFieldList columnName="PRODUCT_ID"/>
+<parentFieldList columnName="SALES"/>
+<parentFieldList columnName="SALES_RETURN"/>
+<AggregateField columnName="sum(SALES)" dataType="DOUBLE PRECISION" expression="sum(&quot;SALES&quot;)"/>
+<AggregateField columnName="count(SALES_RETURN)" dataType="DOUBLE PRECISION" expression="count(&quot;SALES_RETURN&quot;)"/>
+<AggregateField columnName="sum(sales+sales_return)" dataType="DOUBLE PRECISION" expression="sum(SALES+SALES_RETURN)"/>
+</AggregateFieldsModel>
+<WindowFieldsModel>
+<WindowField columnName="rank" dataType="CLOB" function="rank()" specification="partition by  SHOP_ID  order by sum(SALES+SALES_RETURN) desc"/>
+</WindowFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="AGGREGATETEST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SHOP_ID" type="NUMBER(22,0)"/>
+<Field name="PRODUCT_ID" type="NUMBER(22,0)"/>
+<Field name="SALES" type="FLOAT"/>
+<Field name="SALES_RETURN" type="FLOAT"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表" target="聚合器"/>
+</Process>

@@ -1,0 +1,115 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>cart tree chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/result.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/treechart.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+ <script type="text/javascript"  src="../alpine/visual/gfxToolTip.js"></script>	
+ 
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+		 	dojo.require("dijit.Tooltip"); 
+			dojo.require("dojox.gfx");
+			dojo.require("dojox.gfx.move");
+			dojo.require("dojo.colors");
+			dojo.require("dijit.layout.ContentPane");
+			dojo.require("dijit.Dialog");
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+ 
+			var result={"visualData":{"allChildNodes":[
+{"childNodes":[],"label":"room","nodeType":0,"toolTip":"room","xGrid":4,"yGrid":0},
+{"childNodes":[],"label":"crime_rate","nodeType":0,"toolTip":"crime_rate","xGrid":3,"yGrid":1},
+{"childNodes":[],"label":"lstat","nodeType":0,"toolTip":"lstat","xGrid":2,"yGrid":2},
+{"childNodes":[],"label":"pt_ratio","nodeType":0,"toolTip":"pt_ratio","xGrid":1,"yGrid":3},
+{"childNodes":[],"label":"Mid","nodeType":1,"toolTip":"Count(Low): 10\nCount(Mid): 51\nCount(High): 14\n","xGrid":0,"yGrid":4},
+{"childNodes":[],"label":"Low","nodeType":1,"toolTip":"Count(Low): 7\nCount(Mid): 4\nCount(High): 0\n","xGrid":2,"yGrid":4},
+{"childNodes":[],"label":"pollution","nodeType":0,"toolTip":"pollution","xGrid":4,"yGrid":3},
+{"childNodes":[],"label":"Mid","nodeType":1,"toolTip":"Count(Low): 1\nCount(Mid): 1\nCount(High): 0\n","xGrid":3,"yGrid":4},
+{"childNodes":[],"label":"Low","nodeType":1,"toolTip":"Count(Low): 6\nCount(Mid): 0\nCount(High): 0\n","xGrid":5,"yGrid":4},
+{"childNodes":[],"label":"pollution","nodeType":0,"toolTip":"pollution","xGrid":5,"yGrid":2},
+{"childNodes":[],"label":"pollution","nodeType":0,"toolTip":"pollution","xGrid":5,"yGrid":3},
+{"childNodes":[],"label":"Low","nodeType":1,"toolTip":"Count(Low): 4\nCount(Mid): 0\nCount(High): 0\n","xGrid":4,"yGrid":4},
+{"childNodes":[],"label":"Mid","nodeType":1,"toolTip":"Count(Low): 1\nCount(Mid): 1\nCount(High): 0\n","xGrid":6,"yGrid":4},
+{"childNodes":[],"label":"Low","nodeType":1,"toolTip":"Count(Low): 15\nCount(Mid): 0\nCount(High): 0\n","xGrid":6,"yGrid":3},
+{"childNodes":[],"label":"crime_rate","nodeType":0,"toolTip":"crime_rate","xGrid":6,"yGrid":1},
+{"childNodes":[],"label":"lstat","nodeType":0,"toolTip":"lstat","xGrid":6,"yGrid":2},
+{"childNodes":[],"label":"industry_area","nodeType":0,"toolTip":"industry_area","xGrid":8,"yGrid":3},
+{"childNodes":[],"label":"High","nodeType":1,"toolTip":"Count(Low): 0\nCount(Mid): 1\nCount(High): 10\n","xGrid":7,"yGrid":4},
+{"childNodes":[],"label":"Mid","nodeType":1,"toolTip":"Count(Low): 0\nCount(Mid): 2\nCount(High): 1\n","xGrid":9,"yGrid":4},
+{"childNodes":[],"label":"High","nodeType":1,"toolTip":"Count(Low): 1\nCount(Mid): 0\nCount(High): 33\n","xGrid":7,"yGrid":3},
+{"childNodes":[],"label":"pollution","nodeType":0,"toolTip":"pollution","xGrid":9,"yGrid":2},
+{"childNodes":[],"label":"Low","nodeType":1,"toolTip":"Count(Low): 3\nCount(Mid): 0\nCount(High): 0\n","xGrid":8,"yGrid":3},
+{"childNodes":[],"label":"Mid","nodeType":1,"toolTip":"Count(Low): 1\nCount(Mid): 1\nCount(High): 0\n","xGrid":10,"yGrid":3}],
+"description":"","hGrid":false,"height":0,"links":[
+{"endIndex":4,"label":" <= 20.95","startIndex":3},
+{"endIndex":5,"label":" > 20.95","startIndex":3},
+{"endIndex":7,"label":" <= 0.5065","startIndex":6},
+{"endIndex":8,"label":" > 0.5065","startIndex":6},
+{"endIndex":3,"label":" <= 54.8756","startIndex":2},
+{"endIndex":6,"label":" > 54.8756","startIndex":2},
+{"endIndex":11,"label":" <= 0.6055","startIndex":10},
+{"endIndex":12,"label":" > 0.6055","startIndex":10},
+{"endIndex":10,"label":" <= 0.6465","startIndex":9},
+{"endIndex":13,"label":" > 0.6465","startIndex":9},
+{"endIndex":2,"label":" <= 6.9259","startIndex":1},
+{"endIndex":9,"label":" > 6.9259","startIndex":1},
+{"endIndex":17,"label":" <= 4.06","startIndex":16},
+{"endIndex":18,"label":" > 4.06","startIndex":16},
+{"endIndex":16,"label":" <= 30.5305","startIndex":15},
+{"endIndex":19,"label":" > 30.5305","startIndex":15},
+{"endIndex":21,"label":" <= 0.696","startIndex":20},
+{"endIndex":22,"label":" > 0.696","startIndex":20},
+{"endIndex":15,"label":" <= 5.7757","startIndex":14},
+{"endIndex":20,"label":" > 5.7757","startIndex":14},
+{"endIndex":1,"label":" <= 16.5","startIndex":0},
+{"endIndex":14,"label":" > 16.5","startIndex":0}],"markers":false,"maxX":"","maxY":"","minX":"","minY":"",
+"title":"CART","vGrid":false,"visualizationType":3,"width":0,"xAxisTitle":"","xLabels":[],
+"xMajorTickStep":"","xMinorTickStep":"","yAxisTitle":"","yLabels":[],"yMajorTickStep":"","yMinorTickStep":""},
+"visualType":3,"out_id":1.3122670196795054E12,"out_title":"CART"};
+			var chart;
+			makeObjects = function(){
+				
+				
+				fillOutPutPan( dijit.byId("chart"),
+						result				
+				);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body  >
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 1800px; height: 500px;"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

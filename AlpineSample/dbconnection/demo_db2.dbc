@@ -1,0 +1,10 @@
+#
+#Mon Dec 05 16:05:43 CST 2011
+passwordText=rO0ABXQAEWRiMmluc3QxZGV2ZWxvcGVy
+userNameText=db2inst1
+engineCombo=DB2
+connNameText=demo_db2
+portText=50001
+jdbc=
+hostText=localhost
+dbNameText=AM_DEMO

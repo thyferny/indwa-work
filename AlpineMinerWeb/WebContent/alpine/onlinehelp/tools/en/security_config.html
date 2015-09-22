@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Security Configuration Management</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+	<h1>Security Configuration Management</h1>
+	<p>
+		To open the Security Configuration Management dialog, click the user drop down button, then click the Security Configuration button on the drop down menu.
+	</p>
+	<p><img src="./images/security_config_1.png"></p>
+	<h2>Authentication methods</h2>
+	<p>
+		Alpine supports four authentication methods: Local Provider, LDAP Provider,Active Directory and Custom Provider. The Administrator must select one of the provider types.
+	</p>
+	<!--<p><img src="./images/security_config_2.png"></p>-->
+	<h2>Local Provider</h2>
+	<p>
+		If Local Provider is selected then there is no configuration on this page. The Groups & Users Management dialog is used to configure users and groups. See User & Groups Management for details.
+	</p>
+	<h2>LDAP Provider</h2>
+	<p>
+		When LDAP Provider is selected the user will be asked to configure LDAP settings.
+	</p>
+	<!--<p><img src="./images/security_config_3.png"></p>-->
+	<ul>
+		<li>Host and port for where the LDAP server is running.</li>
+		<li>Principal and credential for the LDAP root DN.</li>
+		<li>
+			Security level can be "User name & password" or "user name only". If "User name only" is selected there is no need to provide password when sign on. However, a valid user DN is still required.
+		</li>
+		<li>Group base DN and group name attribute will indicate where in LDAP to search for groups. The group objects in LDAP will typically have an objectClass of groupOfNames or groupOfUniqueNames.</li>
+		<li>User base DN will define the top of sub tree of where user objects are stored.</li>
+		<li>Notification attribute indicates which attribute to use to decide whether to send notification when flow data changes. User can select any string attribute type for this. If the value is null, or "no", or "false" then notification is false. Anything else will set notification to true.</li>
+	</ul>
+	<p>Ensure a successful connection before saving configuration via the Test Connection button.</p>
+	<p>&nbsp;</p>
+	<h2>Active  Directory</h2>
+	<p>When  Active Directory is selected the user will be asked to configure Active  Directory settings.</p>
+	<!--<p><img width="826" height="538" src="images/security_config_7.png"></p>-->
+	<ul type="disc">
+      <li>Host and port for where the Active       Directory server is running.</li>
+	  <li>Principal is the Active directory&rsquo;s administrator       login name.</li>
+	  <li>Credential is the administrator&rsquo;s       password.</li>
+	  <li>Domain name</li>
+</ul>
+	<p>&nbsp;</p>
+	Ensure a successful connection before saving  configuration via the Test Connection button.
+<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<h2>Custom Provider</h2>
+	<p>
+		In order to use custom provider, a Java class must be provided that implements the following Java interface:
+		com.alpine.miner.security.AuthenticationProvider
+	</p>
+	<!--<p><img src="./images/security_config_4.png"></p>-->
+	<p>
+		User can manually copy the jar file to:	&lt;tomcat install path&gt;/webapps/AlpineIlluminator/WEB-INF/lib	</p>
+	<p>Or package a jar file and use the above user interface to load it. </p>
+	<!--<p><img src="./images/security_config_5.png"></p>-->
+	<h2>&nbsp;</h2>
+	<p>&nbsp;</p>
+</body>
+</html>

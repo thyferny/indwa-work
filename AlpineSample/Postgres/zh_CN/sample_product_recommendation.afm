@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="" Version="3.0">
+<Operator X="33" Y="114" name="数据表 " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303207674745">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="purchase"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="216" Y="173" name="聚合器 " type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1303207697921">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="purchase_mining"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="tx_no"/>
+<parentFieldList columnName="tx_no"/>
+<parentFieldList columnName="item"/>
+<parentFieldList columnName="Apple"/>
+<parentFieldList columnName="Orange"/>
+<parentFieldList columnName="Cake"/>
+<parentFieldList columnName="Coke"/>
+<parentFieldList columnName="Wine"/>
+<parentFieldList columnName="Beef"/>
+<parentFieldList columnName="Beer"/>
+<parentFieldList columnName="Pork"/>
+<parentFieldList columnName="Banana"/>
+<AggregateField columnName="Orange" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Orange&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Coke" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Coke&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Banana" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Banana&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Beer" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Beer&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Beef" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Beef&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Cake" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Cake&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Pork" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Pork&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Apple" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Apple&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+<AggregateField columnName="Wine" dataType="DOUBLE PRECISION" expression="CASE WHEN sum(&quot;Wine&quot;) &gt; 0 THEN 1 ELSE 0 END"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="purchase_denormalized"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="tx_no" type="INTEGER"/>
+<Field name="item" type="CHARACTER VARYING(10)"/>
+<Field name="Apple" type="INTEGER"/>
+<Field name="Orange" type="INTEGER"/>
+<Field name="Cake" type="INTEGER"/>
+<Field name="Coke" type="INTEGER"/>
+<Field name="Wine" type="INTEGER"/>
+<Field name="Beef" type="INTEGER"/>
+<Field name="Beer" type="INTEGER"/>
+<Field name="Pork" type="INTEGER"/>
+<Field name="Banana" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="190" Y="83" name="变量器" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303208549633">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="purchase_denormalized"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="tx_no"/>
+<selectedColumnName columnName="item"/>
+<DerivedFieldItem columnName="Apple" dataType="INTEGER" expression="CASE WHEN item='Apple' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Orange" dataType="INTEGER" expression="CASE WHEN item='Orange' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Cake" dataType="INTEGER" expression="CASE WHEN item='Cake' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Coke" dataType="INTEGER" expression="CASE WHEN item='Coke' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Wine" dataType="INTEGER" expression="CASE WHEN item='Wine' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Beef" dataType="INTEGER" expression="CASE WHEN item='Beef' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Beer" dataType="INTEGER" expression="CASE WHEN item='Beer'  THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Pork" dataType="INTEGER" expression="CASE WHEN item='Pork' THEN 1 ELSE 0 END"/>
+<DerivedFieldItem columnName="Banana" dataType="INTEGER" expression="CASE WHEN item='Banana' THEN 1 ELSE 0 END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="purchase"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="tx_no" type="INTEGER"/>
+<Field name="item" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="236" Y="276" name="关联规则分析" type="com.alpine.miner.gef.runoperator.association.AssociationOperator" uuid="1303208838921">
+<Parameter key="minSupport" value="0.1"/>
+<Parameter key="tableSizeThreshold" value="10000000"/>
+<Parameter key="minConfidence" value="0.8"/>
+<Parameter key="useArray" value="false"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="association_output"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="Beer,Cake,Beef,Pork,Apple,Coke,Orange,Banana,Wine"/>
+<Expression expression="=" positiveValue="1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="purchase_mining"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="tx_no" type="INTEGER"/>
+<Field name="Orange" type="DOUBLE PRECISION"/>
+<Field name="Coke" type="DOUBLE PRECISION"/>
+<Field name="Banana" type="DOUBLE PRECISION"/>
+<Field name="Beer" type="DOUBLE PRECISION"/>
+<Field name="Beef" type="DOUBLE PRECISION"/>
+<Field name="Cake" type="DOUBLE PRECISION"/>
+<Field name="Pork" type="DOUBLE PRECISION"/>
+<Field name="Apple" type="DOUBLE PRECISION"/>
+<Field name="Wine" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表 " target="变量器"/>
+<Link source="变量器" target="聚合器 "/>
+<Link source="聚合器 " target="关联规则分析"/>
+</Process>

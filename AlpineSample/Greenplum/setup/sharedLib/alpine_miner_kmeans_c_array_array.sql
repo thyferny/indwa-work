@@ -1,0 +1,660 @@
+CREATE OR REPLACE FUNCTION alpine_miner_kmeans_c_array_array(table_name text, table_name_withoutschema text, column_name text[], column_array_length int[], column_number integer, id text, tempid text, clustername text, k integer, max_run integer, max_iter integer, distance integer)
+  RETURNS double precision[] AS
+$BODY$
+DECLARE
+    run integer:=1;
+    none_stable integer;
+    tmp_res_1 varchar(50):='';
+    tmp_res_2 varchar(50):='';
+    tmp_res_3 varchar(50):='';
+    tmp_res_4 varchar(50):='';
+    result1 varchar(50):='';
+    column_array text:='';
+    avg_array text:='';
+    x_array text:='';
+    i integer := 0;
+    j integer := 0;
+    l integer := 0;
+    m integer := 0;
+    n integer := 0;
+    sql text:='';
+    sql1 text:='';
+    temptablename text:='';
+    column_all text:='';
+    comp_sql text:='';
+    result_sql text:='';
+    sampleid integer;
+    sample_array text:='';
+    data_array text:='';
+    roww record;
+    init_array text:='';
+    init_array1 text:='';
+    sample_array3 text[];
+    sample_array1 text:='';
+    sample_array2 text:='';
+    column_new text:='';
+     xx_array text;
+     comp_sql_new text:='';
+     alpine_id text:='';
+     resultarray float[2];
+    tempsum float;
+    nullflag smallint:=0;
+    column_array_sum integer:= 0;
+    column_array_index integer:= 0;
+    first boolean := true;
+    temp_text text := '';
+    temp_index integer := 0;
+  
+BEGIN
+
+i := 1;
+while i <= column_number loop
+	if column_array_length[i] = 0 then
+		column_array_sum := column_array_sum + 1;
+	else
+		column_array_sum := column_array_sum + column_array_length[i];
+	end if ;
+	i := i+ 1;
+end loop;
+
+temptablename:=table_name_withoutschema;
+
+if id='null'
+then 
+sql:= 'create temp table '||temptablename||'copy as(select *,row_number() over () '||tempid||' from '||table_name||' where ';
+alpine_id:=tempid;
+else
+sql:= 'create temp table '||temptablename||'copy as(select * from '||table_name||' where ';
+alpine_id:=id;
+end if;
+
+i := 1;
+while i < (column_number) loop
+	sql:=sql||' "'||column_name[i]||'" is not null and ';
+	i := i + 1;	
+end loop;
+sql:=sql||' "'||column_name[i]||'" is not null';
+
+
+sql:=sql||') distributed by('||alpine_id||')';
+
+--raise notice '0 asdf sql:%',sql;
+execute sql;
+
+column_array := column_name[1];
+
+i := 2;
+while i < (column_number + 1) loop
+	column_array := column_array||',"'||column_name[i]||'"';
+	i := i + 1;
+end loop;
+
+
+-------------------------------
+sql:='create temp table '||temptablename||'init as select tablek1.seq sample_id,0::smallint as stable,';
+i := 1;
+while i<(k + 1) loop
+	sql:=sql||'k'||i||',';
+	i := i + 1;
+	end loop;
+	sql:=sql||'0::integer as iter from';
+i := 1;
+----raise notice 'k:%, column_number:%', k, column_number;
+ while i<(k + 1) loop
+sql:=sql||'(select array[';
+	 j := 1;
+	while j<=(column_number) loop
+	  --sql:=sql||'"'||column_name[j]||'",';
+          if j != 1 then
+             sql:=sql||',';
+          end if;
+          if column_array_length[j] < 1 then
+	  	sql:=sql||'"'||column_name[j]||'"';
+          else
+                l := 1;
+                while l <= column_array_length[j] loop
+          		if l != 1 then
+		             sql:=sql||',';
+		        end if;
+                    sql:=sql||'"'||column_name[j]||'"['||l||']';
+                    l := l + 1;
+                end loop;
+          end if;
+	  j := j + 1;
+	end loop;
+	sql:=sql||'] k'||i||',';
+	if i=1 then sql:=sql||' row_number() over (order by random())-1 as seq from '||temptablename||'copy limit '||max_run||') as tablek'||i||' inner join ';
+	else if i=k then sql:=sql||' row_number() over (order by random())-1 as seq from '||temptablename||'copy limit '||max_run||') as tablek'||i||' on tablek'||(i-1)||'.seq=tablek'||i||'.seq'; 
+	else sql:=sql||' row_number() over (order by random())-1 as seq from '||temptablename||'copy limit '||max_run||') as tablek'||i||' on tablek'||(i-1)||'.seq=tablek'||i||'.seq inner join ';end if;
+	end if;
+	i := i + 1;
+ end loop;
+sql:=sql||'  distributed by (sample_id) ';
+--raise notice '1 asdf sql:%',sql;
+execute sql;
+
+sql:='create temp table '||temptablename||'_random_new as select sample_id,stable,';
+i := 1;
+column_array_index := 1;
+temp_index := 0;
+first := true;
+while i<column_number+1 loop
+	sql:=sql||'array[';
+	j:=1;
+	first := true;
+	column_array_index := temp_index + 1;
+	if column_array_length[i] < 1 then
+	while j<=k loop
+		if first is true then
+			first := false;
+		else
+			sql := sql||',';
+		end if;
+		sql:=sql||'k'||j||'['||column_array_index||']'; 
+	j := j + 1;
+	end loop;
+	else
+		l := 1;
+		while l <= column_array_length[i] loop
+		  j := 1;
+		  while j<=k loop
+			if first is true then
+				first := false;
+			else
+				sql := sql||',';
+			end if;
+			sql:=sql||'k'||j||'['||column_array_index||']';
+		  j := j + 1;
+		  end loop;
+			l := l + 1;
+			column_array_index := column_array_index + 1;
+		end loop;
+	end if;
+	if column_array_length[i] < 1 then
+		temp_index := temp_index + 1;
+	else
+		temp_index := temp_index + column_array_length[i];
+	end if;
+	sql:=sql||']::float[] "'||column_name[i]||'",';
+	i := i + 1;
+end loop;
+	sql:=sql||' iter from '||temptablename||'init distributed by (sample_id)';
+--raise notice '2 asdf sql:%',sql;
+execute sql;
+-------------------------------
+------generate random table start------
+
+i := 1;
+first := true;
+sample_array1:=sample_array1||'array[';
+while i<(k + 1) loop
+	 j := 1;
+	while j<(column_number+1) loop
+--	if i=k and j=column_number then
+--	 sample_array1:=sample_array1||'y."'||column_name[j]||'"['||i||']]::float[]'; 
+--	 else
+--	 sample_array1:=sample_array1||'y."'||column_name[j]||'"['||i||'],';
+--	  end if;
+	if column_array_length[j] < 1 then
+		if first is true then
+			first := false;
+		else
+			sample_array1 := sample_array1||',';
+		end if;
+		sample_array1:=sample_array1||'y."'||column_name[j]||'"['||i||']';--     'k'||j||'['||column_array_index||']'; 
+	else
+		l := 1;
+		column_array_index := i;
+		while l <= column_array_length[j] loop
+			if first is true then
+				first := false;
+			else
+				sample_array1 := sample_array1||',';
+			end if;
+			sample_array1:=sample_array1||'y."'||column_name[j]||'"['||column_array_index||']';
+			l := l + 1;
+			column_array_index := column_array_index + k;
+		end loop;
+	end if;
+	if i=k and j=column_number then
+		sample_array1:=sample_array1||']::float[]';
+	end if;
+	  j := j + 1;
+	end loop;
+	i := i + 1;
+ end loop;
+ 
+----raise notice '----sample_array1 sql:%',sample_array1;
+---------generate random table end-------------
+
+---------Adjust stable start--------------
+while run<=max_iter  loop
+tmp_res_1:='tmp_res_1'||run::varchar;
+tmp_res_2:='tmp_res_2'||run::varchar;
+tmp_res_3:='tmp_res_3'||run::varchar;
+tmp_res_4:='tmp_res_4'||run::varchar;
+i := 1;
+first = true;
+avg_array := '';
+while i < (column_number + 1) loop
+	if first is true then
+		first := false;
+	else
+		avg_array := avg_array||',';
+	end if;
+	if column_array_length[i] < 1 then
+		avg_array := avg_array||'avg("'||column_name[i]||'")::numeric(25,10)'; 
+	else
+		l := 1;
+		avg_array := avg_array||'array[';
+		while l <= column_array_length[i] loop
+			if l != 1 then
+				avg_array := avg_array||',';
+			end if;
+			avg_array := avg_array||'avg("'||column_name[i]||'"['||l||'])::numeric(25,10)';
+			l := l + 1;
+		end loop;
+		avg_array := avg_array||']::numeric(25,10)[]';
+	end if;
+	avg_array := avg_array||' "'||column_name[i]||'"';
+	--avg_array := avg_array||' "'||column_name[i]||'"';
+        --avg_array := avg_array||',avg("'||column_name[i]||'")::numeric(25,10) "'||column_name[i]||'"';
+	i := i + 1;
+end loop;
+
+
+------------------
+
+data_array:='array[';
+i:=1;
+while i<=column_number loop
+if (i != 1) then
+	data_array := data_array||',';
+end if;
+--data_array:=data_array||'x."'||column_name[i]||'"';
+	if column_array_length[i] < 1 then
+		data_array:=data_array||'x."'||column_name[i]||'"'; 
+	else
+		l := 1;
+		while l <= column_array_length[i] loop
+			if l != 1 then
+				data_array:=data_array||',';
+			end if;
+			--avg_array := avg_array||'avg("'||column_name[i]||'"['||l||'])::numeric(25,10)';
+			data_array:=data_array||'x."'||column_name[i]||'"['||l||']';
+			l := l + 1;
+		end loop;
+	end if;
+i:=i+1;
+end loop;
+data_array:=data_array||']';
+--data_array:=data_array||'x."'||column_name[i]||'"]';
+
+---------------
+sql:='create temp table '||temptablename||tmp_res_2||' (sample_id integer,'||alpine_id||' character varying,cluster_id integer) distributed by ('||alpine_id||')';
+--raise notice '3 asdf sql:%',sql;
+execute sql;
+i:=1;
+sql:='select sample_id::smallint,'||sample_array1||'::float[] from '||temptablename||'_random_new y where stable=0 order by sample_id';
+-- --raise notice 'sql:%',sql;
+--raise notice '4 asdf sql:%',sql;
+     for roww in execute sql loop
+	 sample_array3=roww.array;
+	 sampleid=roww.sample_id;
+	 sample_array2:='';
+	j:=1;
+	while j<column_array_sum*k loop
+	sample_array2:=sample_array2||sample_array3[j]||',';
+	j:=j+1;
+	end loop;
+	sample_array2:=sample_array2||sample_array3[j];
+	sample_array2:='array['||sample_array2||']';
+	sql1:='insert into '||temptablename||tmp_res_2||' select '||sampleid||'::smallint,'||alpine_id||',alpine_miner_kmeans_distance_loop('||sample_array2;
+	sql1:=sql1||'::float[],'||data_array||'::float[],'||k||','||distance||')as cluster_id from '||temptablename||'copy x';
+	  ----raise notice 'sqll:%',sql1;
+	--raise notice '5 asdf sql:%',sql1;
+	 execute sql1;
+	 i:=i+1;
+     end loop;
+---------------
+
+
+--------tmp_res_2 caculate each point in random table's distance to each point in date table and get each point in date table should belong to which cluster----------
+/*sql:='drop table if exists '||temptablename||tmp_res_2||';create temp table '||temptablename||tmp_res_2||' as (select 
+	sample_id,'||id||',alpine_miner_kmeans_distance_loop('||sample_array1||'::float[],'||data_array||'::float[],'||k||','||distance||') as cluster_id
+from '||temptablename||'copy x inner join '||temptablename||'_random_new y on y.stable=0) distributed by (sample_id,'||id||',cluster_id)';
+
+execute sql;*/
+
+
+-----tmp_res_1 caculate unstable cluster---
+sql:='drop table if exists '||temptablename||tmp_res_1||'; create temp table '||temptablename||tmp_res_1||'   as
+(
+select 
+	sample_id,
+ 	cluster_id,
+	'||avg_array||'
+from '||temptablename||tmp_res_2||'
+x,'||temptablename||'copy y
+where x.'||alpine_id||'=y.'||alpine_id||'
+ group by 1,2
+)distributed by(sample_id,cluster_id)
+ ;
+ ';
+
+--raise notice '6 asdf sql:%',sql;
+execute sql;
+ 
+--raise info '------------1--------------'; 
+
+
+sql:='drop table if exists '||temptablename||'temp;create temp table '||temptablename||'temp as select tablek1.sample_id,0::smallint as stable,';
+i := 1;
+ while i<(k + 1) loop
+	sql:=sql||'k'||i||',';
+	i := i + 1;	
+ end loop;
+sql:=sql||'0::integer as iter from ';
+
+
+i := 1;
+while i<(k + 1) loop
+	sql:=sql||'(select array[';
+	 j := 1;
+	while j<=(column_number) loop
+          if (j != 1) then
+             sql := sql ||',';
+          end if;
+	  --sql:=sql||'"'||column_name[j]||'"';
+		if column_array_length[j] < 1 then
+			sql:=sql||'"'||column_name[j]||'"';
+		else
+			l := 1;
+			while l <= column_array_length[j] loop
+				if l != 1 then
+					sql := sql || ',';
+				end if;
+				sql:=sql||'"'||column_name[j]||'"['||l||']';
+				l := l + 1;
+			end loop;
+		end if;
+		j := j + 1;
+	end loop;
+
+
+
+	sql:=sql||'] k'||i||',';
+
+	if i=1 then sql:=sql||' sample_id from '||temptablename||tmp_res_1||' where cluster_id='||(i-1)||') as tablek'||i||' inner join ';
+	else if i=k then sql:=sql||' sample_id from '||temptablename||tmp_res_1||' where cluster_id='||(i-1)||') as tablek'||i||' on tablek'||(i-1)||'.sample_id=tablek'||i||'.sample_id'; 
+	else sql:=sql||' sample_id from '||temptablename||tmp_res_1||' where cluster_id='||(i-1)||') as tablek'||i||' on tablek'||(i-1)||'.sample_id=tablek'||i||'.sample_id inner join ';
+	end if;
+	end if;
+	i := i + 1;
+ end loop;
+ sql :=  sql||' distributed by (sample_id)';
+--raise notice '7 asdf sql:%',sql;
+execute sql;
+
+sql:='drop table if exists '||temptablename||tmp_res_4||';create temp table '||temptablename||tmp_res_4||' as select sample_id,stable,';
+
+
+i := 1;
+column_array_index := 1;
+first := true;
+temp_index := 0;
+while i<column_number+1 loop
+	sql:=sql||'array[';
+	j:=1;
+		first := true;
+		column_array_index := temp_index + 1;
+		--sql:=sql||'k'||j||'['||i||']';
+		if column_array_length[i] < 1 then
+			j := 1;
+			while j<=k loop
+				if first is true then
+					first := false;
+				else
+					sql := sql||',';
+				end if;
+				sql := sql||'k'||j||'['||column_array_index||']';
+				j := j + 1;
+			end loop;
+		else
+			l := 1;
+			while l <= column_array_length[i] loop
+				j := 1;
+				while j<=k loop
+
+				if first is true then
+					first := false;
+				else
+					sql := sql||',';
+				end if;
+
+				sql := sql || 'k'||j||'['||column_array_index||']';
+				j := j + 1;
+				end loop;
+				column_array_index := column_array_index + 1;
+				l := l + 1;
+			end loop;
+		end if;
+	if column_array_length[i] < 1 then
+		temp_index := temp_index + 1;
+	else
+		temp_index := temp_index + column_array_length[i];
+	end if;
+	sql:=sql||']::float[] "'||column_name[i]||'",';
+	i := i + 1;
+	end loop;
+	sql:=sql||' iter from '||temptablename||'temp distributed by (sample_id)';
+----raise notice '----create random sql:%',sql;
+--raise notice '8 asdf sql:%',sql;
+execute sql;
+
+comp_sql_new:='(case when ';
+i:=1;
+while i<(k + 1) loop
+  j:=1;
+  while j<column_number+1 loop
+	if column_array_length[j] < 1 then
+		temp_text := column_name[j]||'"['||i||']';
+		comp_sql_new:=comp_sql_new||'x."'||temp_text||'=y."'||temp_text;
+	else
+		l := 1;
+		column_array_index := i;
+		while l <= column_array_length[j] loop
+			if l  != 1 then
+				comp_sql_new:=comp_sql_new||' and ';
+			end if;
+			temp_text := column_name[j]||'"['||column_array_index||']';
+			comp_sql_new:=comp_sql_new||'x."'||temp_text||'=y."'||temp_text;
+			l := l + 1;
+			column_array_index := column_array_index + k;
+		end loop;
+	end if;
+
+  	if i!=k or j!=column_number then 
+		comp_sql_new:=comp_sql_new||' and ';
+	end if;
+	j:=j+1;
+  end loop;
+  i:=i+1;
+end loop;
+comp_sql_new:=comp_sql_new||' then 1 else 0 end )as stable';
+----raise notice '----comp_sql_new :%',comp_sql_new;
+------------
+
+xx_array:='';
+i := 1;
+ while i<(column_number + 1) loop
+	xx_array:=xx_array||'array[';
+
+--	xx_array:=xx_array||'x."'||column_name[i]||'"['||j||']';
+	if (column_array_length[i] < 1) then
+		j := 1;
+		while j<=k loop
+		if j != 1 then
+			xx_array := xx_array||',';
+		end if;
+		xx_array:=xx_array||'x."'||column_name[i]||'"['||j||']';
+		j := j + 1;
+		end loop;
+	else
+		l := 1;
+		column_array_index := 1;
+		while l <= column_array_length[i] loop
+			j := 1;
+			while j<=k loop
+			if l != 1 or j != 1 then
+				xx_array:=xx_array||',';
+			end if;
+			xx_array:=xx_array||'x."'||column_name[i]||'"['||column_array_index||']';
+			column_array_index := column_array_index + 1;
+			j := j + 1;
+			end loop;
+			l :=  l + 1;
+		end loop;
+	end if;
+	xx_array:=xx_array||']::float[] "'||column_name[i]||'",';
+	i := i + 1;
+ end loop;
+-- --raise notice 'xx_array:%',xx_array;
+ 
+ --------tmp_res_3 judge which sample is stable----
+sql:='drop table if exists '||temptablename||tmp_res_3||';create temp table '||temptablename||tmp_res_3||' as
+(
+	select 
+		x.sample_id,
+	 	'||comp_sql_new||','||xx_array
+	 	||run||' as iter
+	from  '||temptablename||tmp_res_4||' x, '||temptablename||'_random_new  y
+	where x.sample_id=y.sample_id
+
+)
+distributed by(sample_id)
+;
+';
+----------------
+
+--raise notice '9 asdf sql:%',sql;
+execute sql;
+
+sql:='insert into '||temptablename||tmp_res_3||' (select a.* from '||temptablename||'_random_new a left join '||temptablename||tmp_res_3||' as b on a.sample_id=b.sample_id';
+sql:=sql||' where b.sample_id is null);';
+
+sql:=sql||'drop table if exists '||temptablename||'temp1;create temp table '||temptablename||'temp1 as select * from '||temptablename||tmp_res_3||' distributed by (sample_id);';
+sql:=sql||'drop table if exists '||temptablename||'_random_new;';
+sql:=sql||'alter table '||temptablename||'temp1 rename to '||temptablename||'_random_new;';
+--raise notice '10 asdf sql:%',sql;
+execute sql;
+
+
+--raise notice '11 asdf sql:%',sql;
+execute 'select count(*)  from  '||temptablename||'_random_new where stable=0;' into none_stable;--into '||none_stable||'
+
+
+--raise notice '-------------------none_stable:%',none_stable;
+
+if none_stable=0
+then
+	exit;
+end if;
+
+run := run+1;
+
+end loop;
+---------Adjust stable end--------------
+
+sql:='select array[sample_id,len]
+from
+(
+	select sample_id,len,row_number() over(order by len) as seq 
+	from
+	(
+		select sample_id,avg(len) as len
+		from
+		(
+		select sample_id,alpine_miner_kmeans_distance_result('||sample_array1||'::float[],'||data_array||'::float[],'||k||','||distance||') as len
+			from '||temptablename||'copy x inner join '||temptablename||'_random_new y on y.stable=1
+			)a
+		 	group by 1
+		)b
+)z
+where seq=1';
+
+--raise notice '----get sample sql:%',sql;
+
+--raise notice '12 asdf sql:%',sql;
+execute sql into resultarray;
+sampleid:=resultarray[1];
+
+if sampleid is null then 
+sampleid:=0;
+nullflag:=1;
+ end if;
+
+--------deal result---------------- in (select sample_id from '||temptablename||'tmp_res_4) 
+result1:='result1';
+--raise notice '13 asdf sql:%',sql;
+execute 'drop table if exists '||temptablename||result1;
+
+--raise notice '14 asdf sql:%',sql;
+sql := 'create temp table '||temptablename||result1||' as 
+(
+	select * from  '||temptablename||'_random_new  where sample_id ='||sampleid||'
+)distributed by(sample_id);'
+;
+--raise notice '141 asdf sql:%',sql;
+execute sql;
+
+if nullflag=1 then
+sql:='select len
+from
+(
+	select sample_id,len,row_number() over(order by len) as seq 
+	from
+	(
+		select sample_id,avg(len) as len
+		from
+		(
+		select sample_id,alpine_miner_kmeans_distance_result('||sample_array1||'::float[],'||data_array||'::float[],'||k||','||distance||') as len
+			from '||temptablename||'copy x inner join '||temptablename||result1||' y on y.stable=0
+			)a
+		 	group by 1
+		)b
+)z
+where seq=1';
+--raise notice '15 asdf sql:%',sql;
+execute sql into tempsum;
+--raise notice '-------------------tempsum:%',tempsum;
+resultarray[2]:=tempsum;
+end if;
+
+--raise notice '16 asdf sql:%',sql;
+execute 'drop table if exists '||temptablename||'result2; create temp table '||temptablename||'result2 as select *,0::integer '||temptablename||'copy_flag from '||temptablename||'copy  distributed randomly;';
+
+
+
+
+
+sql:='
+	drop table if exists '||temptablename||'table_name_temp;create temp table '||temptablename||'table_name_temp as
+		(
+		select '||alpine_id||' as temp_id,alpine_miner_kmeans_distance_loop('||sample_array1||'::float[],'||data_array||'::float[],'||k||','||distance||') as '||clustername||' 
+		from '||temptablename||'result2 x inner join '||temptablename||result1||' y on x.'||temptablename||'copy_flag=0
+
+		)  distributed randomly ;';
+
+--raise notice '17 asdf sql:%',sql;
+execute sql;
+
+resultarray[1]:=run;
+
+RETURN resultarray;
+ 
+END;
+$BODY$
+  LANGUAGE 'plpgsql' VOLATILE;
+
+

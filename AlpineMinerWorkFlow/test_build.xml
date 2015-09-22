@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AlpineMinerWorkFlow.makejar" default="movejar"
+	basedir=".">
+
+    <property name="bin" value="bin" />
+
+    <path id="AlpineMinerWorkFlow.classpath">
+        <fileset dir="./../AlpineMinerUnitTest/lib">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="./../AlpineMinerWeb/WebContent/WEB-INF/lib">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+	<target name="makejar" depends="init" description="Create a jar for the AlpineMinerWorkFlowproject">
+        <javac destdir="${bin}" srcdir="./src" classpathref="AlpineMinerWorkFlow.classpath" />
+        <jar jarfile="AlpineMinerWorkFlow.jar">
+            <fileset dir="./bin" includes="**/*.class" />
+            <fileset dir="./src" includes="**/*.properties" />
+        </jar>
+	</target>
+
+	<target name="movejar" depends="makejar">
+	<!--because there amight be some error for the latest AlpineDataAnalysis code,
+	this function will be open only when we do build for the release and test
+	It is better for the UI to use the stable not the latest jar files  -->
+        <copy file="AlpineMinerWorkFlow.jar" todir="./../AlpineDataAnalysisTest/lib" />
+        <move file="AlpineMinerWorkFlow.jar" todir="./../AlpineMinerUnitTest/lib" />
+		<delete file="manifest.mf"/>
+	</target>
+
+    <target name="clean">
+        <delete dir="${bin}" />
+    </target>
+
+    <target name="init">
+        <mkdir dir="${bin}" />
+    </target>
+ 
+</project>

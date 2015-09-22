@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">   
+	<display-name>alpinedatalabs</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<listener>
+		<description>to subscribe Session events</description>
+		<listener-class>com.alpine.miner.impls.web.resource.SessionListenerImpl</listener-class>
+	</listener>
+	<listener>
+		<description>to subscribe Context events</description>
+		<listener-class>com.alpine.miner.impls.web.resource.ContextListenerImpl</listener-class>
+	</listener>
+	
+	<servlet>  
+	    <servlet-name>spring</servlet-name>  
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+	    <load-on-startup>1</load-on-startup>  
+	</servlet>  
+	
+	<servlet>
+		<servlet-name>alpineinit</servlet-name>
+		<servlet-class>com.alpine.miner.impls.AlpineInitServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CommonFileDownLoaderServlet</display-name>
+		<servlet-name>CommonFileDownLoaderServlet</servlet-name>
+		<servlet-class>
+		com.alpine.miner.impls.controller.util.CommonFileDownLoaderServlet</servlet-class>
+	</servlet>
+	
+	<servlet>  
+		<servlet-name>importProgressWebSocket</servlet-name>  
+		<servlet-class>com.alpine.miner.impls.websocket.importdata.ImportDataWebSocket</servlet-class>  
+	</servlet>  
+	
+	<servlet-mapping>  
+		<servlet-name>importProgressWebSocket</servlet-name>  
+		<url-pattern>/main/importDataLoading.do</url-pattern>  
+	</servlet-mapping>  
+	
+	
+	
+	<servlet-mapping>  
+	    <servlet-name>spring</servlet-name>  
+	    <url-pattern>*.do</url-pattern> 
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CommonFileDownLoaderServlet</servlet-name>
+		<url-pattern>/CommonFileDownLoaderServlet</url-pattern>
+	</servlet-mapping>  
+	  
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+	
+	
+	 <filter>
+        <filter-name>securityFilter</filter-name>
+        <filter-class>com.alpine.miner.impls.filter.SecurityFilter</filter-class>
+    </filter>
+	 <filter>
+        <filter-name>permissionFilter</filter-name>
+        <filter-class> com.alpine.miner.impls.filter.PermissionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>permissionFilter</filter-name>
+        <url-pattern>/main/*</url-pattern>
+    </filter-mapping>
+</web-app>  

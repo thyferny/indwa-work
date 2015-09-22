@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AlpineMinerSDK.makejar" default="movejar"
+	basedir=".">
+
+    <property name="bin" value="bin" />
+    <path id="AlpineMinerSDK.classpath">
+        <fileset dir="./../AlpineMinerUnitTest/lib">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="./../AlpineMinerWeb/WebContent/WEB-INF/lib">
+            <include name="*.jar" />
+        </fileset>
+	<fileset dir="./../AlpineMinerWeb/build_resource/lib_3rd/${hadoopVersion}">
+		<include name="*.jar" />
+	</fileset>
+    </path>
+	<target name="makejar" depends="init" description="Create a jar for the AlpineMinerSDK">
+        <javac destdir="${bin}" srcdir="./src" classpathref="AlpineMinerSDK.classpath" />
+        <jar jarfile="AlpineMinerSDK.jar">
+            <fileset dir="./bin" includes="**/*.class" />
+            <fileset dir="./src" includes="**/*.properties" />
+            <fileset dir="./src" includes="**/*.pig" />
+        </jar>
+			  
+	</target>
+
+	<target name="movejar" depends="makejar">
+	<!--because there amight be some error for the latest AlpineDataAnalysis code,
+	this function will be open only when we do build for the release and test
+	It is better for the UI to use the stable not the latest jar files  -->
+        <copy file="AlpineMinerSDK.jar" todir="./../AlpineDataAnalysisTest/lib" />
+        <move file="AlpineMinerSDK.jar" todir="./../AlpineMinerUnitTest/lib" />		 
+	</target>
+
+    <target name="clean">
+        <delete dir="${bin}" />
+    </target>
+
+    <target name="init">
+        <mkdir dir="${bin}" />
+    </target>
+
+</project>

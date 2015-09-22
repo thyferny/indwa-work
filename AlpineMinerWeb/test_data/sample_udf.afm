@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="2.3.4">
+<Operator X="283" Y="98" name="my_UDF" operatorname="my_UDF_0dc119fbf0ca855453ddfb6ebfebea97" type="com.alpine.miner.gef.runoperator.customize.CustomizedOperator" 
+ udfName="calculator" udfschema="demo" uuid="1319513000031">
+<outputColumns column="result" type="number"/>
+<Parameter key="3" value=""/>
+<Parameter key="1" value="sum"/>
+<Parameter key="outputSchema" value=""/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="adult"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="age" type="INTEGER"/>
+<Field name="workclass" type="CHARACTER VARYING(30)"/>
+<Field name="fnlwgt" type="INTEGER"/>
+<Field name="education" type="CHARACTER VARYING(30)"/>
+<Field name="moving" type="INTEGER"/>
+<Field name="marital_status" type="CHARACTER VARYING(30)"/>
+<Field name="occupation" type="CHARACTER VARYING(30)"/>
+<Field name="relationship" type="CHARACTER VARYING(30)"/>
+<Field name="race" type="CHARACTER VARYING(30)"/>
+<Field name="sex" type="CHARACTER VARYING(30)"/>
+<Field name="capital_gain" type="INTEGER"/>
+<Field name="capital_loss" type="INTEGER"/>
+<Field name="hours_per_week" type="INTEGER"/>
+<Field name="native_country" type="CHARACTER VARYING(30)"/>
+<Field name="incomecategory" type="CHARACTER VARYING(30)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="68" Y="89" name="adult" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1319513028859_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="adult"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+</Operator>
+<Link source="adult" target="my_UDF"/>
+</Process>

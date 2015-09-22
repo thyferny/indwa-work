@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="2.3">
+<Operator X="40" Y="53" name="DB table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719718562">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="aggregatetest"/>
+<Parameter key="tableType" value=""/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+</Operator>
+<Operator X="294" Y="64" name="aggregate" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1295499467749">
+<Parameter key="parentFieldList" value="shop_id&amp;&amp;product_id&amp;&amp;sales&amp;&amp;sales_return"/>
+<Parameter key="aggregateExpressionList" value="sum(&quot;sales&quot;)&amp;&amp;sum(&quot;sales_return&quot;)&amp;&amp;sum(sales+sales_return)"/>
+<Parameter key="windowSpecList" value="partition by shop_id order by sum(sales+sales_return) desc"/>
+<Parameter key="groupByFieldList" value="shop_id&amp;&amp;product_id"/>
+<Parameter key="aggregateDataTypeList" value="DOUBLE PRECISION&amp;&amp;DOUBLE PRECISION&amp;&amp;DOUBLE PRECISION"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="aggt_view"/>
+<Parameter key="windowDataTypeList" value="BIGINT"/>
+<Parameter key="aggregateFieldList" value="sales&amp;&amp;sales_return&amp;&amp;net_sales"/>
+<Parameter key="windowFunctionList" value="rank()"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="windowFieldList" value="rank"/>
+<Parameter key="outputType" value="VIEW"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="aggregatetest"/>
+<Parameter key="tableType" value=""/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="shop_id" type="INTEGER"/>
+<Field name="product_id" type="INTEGER"/>
+<Field name="sales" type="DOUBLE PRECISION"/>
+<Field name="sales_return" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="DB table" target="aggregate"/>
+</Process>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Storage Parameters</title>
+</head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+	<h1>Storage Parameters</h1>
+	<p>
+		For Operators which can generate an output table, the Storage Parameters dialog allows the user to specify several additional parameters regarding storage method and compression. Currently this feature is unique to Greenplum and PostgreSQL databases.
+	</p>
+	<p><img src="./images/storage_parmeters.png"></p>
+	<p>&nbsp;</p>
+	<OL>
+	  The parameters are listed below. The default option is indicated in bold:
+</OL>
+	<ul>
+	  <li>Append Only? (Yes or <strong>No</strong>)   </li>
+	  <li>Columnar Storage? (Yes or <strong>No</strong>) This option is enabled if and only if 'Append Only' is selected </li>
+	  <li>Compression? (Yes or <strong>No</strong>) This option is enabled if and only if 'Append Only' is selected. If the user selects 'Yes', then they are required to set the level of compression as a number between 1 and 9. The default is 1. </li>
+	  <li>Distribution Clause? (<strong>Randomly</strong>, or Distribute by) If the user selects 'Distribute by' then they are required to enter distribution clause as text, in the form of a list of columns separated by commas (the columns specified cannot be of type array).</li>
+</ul>
+	<p>&nbsp;</p>
+</body>
+</html>

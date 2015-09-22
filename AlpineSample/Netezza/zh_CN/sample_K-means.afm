@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="190" Y="74" name="数据表 " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303265101576">
+<Parameter key="dbConnectionName" value="demo_nz"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="HOUSE_TRANSACTION"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+</Operator>
+<Operator X="247" Y="235" name="K-Means " type="com.alpine.miner.gef.runoperator.clustering.KMeansOperator" uuid="1303265107691">
+<Parameter key="idColumn" value="HOUSE_ID"/>
+<Parameter key="k" value="3"/>
+<Parameter key="distance" value="Manhattan"/>
+<Parameter key="split_Number" value="5"/>
+<Parameter key="max_runs" value="10"/>
+<Parameter key="max_optimization_steps" value="50"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="water_treatment_kmeans_result"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="ROOM,PRICE,AGE"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="HOUSE_TRANSACTION"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="DISTRICT_ID" type="INTEGER"/>
+<Field name="HOUSE_ID" type="CHARACTER VARYING(10)"/>
+<Field name="ROOM" type="INTEGER"/>
+<Field name="PRICE" type="INTEGER"/>
+<Field name="AGE" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表 " target="K-Means "/>
+</Process>

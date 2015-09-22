@@ -1,0 +1,108 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>cluster profile chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/result.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/treechart.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+ <script type="text/javascript"  src="../alpine/visual/clusterprofilechart.js"></script>	
+ 
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+		 	dojo.require("dijit.Tooltip"); 
+			dojo.require("dojox.gfx");
+ 
+			dojo.require("dojox.gfx.move");
+			dojo.require("dojox.charting.Chart");
+			dojo.require("dojox.charting.Chart2D");
+            dojo.require("dojox.charting.axis2d.Default");
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("dojox.charting.plot2d.Grid");
+			dojo.require("dojox.charting.themes.Bahamation");
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.charting.action2d.Highlight");
+			dojo.require("dijit.layout.ContentPane");
+			
+			dojo.require("dojo.colors");
+			dojo.require("dijit.layout.ContentPane");
+			dojo.require("dijit.Dialog");
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+ 
+			var result={"visualData":{"models":[[{"text":"a1","title":"","visualizationType":1},
+			    {"labels":["4.3 - 5.02","5.02 - 5.74","5.74 - 6.46","6.46 - 7.18","7.18 - 7.9"],
+				"numbers":[],"title":"","visualizationType":15},
+				{"labels":[],"numbers":["32","41","42","24","11"],"title":"","visualizationType":15},
+				{"labels":[],"numbers":["0","0","10","17","11"],"title":"","visualizationType":15},
+				{"labels":[],"numbers":["28","21","1","0","0"],"title":"","visualizationType":15},
+				{"labels":[],"numbers":["4","20","31","7","0"],"title":"","visualizationType":15}],
+				[{"text":"a2","title":"","visualizationType":1},
+				 {"labels":["2 - 2.48","2.48 - 2.96","2.96 - 3.44","3.44 - 3.92","3.92 - 4.4"],"numbers":[],"title":"","visualizationType":15},
+				 {"labels":[],"numbers":["11","46","69","20","4"],"title":"","visualizationType":15},
+				 {"labels":[],"numbers":["0","10","25","3","0"],"title":"","visualizationType":15},
+				 {"labels":[],"numbers":["1","1","27","17","4"],"title":"","visualizationType":15},
+				 {"labels":[],"numbers":["10","35","17","0","0"],"title":"","visualizationType":15}],
+				 [{"text":"a3","title":"","visualizationType":1},
+				  {"labels":["1 - 2.18","2.18 - 3.36","3.36 - 4.54","4.54 - 5.72","5.72 - 6.9"],
+					 "numbers":[],"title":"","visualizationType":15},{"labels":[],"numbers":["50","3","34","47","16"],
+						 "title":"","visualizationType":15},{"labels":[],"numbers":["0","0","0","22","16"],"title":"",
+							 "visualizationType":15},{"labels":[],"numbers":["50","0","0","0","0"],
+								 "title":"","visualizationType":15},
+								 {"labels":[],"numbers":["0","3","34","25","0"],"title":"","visualizationType":15}],
+								 [{"text":"a4","title":"","visualizationType":1},
+								  {"labels":["0.1 - 0.58","0.58 - 1.06","1.06 - 1.54","1.54 - 2.02","2.02 - 2.5"],
+									 "numbers":[],"title":"","visualizationType":15},
+									 {"labels":[],"numbers":["49","8","41","29","23"],"title":"","visualizationType":15},
+									 {"labels":[],"numbers":["0","0","2","14","22"],"title":"","visualizationType":15},
+									 {"labels":[],"numbers":["49","1","0","0","0"],"title":"","visualizationType":15},
+									 {"labels":[],"numbers":["0","7","39","15","1"],"title":"","visualizationType":15}]],
+				"tableHeader":["变量","状态","总量: 150","簇0,Size: 38","簇1,Size: 50","簇2,Size: 62"],
+				"title":"簇类剖面图","visualizationType":13}
+,
+  "visualType":13,"out_id":1.3119219190720479E12,"out_title":"簇类剖面图"};
+			var chart;
+			makeObjects = function(){
+				
+				
+				fillOutPutPan( dijit.byId("chart"),
+						result				
+				);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body  >
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 1800px; height: 500px;"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

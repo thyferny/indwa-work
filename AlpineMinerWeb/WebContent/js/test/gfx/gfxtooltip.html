@@ -1,0 +1,186 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<title>A Sample ToolTip using dijit and dojox.gfx</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		@import "../../dojo/resources/dojo.css";
+		@import "../../dijit/tests/css/dijitTests.css";
+		@import "../../dijit/themes/tundra/tundra.css";
+		.tooltipBody {
+			color:#fff;
+		}
+	</style>
+	<script type="text/javascript" djConfig="parseOnLoad:true, isDebug:true" src="../../dojo/dojo.js"></script>
+	<script type="text/javascript">
+		dojo.require("dijit.form.Button");
+		
+		dojo.require("dojox.gfx");
+		dojo.require("dojox.gfx.move");
+		dojo.require("dijit._Widget"); dojo.require("dijit._Templated");
+		
+		dojo.declare("alpine.visual.gfx.ToolTip",[dijit._Widget,dijit._Templated],{
+			
+			// attachId: String|DomNode?
+			// 		the Id or domNode to attach this tooltip to
+			parentNode:null,
+			x:0,
+		 y:0,
+        
+ 
+ 
+			// hideDelay: Int
+			// 		time in my to delay automatically closing the node
+			hideDelay: 123, // ms
+
+ 
+			
+			templateString:
+				'<div class="foo">'
+					+'<div style="position:relative;">'
+						+'<div dojoAttachPoint="surfaceNode"></div>'
+						+'<div class="tooltipBody" dojoAttachPoint="containerNode"></div>'
+					+'</div>'
+				+'</div>',
+			
+			postCreate:function(){
+				// call _Widget postCreate first
+				this.inherited(arguments);
+				// gfx version of "_Templated" idea:
+				this._initSurface();
+ 
+				// place the tooltip			
+				dojo.body().appendChild(this.domNode);
+				dojo.style(this.domNode,{
+					position:"absolute"
+				});
+				// could do this in css:
+				dojo.style(this.containerNode,{
+					position:"absolute",
+					top:"15px",
+					left:"12px",
+					height:"183px",
+					width:"190px"
+				});
+				// setup our animations
+				this._hideAnim = dojo.fadeOut({ node:this.domNode, duration:150 });
+				this._showAnim = dojo.fadeIn({ node:this.domNode, duration:75 });
+				this.connect(this._hideAnim,"onEnd","_postHide");
+			 
+				// hide quickly
+				this._postHide();
+			},
+			
+			_initHide: function(e){
+				// summary: start the timer for the hideDelay
+				if( this.hideDelay){
+					this._delay = setTimeout(dojo.hitch(this,"_hide",e||null),this.hideDelay);
+				}
+			},
+			
+			_clearDelay: function(){
+				// summary: clear our hide delay timeout
+				if(this._delay){ clearTimeout(this._delay); }
+			},
+			
+			_show: function(e){
+				if(this.x!=0&&this.y!=0){
+					// summary: show the widget
+					this._clearDelay();
+					//var pos = dojo.coords(e.target || this.attachId,true)
+					// we need to more accurately position the domNode:
+					dojo.style(this.domNode,{
+						top: this.y,
+						left: this.x,
+						display:"block"
+					});
+					dojo.fadeIn({ node: this.domNode, duration:75 }).play();
+				}
+			},
+			
+			_hide: function(e){
+				// summary: hide the tooltip
+				this._hideAnim.play();
+			},
+			
+			_postHide: function(){
+				// summary: after hide animation cleanup
+				dojo.style(this.domNode,"display","none");
+			},
+			//the axis is relate\ive...
+			_initSurface:function(){
+				var text="My \nText";
+				//keep the minmal length
+				var length=10;
+				if(text.length>length){
+					length=text.length;
+				}
+				var width = length*12+20;
+				// made generally from an SVG file:
+				this.surface = dojox.gfx.createSurface(this.surfaceNode,width,80);
+				
+				this.tooltip = this.surface.createGroup();
+				
+				var rect = { x: 10, y: 0, width: width-20, height: 60,r:6}; //定义一个矩形
+				this.tooltip.createRect(rect).setFill("rgba(250,250,0,0.5)")
+				.setStroke("rgba(255,55,110,0.8)");
+
+				//will not create path, will use rect to do it
+					var text=this.tooltip.createText({ x:15, y:20, text:text, align:"start"}).
+				setFont({ family:"Arial", size:"12pt", weight:"bold" }). //set font
+				setFill("blue");
+				 
+	
+		
+				//this.tooltip.createPath("M213,101.072c0,6.675-5.411,12.086-12.086,12.086H13.586 c-6.675,0-12.086-5.411-12.086-12.086V21.004c0-6.675,5.411-12.086,12.086-12.086h187.328c6.675,0,12.086,5.411,12.086,12.086 V101.072z")
+					//.setFill("rgba(200,120,100,0.25)");
+				
+			 
+ 
+			}	
+		});
+		
+  
+		function example1(){
+			
+		    var surfaceHolder = dojo.byId('container');
+			var surface = dojox.gfx.createSurface(surfaceHolder, 600, 600);//创建surface
+
+			var rect = { x: 0, y: 0, width: 100, height: 100 }; //定义一个矩形
+			var red_rect = surface.createRect(rect);//创建矩形
+
+			red_rect.setFill([255, 0, 0, 0.5]);//设置填充
+			red_rect.setStroke({color: "blue", width: 10, join: "round" });//设置外部填充的颜色
+		 
+			
+			tooltip= new alpine.visual.gfx.ToolTip({
+				parentNode:red_rect,
+				 id:"containeryooltip",
+				 x:100,
+				 y:130 
+			});
+			 
+			red_rect.connect("onmouseenter",tooltip,"_show");
+			red_rect.connect("onmouseleave",tooltip,"_initHide");
+			
+  			
+			
+		 
+		};
+ 			 
+ 
+		dojo.addOnLoad(example1);
+
+	 
+	</script>
+	
+</head>
+<body class="tundra">
+
+	<h1>dojox.gfx: A Sample gfx tooltip</h1>
+ 
+	
+		<div id="container"></div>	
+ 
+ 
+</body>
+</html>

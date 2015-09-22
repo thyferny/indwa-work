@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="115" Y="215" name="数据表 " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303263917244">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="HOUSE_TRANSACTION"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="291" Y="236" name="相关分析 " type="com.alpine.miner.gef.runoperator.field.CorrelationAnalysisOperator" uuid="1303263934093">
+<Parameter key="columnNames" value="ROOM,PRICE,AGE,DISTRICT_ID"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="HOUSE_TRANSACTION"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表 " target="相关分析 "/>
+</Process>

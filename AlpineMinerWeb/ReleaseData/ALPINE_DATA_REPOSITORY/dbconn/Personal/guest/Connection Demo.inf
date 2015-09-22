@@ -1,0 +1,19 @@
+#
+#Sun Jan 01 00:44:30 GMT+08:00 2012
+engineCombo=PostgreSQL
+dbNameText=miner_demo
+resourceType=Personal
+modifiesTime=1325349870947
+id=Connection Demo
+passwordText=rO0ABXQACm1pbmVyX2RlbW8\=
+portText=5432
+categories=
+modifiedUser=guest
+jdbcDriverCombo=postgresql-8.3-604.jdbc4.jar
+version=
+userNameText=miner_demo
+createTime=1310399607888
+hostText=localhost
+groupName=
+connNameText=Connection Demo
+createUser=guest

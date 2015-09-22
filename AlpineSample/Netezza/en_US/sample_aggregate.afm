@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="1.00">
+<Operator X="69" Y="130" name="DB Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719718562">
+<Parameter key="system" value="Oracle"/>
+<Parameter key="dbConnectionName" value="demo_nz"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="AGGREGATETEST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="AGGREGATETEST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SHOP_ID" type="NUMBER(22,0)"/>
+<Field name="PRODUCT_ID" type="NUMBER(22,0)"/>
+<Field name="SALES" type="FLOAT"/>
+<Field name="SALES_RETURN" type="FLOAT"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="188" Y="245" name="Aggregate Operator" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1277719718578">
+<Parameter key="aggregateCount" value="SALES_RETURN"/>
+<Parameter key="parentFieldList" value="SHOP_ID&amp;&amp;PRODUCT_ID&amp;&amp;SALES&amp;&amp;SALES_RETURN"/>
+<Parameter key="aggregateSum" value="SALES"/>
+<Parameter key="aggregateExpressionList" value="sum(&quot;SALES&quot;)&amp;&amp;count(&quot;SALES_RETURN&quot;)&amp;&amp;sum(SALES+SALES_RETURN)"/>
+<Parameter key="windowSpecList" value="partition by  SHOP_ID  order by sum(SALES+SALES_RETURN) desc"/>
+<Parameter key="groupByFieldList" value="SHOP_ID"/>
+<Parameter key="aggregateDataTypeList" value="DOUBLE PRECISION&amp;&amp;DOUBLE PRECISION&amp;&amp;DOUBLE PRECISION"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="aggt_view"/>
+<Parameter key="windowDataTypeList" value="CLOB"/>
+<Parameter key="aggregateFieldList" value="sum(SALES)&amp;&amp;count(SALES_RETURN)&amp;&amp;sum(sales+sales_return)"/>
+<Parameter key="windowFunctionList" value="rank()"/>
+<Parameter key="aggregateCustomList" value="sum(SALES+SALES_RETURN) as sum(sales+sales_return)"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="windowFieldList" value="rank"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="columnNames" value=""/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="AGGREGATETEST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SHOP_ID" type="NUMBER(22,0)"/>
+<Field name="PRODUCT_ID" type="NUMBER(22,0)"/>
+<Field name="SALES" type="FLOAT"/>
+<Field name="SALES_RETURN" type="FLOAT"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="aggt_view"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SHOP_ID" type="NUMBER(22,0)"/>
+<Field name="sum(SALES)" type="DOUBLE PRECISION"/>
+<Field name="count(SALES_RETURN)" type="DOUBLE PRECISION"/>
+<Field name="sum(sales+sales_return)" type="DOUBLE PRECISION"/>
+<Field name="rank" type="CLOB"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Link source="DB Table" target="Aggregate Operator"/>
+</Process>

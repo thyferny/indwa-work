@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="AlpineMinerWeb">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="AlpineMinerSDK.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpineMinerSDK/AlpineMinerSDK">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AlpineDataAnalysis.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpineDataAnalysis/AlpineDataAnalysis">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AlpineMinerWorkFlow.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpineMinerWorkFlow/AlpineMinerWorkFlow">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AlpineHadoopAnalytics.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpineHadoopAnalytics/AlpineHadoopAnalytics">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AlpineUtility.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpineUtility/AlpineUtility">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AlpineMinerInterface.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpineMinerInterface/AlpineMinerInterface">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AlpinePig.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AlpinePig/AlpinePig">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="AlpineMinerWeb"/>
+        <property name="java-output-path" value="/AlpineMinerWeb/bin"/>
+    </wb-module>
+</project-modules>

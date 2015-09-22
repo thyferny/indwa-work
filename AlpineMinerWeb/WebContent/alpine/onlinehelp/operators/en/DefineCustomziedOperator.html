@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>Custom Operator</title>
+</head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+<h1>Customized Operator</h1>
+<p><img src="operator_icons/udf.png"></p>
+<p>Alpine supports the Custom Operator for defining new operators for users to include in their workflows, based on database UDFs (stored procedures). Administrators need to supply an xml configuration file according to the definition rules below, and import it into Alpine. If the definition is correct, all users can use it similarly to other operators.</p>
+<ul>
+    <li>Introduction, Scope and Assumptions</li>
+    <li>UI Design and Usages</li>
+    <li>XML Sample</li>
+    <li>XML Schema</li>
+</ul>
+<h2>Introduction, Scope and Assumptions:</h2>
+<p>The first part of this document provides administrative steps, aided by screenshots, for binding a custom operator to Alpine's engine, and the 2nd part contains an example of a custom operator defined by XML. The last part of this document contains the detailed XML schema from which to define an operator.</p>
+<ul>
+    <li>The input of the custom operator will always be a table or view.</li>
+    <li>The output of the custom operator will always be a table or view.</li>
+    <li>Execution of the operator involves creation of a table by execution of the database UDF defined in the XML schema:</li>
+    <ul>
+        <li>Create table $output_table_name as select $col1, $col2,…$udf(…..) from $input_table_name;</li>
+        <li>Create view $output_table_name as select $co1, $col2,…$udf(…..) from $input_table_name;</li>
+    </ul>
+    <li>$output_table_name: will be entered by the user when choosing and configuring an operator.</li>
+    <li>$input_table_name: will be acquired from the preceding operator during analytic flow design.</li>
+</ul>
+<p>All the output column names returned by the UDF will be specified in the XML definition. The administrator may also specify that the output table should include the original columns from the input table.</p>
+<p>Based on the definition in the XML, Alpine will generate the corresponding parameter controls for the operators. This includes the following minimal set of parameters, which control the output table, plus the parameters defined in the XML.</p>
+<h2>UI output controls group</h2>
+<table style="margin-left:2.5em;" border="1">
+    <tr>
+        <td style="vertical-align:top" ><strong>Property Name</strong></td>
+        <td><strong>UI Control</strong></td>
+        <td><strong>Values</strong></td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Output Type</strong></td>
+        <td>Drop-down</td>
+        <td>Table or view</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Output Schema</strong></td>
+        <td>Drop-down</td>
+        <td>Available schema in the database</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Output Table</strong></td>
+        <td>Text</td>
+        <td>Specify the name of output table/view.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Drop If Exist:</strong></td>
+        <td>Drop-down</td>
+        <td>Yes or No. Specify whether to drop the existing table/view if one already exists in the database with the same name.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Carryover Columns:</strong></td>
+        <td>dialog</td>
+        <td>Specify columns from the source tables in addition to the columns returned by UDF to be included in the output table/view. </td>
+    </tr>
+</table>
+<h2>XML sample</h2>
+<p>The sample below presents a sample XML file defining a custom operator.</p>
+<p><img src="./image/xmlsample.gif"></p>
+<h2>XML Schema</h2>
+<h3>1. Operator Name Example</h3>
+<p>The administrator specifies the name of the operator, e.g. "&lt;operatorname lang=”EN”&gt;customized_kmeans&lt;/operatorname&gt;"</p>
+<table style="margin-left:2.5em;" border="1">
+    <tr>
+        <td style="vertical-align:top" ><strong>Label Name</strong></td>
+        <td>operatorname</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Label Value</strong></td>
+        <td>User defines the name of the customized operator for the UDF. This is a required value and needs to be unique among all operators.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>lang</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>User may define the operator name in multiple languages by using multiple lang attributes. Default value: “EN”. Optional.</td>
+    </tr>
+</table>
+<h3>2. UDF Name Example</h3>
+<p>"&ltudf schema="miner_demo" name="customized_kmeans"&gt"</p>
+<table style="margin-left:2.5em;" border="1">
+    <tr>
+        <td style="vertical-align:top" ><strong>Label Name</strong></td>
+        <td>udf</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>schema</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Specify the schema associated with the UDF</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>name</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Specify the name of the UDF</td>
+    </tr>
+</table>
+<h3>3. Parameter Example</h3>
+<p>The administrator must now specify the parameters to be passed into the UDF, which are constant values or the names of table columns, e.g. "&lt;parameter name="k" position="3" defaultvalue="3"&gt;text&lt;/parameter&gt;"</p>
+<table style="margin-left:2.5em;" border="1">
+    <tr>
+        <td style="vertical-align:top" ><strong>Label Name</strong></td>
+        <td>parameter</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Label Value</strong></td>
+        <td><p>Specify which control should be used in the UI for defining the parameter</p>
+            Optional value:
+            <ol>
+                <li>combo: used if input parameter refers to a list of constant values, or a column name. The column is passed directly into the UDF.</li>
+                <li>text: used if input parameter refers to constant values. The default data type is number. If the administrator does not set the "datatype" attribute or sets it to “number”, the value input by the user will not have quotes in SQL execution. If the administrator sets the “datatype” attribute to “text”, the value input by user will have quotes in SQL execution.</li>
+                <li>columndialog: used if the input parameter refers to an array of column names. This parameter will be used to generated an array like "array[a,b,c]" to be passed into the UDF. The administrator can set the "datatype" attribute to define the type of the array. If the administrator does not set the “datatype” attribute, the value selected by the user will not be generated as an array, but rather as a comma separated list of double quoted column names.</li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute:</strong></td>
+        <td>name</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>The administrator must define this attribute as the parameter name shown on the property tab of the operator.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute:</strong></td>
+        <td>position</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Specify the position of the parameter in the UDF calling sequence.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>defaultvalue</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Define the default value of for this parameter.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>datatype</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Optional: Specify the datatype of the parameter (number, text, integer, date)</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>optionalvalue</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><p>optionalvalue only used in combo case for displaying a list of constant values.</p>
+            <p>If optionalvalue is not set, Alpine will retrieve columns from the preceding operator as the set items from which the user can select. The value selected by the user will be surrounded by double quotes during SQL execution.</p>
+            <p>The syntax of optionalvalue will be a string which consists of multiple values separated by comma (e.g. "Euclidean,Manhattan").</p>
+            <p>All the values selected by the user will be quoted in SQL execution if “datatype” is null or set to "text".</p>
+        </td>
+    </tr>
+</table>
+<h3>4. Output</h3>
+<p>Define the output of the UDF (column names and types). This definition will be used by Alpine during the design process when a user connects a customized operator to succeeding operators.</p>
+<table style="margin-left:2.5em;" border="1">
+    <tr>
+        <td style="vertical-align:top" ><strong>Label Name</strong></td>
+        <td>column</td>
+    </tr>
+    <tr><td></td><td>Definition of columns generated by a UDF operator. This definition will be used by Alpine during the design process when the user connects a custom operator to succeeding operators.</td></tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>name</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Name of the column generated by the UDF.</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:top" ><strong>Attribute</strong></td>
+        <td>type</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>	Data type of the column.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><ol>
+            <li>number</li>
+            <li>integer</li>
+            <li>text</li>
+            <li>date</li>
+            <li>array</li>
+        </ol></td>
+    </tr>
+</table>
+<p>&ltoutput> </p>
+<p>&ltcolumn name="humidity" type="number" /&gt </p>
+<p>&ltcolumn name="temperature" type="array" /&gt </p>
+<p>&ltcolumn name="outlook" type="text" /&gt </p>
+<p>&ltcolumn name="wind" type="text" /&gt </p>
+<p>&ltcolumn name="play" type="text" /&gt </p>
+<p>&lt/output&gt</p>
+</body>
+</html>

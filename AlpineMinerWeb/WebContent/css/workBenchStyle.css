@@ -1,0 +1,328 @@
+.soria  .workbenchNaviTitle {
+    background: #6d6e71 url(../images/interface/tabbackground.png) repeat-x;
+    border: none;
+    height: 30px;
+}
+.soria .workbenchNaviClosed .workbenchNaviTitle {
+    background: none;
+    background-color: #6d6e71;
+    border: none;
+    height: 30px;
+}
+
+.soria .workbenchNaviClosed .dojoxExpandoTitleNode
+{
+	visibility:hidden;
+}
+
+.soria .workbenchNaviClosed {
+    background: none;
+    background-color: transparent;
+    border: 0px solid #6d6e71 !important;
+}
+
+.soria .dojoxExpandoIcon {
+    background: transparent url("../images/interface/expandoLeft.png");
+    width:11px;
+    height:10px;
+    margin-right: 8px;
+    margin-top: 10px;
+
+}
+
+.workbenchNaviClosed .dojoxExpandoIcon {
+    background: transparent url("../images/interface/expandoRight.png");
+}
+
+/*************
+Buttons
+**************/
+
+.workbenchNaviButton
+{
+    background: #6d6e71 url(../images/interface/tabbackground.png) repeat-x;
+    /*font: 12px Helvetica Neue; */
+    font-size: 9pt;
+    font-family:opensanssemibold;
+    color: #fff;
+    text-shadow: 0 -1px 1px #222;
+    padding: 6px 6px 6px 6px;
+    border: 0;
+    /*border-bottom: 1px solid #222; */
+    min-width: 70px;
+    margin: 0px;
+    height:100%;
+}
+
+.workbenchNaviButton:hover
+{
+    background: #999999 url(../images/interface/tabbackgroundHover.png) repeat-x;
+
+}
+
+.workbenchNaviButtonSelected,
+.workbenchNaviButtonSelected:hover
+{
+    background: #6d6e71 url(../images/interface/tabbackgroundActive.png) repeat-x;
+
+}
+
+.workbenchNaviButton:active
+{
+    background: #999999 url(../images/button-overlay.png) repeat-x;
+
+
+}
+.workbenchNaviButton:disabled
+{
+    background: #6d6e71 url(../images/interface/tabbackground.png) repeat-x;
+    text-shadow: 0 0px 0px #222;
+    color: #bbbbbb;
+
+
+}
+
+
+
+.workbenchHeader
+{
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+    padding-bottom:8px;
+    border-bottom:1px solid #666;
+    background: #e7e7e9 url(../images/interface/tab_dropshadow.png) repeat-x;
+}
+
+.workflowHeader
+{
+    border-bottom:1px solid #999999;
+    background: #e7e7e9 url(../images/interface/tab_dropshadow.png) repeat-x;
+}
+
+.workflowFolderLabel
+{
+    color: #00A1E5;
+}
+
+.workflowLeafLabel
+{
+
+}
+
+.textBoxFancyBorder
+{
+    height:0px;
+    -moz-border-image: url('../images/interface/textboxBackground.png') 14 13 14 13 stretch; /* Firefox */
+    -webkit-border-image: url('../images/interface/textboxBackground.png') 14 13 14 13 stretch; /* Safari */
+    -o-border-image: url('../images/interface/textboxBackground.png') 14 13 14 13 stretch; /* Opera */
+    border-image: url('../images/interface/textboxBackground.png') 14 / 14 13 14 13 stretch;
+    border-width:14px;
+    margin-top:15px;
+    border-style: groove; /* Firefox 15 */
+}
+.soria .workbenchHeader .dijitTextBox
+{
+     border: 0px solid #aaaaaa;
+     padding-left:0px;
+     padding-right:0px;
+     padding-top:0px;
+     padding-bottom:0px;
+     margin-top: -8px;
+     width: 248px;
+     font-size:12px;
+     height:20px;
+     -webkit-appearance: none;
+     background: #ffffff;
+}
+
+.soria .workbenchHeader .dijitPlaceHolder
+{
+    color:#c1c1c1;
+    font-style: normal;
+}
+
+#flow_category_tree_container,
+#flow_category_tree_outerContainer {
+    background-color: #e7e7e9;
+}
+
+#alpine_datasourceexplorer_current_location {
+    padding-left: 8px;
+    font-size: 16px;
+    font-family:opensanssemibold;
+}
+
+#alpine_operatorexplorer_display_pane,
+#alpine_datasourceexplorer_display_pane
+{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-focus: none;
+    -moz-user-focus: none;
+    -ms-user-focus: none;
+}
+/* prevents table header from appearing */
+#alpine_datasourceexplorer_display_pane .dojoxGridMasterHeader {
+    display: none !important;
+}
+
+/* header for operator tables */
+#columnDialogTableHolder  .dojoxGridMasterHeader,
+#univariateColumnDialogTableHolder  .dojoxGridMasterHeader,
+#hadoop_join_selected_columns_holder .dojoxGridMasterHeader,
+#table_join_selected_columns_holder .dojoxGridMasterHeader,
+#alpine_flow_scheduler_task_dataGrid .dojoxGridMasterHeader,
+#alpine_operatorexplorer_display_pane .dojoxGridMasterHeader {
+    display: none !important;
+    background: transparent;
+ }
+
+/* header info */
+.operatortableheader,
+#alpine_operatorexplorer_display_pane .dojoxGridSortNode
+{
+    padding-top:14px;
+    padding-bottom:7px;
+    padding-left: 8px;
+    color:#949599;
+    font-size: 12px;
+}
+
+
+#alpine_operatorexplorer_display_pane .dojoxGridHeader
+{
+    background: transparent;
+}
+
+/* table style for both operator and datasource panels */
+#columnDialogTableHolder .dojoxGrid,
+#univariateColumnDialogTableHolder .dojoxGrid,
+#hadoop_join_selected_columns_holder .dojoxGrid,
+#table_join_selected_columns_holder .dojoxGrid,
+#alpine_operatorexplorer_display_pane .dojoxGrid,
+#alpine_flow_scheduler_task_dataGrid .dojoxGrid,
+#alpine_datasourceexplorer_display_pane .dojoxGrid
+{
+    border: 0px solid #000000;
+    background: transparent;
+}
+
+#hadoop_join_selected_columns_holder .dojoxGridRow,
+#table_join_selected_columns_holder .dojoxGridRow,
+#alpine_operatorexplorer_display_pane .dojoxGridRow,
+#alpine_datasourceexplorer_display_pane .dojoxGridRow
+{
+    border: 0px solid #000000;
+    background: transparent;
+    height:24px;
+}
+
+
+#columnDialogTableHolder .dojoxGridCell,
+#univariateColumnDialogTableHolder .dojoxGridCell,
+#hadoop_join_selected_columns_holder .dojoxGridCell,
+#table_join_selected_columns_holder .dojoxGridCell,
+#alpine_flow_scheduler_task_dataGrid .dojoxGridCell,
+#alpine_operatorexplorer_display_pane .dojoxGridCell,
+#alpine_datasourceexplorer_display_pane .dojoxGridCell
+{
+    border: 0px solid #000000;
+    background: transparent;
+    overflow:hidden;
+    cursor: default;
+    outline: none;
+
+}
+#columnDialogTableHolder .dojoxGridRowOver,
+#univariateColumnDialogTableHolder .dojoxGridRowOver,
+#hadoop_join_selected_columns_holder .dojoxGridRowOver,
+#alpine_flow_scheduler_task_dataGrid .dojoxGridRowOver,
+#table_join_selected_columns_holder .dojoxGridRowOver
+{
+    background: #CCE0FF;
+
+}
+
+
+#columnDialogTableHolder .dojoxGridRowbarSelected,
+#univariateColumnDialogTableHolder .dojoxGridRowbarSelected,
+#columnDialogTableHolder .dojoxGridRowbarInner,
+#univariateColumnDialogTableHolder .dojoxGridRowbarInner,
+#columnDialogTableHolder .dojoxGridRowbar,
+#univariateColumnDialogTableHolder .dojoxGridRowbar{
+    background: transparent;
+    border: 0px solid #ccc;
+}
+
+
+#columnDialogTableHolder  .dojoxGridRow,
+#univariateColumnDialogTableHolder  .dojoxGridRow
+{
+    border: 0px solid #000000;
+    background: transparent;
+    font-size:13px;
+
+}
+
+#alpine_layout_navigation_datasource_pane {
+    background: #e7e7e9 url(../images/interface/tab_dropshadow-invert.png) repeat-x;
+    background-position: left bottom;
+    overflow-x: hidden;
+}
+
+#alpine_layout_navigation_operator_pane {
+    background: #e7e7e9 url(../images/interface/tab_dropshadow-invert.png) repeat-x;
+    background-position: left bottom;
+}
+
+#alpine_layout_navigation_workflow_pane {
+    background: #e7e7e9 url(../images/interface/tab_dropshadow-invert.png) repeat-x;
+    background-position: left bottom;
+}
+
+
+.listIcon
+{
+    /*float: left;*/
+    margin-right:8px;
+    margin-left:11px;
+}
+.listValue
+{
+    /*float: left;*/
+    padding-top:4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.selectablelistValue
+{
+    /*float: left;*/
+    padding-top:4px;
+    color:#00a1e5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+
+.oplistIcon
+{
+    float: left;
+    margin-right:8px;
+    margin-left:11px;
+}
+.oplistValue
+{
+    float: left;
+    padding-top:4px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display:block;
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr">
+    
+    <head>
+        <style type="text/css">
+            body, html { font-family:helvetica,arial,sans-serif; font-size:90%; }
+        </style>
+        <script src="../../dojo/dojo.js"        djConfig="parseOnLoad: true">
+        </script>
+<script type="text/javascript">
+	dojo.require("dojox.grid.DataGrid");
+
+	dojo.require("dojo.data.ItemFileReadStore");
+	dojo.require("dojo.data.ItemFileWriteStore");
+	dojo.require("dijit.form.Button");
+    dojo.require("dijit.layout.TabContainer");
+    dojo.require("dijit.layout.ContentPane");
+
+    dojo.require("dijit.Dialog");
+    
+	var tableAliasStore;
+	var tableAliasTable;
+
+	var joinColumnStore;
+	var joinColumnTable;
+
+	var joinRuleStore;
+
+	var joinRulesTable;
+
+	
+	
+	function 		initColumnTables(){
+		var dataTable = {
+				items : [ {
+					joinColumn : "aaa",
+					 
+				}, {
+					joinColumn : "bbb",
+				 
+				} ]
+			};
+			// our test data store for this example:
+			joinColumnStore = new dojo.data.ItemFileWriteStore({
+				data : dataTable
+			});
+		
+			
+			joinColumnTable=dijit.byId("joinColumnTable");
+	  
+		//this will make the edit ok
+		joinColumnTable.setStore(joinColumnStore);
+ 
+		// Call startup, in order to render the grid:
+		joinColumnTable.render();
+			
+	}
+	
+	function initAliasTables(){
+		var dataTable = {
+				items : [ {
+					tableName : "aaa",
+					tableAlias : "aaa" 
+				}, {
+					tableName : "bbb",
+					tableAlias: "ccc"
+				 
+				} ]
+			};
+			// our test data store for this example:
+			tableAliasStore = new dojo.data.ItemFileWriteStore({
+				data : dataTable
+			});
+			
+			
+			tableAliasTable=dijit.byId("aliasTablesTable");
+			
+  
+ 
+		//this will make the edit ok
+		tableAliasTable.setStore(tableAliasStore);
+ 
+
+		// Call startup, in order to render the grid:
+
+		tableAliasTable.render();
+	}
+	
+	function initJoinTables() {
+		var dataTable = {
+			items : [ {
+				JoinType : "aaa",
+				JoinColumn1 : "a1.aaa",
+				JoinCondition : "a1",
+				JoinColumn2 : "a1.c"
+			}, {
+				JoinType : "bbb",
+				JoinColumn1 : "a2.aaa",
+				JoinCondition : "a1",
+				JoinColumn2 : "a1.b"
+			} ]
+		};
+		// our test data store for this example:
+		joinRuleStore = new dojo.data.ItemFileWriteStore({
+			data : dataTable
+		});
+
+		joinRulesTable = dijit.byId("joinRulesTable");
+		//     dojo.byId("typeId").options="a,v,v,vd,d,d";
+		joinRulesTable.structure[0].cells[0][1].options = [ "a",
+				"b", "c" ];
+		var structure = joinRulesTable.structure[0];
+		joinRulesTable.setStructure(structure);
+		//dijit.byId("joinRulesTable").structure.cells[0][0].name
+		//this will make the edit ok
+		joinRulesTable.setStore(joinRuleStore);
+		// append the new grid to the div "gridContainer4":
+		//     dojo.byId("gridContainer4").appendChild(grid4.domNode);
+
+		// Call startup, in order to render the grid:
+
+		joinRulesTable.render();
+	}
+
+	dojo.addOnLoad(function() {
+		
+		initColumnTables();
+		initAliasTables();
+		initJoinTables();
+	 
+		dijit.byId("removeJoinRuleBtn").onClick= function(){
+            // Get all selected items from the Grid:
+            var items = joinRulesTable.selection.getSelected();
+            if (items.length) { 
+                dojo.forEach(items, function(selectedItem) {
+                    if (selectedItem !== null) {
+                        joinRuleStore.deleteItem(selectedItem);
+                    } 
+                }); 
+            } // end if
+		};
+		
+		dijit.byId("addJoinRuleBtn").onClick= function(){
+		      var myNewItem = {
+		                JoinType:"xxx",JoinColumn1:"xxxa",JoinCondition:"xx1",JoinColumn2:"a1.c"
+		             };
+		            joinRuleStore.newItem(myNewItem);
+		};
+		
+		dijit.byId("removeJoinColumnBtn").onClick= function(){
+		
+		
+        // Get all selected items from the Grid:
+        var items = joinColumnTable.selection.getSelected();
+        if (items.length) {
+
+            dojo.forEach(items, function(selectedItem) {
+                if (selectedItem !== null) {
+
+                    joinColumnStore.deleteItem(selectedItem);
+                } 
+            }); 
+        } // end if
+		};
+		dijit.byId("addJoinColumnBtn").onClick= function(){
+			
+			 var myNewItem = {   joinColumn:"xxx"      };
+	           
+	            joinColumnStore.newItem(myNewItem);
+	       
+			};
+
+		 
+	});
+	
+	function showDialog(){
+		
+		  dijit.byId("tableJoinDialog").show();         
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="../../dijit/themes/claro/claro.css"
+        />
+        <style type="text/css">
+            @import "../../dojox/grid/resources/Grid.css";
+            @import "../../dojox/grid/resources/claroGrid.css";
+             html, body { width: 100%; margin: 0; } .info { margin: 10px; }
+        </style>
+    </head>
+    
+    <body class="claro">
+    
+    <button id="tableJoinBtn1" onclick="showDialog()">show table join dialog</button> <br>
+    
+<div dojoType="dijit.Dialog" height =500  id="tableJoinDialog" closeNode="hider" title="Edit Table Join">
+    
+    <table>
+    <tr><td height=200 width=300> 
+      <div dojoType="dijit.layout.TabContainer" style="width: 100%; height: 100%;">
+        <div dojoType="dijit.layout.ContentPane" title="Table Alias" selected="true">
+            
+       
+     <table border ="1" id ="aliasTablesTable" dojoType="dojox.grid.DataGrid"   query="{ tableName: '*' }"
+        rowsPerPage="20" clientSort="true" style="width: 100%; height: 100%;"
+        >
+            <thead>
+                <tr>
+                    <th width="120px" field="tableName" >
+			Join Table
+                    </th>
+                    <th    width="120" field="tableAlias"  
+					  editable="true" >
+                        Table Alias  
+                    </th>
+    
+                </tr>
+            </thead>
+        </table>
+        <div>
+         </div></td>
+    
+
+<td height=200 width=420> 
+ <div dojoType="dijit.layout.TabContainer" style="width: 100%; height: 100%;">
+        <div id = "joinColumnContentPane" dojoType="dijit.layout.ContentPane" title="Join Columns" selected="true">
+ 
+<table width ="400" height ="100%">
+<tr width ="400" height ="100%">
+<td width ="220" height ="100%">
+    
+     <table id ="joinColumnTable" dojoType="dojox.grid.DataGrid"  query="{ joinColumn: '*' }"
+        rowsPerPage="20" clientSort="true" style="width: 100%; height: 100%;"
+         >
+            <thead>
+                <tr  >
+                    <th   width="180px" field="joinColumn"  cellType="dojox.grid.cells.Select" 
+                         options="=,>,<,>=,<=,<>"   editable="true" >
+			Join Column
+                    </th>
+ 
+    
+                </tr>
+            </thead>
+        </table>
+    
+       </td>
+       <td valign="top" align="left">
+       
+          <span dojoType="dijit.form.Button" id ="addJoinColumnBtn">
+        Add Column 
+ 
+    </span>
+    
+     <span dojoType="dijit.form.Button" id="removeJoinColumnBtn">
+        Remove Column
+       
+    </span>
+       </td>
+       </tr> 
+        
+        </table>    
+        </div>
+        </div>
+        </td>
+        </tr>
+        
+    <tr >   
+        <td colspan=2 height=200 width=600>
+        
+           <div dojoType="dijit.layout.TabContainer" style="width: 100%; height: 100%;">
+        <div dojoType="dijit.layout.ContentPane" title="Join Rules" selected="true">
+ 
+     <table  height=300 width=600><tr width ="100%" height ="100%">
+<td width ="85%" height ="100%">
+          <table id ="joinRulesTable" dojoType="dojox.grid.DataGrid"    query="{ JoinType: '*' }"
+        rowsPerPage="20" clientSort="true" style="width: 100%; height: 100%;"
+        >
+            <thead>
+                <tr>
+                    <th width="100px" field="JoinType" cellType="dojox.grid.cells.Select" 
+                         options="JOIN,LEFT JOIN,RIGHT JOIN,FULL OUTER JOIN,CROSS JOIN"   editable="true">
+                        Join Type
+                    </th>
+                    <th    width="180" field="JoinColumn1" cellType="dojox.grid.cells.Select" 
+                         options="country,city,continent"   editable="true" >
+                        Join Column 1  
+                    </th>
+   
+                     <th width="100px" field="JoinCondition" cellType="dojox.grid.cells.Select" 
+                         options="=,>,<,>=,<=,<>"   editable="true">
+                       Condition  
+                    </th>
+           
+                    <th width="180px" field="JoinColumn2">
+                        Join Column 2  
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        </td>
+        <td valign="top" >
+            <span dojoType="dijit.form.Button" id="addJoinRuleBtn">
+        Add Join 
+     
+    </span>
+    <span dojoType="dijit.form.Button" id="removeJoinRuleBtn">
+        Remove Join
+ 
+    </span>
+        
+        </td>
+        </tr>
+
+        </table>
+        </div>
+        </div>
+        
+        </td></tr>
+                 <tr>
+<td></td>
+                            <td  align="right">
+
+                                   <input type="button" id="hider" value="OK"> 
+                                    <input type="button" id="hider" value="Cancle"></td>
+
+                     </tr>
+    </table>
+ 
+     </div>
+    </body>
+
+</html>

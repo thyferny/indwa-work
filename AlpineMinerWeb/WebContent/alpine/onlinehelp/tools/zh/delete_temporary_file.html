@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>删除临时文件</title>
+</head>
+<body>
+	<h1>删除临时文件</h1>
+	<p>
+		对用户目录\ALPINE_DATA_REPOSITORY\preferene\ administrators目录下的sys.properties文件的设置临时文件保存时长以及执行清理任务的间隔（单位是毫秒）。系统通过以上内容会定期清理超时的临时文件。以下是配置文件示意内容：
+	</p>
+	<p>
+		文件保存时长： temp_file_livetime = 86400000（1天）<br/>
+		清理扫描时长： temp_file_scan_frequency = 86400000（1天）
+	</p>
+	<p>当修改配置文件后须重启Web服务器以使配置生效。 </p>
+</body>
+</html>

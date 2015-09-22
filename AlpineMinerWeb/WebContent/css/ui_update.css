@@ -1,0 +1,216 @@
+@CHARSET "UTF-8";
+
+html#htmlRootContainer,body#bodyRootContainer {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background: #ffffff;
+	font-size: 11pt;
+	color: #333333;
+}
+
+
+.soria .dijitToolbar {
+	background-color: #E1E1E1;
+    background-image: none;
+    background-position: left top;
+    background-repeat: no-repeat;
+    border-bottom-color: #E1E1E1;
+    border-bottom-style: solid;
+    font-size: 11pt;
+}
+
+.dijitToolbar .dijitButtonContents {
+    color: black;
+    font-size: 11pt;
+}
+
+
+#current_flow_label {
+	color: #333333;
+    
+}
+
+
+.soria .dijitTooltipContainer {
+	background:#ffa841;
+}
+
+
+
+.soria .dijitTitlePaneTitle {
+    background: #cccccc;
+    border:1px solid #bfbfbf;
+    padding:3px 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #000;
+}
+
+
+
+.dijitDisabled {
+    color: #AAAAAA;
+}
+
+#run_stop_step_run_table {
+	background-color: #6d6e71;
+}
+
+.dijitReadOnly *, .dijitDisabled *, .dijitReadOnly, .dijitDisabled {
+    color: #999999;
+}
+
+
+.dijitButtonNode {
+	margin-top: 1px
+}
+
+.soria .resource_db {
+	background: url('../images/icons/dbresource/explorer_conn.png') no-repeat top;
+}
+.soria .resource_schema {
+	background: url('../images/icons/dbresource/schema.png') no-repeat top;
+}
+.soria .resource_table_container {
+	background: url('../images/icons/dbresource/table_group.png') no-repeat top;
+}
+.soria .resource_view_container {
+	background: url('../images/icons/dbresource/view_group.png') no-repeat top;
+}
+.soria .resource_table {
+	background: url('../images/icons/dbresource/table.png') no-repeat top;
+}
+.soria .resource_view {
+	background: url('../images/icons/dbresource/view.png') no-repeat top;
+}
+
+/*
+Slight changes to fonts in main page
+*/
+.soria .dojoxExpandoTitleNode
+{
+    font-size: 16px;
+    color:#FFF;
+    height:30px;
+
+}
+
+.soria .dojoxExpandoTitle
+{
+    background:#6d6e71;
+    border-left: 1px solid #6d6e71;
+    border-right: 1px solid #6d6e71;
+    border-bottom: 1px solid #00a7ef;
+    padding-bottom: 7px;
+}
+
+.soria .dojoxExpandoClosed .dojoxExpandoTitle {
+    background: none;
+    background-color: #6d6e71;
+    border: none;
+}
+
+.soria .dojoxExpandoClosed {
+    background: none;
+    background-color: #6d6e71;
+    border: 1px solid #6d6e71 !important;
+}
+
+
+/*
+These are the new buttons for the main screen
+*/
+.workflowButton .dijitButtonNode
+{
+    background: #EAEAEA url(../images/button-overlay.png) repeat-x;
+    /*font: 12px Helvetica Neue; */
+    color: #333333;
+    font-size: 8pt;
+    font-family:opensans, sans-serif;
+    /*font-size: small;*/
+    padding: 3px 3px 3px 3px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    /*border-bottom: 1px solid #222; */
+    min-width: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.workflowButtonHover .dijitButtonNode
+{
+    background: #dadada url(../images/button-overlay.png) repeat-x;
+
+}
+
+
+.workflowButtonActive  .dijitButtonNode
+{
+    background: #999 url(../images/button-overlay.png) repeat-x;
+
+
+}
+
+.workflowButtonInvalid .dijitButtonNode
+{
+    background: #F9F7BA url(../images/button-overlay.png) repeat-x;
+    /*font: 12px Helvetica Neue; */
+    color: #333333;
+    font-size: 8pt;
+    font-family:opensans, sans-serif;
+    /*font-size: small;*/
+    padding: 3px 3px 3px 3px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    border: 1px solid #F3D118;
+    border-radius: 5px;
+    /*border-bottom: 1px solid #222; */
+    min-width: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.workflowButtonInvalidHover .dijitButtonNode
+{
+    background: #ff6 url(../images/button-overlay.png) repeat-x;
+
+}
+
+
+.workflowButtonInvalidActive  .dijitButtonNode
+{
+    background: #F3D118 url(../images/button-overlay.png) repeat-x;
+
+
+}
+
+
+.workFlowIcon{
+    background:transparent url(../images/workFlowIcon.png) no-repeat scroll 0%;
+}
+.workFlowClosedDirNodeIcon{
+    background:transparent url(../images/flow_cat_folder.png) no-repeat scroll 0%;
+}
+
+.workFlowOpenedDirNodeIcon{
+    background:transparent url(../images/flow_cat_folder.png) no-repeat scroll 0%;
+}
+
+/******
+Look and feel for operator panels
+*******/
+
+
+
+.operatorHeaderText
+{
+    font-weight: bold;
+    font-size: 16px;
+    color:#6d6e71;
+    vertical-align:65%;
+}
+
+

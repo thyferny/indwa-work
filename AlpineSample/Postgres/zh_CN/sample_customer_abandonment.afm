@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="31" Y="19" name="数据表" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303197255993">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="transaction"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="27" Y="98" name="数据表 " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303197270945">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="customer"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="178" Y="63" name="表连接" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1303197278537">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_transaction"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="t" operID="1303197255993" schema="demo" table="transaction"/>
+<JoinTableModel alias="c" operID="1303197270945" schema="demo" table="customer"/>
+<JoinTableModel alias="a" operID="1303197466761" schema="demo" table="account"/>
+<JoinColumnModel columnName="date" columnType="DATE" newColumnName="date" tableAlias="t"/>
+<JoinColumnModel columnName="acct_id" columnType="INTEGER" newColumnName="acct_id" tableAlias="t"/>
+<JoinColumnModel columnName="amount" columnType="NUMERIC(10,2)" newColumnName="amount" tableAlias="t"/>
+<JoinColumnModel columnName="type" columnType="INTEGER" newColumnName="type" tableAlias="t"/>
+<JoinColumnModel columnName="id" columnType="INTEGER" newColumnName="id" tableAlias="c"/>
+<JoinColumnModel columnName="age" columnType="INTEGER" newColumnName="age" tableAlias="c"/>
+<JoinColumnModel columnName="postal" columnType="CHARACTER VARYING(10)" newColumnName="postal" tableAlias="c"/>
+<JoinColumnModel columnName="membership_date" columnType="DATE" newColumnName="membership_date" tableAlias="c"/>
+<JoinColumnModel columnName="gender" columnType="CHARACTER VARYING(10)" newColumnName="gender" tableAlias="c"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;a&quot;.&quot;cust_id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="a"/>
+<JoinConditionModel andOr="" column1="&quot;a&quot;.&quot;id&quot;" column2="&quot;t&quot;.&quot;acct_id&quot;" condition="=" joinType="JOIN" tableAlias1="a" tableAlias2="t"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="transaction"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="account"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="cust_id" type="INTEGER"/>
+<Field name="acct_type" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="295" Y="15" name="聚合器" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1303197375216">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="last_transaction"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="id"/>
+<parentFieldList columnName="date"/>
+<parentFieldList columnName="acct_id"/>
+<parentFieldList columnName="amount"/>
+<parentFieldList columnName="type"/>
+<parentFieldList columnName="id"/>
+<parentFieldList columnName="age"/>
+<parentFieldList columnName="postal"/>
+<parentFieldList columnName="membership_date"/>
+<parentFieldList columnName="gender"/>
+<AggregateField columnName="last_tx_date" dataType="DOUBLE PRECISION" expression="max(date)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="27" Y="176" name="数据表  " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303197466761">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="account"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="404" Y="53" name="变量器" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303197771609">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="abandonment"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="last_tx_date"/>
+<DerivedFieldItem columnName="abandonment_flag" dataType="VARCHAR" expression="CASE &#13;&#10;&#9;WHEN last_tx_date &lt; '2010-06-01'&#13;&#10;&#9;&#9;THEN 'Left'&#13;&#10;&#9;ELSE &#13;&#10;&#9;&#9;'Faithful'&#13;&#10;END"/>
+<DerivedFieldItem columnName="abandonment_date" dataType="DATE" expression="CASE &#13;&#10;&#9;WHEN last_tx_date &lt; '2010-06-01'&#13;&#10;&#9;&#9;THEN last_tx_date&#13;&#10;&#9;ELSE &#13;&#10;&#9;&#9;NULL&#13;&#10;END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="256" Y="170" name="表连接  1" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1303197930025">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_last_transaction"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="t" operID="1303197375216" schema="demo" table="last_transaction"/>
+<JoinTableModel alias="c" operID="1303197278537" schema="demo" table="customer_transaction"/>
+<JoinColumnModel columnName="date" columnType="DATE" newColumnName="date" tableAlias="c"/>
+<JoinColumnModel columnName="acct_id" columnType="INTEGER" newColumnName="acct_id" tableAlias="c"/>
+<JoinColumnModel columnName="amount" columnType="NUMERIC(10,2)" newColumnName="amount" tableAlias="c"/>
+<JoinColumnModel columnName="type" columnType="INTEGER" newColumnName="type" tableAlias="c"/>
+<JoinColumnModel columnName="id" columnType="INTEGER" newColumnName="id" tableAlias="c"/>
+<JoinColumnModel columnName="age" columnType="INTEGER" newColumnName="age" tableAlias="c"/>
+<JoinColumnModel columnName="postal" columnType="CHARACTER VARYING(10)" newColumnName="postal" tableAlias="c"/>
+<JoinColumnModel columnName="membership_date" columnType="DATE" newColumnName="membership_date" tableAlias="c"/>
+<JoinColumnModel columnName="gender" columnType="CHARACTER VARYING(10)" newColumnName="gender" tableAlias="c"/>
+<JoinColumnModel columnName="last_tx_date" columnType="DOUBLE PRECISION" newColumnName="last_tx_date" tableAlias="t"/>
+<JoinConditionModel andOr="" column1="&quot;t&quot;.&quot;id&quot;" column2="&quot;c&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="t" tableAlias2="c"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="25" Y="265" name="数据表   1" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303198108553">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="online_operation"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="174" Y="235" name="表连接 " type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1303198142281">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_last_online_transaction"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="o" operID="1303198108553" schema="demo" table="online_operation"/>
+<JoinTableModel alias="c" operID="1303197270945" schema="demo" table="customer"/>
+<JoinTableModel alias="a" operID="1303197466761" schema="demo" table="account"/>
+<JoinTableModel alias="t" operID="1303197375216" schema="demo" table="last_transaction"/>
+<JoinColumnModel columnName="date" columnType="DATE" newColumnName="date" tableAlias="o"/>
+<JoinColumnModel columnName="type" columnType="INTEGER" newColumnName="type" tableAlias="o"/>
+<JoinColumnModel columnName="id" columnType="INTEGER" newColumnName="id" tableAlias="a"/>
+<JoinColumnModel columnName="last_tx_date" columnType="DOUBLE PRECISION" newColumnName="last_tx_date" tableAlias="t"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;a&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="a"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;o&quot;.&quot;acct_id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="o"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;t&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="t"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="online_operation"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="type" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="account"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="cust_id" type="INTEGER"/>
+<Field name="acct_type" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="384" Y="164" name="数据行筛选器" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1303198234529">
+<Parameter key="whereClause" value="date &gt; (last_tx_date - interval '6 month')"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_last_6_months_tx"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="381" Y="215" name="数据行筛选器 " type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1303198236801">
+<Parameter key="whereClause" value="date &gt; (last_tx_date - interval '12 month')"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_last_12_months_tx"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="380" Y="279" name="数据行筛选器  1" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1303198239265">
+<Parameter key="whereClause" value="date &gt; (last_tx_date - interval '6 month') AND type = 1"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_last_6_months_online_tx"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_online_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="373" Y="355" name="数据行筛选器  2" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1303198241041">
+<Parameter key="whereClause" value="date &gt; (last_tx_date - interval '12 month') AND type = 1"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_last_12_months_online_tx"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_online_transaction"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="512" Y="121" name="聚合器 " type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1303198814609">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="last_6_month_activity"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="id"/>
+<parentFieldList columnName="date"/>
+<parentFieldList columnName="acct_id"/>
+<parentFieldList columnName="amount"/>
+<parentFieldList columnName="type"/>
+<parentFieldList columnName="id"/>
+<parentFieldList columnName="age"/>
+<parentFieldList columnName="postal"/>
+<parentFieldList columnName="membership_date"/>
+<parentFieldList columnName="gender"/>
+<parentFieldList columnName="t_id"/>
+<AggregateField columnName="tx_amount_6_month_avg" dataType="DOUBLE PRECISION" expression="avg(&quot;amount&quot;)"/>
+<AggregateField columnName="tx_6_month" dataType="DOUBLE PRECISION" expression="count(*)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_6_months_tx"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="522" Y="193" name="聚合器  1" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1303198816385">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="last_12_month_activity"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="id"/>
+<parentFieldList columnName="date"/>
+<parentFieldList columnName="acct_id"/>
+<parentFieldList columnName="amount"/>
+<parentFieldList columnName="type"/>
+<parentFieldList columnName="id"/>
+<parentFieldList columnName="age"/>
+<parentFieldList columnName="postal"/>
+<parentFieldList columnName="membership_date"/>
+<parentFieldList columnName="gender"/>
+<parentFieldList columnName="t_id"/>
+<AggregateField columnName="tx_amount_12_month_avg" dataType="DOUBLE PRECISION" expression="avg(&quot;amount&quot;)"/>
+<AggregateField columnName="tx_12_month" dataType="DOUBLE PRECISION" expression="count(*)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_12_months_tx"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="acct_id" type="INTEGER"/>
+<Field name="amount" type="NUMERIC(10,2)"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="521" Y="268" name="聚合器  2" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1303198817945">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="last_6_month_login"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="id"/>
+<parentFieldList columnName="date"/>
+<parentFieldList columnName="type"/>
+<parentFieldList columnName="id"/>
+<parentFieldList columnName="last_tx_date"/>
+<AggregateField columnName="login_6_month" dataType="DOUBLE PRECISION" expression="count(*)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_6_months_online_tx"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="525" Y="332" name="聚合器  3" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1303198821345">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="last_12_month_login"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="id"/>
+<parentFieldList columnName="date"/>
+<parentFieldList columnName="type"/>
+<parentFieldList columnName="id"/>
+<parentFieldList columnName="last_tx_date"/>
+<AggregateField columnName="login_12_month" dataType="DOUBLE PRECISION" expression="count(*)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_last_12_months_online_tx"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="date" type="DATE"/>
+<Field name="type" type="INTEGER"/>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="667" Y="159" name="表连接  2" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1303199332720">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="customer_abandonment"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="a" operID="1303197771609" schema="demo" table="abandonment"/>
+<JoinTableModel alias="l6a" operID="1303198814609" schema="demo" table="last_6_month_activity"/>
+<JoinTableModel alias="l12a" operID="1303198816385" schema="demo" table="last_12_month_activity"/>
+<JoinTableModel alias="l6l" operID="1303198817945" schema="demo" table="last_6_month_login"/>
+<JoinTableModel alias="l12l" operID="1303198821345" schema="demo" table="last_12_month_login"/>
+<JoinTableModel alias="c" operID="1303197270945" schema="demo" table="customer"/>
+<JoinColumnModel columnName="id" columnType="INTEGER" newColumnName="id" tableAlias="c"/>
+<JoinColumnModel columnName="age" columnType="INTEGER" newColumnName="age" tableAlias="c"/>
+<JoinColumnModel columnName="postal" columnType="CHARACTER VARYING(10)" newColumnName="postal" tableAlias="c"/>
+<JoinColumnModel columnName="membership_date" columnType="DATE" newColumnName="membership_date" tableAlias="c"/>
+<JoinColumnModel columnName="gender" columnType="CHARACTER VARYING(10)" newColumnName="gender" tableAlias="c"/>
+<JoinColumnModel columnName="login_12_month" columnType="DOUBLE PRECISION" newColumnName="login_12_month" tableAlias="l12l"/>
+<JoinColumnModel columnName="login_6_month" columnType="DOUBLE PRECISION" newColumnName="login_6_month" tableAlias="l6l"/>
+<JoinColumnModel columnName="tx_amount_12_month_avg" columnType="DOUBLE PRECISION" newColumnName="tx_amount_12_month_avg" tableAlias="l12a"/>
+<JoinColumnModel columnName="tx_12_month" columnType="DOUBLE PRECISION" newColumnName="tx_12_month" tableAlias="l12a"/>
+<JoinColumnModel columnName="tx_amount_6_month_avg" columnType="DOUBLE PRECISION" newColumnName="tx_amount_6_month_avg" tableAlias="l6a"/>
+<JoinColumnModel columnName="tx_6_month" columnType="DOUBLE PRECISION" newColumnName="tx_6_month" tableAlias="l6a"/>
+<JoinColumnModel columnName="last_tx_date" columnType="DOUBLE PRECISION" newColumnName="last_tx_date" tableAlias="a"/>
+<JoinColumnModel columnName="abandonment_flag" columnType="VARCHAR" newColumnName="abandonment_flag" tableAlias="a"/>
+<JoinColumnModel columnName="abandonment_date" columnType="DATE" newColumnName="abandonment_date" tableAlias="a"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;l12l&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="l12l"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;l6l&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="l6l"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;l12a&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="l12a"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;l6a&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="l6a"/>
+<JoinConditionModel andOr="" column1="&quot;c&quot;.&quot;id&quot;" column2="&quot;a&quot;.&quot;id&quot;" condition="=" joinType="JOIN" tableAlias1="c" tableAlias2="a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="abandonment"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+<Field name="abandonment_flag" type="VARCHAR"/>
+<Field name="abandonment_date" type="DATE"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_6_month_activity"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="tx_amount_6_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_6_month" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_12_month_activity"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="tx_amount_12_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_12_month" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_6_month_login"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="login_6_month" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="last_12_month_login"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="login_12_month" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="662" Y="249" name="变量器 " type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303199650249">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="membership_length_added"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="postal"/>
+<selectedColumnName columnName="membership_date"/>
+<selectedColumnName columnName="gender"/>
+<selectedColumnName columnName="login_12_month"/>
+<selectedColumnName columnName="login_6_month"/>
+<selectedColumnName columnName="tx_amount_12_month_avg"/>
+<selectedColumnName columnName="tx_12_month"/>
+<selectedColumnName columnName="tx_amount_6_month_avg"/>
+<selectedColumnName columnName="tx_6_month"/>
+<selectedColumnName columnName="last_tx_date"/>
+<selectedColumnName columnName="abandonment_flag"/>
+<selectedColumnName columnName="abandonment_date"/>
+<DerivedFieldItem columnName="membership_legth" dataType="NUMERIC" expression="(current_date - membership_date)"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="customer_abandonment"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="login_12_month" type="DOUBLE PRECISION"/>
+<Field name="login_6_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_12_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_12_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_6_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_6_month" type="DOUBLE PRECISION"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+<Field name="abandonment_flag" type="VARCHAR"/>
+<Field name="abandonment_date" type="DATE"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="655" Y="338" name="变量器  1" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303199732873">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="abandonment_mining"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<QuantileModel>
+<QuantileItem columnName="age" isCreateNewColumn="false" newColumnName="age_bin" numberOfBin="5" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="4" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="5" binType="0" values=""/>
+</QuantileItem>
+<QuantileItem columnName="membership_legth" isCreateNewColumn="false" newColumnName="membership_legth_bin" numberOfBin="10" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="4" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="5" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="6" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="7" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="8" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="9" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="10" binType="0" values=""/>
+</QuantileItem>
+</QuantileModel>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="postal"/>
+<selectedColumnName columnName="membership_date"/>
+<selectedColumnName columnName="gender"/>
+<selectedColumnName columnName="login_12_month"/>
+<selectedColumnName columnName="login_6_month"/>
+<selectedColumnName columnName="tx_amount_12_month_avg"/>
+<selectedColumnName columnName="tx_12_month"/>
+<selectedColumnName columnName="tx_amount_6_month_avg"/>
+<selectedColumnName columnName="tx_6_month"/>
+<selectedColumnName columnName="last_tx_date"/>
+<selectedColumnName columnName="abandonment_flag"/>
+<selectedColumnName columnName="abandonment_date"/>
+<selectedColumnName columnName="membership_legth"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="membership_length_added"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="login_12_month" type="DOUBLE PRECISION"/>
+<Field name="login_6_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_12_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_12_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_6_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_6_month" type="DOUBLE PRECISION"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+<Field name="abandonment_flag" type="VARCHAR"/>
+<Field name="abandonment_date" type="DATE"/>
+<Field name="membership_legth" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="776" Y="456" name="逻辑回归分析 " type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionOperator" uuid="1303199947745">
+<Parameter key="dependentColumn" value="abandonment_flag"/>
+<Parameter key="goodValue" value="Faithful"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="columnNames" value="age,gender,last_tx_date,login_12_month,login_6_month,postal,tx_12_month,tx_6_month,tx_amount_12_month_avg,tx_amount_6_month_avg"/>
+<Parameter key="isStepWise" value="false"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="abandonment_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="login_12_month" type="DOUBLE PRECISION"/>
+<Field name="login_6_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_12_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_12_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_6_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_6_month" type="DOUBLE PRECISION"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+<Field name="abandonment_flag" type="VARCHAR"/>
+<Field name="abandonment_date" type="DATE"/>
+<Field name="membership_legth" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="760" Y="526" name="提升度" type="com.alpine.miner.gef.runoperator.model.evaluator.LIFTOperator" uuid="1303199969241">
+<Parameter key="dependentColumn" value="abandonment_flag"/>
+<Parameter key="columnValue" value="Faithful"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="abandonment_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="login_12_month" type="DOUBLE PRECISION"/>
+<Field name="login_6_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_12_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_12_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_6_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_6_month" type="DOUBLE PRECISION"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+<Field name="abandonment_flag" type="VARCHAR"/>
+<Field name="abandonment_date" type="DATE"/>
+<Field name="membership_legth" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="927" Y="389" name="拟合优度" type="com.alpine.miner.gef.runoperator.model.evaluator.GoodnessOfFitOperator" uuid="1303199973673">
+<Parameter key="dependentColumn" value="abandonment_flag"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="abandonment_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+<Field name="postal" type="CHARACTER VARYING(10)"/>
+<Field name="membership_date" type="DATE"/>
+<Field name="gender" type="CHARACTER VARYING(10)"/>
+<Field name="login_12_month" type="DOUBLE PRECISION"/>
+<Field name="login_6_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_12_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_12_month" type="DOUBLE PRECISION"/>
+<Field name="tx_amount_6_month_avg" type="DOUBLE PRECISION"/>
+<Field name="tx_6_month" type="DOUBLE PRECISION"/>
+<Field name="last_tx_date" type="DOUBLE PRECISION"/>
+<Field name="abandonment_flag" type="VARCHAR"/>
+<Field name="abandonment_date" type="DATE"/>
+<Field name="membership_legth" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表" target="表连接"/>
+<Link source="数据表 " target="表连接"/>
+<Link source="表连接" target="聚合器"/>
+<Link source="数据表  " target="表连接"/>
+<Link source="聚合器" target="变量器"/>
+<Link source="聚合器" target="表连接  1"/>
+<Link source="表连接" target="表连接  1"/>
+<Link source="数据表   1" target="表连接 "/>
+<Link source="数据表 " target="表连接 "/>
+<Link source="数据表  " target="表连接 "/>
+<Link source="表连接  1" target="数据行筛选器"/>
+<Link source="表连接  1" target="数据行筛选器 "/>
+<Link source="表连接 " target="数据行筛选器  1"/>
+<Link source="表连接 " target="数据行筛选器  2"/>
+<Link source="聚合器" target="表连接 "/>
+<Link source="数据行筛选器" target="聚合器 "/>
+<Link source="数据行筛选器 " target="聚合器  1"/>
+<Link source="数据行筛选器  1" target="聚合器  2"/>
+<Link source="数据行筛选器  2" target="聚合器  3"/>
+<Link source="变量器" target="表连接  2"/>
+<Link source="聚合器 " target="表连接  2"/>
+<Link source="聚合器  1" target="表连接  2"/>
+<Link source="聚合器  2" target="表连接  2"/>
+<Link source="聚合器  3" target="表连接  2"/>
+<Link source="数据表 " target="表连接  2"/>
+<Link source="表连接  2" target="变量器 "/>
+<Link source="变量器 " target="变量器  1"/>
+<Link source="逻辑回归分析 " target="提升度"/>
+<Link source="逻辑回归分析 " target="拟合优度"/>
+<Link source="变量器  1" target="逻辑回归分析 "/>
+<Link source="变量器  1" target="拟合优度"/>
+<Link source="变量器  1" target="提升度"/>
+</Process>

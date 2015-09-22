@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="26" Y="37" name="credit_card_util" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324580117975_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="credit_card_util"/>
+<Parameter key="userName" value="gpadmin"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="187" Y="37" name="qtr_averages" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1324580722032">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_avg"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="period_00"/>
+<selectedColumnName columnName="period_01"/>
+<selectedColumnName columnName="period_02"/>
+<selectedColumnName columnName="period_03"/>
+<selectedColumnName columnName="period_04"/>
+<selectedColumnName columnName="period_05"/>
+<selectedColumnName columnName="period_06"/>
+<selectedColumnName columnName="period_07"/>
+<selectedColumnName columnName="period_08"/>
+<selectedColumnName columnName="period_09"/>
+<selectedColumnName columnName="period_10"/>
+<selectedColumnName columnName="period_11"/>
+<DerivedFieldItem columnName="avg_year" dataType="NUMERIC" expression="( period_00 + period_01 + period_02 + period_03 + period_04 + period_05 + period_06 + period_07 + period_08 + period_09 + period_10 + period_11 )/12"/>
+<DerivedFieldItem columnName="qtr_11_09" dataType="NUMERIC" expression="(period_11 + period_10 + period_09) / 3"/>
+<DerivedFieldItem columnName="qtr_08_06" dataType="NUMERIC" expression="(period_08 + period_07 + period_06) / 3"/>
+<DerivedFieldItem columnName="qtr_05_03" dataType="NUMERIC" expression="(period_05 + period_04 + period_03) / 3"/>
+<DerivedFieldItem columnName="qtr_02_00" dataType="NUMERIC" expression="(period_02 + period_01 + period_00) / 3"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="credit_card_util"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_00" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="316" Y="37" name="Normalization" type="com.alpine.miner.gef.runoperator.field.NormalizationOperator" uuid="1324584601225">
+<Parameter key="method" value="Z-Transformation"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_norm"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="qtr_02_00,qtr_05_03,qtr_08_06,qtr_11_09"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_avg"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_00" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="497" Y="37" name="K-Means on Norm" type="com.alpine.miner.gef.runoperator.clustering.KMeansOperator" uuid="1324584650571">
+<Parameter key="idColumn" value="id"/>
+<Parameter key="k" value="5"/>
+<Parameter key="distance" value="CosineSimilarity"/>
+<Parameter key="split_Number" value="5"/>
+<Parameter key="max_runs" value="10"/>
+<Parameter key="max_optimization_steps" value="50"/>
+<Parameter key="useArray" value="false"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_norm_kmeans"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="qtr_02_00,qtr_05_03,qtr_08_06,qtr_11_09"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_norm"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_00" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="credit_card_util" target="qtr_averages"/>
+<Link source="qtr_averages" target="Normalization"/>
+<Link source="Normalization" target="K-Means on Norm"/>
+</Process>

@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="62" Y="23" name="credit" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324416491133_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="credit"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="41" Y="122" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324416494300_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="demographics"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="166" Y="63" name="Table Join" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1324416538479">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="demo_credit_a" operID="1324416491133_0" schema="demo" table="credit"/>
+<JoinTableModel alias="demo_demographics_a" operID="1324416494300_0" schema="demo" table="demographics"/>
+<JoinColumnModel columnName="times90dayslate" columnType="INTEGER" newColumnName="times90dayslate" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="revolving_util" columnType="NUMERIC" newColumnName="revolving_util" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="debt_ratio" columnType="NUMERIC" newColumnName="debt_ratio" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="credit_lines" columnType="INTEGER" newColumnName="credit_lines" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="monthly_income" columnType="NUMERIC" newColumnName="monthly_income" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="times30dayslate_2years" columnType="INTEGER" newColumnName="times30dayslate_2years" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="srsdlqncy" columnType="INTEGER" newColumnName="srsdlqncy" tableAlias="demo_credit_a"/>
+<JoinColumnModel columnName="id" columnType="BIGINT" newColumnName="id" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="age" columnType="BIGINT" newColumnName="age" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="num_dep" columnType="INTEGER" newColumnName="num_dep" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="edu" columnType="INTEGER" newColumnName="edu" tableAlias="demo_demographics_a"/>
+<JoinConditionModel andOr="" column1="demo_demographics_a.id" column2="demo_credit_a.id" condition="=" joinType="JOIN" tableAlias1="demo_demographics_a" tableAlias2="demo_credit_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="credit"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="demographics"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="273" Y="63" name="Normalization" type="com.alpine.miner.gef.runoperator.field.NormalizationOperator" uuid="1324416689520">
+<Parameter key="method" value="Z-Transformation"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_norm"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="credit_lines"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="434" Y="63" name="Random Sampling" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1324416911871">
+<Parameter key="sampleCount" value="2"/>
+<Parameter key="sampleSizeType" value="ROW"/>
+<Parameter key="sampleSize" value="6000"/>
+<Parameter key="consistent" value="false"/>
+<Parameter key="replacement" value="false"/>
+<Parameter key="disjoint" value="true"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="djc_samp"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_norm"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="208" Y="246" name="train" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1324416923768">
+<Parameter key="selectedTable" value="demo.djc_samp_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="840" Y="171" name="validate" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1324416928334">
+<Parameter key="selectedTable" value="demo.djc_samp_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="393" Y="193" name="Naive Bayes" type="com.alpine.miner.gef.runoperator.naivebayes.NaiveBayesOperator" uuid="1324417074892">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="calculateDeviance" value="false"/>
+<Parameter key="columnNames" value="credit_lines,debt_ratio,monthly_income,revolving_util,times30dayslate_2years,times90dayslate"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<Model>rO0ABXNyACpjb20uYWxwaW5lLmRhdGFtaW5pbmcuYXBpLmltcGwuRW5naW5lTW9kZWxyBs7TjRuF&#13;
+xwIAA0wABW1vZGVsdAAmTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9vcGVyYXRvci9Nb2RlbDtMAAlt&#13;
+b2RlbFR5cGV0ABJMamF2YS9sYW5nL1N0cmluZztMAARuYW1lcQB+AAJ4cHNyACxjb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcub3BlcmF0b3IuYmF5ZXMuTkJNb2RlbHX41A/Oclp4AgASWgARY2FsY3VsYXRl&#13;
+RGV2aWFuY2VEAAhkZXZpYW5jZVoAGGxhcGxhY2VDb3JyZWN0aW9uRW5hYmxlZEQADG51bGxEZXZp&#13;
+YW5jZUkAD251bWJlck9mQ2xhc3Nlc0kAD251bWJlck9mQ29sdW1uc0QAC3RvdGFsV2VpZ2h0WwAL&#13;
+Y2xhc3NWYWx1ZXN0ABNbTGphdmEvbGFuZy9TdHJpbmc7WwAMY2xhc3NXZWlnaHRzdAACW0RbAAtj&#13;
+b2x1bW5OYW1lc3EAfgAFWwAMY29sdW1uVmFsdWVzdAAUW1tMamF2YS9sYW5nL1N0cmluZztMAA5k&#13;
+YXRhU291cmNlSW5mb3QAJ0xjb20vYWxwaW5lL3V0aWxpdHkvZGIvSURhdGFTb3VyY2VJbmZvO1sA&#13;
+FmRpc3RyaWJ1dGlvblByb3BlcnRpZXN0AARbW1tETAAObXVsdGlEQlV0aWxpdHl0ACdMY29tL2Fs&#13;
+cGluZS91dGlsaXR5L2RiL0lNdWx0aURCVXRpbGl0eTtbAAdub21pbmFsdAACW1pbAAZwcmlvcnNx&#13;
+AH4ABkwADXVwZGF0ZUNvbHVtbnN0ABVMamF2YS91dGlsL0FycmF5TGlzdDtbAAp3ZWlnaHRTdW1z&#13;
+cQB+AAl4cgAyY29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLnRyYWluaW5nLlByZWRpY3Rp&#13;
+b25BFoip8770gAIAAHhyACxjb20uYWxwaW5lLmRhdGFtaW5pbmcub3BlcmF0b3IuQWJzdHJhY3RN&#13;
+b2RlbPaLwYG1INscAgABTAANaGVhZGVyRGF0YVNldHQAJExjb20vYWxwaW5lL2RhdGFtaW5pbmcv&#13;
+ZGIvREJEYXRhU2V0O3hyACtjb20uYWxwaW5lLmRhdGFtaW5pbmcub3BlcmF0b3IuT3V0cHV0T2Jq&#13;
+ZWN0W4/atPz2d24CAAFMAAZzb3VyY2VxAH4AAnhwcHNyACJjb20uYWxwaW5lLmRhdGFtaW5pbmcu&#13;
+ZGIuREJEYXRhU2V0oy02rpEIYIwCAAdMAAdhdmVyYWdldAATTGphdmEvdXRpbC9IYXNoTWFwO0wA&#13;
+B2NvbHVtbnN0ACJMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL0NvbHVtbnM7TAAHbWF4aW11bXEA&#13;
+fgATTAAHbWluaW11bXEAfgATTAADc3VtcQB+ABNMAAV0YWJsZXQAIExjb20vYWxwaW5lL2RhdGFt&#13;
+aW5pbmcvZGIvVGFibGU7TAAIdmFyaWFuY2VxAH4AE3hyAChjb20uYWxwaW5lLmRhdGFtaW5pbmcu&#13;
+ZGIuQWJzdHJhY3REYXRhU2V0IFxxzNEBLwQCAARaABtjb21wdXRlZEFsbENvbHVtblN0YXRpc3Rp&#13;
+Y3NaABVjb21wdXRlZEFsbFN0YXRpc3RpY3NMAAVpZE1hcHQAD0xqYXZhL3V0aWwvTWFwO0wADXN0&#13;
+YXRpc3RpY3NNYXBxAH4AF3hxAH4AEHAAAHNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwAC&#13;
+RgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AGT9AAAAA&#13;
+AAAMdwgAAAAQAAAAAHhwc3IAI2NvbS5hbHBpbmUuZGF0YW1pbmluZy5kYi5Db2x1bW5zSW1wILHM&#13;
+JPtWhd0CAAFMAAdjb2x1bW5zdAAQTGphdmEvdXRpbC9MaXN0O3hwc3IAFGphdmEudXRpbC5MaW5r&#13;
+ZWRMaXN0DClTXUpgiCIDAAB4cHcEAAAAB3NyACZjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuTnVt&#13;
+ZXJpY0NvbHVtbgAAAAAAAAABAgACWgAIY2F0ZWdvcnlMAAdtYXBwaW5ndAAiTGNvbS9hbHBpbmUv&#13;
+ZGF0YW1pbmluZy9kYi9NYXBwaW5nO3hyACdjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuQWJzdHJh&#13;
+Y3RDb2x1bW7e2t2RhMB0agIAB0QADGRlZmF1bHRWYWx1ZUkABWluZGV4WgAHc3BlY2lhbEkACXZh&#13;
+bHVlVHlwZUwAC2NvbHVtblN0YXRzcQB+AB1MAARuYW1lcQB+AAJMAAtzcGVjaWFsTmFtZXEAfgAC&#13;
+eHAAAAAAAAAAAAAAAAAAAAAAA3NxAH4AH3cEAAAAAXNyACtjb20uYWxwaW5lLmRhdGFtaW5pbmcu&#13;
+ZGIuTnVtZXJpY0NvbHVtblN0YXRzbbfBUwTZ3sICAAdKAAptYXhDb3VudGVySgAEbW9kZUQACnNx&#13;
+dWFyZWRTdW1EAANzdW1JAAx2YWx1ZUNvdW50ZXJMAAZjb2x1bW50ACFMY29tL2FscGluZS9kYXRh&#13;
+bWluaW5nL2RiL0NvbHVtbjtbAAZzY29yZXN0AAJbSnhwAAAAAAAAAAD//////////wAAAAAAAAAA&#13;
+AAAAAAAAAAAAAAAAcHB4dAAPdGltZXM5MGRheXNsYXRlcABzcgAkY29tLmFscGluZS5kYXRhbWlu&#13;
+aW5nLmRiLk1hcHBpbmdJbXBsY3I1zuCNEAsCAAJMABBpbmRleFRvU3ltYm9sTWFwcQB+AB1MABBz&#13;
+eW1ib2xUb0luZGV4TWFwcQB+ABd4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0DAAFJ&#13;
+AARzaXpleHAAAAAAdwQAAAAKeHNxAH4AGT9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ACEAAAAAAAAA&#13;
+AAAAAAEAAAAAA3NxAH4AH3cEAAAAAXNxAH4AJgAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAA&#13;
+AAAAAAAAAHBweHQADnJldm9sdmluZ191dGlscABzcQB+ACtzcQB+AC0AAAAAdwQAAAAKeHNxAH4A&#13;
+GT9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ACEAAAAAAAAAAAAAAAIAAAAAA3NxAH4AH3cEAAAAAXNx&#13;
+AH4AJgAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHQACmRlYnRfcmF0aW9w&#13;
+AHNxAH4AK3NxAH4ALQAAAAB3BAAAAAp4c3EAfgAZP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIQAA&#13;
+AAAAAAAAAAAAAwAAAAADc3EAfgAfdwQAAAABc3EAfgAmAAAAAAAAAAD//////////wAAAAAAAAAA&#13;
+AAAAAAAAAAAAAAAAcHB4dAAMY3JlZGl0X2xpbmVzcABzcQB+ACtzcQB+AC0AAAAAdwQAAAAKeHNx&#13;
+AH4AGT9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ACEAAAAAAAAAAAAAAAQAAAAAA3NxAH4AH3cEAAAA&#13;
+AXNxAH4AJgAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHQADm1vbnRobHlf&#13;
+aW5jb21lcABzcQB+ACtzcQB+AC0AAAAAdwQAAAAKeHNxAH4AGT9AAAAAAAAMdwgAAAAQAAAAAHhz&#13;
+cQB+ACEAAAAAAAAAAAAAAAUAAAAAA3NxAH4AH3cEAAAAAXNxAH4AJgAAAAAAAAAA//////////8A&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAAHBweHQAFnRpbWVzMzBkYXlzbGF0ZV8yeWVhcnNwAHNxAH4AK3Nx&#13;
+AH4ALQAAAAB3BAAAAAp4c3EAfgAZP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIQAAAAAAAAAAAAAA&#13;
+BgEAAAADc3EAfgAfdwQAAAABc3EAfgAmAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAA&#13;
+AAAAcHB4dAAJc3JzZGxxbmN5dAAVQUxQSU5FX0RFUEVOREVOVF9OQU1FAXNxAH4AK3NxAH4ALQAA&#13;
+AAJ3BAAAAAp0AAExdAABMHhzcQB+ABk/QAAAAAAADHcIAAAAEAAAAAJxAH4AWnNyABFqYXZhLmxh&#13;
+bmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCL&#13;
+AgAAeHAAAAAAcQB+AFtzcQB+AF0AAAABeHhwcHBzcgAgY29tLmFscGluZS5kYXRhbWluaW5nLmRi&#13;
+LkRCVGFibGWR8DfFtWUDWQIABkoABHNpemVMAAhwYXNzd29yZHEAfgACTAAJdGFibGVOYW1lcQB+&#13;
+AAJMAAN1cmxxAH4AAkwACHVzZXJOYW1lcQB+AAJMAA53aGVyZUNvbmRpdGlvbnEAfgACeHIAKmNv&#13;
+bS5hbHBpbmUuZGF0YW1pbmluZy5kYi5BYnN0cmFjdERhdGFUYWJsZb0fAwR6evoqAgACTAAHY29s&#13;
+dW1uc3EAfgAdTAAQdW51c2VkQ29sdW1uTGlzdHEAfgAdeHBzcQB+AC0AAAALdwQAAAAQc3EAfgAh&#13;
+AAAAAAAAAAAAAAAAAAAAAANzcQB+AB93BAAAAAFzcQB+ACYAAAAAAAAAAP//////////AAAAAAAA&#13;
+AAAAAAAAAAAAAAAAAABwcHhxAH4AKnAAcQB+ACxzcQB+ACEAAAAAAAAAAAAAAAEAAAAAA3NxAH4A&#13;
+H3cEAAAAAXNxAH4AJgAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgAz&#13;
+cABxAH4ANHNxAH4AIQAAAAAAAAAAAAAAAgAAAAADc3EAfgAfdwQAAAABc3EAfgAmAAAAAAAAAAD/&#13;
+/////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4cQB+ADpwAHEAfgA7c3EAfgAhAAAAAAAAAAAA&#13;
+AAADAAAAAANzcQB+AB93BAAAAAFzcQB+ACYAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAA&#13;
+AAAAAABwcHhxAH4AQXAAcQB+AEJzcQB+ACEAAAAAAAAAAAAAAAQAAAAAA3NxAH4AH3cEAAAAAXNx&#13;
+AH4AJgAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgBIcABxAH4ASXNx&#13;
+AH4AIQAAAAAAAAAAAAAABQAAAAADc3EAfgAfdwQAAAABc3EAfgAmAAAAAAAAAAD//////////wAA&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAcHB4cQB+AE9wAHEAfgBQc3EAfgAhAAAAAAAAAAAAAAAGAQAAAANz&#13;
+cQB+AB93BAAAAAFzcQB+ACYAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhx&#13;
+AH4AVnEAfgBXAXEAfgBYc3EAfgAhAAAAAAAAAAAAAAAHAAAAAANzcQB+AB93BAAAAAFzcQB+ACYA&#13;
+AAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAJpZHAAc3EAfgArc3EAfgAt&#13;
+AAAAAHcEAAAACnhzcQB+ABk/QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAhAAAAAAAAAAAAAAAIAAAA&#13;
+AANzcQB+AB93BAAAAAFzcQB+ACYAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABw&#13;
+cHh0AANhZ2VwAHNxAH4AK3NxAH4ALQAAAAB3BAAAAAp4c3EAfgAZP0AAAAAAAAx3CAAAABAAAAAA&#13;
+eHNxAH4AIQAAAAAAAAAAAAAACQAAAAADc3EAfgAfdwQAAAABc3EAfgAmAAAAAAAAAAD/////////&#13;
+/wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAHbnVtX2RlcHAAc3EAfgArc3EAfgAtAAAAAHcEAAAA&#13;
+CnhzcQB+ABk/QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAhAAAAAAAAAAAAAAAKAAAAAANzcQB+AB93&#13;
+BAAAAAFzcQB+ACYAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AANlZHVw&#13;
+AHNxAH4AK3NxAH4ALQAAAAB3BAAAAAp4c3EAfgAZP0AAAAAAAAx3CAAAABAAAAAAeHhzcQB+AB93&#13;
+BAAAAAB4AAAAAAAAF3B0AAptaW5lcl9kZW1vdAATImRlbW8iLiJkamNfc2FtcF8wInQAL2pkYmM6&#13;
+cG9zdGdyZXNxbDovLzE5Mi4xNjguMS4yMzY6NTQzMi9taW5lcl9kZW1vdAAKbWluZXJfZGVtb3Bw&#13;
+AH/4AAAAAAAAAX/4AAAAAAAAAAAAAgAAAAZAt3AAAAAAAHVyABNbTGphdmEubGFuZy5TdHJpbmc7&#13;
+rdJW5+kde0cCAAB4cAAAAAJxAH4AWnEAfgBbdXIAAltEPqaMFKtjWh4CAAB4cAAAAAJAcBAAAAAA&#13;
+AEC2bwAAAAAAdXEAfgCbAAAABnEAfgAqcQB+ADNxAH4AOnEAfgBBcQB+AEhxAH4AT3VyABRbW0xq&#13;
+YXZhLmxhbmcuU3RyaW5nOzJNCa2EMuRXAgAAeHAAAAAGcHBwcHBwc3IALWNvbS5hbHBpbmUudXRp&#13;
+bGl0eS5kYi5EYXRhU291cmNlSW5mb0dyZWVucGx1bSlGA+Cf1XivAgAAeHIAMGNvbS5hbHBpbmUu&#13;
+dXRpbGl0eS5kYi5BYnN0cmFjdERhdGFTb3VyY2VJbmZvUEdHUKW943SMV6+LAgABTAAGbG9jYWxl&#13;
+dAASTGphdmEvdXRpbC9Mb2NhbGU7eHBzcgAQamF2YS51dGlsLkxvY2FsZX74EWCcMPnsAgAESQAI&#13;
+aGFzaGNvZGVMAAdjb3VudHJ5cQB+AAJMAAhsYW5ndWFnZXEAfgACTAAHdmFyaWFudHEAfgACeHD/&#13;
+////dAACVVN0AAJlbnQAAHVyAARbW1tEmZwwmZGIlEsCAAB4cAAAAAZ1cgADW1tEx60L/2Rn/0UC&#13;
+AAB4cAAAAAJ1cQB+AJ0AAAADP+KNco1yjXM/5EKBrvDpXz/djszVvCmfdXEAfgCdAAAAAz+6s3aH&#13;
+ELdMP9S7Um4pHda/yqjlvYZtknVxAH4ArQAAAAJ1cQB+AJ0AAAADP93A91qQ9Co/zNHBC+3bWL/i&#13;
+TjCJI1VxdXEAfgCdAAAAAz/UbNgKUCedP8RKeUR3Lay/7YiMjrtfFXVxAH4ArQAAAAJ1cQB+AJ0A&#13;
+AAADP+JBApLuGAw/2Bv+RXnlJr+tXE63CQxedXEAfgCdAAAAAz/T8Cu+7jGAP9AZKy+PPCS/3YTK&#13;
+iQxqfXVxAH4ArQAAAAJ1cQB+AJ0AAAADv9LFWrDeUgg/8G8uTgFn9j/uQ1eFEYsIdXEAfgCdAAAA&#13;
+Az+Q3ww+wWdqP++gqQyVG9E/7QgLscvL53VxAH4ArQAAAAJ1cQB+AJ0AAAADQKnnwYY2OHhAm5YZ&#13;
++/3JNUAgylARcQFUdXEAfgCdAAAAA0CrBT/GGfqbQJyZBLskr/9AINy/jKZn+HVxAH4ArQAAAAJ1&#13;
+cQB+AJ0AAAADP8zjHOMc4x0/4Nd4BojdBT/Ru1Yjlpx4dXEAfgCdAAAAAz+8Cc6FSEH5P9emed4S&#13;
+W6W/s5oEjjOA43NyAC1jb20uYWxwaW5lLnV0aWxpdHkuZGIuTXVsdGlEQkdyZWVucGx1bVV0aWxp&#13;
+dHmRD6hWX07XVQIAAHhyADBjb20uYWxwaW5lLnV0aWxpdHkuZGIuQWJzdHJhY3RNdWx0aURCVXRp&#13;
+bGl0eUdQUEft3lfYRzP1ngIAAHhwdXIAAltaV48gORS4XeICAAB4cAAAAAYAAAAAAAB1cQB+AJ0A&#13;
+AAACwAk0GS+X7yC/pmoJcklN03NxAH4ALQAAAAl3BAAAAAp0AAxQKHNyc2RscW5jeSl0AARDKDEp&#13;
+dAAEQygwKXQADFAoc3JzZGxxbmN5KXQABEMoMSl0AARDKDApdAAMUChzcnNkbHFuY3kpdAAEQygx&#13;
+KXQABEMoMCl4dXEAfgCrAAAABnVxAH4ArQAAAAJ1cQB+AJ0AAAAEQHAQAAAAAABAYqAAAAAAAEBn&#13;
+oAAAAAAAAAAAAAAAAAB1cQB+AJ0AAAAEQLZvAAAAAABAgrgAAAAAAECEyAAAAAAAAAAAAAAAAAB1&#13;
+cQB+AK0AAAACdXEAfgCdAAAABEBwEAAAAAAAQF3euFHrhR5AUSGJN0vGqQAAAAAAAAAAdXEAfgCd&#13;
+AAAABEC2bwAAAAAAQJyjXCj1wotAhsnbItDlWgAAAAAAAAAAdXEAfgCtAAAAAnVxAH4AnQAAAARA&#13;
+cBAAAAAAAEBiU0OVgQYkQF39LDAJswYAAAAAAAAAAHVxAH4AnQAAAARAtm8AAAAAAECb9I5WBBiH&#13;
+QIzFaRB/qfwAAAAAAAAAAHVxAH4ArQAAAAJ1cQB+AJ0AAAAEQHAQAAAAAADAUtggC48wWkByQxpt&#13;
+fFOXAAAAAAAAAAB1cQB+AJ0AAAAEQLZvAAAAAABAV6e8Oz1L70C16q8tBUhIAAAAAAAAAAB1cQB+&#13;
+AK0AAAACdXEAfgCdAAAABEBwEAAAAAAAQSoBqUe8brBB6v+ogFv/AAAAAAAAAAAAdXEAfgCdAAAA&#13;
+BEC2bwAAAAAAQXLxVg1pBmhCNHk21Ya1fwAAAAAAAAAAdXEAfgCtAAAAAnVxAH4AnQAAAARAcBAA&#13;
+AAAAAEBNAAAAAAAAQFUAAAAAAAAAAAAAAAAAAHVxAH4AnQAAAARAtm8AAAAAAECDqAAAAAAAQIqo&#13;
+AAAAAAAAAAAAAAAAAHB0AAtOYWl2ZSBCYXllcw==</Model>
+</Operator>
+<Operator X="626" Y="266" name="Goodness Of Fit" type="com.alpine.miner.gef.runoperator.model.evaluator.GoodnessOfFitOperator" uuid="1324417115609">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="377" Y="312" name="Logistic Regression" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionOperator" uuid="1324417477593">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="goodValue" value="1"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="columnNames" value="credit_lines,debt_ratio,monthly_income,revolving_util,times30dayslate_2years,times90dayslate"/>
+<Parameter key="isStepWise" value="false"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<Model>rO0ABXNyACpjb20uYWxwaW5lLmRhdGFtaW5pbmcuYXBpLmltcGwuRW5naW5lTW9kZWxyBs7TjRuF&#13;
+xwIAA0wABW1vZGVsdAAmTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9vcGVyYXRvci9Nb2RlbDtMAAlt&#13;
+b2RlbFR5cGV0ABJMamF2YS9sYW5nL1N0cmluZztMAARuYW1lcQB+AAJ4cHNyAERjb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcub3BlcmF0b3IucmVncmVzc2lvbnMuTG9naXN0aWNSZWdyZXNzaW9uTW9kZWxE&#13;
+QrslYdam2fEaAgAVRAAJY2hpU3F1YXJlWgAPaW1wcm92ZW1lbnRTdG9wWgAOaW50ZXJjZXB0QWRk&#13;
+ZWRKAAlpdGVyYXRpb25EAA1tb2RlbERldmlhbmNlRAAMbnVsbERldmlhbmNlWgAMdXNlQ0Z1bmN0&#13;
+aW9uTAAYYWxsVHJhbnNmb3JtTWFwX3ZhbHVlS2V5dAATTGphdmEvdXRpbC9IYXNoTWFwO1sABGJl&#13;
+dGF0AAJbRFsAC2NvbHVtbk5hbWVzdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wAEGNvbHVtbk5hbWVz&#13;
+QXJyYXl0ABVMamF2YS91dGlsL0FycmF5TGlzdDtMAA5kYXRhU291cmNlSW5mb3QAJ0xjb20vYWxw&#13;
+aW5lL3V0aWxpdHkvZGIvSURhdGFTb3VyY2VJbmZvO0wABGdvb2RxAH4AAkwAGmludGVyYWN0aW9u&#13;
+Q29sdW1uQ29sdW1uTWFwcQB+AAVMABdpbnRlcmFjdGlvbkNvbHVtbkV4cE1hcHEAfgAFTAAObXVs&#13;
+dGlEQlV0aWxpdHl0ACdMY29tL2FscGluZS91dGlsaXR5L2RiL0lNdWx0aURCVXRpbGl0eTtMAApv&#13;
+bGREYXRhU2V0dAAiTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9kYi9EYXRhU2V0O1sABnBWYWx1ZXEA&#13;
+fgAGWwANc3RhbmRhcmRFcnJvcnEAfgAGWwANd2FsZFN0YXRpc3RpY3EAfgAGWwAGelZhbHVlcQB+&#13;
+AAZ4cgA9Y29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLnRyYWluaW5nLkJpbmFyeVByZWRp&#13;
+Y3Rpb25Nb2RlbDqM5dkRy007AgABRAAJdGhyZXNob2xkeHIAMmNvbS5hbHBpbmUuZGF0YW1pbmlu&#13;
+Zy5vcGVyYXRvci50cmFpbmluZy5QcmVkaWN0aW9uQRaIqfO+9IACAAB4cgAsY29tLmFscGluZS5k&#13;
+YXRhbWluaW5nLm9wZXJhdG9yLkFic3RyYWN0TW9kZWz2i8GBtSDbHAIAAUwADWhlYWRlckRhdGFT&#13;
+ZXR0ACRMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL0RCRGF0YVNldDt4cgArY29tLmFscGluZS5k&#13;
+YXRhbWluaW5nLm9wZXJhdG9yLk91dHB1dE9iamVjdFuP2rT89nduAgABTAAGc291cmNlcQB+AAJ4&#13;
+cHBzcgAiY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkRCRGF0YVNldKMtNq6RCGCMAgAHTAAHYXZl&#13;
+cmFnZXEAfgAFTAAHY29sdW1uc3QAIkxjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1ucztM&#13;
+AAdtYXhpbXVtcQB+AAVMAAdtaW5pbXVtcQB+AAVMAANzdW1xAH4ABUwABXRhYmxldAAgTGNvbS9h&#13;
+bHBpbmUvZGF0YW1pbmluZy9kYi9UYWJsZTtMAAh2YXJpYW5jZXEAfgAFeHIAKGNvbS5hbHBpbmUu&#13;
+ZGF0YW1pbmluZy5kYi5BYnN0cmFjdERhdGFTZXQgXHHM0QEvBAIABFoAG2NvbXB1dGVkQWxsQ29s&#13;
+dW1uU3RhdGlzdGljc1oAFWNvbXB1dGVkQWxsU3RhdGlzdGljc0wABWlkTWFwdAAPTGphdmEvdXRp&#13;
+bC9NYXA7TAANc3RhdGlzdGljc01hcHEAfgAWeHEAfgAQcAAAc3IAEWphdmEudXRpbC5IYXNoTWFw&#13;
+BQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhyZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAAB4&#13;
+c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHBzcgAjY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkNv&#13;
+bHVtbnNJbXAgscwk+1aF3QIAAUwAB2NvbHVtbnN0ABBMamF2YS91dGlsL0xpc3Q7eHBzcgAUamF2&#13;
+YS51dGlsLkxpbmtlZExpc3QMKVNdSmCIIgMAAHhwdwQAAAAHc3IAJmNvbS5hbHBpbmUuZGF0YW1p&#13;
+bmluZy5kYi5OdW1lcmljQ29sdW1uAAAAAAAAAAECAAJaAAhjYXRlZ29yeUwAB21hcHBpbmd0ACJM&#13;
+Y29tL2FscGluZS9kYXRhbWluaW5nL2RiL01hcHBpbmc7eHIAJ2NvbS5hbHBpbmUuZGF0YW1pbmlu&#13;
+Zy5kYi5BYnN0cmFjdENvbHVtbt7a3ZGEwHRqAgAHRAAMZGVmYXVsdFZhbHVlSQAFaW5kZXhaAAdz&#13;
+cGVjaWFsSQAJdmFsdWVUeXBlTAALY29sdW1uU3RhdHNxAH4AHEwABG5hbWVxAH4AAkwAC3NwZWNp&#13;
+YWxOYW1lcQB+AAJ4cAAAAAAAAAAAAAAAAAAAAAADc3EAfgAedwQAAAABc3IAK2NvbS5hbHBpbmUu&#13;
+ZGF0YW1pbmluZy5kYi5OdW1lcmljQ29sdW1uU3RhdHNtt8FTBNnewgIAB0oACm1heENvdW50ZXJK&#13;
+AARtb2RlRAAKc3F1YXJlZFN1bUQAA3N1bUkADHZhbHVlQ291bnRlckwABmNvbHVtbnQAIUxjb20v&#13;
+YWxwaW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1uO1sABnNjb3Jlc3QAAltKeHAAAAAAAAAAAP//////&#13;
+////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AA90aW1lczkwZGF5c2xhdGVwAHNyACRjb20uYWxw&#13;
+aW5lLmRhdGFtaW5pbmcuZGIuTWFwcGluZ0ltcGxjcjXO4I0QCwIAAkwAEGluZGV4VG9TeW1ib2xN&#13;
+YXBxAH4AHEwAEHN5bWJvbFRvSW5kZXhNYXBxAH4AFnhwc3IAE2phdmEudXRpbC5BcnJheUxpc3R4&#13;
+gdIdmcdhnQMAAUkABHNpemV4cAAAAAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNx&#13;
+AH4AIAAAAAAAAAAAAAAAAQAAAAADc3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAA&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAOcmV2b2x2aW5nX3V0aWxwAHNxAH4AKnNxAH4ALAAAAAB3&#13;
+BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAAAgAAAAADc3EA&#13;
+fgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAK&#13;
+ZGVidF9yYXRpb3AAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAADHcIAAAAEAAA&#13;
+AAB4c3EAfgAgAAAAAAAAAAAAAAADAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAAAP//////&#13;
+////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAxjcmVkaXRfbGluZXNwAHNxAH4AKnNxAH4ALAAA&#13;
+AAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAABAAAAAAD&#13;
+c3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4&#13;
+dAAObW9udGhseV9pbmNvbWVwAHNxAH4AKnNxAH4ALAAAAAB3BAAAAAp4c3EAfgAYP0AAAAAAAAx3&#13;
+CAAAABAAAAAAeHNxAH4AIAAAAAAAAAAAAAAABQAAAAADc3EAfgAedwQAAAABc3EAfgAlAAAAAAAA&#13;
+AAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAWdGltZXMzMGRheXNsYXRlXzJ5ZWFy&#13;
+c3AAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAg&#13;
+AAAAAAAAAAAAAAAGAQAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAAAP//////////AAAAAAAA&#13;
+AAAAAAAAAAAAAAAAAABwcHh0AAlzcnNkbHFuY3l0ABVBTFBJTkVfREVQRU5ERU5UX05BTUUBc3EA&#13;
+fgAqc3EAfgAsAAAAAncEAAAACnQAATF0AAEweHNxAH4AGD9AAAAAAAAMdwgAAAAQAAAAAnEAfgBZ&#13;
+c3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVt&#13;
+YmVyhqyVHQuU4IsCAAB4cAAAAABxAH4AWnNxAH4AXAAAAAF4eHBwcHNyACBjb20uYWxwaW5lLmRh&#13;
+dGFtaW5pbmcuZGIuREJUYWJsZZHwN8W1ZQNZAgAGSgAEc2l6ZUwACHBhc3N3b3JkcQB+AAJMAAl0&#13;
+YWJsZU5hbWVxAH4AAkwAA3VybHEAfgACTAAIdXNlck5hbWVxAH4AAkwADndoZXJlQ29uZGl0aW9u&#13;
+cQB+AAJ4cgAqY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkFic3RyYWN0RGF0YVRhYmxlvR8DBHp6&#13;
++ioCAAJMAAdjb2x1bW5zcQB+ABxMABB1bnVzZWRDb2x1bW5MaXN0cQB+ABx4cHNxAH4ALAAAAAt3&#13;
+BAAAABBzcQB+ACAAAAAAAAAAAAAAAAAAAAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA////&#13;
+//////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgApcABxAH4AK3NxAH4AIAAAAAAAAAAAAAAA&#13;
+AQAAAAADc3EAfgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAA&#13;
+AAAAcHB4cQB+ADJwAHEAfgAzc3EAfgAgAAAAAAAAAAAAAAACAAAAAANzcQB+AB53BAAAAAFzcQB+&#13;
+ACUAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AOXAAcQB+ADpzcQB+&#13;
+ACAAAAAAAAAAAAAAAAMAAAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA//////////8AAAAA&#13;
+AAAAAAAAAAAAAAAAAAAAAHBweHEAfgBAcABxAH4AQXNxAH4AIAAAAAAAAAAAAAAABAAAAAADc3EA&#13;
+fgAedwQAAAABc3EAfgAlAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4cQB+&#13;
+AEdwAHEAfgBIc3EAfgAgAAAAAAAAAAAAAAAFAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAAAAAA&#13;
+AP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4ATnAAcQB+AE9zcQB+ACAAAAAAAAAA&#13;
+AAAAAAYBAAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAA&#13;
+AAAAAAAAAHBweHEAfgBVcQB+AFYBcQB+AFdzcQB+ACAAAAAAAAAAAAAAAAcAAAAAA3NxAH4AHncE&#13;
+AAAAAXNxAH4AJQAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHQAAmlkcABz&#13;
+cQB+ACpzcQB+ACwAAAAAdwQAAAAKeHNxAH4AGD9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ACAAAAAA&#13;
+AAAAAAAAAAgAAAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA//////////8AAAAAAAAAAAAA&#13;
+AAAAAAAAAAAAAHBweHQAA2FnZXAAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAA&#13;
+DHcIAAAAEAAAAAB4c3EAfgAgAAAAAAAAAAAAAAAJAAAAAANzcQB+AB53BAAAAAFzcQB+ACUAAAAA&#13;
+AAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAdudW1fZGVwcABzcQB+ACpzcQB+&#13;
+ACwAAAAAdwQAAAAKeHNxAH4AGD9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ACAAAAAAAAAAAAAAAAoA&#13;
+AAAAA3NxAH4AHncEAAAAAXNxAH4AJQAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAA&#13;
+AHBweHQAA2VkdXAAc3EAfgAqc3EAfgAsAAAAAHcEAAAACnhzcQB+ABg/QAAAAAAADHcIAAAAEAAA&#13;
+AAB4eHNxAH4AHncEAAAAAHj//////////3QACm1pbmVyX2RlbW90ABMiZGVtbyIuImRqY19zYW1w&#13;
+XzAidAAvamRiYzpwb3N0Z3Jlc3FsOi8vMTkyLjE2OC4xLjIzNjo1NDMyL21pbmVyX2RlbW90AApt&#13;
+aW5lcl9kZW1vcHA/4AAAAAAAAEB6nWovF7doAQEAAAAAAAAABkCagUXkrQMYQKCUUDg5eHkBc3EA&#13;
+fgAYP0AAAAAAAAx3CAAAABAAAAAAeHVyAAJbRD6mjBSrY1oeAgAAeHAAAAAHP/0LEesHnI0/6epa&#13;
+hp+1gUAEXSyz0Xh8P6di5+77e+G/ApdzGEZvYb/JiOeVdoCbwBNvjvyUVWR1cgATW0xqYXZhLmxh&#13;
+bmcuU3RyaW5nO63SVufpHXtHAgAAeHAAAAAGcQB+AClxAH4AMnEAfgA5cQB+AEBxAH4AR3EAfgBO&#13;
+c3EAfgAsAAAABncEAAAACnEAfgApcQB+ADJxAH4AOXEAfgBAcQB+AEdxAH4ATnhzcgAtY29tLmFs&#13;
+cGluZS51dGlsaXR5LmRiLkRhdGFTb3VyY2VJbmZvR3JlZW5wbHVtKUYD4J/VeK8CAAB4cgAwY29t&#13;
+LmFscGluZS51dGlsaXR5LmRiLkFic3RyYWN0RGF0YVNvdXJjZUluZm9QR0dQpb3jdIxXr4sCAAFM&#13;
+AAZsb2NhbGV0ABJMamF2YS91dGlsL0xvY2FsZTt4cHNyABBqYXZhLnV0aWwuTG9jYWxlfvgRYJww&#13;
++ewCAARJAAhoYXNoY29kZUwAB2NvdW50cnlxAH4AAkwACGxhbmd1YWdlcQB+AAJMAAd2YXJpYW50&#13;
+cQB+AAJ4cP////90AAJVU3QAAmVudAAAdAABMXNxAH4AGD9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+&#13;
+ABg/QAAAAAAADHcIAAAAEAAAAAB4c3IALWNvbS5hbHBpbmUudXRpbGl0eS5kYi5NdWx0aURCR3Jl&#13;
+ZW5wbHVtVXRpbGl0eZEPqFZfTtdVAgAAeHIAMGNvbS5hbHBpbmUudXRpbGl0eS5kYi5BYnN0cmFj&#13;
+dE11bHRpREJVdGlsaXR5R1BQR+3eV9hHM/WeAgAAeHBzcQB+ABJwAQBzcQB+ABg/QAAAAAAADHcI&#13;
+AAAAEAAAAAB4c3EAfgAYP0AAAAAAAAx3CAAAABAAAAAAeHBzcQB+ABtzcQB+AB53BAAAAAdxAH4A&#13;
+ZHEAfgBncQB+AGpxAH4AbXEAfgBwcQB+AHNxAH4AdnhwcHBxAH4AYnB1cQB+AJsAAAAHO34mRLwx&#13;
+0XA/q/hku+GUPznyvoXPPqERP+EyAHTT2dQ/19M20EtpvT/JlbIQpZlkNnxHj7zjwId1cQB+AJsA&#13;
+AAAHP8YVncMqevA/2vhDvfJ/Dz/IlP5ZX3pMP7L1C24qflE/BNZK8bUcSz/D620HSY2LP820wGu+&#13;
+ZGl1cQB+AJsAAAAHQFur+0Dya/xADYwDkIZpk0Bl9dvKLvdFP9hZj8EMvoU/6XmIg2KGIT/6Srjr&#13;
+l8P5QHtletLs69t1cQB+AJsAAAAHQCUKpiiTHBs//r+/QIb5WEAqglRMi6sCP+O8/G4PE4u/7I0z&#13;
+IEuQpr/0gp9pL08uwDTvxwAM8AlwdAATTG9naXN0aWMgUmVncmVzc2lvbg==</Model>
+</Operator>
+<Operator X="628" Y="163" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1324575083293">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="columnValue" value="1"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="679" Y="397" name="LIFT" type="com.alpine.miner.gef.runoperator.model.evaluator.LIFTOperator" uuid="1325011932080">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="columnValue" value="1"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="407" Y="443" name="AdaBoost" type="com.alpine.miner.gef.runoperator.adaboost.AdaboostOperator" uuid="1325115863756">
+<Parameter key="dependentColumn" value="srsdlqncy"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="columnNames" value="credit_lines,debt_ratio,edu,monthly_income,num_dep,revolving_util,times30dayslate_2years,times90dayslate"/>
+<AdaboostPersistenceModel>
+<AdaboostPersistenceItem adaName="Logistic Regression" adaType="com.alpine.miner.workflow.operator.logisticregression.LogisticRegressionOperator" epsilon="0.00000001" goodValue="1" max_generations="25"/>
+<AdaboostPersistenceItem adaName="Logistic Regression1" adaType="com.alpine.miner.workflow.operator.logisticregression.LogisticRegressionOperator" epsilon="0.00000001" goodValue="1" max_generations="25"/>
+</AdaboostPersistenceModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="djc_samp_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="times90dayslate" type="INTEGER"/>
+<Field name="revolving_util" type="NUMERIC"/>
+<Field name="debt_ratio" type="NUMERIC"/>
+<Field name="credit_lines" type="INTEGER"/>
+<Field name="monthly_income" type="NUMERIC"/>
+<Field name="times30dayslate_2years" type="INTEGER"/>
+<Field name="srsdlqncy" type="INTEGER"/>
+<Field name="id" type="BIGINT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<Model>rO0ABXNyACpjb20uYWxwaW5lLmRhdGFtaW5pbmcuYXBpLmltcGwuRW5naW5lTW9kZWxyBs7TjRuF&#13;
+xwIAA0wABW1vZGVsdAAmTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9vcGVyYXRvci9Nb2RlbDtMAAlt&#13;
+b2RlbFR5cGV0ABJMamF2YS9sYW5nL1N0cmluZztMAARuYW1lcQB+AAJ4cHNyAD1jb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcub3BlcmF0b3IuYWRib29zdC5BZGFib29zdE1vZGVsR3JlZW5wbHVtz4TiFZYr&#13;
+LFQCAAB4cgA0Y29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLmFkYm9vc3QuQWRhYm9vc3RN&#13;
+b2RlbKRKkdeStbdDAgAETAALY29sdW1uTmFtZXNxAH4AAkwADGRlcGVuZENvbHVtbnEAfgACTAAJ&#13;
+bW9kZWxMaXN0dAAQTGphdmEvdXRpbC9MaXN0O0wACXRhYmxlTmFtZXEAfgACeHIAMmNvbS5hbHBp&#13;
+bmUuZGF0YW1pbmluZy5vcGVyYXRvci50cmFpbmluZy5QcmVkaWN0aW9uQRaIqfO+9IACAAB4cgAs&#13;
+Y29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLkFic3RyYWN0TW9kZWz2i8GBtSDbHAIAAUwA&#13;
+DWhlYWRlckRhdGFTZXR0ACRMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL0RCRGF0YVNldDt4cgAr&#13;
+Y29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLk91dHB1dE9iamVjdFuP2rT89nduAgABTAAG&#13;
+c291cmNlcQB+AAJ4cHBzcgAiY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkRCRGF0YVNldKMtNq6R&#13;
+CGCMAgAHTAAHYXZlcmFnZXQAE0xqYXZhL3V0aWwvSGFzaE1hcDtMAAdjb2x1bW5zdAAiTGNvbS9h&#13;
+bHBpbmUvZGF0YW1pbmluZy9kYi9Db2x1bW5zO0wAB21heGltdW1xAH4ADUwAB21pbmltdW1xAH4A&#13;
+DUwAA3N1bXEAfgANTAAFdGFibGV0ACBMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL1RhYmxlO0wA&#13;
+CHZhcmlhbmNlcQB+AA14cgAoY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkFic3RyYWN0RGF0YVNl&#13;
+dCBccczRAS8EAgAEWgAbY29tcHV0ZWRBbGxDb2x1bW5TdGF0aXN0aWNzWgAVY29tcHV0ZWRBbGxT&#13;
+dGF0aXN0aWNzTAAFaWRNYXB0AA9MamF2YS91dGlsL01hcDtMAA1zdGF0aXN0aWNzTWFwcQB+ABF4&#13;
+cQB+AApwAABzcgARamF2YS51dGlsLkhhc2hNYXAFB9rBwxZg0QMAAkYACmxvYWRGYWN0b3JJAAl0&#13;
+aHJlc2hvbGR4cD9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ABM/QAAAAAAADHcIAAAAEAAAAAB4cHNy&#13;
+ACNjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuQ29sdW1uc0ltcCCxzCT7VoXdAgABTAAHY29sdW1u&#13;
+c3EAfgAGeHBzcgAUamF2YS51dGlsLkxpbmtlZExpc3QMKVNdSmCIIgMAAHhwdwQAAAAJc3IAJmNv&#13;
+bS5hbHBpbmUuZGF0YW1pbmluZy5kYi5OdW1lcmljQ29sdW1uAAAAAAAAAAECAAJaAAhjYXRlZ29y&#13;
+eUwAB21hcHBpbmd0ACJMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL01hcHBpbmc7eHIAJ2NvbS5h&#13;
+bHBpbmUuZGF0YW1pbmluZy5kYi5BYnN0cmFjdENvbHVtbt7a3ZGEwHRqAgAHRAAMZGVmYXVsdFZh&#13;
+bHVlSQAFaW5kZXhaAAdzcGVjaWFsSQAJdmFsdWVUeXBlTAALY29sdW1uU3RhdHNxAH4ABkwABG5h&#13;
+bWVxAH4AAkwAC3NwZWNpYWxOYW1lcQB+AAJ4cAAAAAAAAAAAAAAAAAAAAAADc3EAfgAYdwQAAAAB&#13;
+c3IAK2NvbS5hbHBpbmUuZGF0YW1pbmluZy5kYi5OdW1lcmljQ29sdW1uU3RhdHNtt8FTBNnewgIA&#13;
+B0oACm1heENvdW50ZXJKAARtb2RlRAAKc3F1YXJlZFN1bUQAA3N1bUkADHZhbHVlQ291bnRlckwA&#13;
+BmNvbHVtbnQAIUxjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1uO1sABnNjb3Jlc3QAAltK&#13;
+eHAAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AA90aW1lczkwZGF5c2xh&#13;
+dGVwAHNyACRjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuTWFwcGluZ0ltcGxjcjXO4I0QCwIAAkwA&#13;
+EGluZGV4VG9TeW1ib2xNYXBxAH4ABkwAEHN5bWJvbFRvSW5kZXhNYXBxAH4AEXhwc3IAE2phdmEu&#13;
+dXRpbC5BcnJheUxpc3R4gdIdmcdhnQMAAUkABHNpemV4cAAAAAB3BAAAAAp4c3EAfgATP0AAAAAA&#13;
+AAx3CAAAABAAAAAAeHNxAH4AGgAAAAAAAAAAAAAAAQAAAAADc3EAfgAYdwQAAAABc3EAfgAfAAAA&#13;
+AAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAOcmV2b2x2aW5nX3V0aWxwAHNx&#13;
+AH4AJHNxAH4AJgAAAAB3BAAAAAp4c3EAfgATP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AGgAAAAAA&#13;
+AAAAAAAAAgAAAAADc3EAfgAYdwQAAAABc3EAfgAfAAAAAAAAAAD//////////wAAAAAAAAAAAAAA&#13;
+AAAAAAAAAAAAcHB4dAAKZGVidF9yYXRpb3AAc3EAfgAkc3EAfgAmAAAAAHcEAAAACnhzcQB+ABM/&#13;
+QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAaAAAAAAAAAAAAAAADAAAAAANzcQB+ABh3BAAAAAFzcQB+&#13;
+AB8AAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAxjcmVkaXRfbGluZXNw&#13;
+AHNxAH4AJHNxAH4AJgAAAAB3BAAAAAp4c3EAfgATP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AGgAA&#13;
+AAAAAAAAAAAABAAAAAADc3EAfgAYdwQAAAABc3EAfgAfAAAAAAAAAAD//////////wAAAAAAAAAA&#13;
+AAAAAAAAAAAAAAAAcHB4dAAObW9udGhseV9pbmNvbWVwAHNxAH4AJHNxAH4AJgAAAAB3BAAAAAp4&#13;
+c3EAfgATP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AGgAAAAAAAAAAAAAABQAAAAADc3EAfgAYdwQA&#13;
+AAABc3EAfgAfAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAWdGltZXMz&#13;
+MGRheXNsYXRlXzJ5ZWFyc3AAc3EAfgAkc3EAfgAmAAAAAHcEAAAACnhzcQB+ABM/QAAAAAAADHcI&#13;
+AAAAEAAAAAB4c3EAfgAaAAAAAAAAAAAAAAAJAAAAAANzcQB+ABh3BAAAAAFzcQB+AB8AAAAAAAAA&#13;
+AP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAdudW1fZGVwcABzcQB+ACRzcQB+ACYA&#13;
+AAAAdwQAAAAKeHNxAH4AEz9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ABoAAAAAAAAAAAAAAAoAAAAA&#13;
+A3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBw&#13;
+eHQAA2VkdXAAc3EAfgAkc3EAfgAmAAAAAHcEAAAACnhzcQB+ABM/QAAAAAAADHcIAAAAEAAAAAB4&#13;
+c3EAfgAaAAAAAAAAAAAAAAAGAQAAAANzcQB+ABh3BAAAAAFzcQB+AB8AAAAAAAAAAP//////////&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAlzcnNkbHFuY3l0ABVBTFBJTkVfREVQRU5ERU5UX05B&#13;
+TUUBc3EAfgAkc3EAfgAmAAAAAncEAAAACnQAATF0AAEweHNxAH4AEz9AAAAAAAAMdwgAAAAQAAAA&#13;
+AnEAfgBhc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxh&#13;
+bmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAABxAH4AYnNxAH4AZAAAAAF4eHBwcHNyACBjb20uYWxw&#13;
+aW5lLmRhdGFtaW5pbmcuZGIuREJUYWJsZZHwN8W1ZQNZAgAGSgAEc2l6ZUwACHBhc3N3b3JkcQB+&#13;
+AAJMAAl0YWJsZU5hbWVxAH4AAkwAA3VybHEAfgACTAAIdXNlck5hbWVxAH4AAkwADndoZXJlQ29u&#13;
+ZGl0aW9ucQB+AAJ4cgAqY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkFic3RyYWN0RGF0YVRhYmxl&#13;
+vR8DBHp6+ioCAAJMAAdjb2x1bW5zcQB+AAZMABB1bnVzZWRDb2x1bW5MaXN0cQB+AAZ4cHNxAH4A&#13;
+JgAAAAt3BAAAABBzcQB+ABoAAAAAAAAAAAAAAAAAAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAA&#13;
+AAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgAjcABxAH4AJXNxAH4AGgAAAAAA&#13;
+AAAAAAAAAQAAAAADc3EAfgAYdwQAAAABc3EAfgAfAAAAAAAAAAD//////////wAAAAAAAAAAAAAA&#13;
+AAAAAAAAAAAAcHB4cQB+ACxwAHEAfgAtc3EAfgAaAAAAAAAAAAAAAAACAAAAAANzcQB+ABh3BAAA&#13;
+AAFzcQB+AB8AAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AM3AAcQB+&#13;
+ADRzcQB+ABoAAAAAAAAAAAAAAAMAAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA////////&#13;
+//8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgA6cABxAH4AO3NxAH4AGgAAAAAAAAAAAAAABAAA&#13;
+AAADc3EAfgAYdwQAAAABc3EAfgAfAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAA&#13;
+cHB4cQB+AEFwAHEAfgBCc3EAfgAaAAAAAAAAAAAAAAAFAAAAAANzcQB+ABh3BAAAAAFzcQB+AB8A&#13;
+AAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4ASHAAcQB+AElzcQB+ABoA&#13;
+AAAAAAAAAAAAAAYBAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA//////////8AAAAAAAAA&#13;
+AAAAAAAAAAAAAAAAAHBweHEAfgBdcQB+AF4BcQB+AF9zcQB+ABoAAAAAAAAAAAAAAAcAAAAAA3Nx&#13;
+AH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHQA&#13;
+AmlkcABzcQB+ACRzcQB+ACYAAAAAdwQAAAAKeHNxAH4AEz9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+&#13;
+ABoAAAAAAAAAAAAAAAgAAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA//////////8AAAAA&#13;
+AAAAAAAAAAAAAAAAAAAAAHBweHQAA2FnZXAAc3EAfgAkc3EAfgAmAAAAAHcEAAAACnhzcQB+ABM/&#13;
+QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAaAAAAAAAAAAAAAAAJAAAAAANzcQB+ABh3BAAAAAFzcQB+&#13;
+AB8AAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHhxAH4AT3AAcQB+AFBzcQB+&#13;
+ABoAAAAAAAAAAAAAAAoAAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA//////////8AAAAA&#13;
+AAAAAAAAAAAAAAAAAAAAAHBweHEAfgBWcABxAH4AV3hzcQB+ABh3BAAAAAB4//////////90AApt&#13;
+aW5lcl9kZW1vdAATImRlbW8iLiJkamNfc2FtcF8wInQAL2pkYmM6cG9zdGdyZXNxbDovLzE5Mi4x&#13;
+NjguMS4yMzY6NTQzMi9taW5lcl9kZW1vdAAKbWluZXJfZGVtb3BwdABoY3JlZGl0X2xpbmVzLGRl&#13;
+YnRfcmF0aW8sZWR1LG1vbnRobHlfaW5jb21lLG51bV9kZXAscmV2b2x2aW5nX3V0aWwsdGltZXMz&#13;
+MGRheXNsYXRlXzJ5ZWFycyx0aW1lczkwZGF5c2xhdGV0AAlzcnNkbHFuY3lzcQB+ABh3BAAAAAJz&#13;
+cgA6Y29tLmFscGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLmFkYm9vc3QuQWRhYm9vc3RTaW5nbGVN&#13;
+b2RlbP3QcoiJuvc1AgAERAAFcGVvc29MAAVtb2RlbHEAfgABTAAEbmFtZXEAfgACTAAEdHlwZXEA&#13;
+fgACeHA/+KkJgt3++XNyAERjb20uYWxwaW5lLmRhdGFtaW5pbmcub3BlcmF0b3IucmVncmVzc2lv&#13;
+bnMuTG9naXN0aWNSZWdyZXNzaW9uTW9kZWxEQrslYdam2fEaAgAVRAAJY2hpU3F1YXJlWgAPaW1w&#13;
+cm92ZW1lbnRTdG9wWgAOaW50ZXJjZXB0QWRkZWRKAAlpdGVyYXRpb25EAA1tb2RlbERldmlhbmNl&#13;
+RAAMbnVsbERldmlhbmNlWgAMdXNlQ0Z1bmN0aW9uTAAYYWxsVHJhbnNmb3JtTWFwX3ZhbHVlS2V5&#13;
+cQB+AA1bAARiZXRhdAACW0RbAAtjb2x1bW5OYW1lc3QAE1tMamF2YS9sYW5nL1N0cmluZztMABBj&#13;
+b2x1bW5OYW1lc0FycmF5dAAVTGphdmEvdXRpbC9BcnJheUxpc3Q7TAAOZGF0YVNvdXJjZUluZm90&#13;
+ACdMY29tL2FscGluZS91dGlsaXR5L2RiL0lEYXRhU291cmNlSW5mbztMAARnb29kcQB+AAJMABpp&#13;
+bnRlcmFjdGlvbkNvbHVtbkNvbHVtbk1hcHEAfgANTAAXaW50ZXJhY3Rpb25Db2x1bW5FeHBNYXBx&#13;
+AH4ADUwADm11bHRpREJVdGlsaXR5dAAnTGNvbS9hbHBpbmUvdXRpbGl0eS9kYi9JTXVsdGlEQlV0&#13;
+aWxpdHk7TAAKb2xkRGF0YVNldHQAIkxjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvRGF0YVNldDtb&#13;
+AAZwVmFsdWVxAH4AoFsADXN0YW5kYXJkRXJyb3JxAH4AoFsADXdhbGRTdGF0aXN0aWNxAH4AoFsA&#13;
+BnpWYWx1ZXEAfgCgeHIAPWNvbS5hbHBpbmUuZGF0YW1pbmluZy5vcGVyYXRvci50cmFpbmluZy5C&#13;
+aW5hcnlQcmVkaWN0aW9uTW9kZWw6jOXZEctNOwIAAUQACXRocmVzaG9sZHhxAH4AB3BzcQB+AAxw&#13;
+AABzcQB+ABM/QAAAAAAADHcIAAAAEAAAAAB4c3EAfgATP0AAAAAAAAx3CAAAABAAAAAAeHBzcQB+&#13;
+ABZzcQB+ABh3BAAAAAlzcQB+ABoAAAAAAAAAAAAAAAAAAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAA&#13;
+AAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHQAD3RpbWVzOTBkYXlzbGF0ZXAA&#13;
+c3EAfgAkc3EAfgAmAAAAAHcEAAAACnhzcQB+ABM/QAAAAAAADHcIAAAAEAAAAAB4c3EAfgAaAAAA&#13;
+AAAAAAAAAAABAAAAAANzcQB+ABh3BAAAAAFzcQB+AB8AAAAAAAAAAP//////////AAAAAAAAAAAA&#13;
+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&#13;
+AAAAAAAAAA0AAAAAA3NxAH4AGHcEAAAAAXNxAH4AHwAAAAAAAAAA//////////8AAAAAAAAAAAAA&#13;
+AAAAAAAAAAAAAHBweHQAGmFscGluZV9hZGFib29zdF90b3RhbHBlb3NvcABzcQB+ACRzcQB+ACYA&#13;
+AAAAdwQAAAAKeHNxAH4AEz9AAAAAAAAMdwgAAAAQAAAAAHh4c3EAfgAYdwQAAAAAeP//////////&#13;
+cQB+AJZ0ABciZGVtbyIuInMxMzI2NzEwODM5NjY4InEAfgCYcQB+AJlwcD/gAAAAAAAAQHrp8Isv&#13;
+4hwBAQAAAAAAAAAGQJpuJE2m+GtAoJRQODl4eQFzcQB+ABM/QAAAAAAADHcIAAAAEAAAAAB4dXIA&#13;
+AltEPqaMFKtjWh4CAAB4cAAAAAk//U63RDGySz/pAdnicGvVQARTFvib/Ng/p3X4rt+Ocb8E5JSm&#13;
+jQMwv8hOmmlf2RG/wMhxCdKX/b+jMtBambCVwBI/Us3T3+V1cgATW0xqYXZhLmxhbmcuU3RyaW5n&#13;
+O63SVufpHXtHAgAAeHAAAAAIcQB+ALBxAH4At3EAfgC+cQB+AMVxAH4AzHEAfgDTcQB+ANpxAH4A&#13;
+4XNxAH4AJgAAAAh3BAAAAApxAH4AsHEAfgC3cQB+AL5xAH4AxXEAfgDMcQB+ANNxAH4A2nEAfgDh&#13;
+eHNyAC1jb20uYWxwaW5lLnV0aWxpdHkuZGIuRGF0YVNvdXJjZUluZm9HcmVlbnBsdW0pRgPgn9V4&#13;
+rwIAAHhyADBjb20uYWxwaW5lLnV0aWxpdHkuZGIuQWJzdHJhY3REYXRhU291cmNlSW5mb1BHR1Cl&#13;
+veN0jFeviwIAAUwABmxvY2FsZXQAEkxqYXZhL3V0aWwvTG9jYWxlO3hwc3IAEGphdmEudXRpbC5M&#13;
+b2NhbGV++BFgnDD57AIABEkACGhhc2hjb2RlTAAHY291bnRyeXEAfgACTAAIbGFuZ3VhZ2VxAH4A&#13;
+AkwAB3ZhcmlhbnRxAH4AAnhw/////3QAAlVTdAACZW50AAB0AAExc3EAfgATP0AAAAAAAAx3CAAA&#13;
+ABAAAAAAeHNxAH4AEz9AAAAAAAAMdwgAAAAQAAAAAHhzcgAtY29tLmFscGluZS51dGlsaXR5LmRi&#13;
+Lk11bHRpREJHcmVlbnBsdW1VdGlsaXR5kQ+oVl9O11UCAAB4cgAwY29tLmFscGluZS51dGlsaXR5&#13;
+LmRiLkFic3RyYWN0TXVsdGlEQlV0aWxpdHlHUFBH7d5X2Ecz9Z4CAAB4cHNxAH4ADHABAHNxAH4A&#13;
+Ez9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ABM/QAAAAAAADHcIAAAAEAAAAAB4cHNxAH4AFnNxAH4A&#13;
+GHcEAAAACXEAfgDwcQB+APNxAH4A9nEAfgD5cQB+APxxAH4A/3EAfgETcQB+ARZxAH4BAnhwcHBx&#13;
+AH4A7nB1cQB+ATEAAAAJO3TowYpP1XU/sGBT3k8+yzn2qjsjkz2LP+EpaB+++z4/1GX1b2dq2T/M&#13;
+g/1LRi8iP6ZSwoVDpSI/2hB7Kque6jh2VrD63QcpdXEAfgExAAAACT/GKvEzdmBnP9r//IqBLDU/&#13;
+yJgMFRtVYz+y9/i/T90HPwT0NuBOYvs/w+/zZca4Dj+woktI1ergP6cqhJ/J7yc/0f4PthHzlnVx&#13;
+AH4BMQAAAAlAW/dblseKVUALc2kU0Fx3QGXaspxnAf0/2HnEIdsGbT/v0FHBd/zWP/fIO2/iss1A&#13;
+EEm3Q9edCz/l+j9Z1Tc6QHB05IEUgjR1cQB+ATEAAAAJQCUnOzLLAhM//aNk2GRyNEAqceqDWQ/z&#13;
+P+PKBZyxFyW/7+gf+KaCpb/zgbxo46vMwAAksY6R0sS/6oT6T3X1+cAwOgj/6A/udAATTG9naXN0&#13;
+aWMgUmVncmVzc2lvbnQASmNvbS5hbHBpbmUuZGF0YW1pbmluZy5hcGkuaW1wbC5kYi50cmFpbmVy&#13;
+LkxvZ2lzdGljUmVncmVzc2lvblRyYWluZXJHZW5lcmFsc3EAfgCdP/baoOpOguRzcQB+AJ9wc3EA&#13;
+fgAMcAAAc3EAfgATP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AEz9AAAAAAAAMdwgAAAAQAAAAAHhw&#13;
+c3EAfgAWc3EAfgAYdwQAAAAJc3EAfgAaAAAAAAAAAAAAAAAAAAAAAANzcQB+ABh3BAAAAAFzcQB+&#13;
+AB8AAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AA90aW1lczkwZGF5c2xh&#13;
+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&#13;
+b3N0</Model>
+</Operator>
+<Link source="credit" target="Table Join"/>
+<Link source="demographics" target="Table Join"/>
+<Link source="Normalization" target="Random Sampling"/>
+<Link source="Random Sampling" target="train"/>
+<Link source="Random Sampling" target="validate"/>
+<Link source="train" target="Naive Bayes"/>
+<Link source="validate" target="Goodness Of Fit"/>
+<Link source="Naive Bayes" target="Goodness Of Fit"/>
+<Link source="train" target="Logistic Regression"/>
+<Link source="Table Join" target="Normalization"/>
+<Link source="Naive Bayes" target="ROC"/>
+<Link source="validate" target="ROC"/>
+<Link source="Logistic Regression" target="Goodness Of Fit"/>
+<Link source="Logistic Regression" target="ROC"/>
+<Link source="Naive Bayes" target="LIFT"/>
+<Link source="Logistic Regression" target="LIFT"/>
+<Link source="validate" target="LIFT"/>
+<Link source="train" target="AdaBoost"/>
+<Link source="AdaBoost" target="ROC"/>
+<Link source="AdaBoost" target="Goodness Of Fit"/>
+<Link source="AdaBoost" target="LIFT"/>
+</Process>

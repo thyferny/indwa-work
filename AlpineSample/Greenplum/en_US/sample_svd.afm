@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="2.3">
+<Operator X="209" Y="19" name="store" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1314359680421_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="store"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5433/miner_demo"/>
+</Operator>
+<Operator X="172" Y="113" name="SVD" type="com.alpine.miner.gef.runoperator.svd.SVDLanczosOperator" uuid="1314359682671">
+<Parameter key="VmatrixSchema" value="demo"/>
+<Parameter key="UmatrixTable" value="matrix_u"/>
+<Parameter key="singularValueSchema" value="demo"/>
+<Parameter key="dependentColumn" value="value"/>
+<Parameter key="VmatrixTable" value="matrix_v"/>
+<Parameter key="singularValueTable" value="singular_matrix"/>
+<Parameter key="numFeatures" value="7"/>
+<Parameter key="rowName" value="user_id"/>
+<Parameter key="singularValueDropIfExist" value="Yes"/>
+<Parameter key="VmatrixDropIfExist" value="Yes"/>
+<Parameter key="colName" value="item"/>
+<Parameter key="UmatrixSchema" value="demo"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="UmatrixDropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5433/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="store"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="user_id" type="INTEGER"/>
+<Field name="item" type="TEXT"/>
+<Field name="value" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="70" Y="201" name="SVD Calculator" type="com.alpine.miner.gef.runoperator.svd.SVDLanczosCalculatorOperator" uuid="1314507194796">
+<Parameter key="keyColumn" value=""/>
+<Parameter key="crossProduct" value="true"/>
+<Parameter key="UmatrixTableF" value="&quot;demo&quot;.&quot;matrix_u&quot;"/>
+<Parameter key="VmatrixTableF" value="&quot;demo&quot;.&quot;matrix_v&quot;"/>
+<Parameter key="VdependentColumnF" value="value"/>
+<Parameter key="singularValuefeatureColumn" value="alpine_feature"/>
+<Parameter key="UfeatureColumn" value="alpine_feature"/>
+<Parameter key="singularValueTableF" value="&quot;demo&quot;.&quot;singular_matrix&quot;"/>
+<Parameter key="rowNameF" value="user_id"/>
+<Parameter key="VfeatureColumn" value="alpine_feature"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="svd_cal_output"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="UdependentColumnF" value="value"/>
+<Parameter key="singularValuedependentColumnF" value="value"/>
+<Parameter key="colNameF" value="item"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5433/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="store"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="user_id" type="INTEGER"/>
+<Field name="item" type="TEXT"/>
+<Field name="value" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="store" target="SVD"/>
+<Link source="SVD" target="SVD Calculator"/>
+</Process>

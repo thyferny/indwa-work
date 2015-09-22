@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="62" Y="23" name="credit" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324416491133_0">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="CREDIT"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="41" Y="122" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324416494300_0">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="DEMOGRAPHICS"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="166" Y="63" name="Table Join" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1324416538479">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="MINER_DEMO_CREDIT_a" operID="1324416491133_0" schema="MINER_DEMO" table="CREDIT"/>
+<JoinTableModel alias="MINER_DEMO_DEMOGRAPHICS_a" operID="1324416494300_0" schema="MINER_DEMO" table="DEMOGRAPHICS"/>
+<JoinColumnModel columnName="ID" columnType="NUMBER(0,-127)" newColumnName="ID" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="TIMES90DAYSLATE" columnType="NUMBER(0,-127)" newColumnName="TIMES90DAYSLATE" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="REVOLVING_UTIL" columnType="REAL" newColumnName="REVOLVING_UTIL" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="DEBT_RATIO" columnType="REAL" newColumnName="DEBT_RATIO" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="CREDIT_LINES" columnType="NUMBER(0,-127)" newColumnName="CREDIT_LINES" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="MONTHLY_INCOME" columnType="REAL" newColumnName="MONTHLY_INCOME" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="TIMES30DAYSLATE_2YEARS" columnType="NUMBER(0,-127)" newColumnName="TIMES30DAYSLATE_2YEARS" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="SRSDLQNCY" columnType="NUMBER(0,-127)" newColumnName="SRSDLQNCY" tableAlias="MINER_DEMO_CREDIT_a"/>
+<JoinColumnModel columnName="AGE" columnType="NUMBER(0,-127)" newColumnName="AGE" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="NUM_DEP" columnType="NUMBER(0,-127)" newColumnName="NUM_DEP" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="EDU" columnType="NUMBER(0,-127)" newColumnName="EDU" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinConditionModel andOr="" column1="MINER_DEMO_CREDIT_a.ID" column2="MINER_DEMO_DEMOGRAPHICS_a.ID" condition="=" joinType="JOIN" tableAlias1="MINER_DEMO_CREDIT_a" tableAlias2="MINER_DEMO_DEMOGRAPHICS_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="CREDIT"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(22,0)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(22,0)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(22,0)"/>
+<Field name="SRSDLQNCY" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DEMOGRAPHICS"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="NUM_DEP" type="NUMBER(22,0)"/>
+<Field name="EDU" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="273" Y="63" name="Normalization" type="com.alpine.miner.gef.runoperator.field.NormalizationOperator" uuid="1324416689520">
+<Parameter key="method" value="Z-Transformation"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC_NORM"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="CREDIT_LINES"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="NUMBER(0,-127)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="552" Y="63" name="Random Sampling" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1324416911871">
+<Parameter key="sampleCount" value="2"/>
+<Parameter key="sampleSizeType" value="ROW"/>
+<Parameter key="sampleSize" value="20000"/>
+<Parameter key="consistent" value="false"/>
+<Parameter key="replacement" value="false"/>
+<Parameter key="disjoint" value="true"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC_SAMP"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_NORM"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="519" Y="173" name="train" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1324416923768">
+<Parameter key="selectedTable" value="MINER_DEMO.DJC_SAMP_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="652" Y="170" name="validate" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1324416928334">
+<Parameter key="selectedTable" value="MINER_DEMO.DJC_SAMP_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="572" Y="447" name="Goodness Of Fit" type="com.alpine.miner.gef.runoperator.model.evaluator.GoodnessOfFitOperator" uuid="1324417115609">
+<Parameter key="dependentColumn" value="SRSDLQNCY"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="445" Y="440" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1324575083293">
+<Parameter key="dependentColumn" value="SRSDLQNCY"/>
+<Parameter key="columnValue" value="1"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="721" Y="442" name="LIFT" type="com.alpine.miner.gef.runoperator.model.evaluator.LIFTOperator" uuid="1325011932080">
+<Parameter key="dependentColumn" value="SRSDLQNCY"/>
+<Parameter key="columnValue" value="1"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="410" Y="63" name="NumericToText" type="com.alpine.miner.gef.runoperator.field.IntegerToTextOperator" uuid="1325893083518">
+<Parameter key="modifyOriginTable" value="true"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value=""/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="SRSDLQNCY"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_NORM"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="NUMBER(0,-127)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="466" Y="305" name="Naive Bayes" type="com.alpine.miner.gef.runoperator.naivebayes.NaiveBayesOperator" uuid="1325893597958">
+<Parameter key="dependentColumn" value="SRSDLQNCY"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="calculateDeviance" value="false"/>
+<Parameter key="columnNames" value="CREDIT_LINES,DEBT_RATIO,MONTHLY_INCOME,REVOLVING_UTIL,TIMES30DAYSLATE_2YEARS,TIMES90DAYSLATE"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_SAMP_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+<Model>rO0ABXNyACpjb20uYWxwaW5lLmRhdGFtaW5pbmcuYXBpLmltcGwuRW5naW5lTW9kZWxyBs7TjRuF&#13;
+xwIAA0wABW1vZGVsdAAmTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9vcGVyYXRvci9Nb2RlbDtMAAlt&#13;
+b2RlbFR5cGV0ABJMamF2YS9sYW5nL1N0cmluZztMAARuYW1lcQB+AAJ4cHNyADJjb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcub3BlcmF0b3IuYmF5ZXMuTkJNb2RlbE9yYWNsZR5PSqU9Spb1AgAAeHIALGNv&#13;
+bS5hbHBpbmUuZGF0YW1pbmluZy5vcGVyYXRvci5iYXllcy5OQk1vZGVsdfjUD85yWngCABJaABFj&#13;
+YWxjdWxhdGVEZXZpYW5jZUQACGRldmlhbmNlWgAYbGFwbGFjZUNvcnJlY3Rpb25FbmFibGVkRAAM&#13;
+bnVsbERldmlhbmNlSQAPbnVtYmVyT2ZDbGFzc2VzSQAPbnVtYmVyT2ZDb2x1bW5zRAALdG90YWxX&#13;
+ZWlnaHRbAAtjbGFzc1ZhbHVlc3QAE1tMamF2YS9sYW5nL1N0cmluZztbAAxjbGFzc1dlaWdodHN0&#13;
+AAJbRFsAC2NvbHVtbk5hbWVzcQB+AAZbAAxjb2x1bW5WYWx1ZXN0ABRbW0xqYXZhL2xhbmcvU3Ry&#13;
+aW5nO0wADmRhdGFTb3VyY2VJbmZvdAAnTGNvbS9hbHBpbmUvdXRpbGl0eS9kYi9JRGF0YVNvdXJj&#13;
+ZUluZm87WwAWZGlzdHJpYnV0aW9uUHJvcGVydGllc3QABFtbW0RMAA5tdWx0aURCVXRpbGl0eXQA&#13;
+J0xjb20vYWxwaW5lL3V0aWxpdHkvZGIvSU11bHRpREJVdGlsaXR5O1sAB25vbWluYWx0AAJbWlsA&#13;
+BnByaW9yc3EAfgAHTAANdXBkYXRlQ29sdW1uc3QAFUxqYXZhL3V0aWwvQXJyYXlMaXN0O1sACndl&#13;
+aWdodFN1bXNxAH4ACnhyADJjb20uYWxwaW5lLmRhdGFtaW5pbmcub3BlcmF0b3IudHJhaW5pbmcu&#13;
+UHJlZGljdGlvbkEWiKnzvvSAAgAAeHIALGNvbS5hbHBpbmUuZGF0YW1pbmluZy5vcGVyYXRvci5B&#13;
+YnN0cmFjdE1vZGVs9ovBgbUg2xwCAAFMAA1oZWFkZXJEYXRhU2V0dAAkTGNvbS9hbHBpbmUvZGF0&#13;
+YW1pbmluZy9kYi9EQkRhdGFTZXQ7eHIAK2NvbS5hbHBpbmUuZGF0YW1pbmluZy5vcGVyYXRvci5P&#13;
+dXRwdXRPYmplY3Rbj9q0/PZ3bgIAAUwABnNvdXJjZXEAfgACeHBwc3IAImNvbS5hbHBpbmUuZGF0&#13;
+YW1pbmluZy5kYi5EQkRhdGFTZXSjLTaukQhgjAIAB0wAB2F2ZXJhZ2V0ABNMamF2YS91dGlsL0hh&#13;
+c2hNYXA7TAAHY29sdW1uc3QAIkxjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1ucztMAAdt&#13;
+YXhpbXVtcQB+ABRMAAdtaW5pbXVtcQB+ABRMAANzdW1xAH4AFEwABXRhYmxldAAgTGNvbS9hbHBp&#13;
+bmUvZGF0YW1pbmluZy9kYi9UYWJsZTtMAAh2YXJpYW5jZXEAfgAUeHIAKGNvbS5hbHBpbmUuZGF0&#13;
+YW1pbmluZy5kYi5BYnN0cmFjdERhdGFTZXQgXHHM0QEvBAIABFoAG2NvbXB1dGVkQWxsQ29sdW1u&#13;
+U3RhdGlzdGljc1oAFWNvbXB1dGVkQWxsU3RhdGlzdGljc0wABWlkTWFwdAAPTGphdmEvdXRpbC9N&#13;
+YXA7TAANc3RhdGlzdGljc01hcHEAfgAYeHEAfgARcAAAc3IAEWphdmEudXRpbC5IYXNoTWFwBQfa&#13;
+wcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhyZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAAB4c3EA&#13;
+fgAaP0AAAAAAAAx3CAAAABAAAAAAeHBzcgAjY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkNvbHVt&#13;
+bnNJbXAgscwk+1aF3QIAAUwAB2NvbHVtbnN0ABBMamF2YS91dGlsL0xpc3Q7eHBzcgAUamF2YS51&#13;
+dGlsLkxpbmtlZExpc3QMKVNdSmCIIgMAAHhwdwQAAAAHc3IAJmNvbS5hbHBpbmUuZGF0YW1pbmlu&#13;
+Zy5kYi5OdW1lcmljQ29sdW1uAAAAAAAAAAECAAJaAAhjYXRlZ29yeUwAB21hcHBpbmd0ACJMY29t&#13;
+L2FscGluZS9kYXRhbWluaW5nL2RiL01hcHBpbmc7eHIAJ2NvbS5hbHBpbmUuZGF0YW1pbmluZy5k&#13;
+Yi5BYnN0cmFjdENvbHVtbt7a3ZGEwHRqAgAHRAAMZGVmYXVsdFZhbHVlSQAFaW5kZXhaAAdzcGVj&#13;
+aWFsSQAJdmFsdWVUeXBlTAALY29sdW1uU3RhdHNxAH4AHkwABG5hbWVxAH4AAkwAC3NwZWNpYWxO&#13;
+YW1lcQB+AAJ4cAAAAAAAAAAAAAAAAQAAAAADc3EAfgAgdwQAAAABc3IAK2NvbS5hbHBpbmUuZGF0&#13;
+YW1pbmluZy5kYi5OdW1lcmljQ29sdW1uU3RhdHNtt8FTBNnewgIAB0oACm1heENvdW50ZXJKAARt&#13;
+b2RlRAAKc3F1YXJlZFN1bUQAA3N1bUkADHZhbHVlQ291bnRlckwABmNvbHVtbnQAIUxjb20vYWxw&#13;
+aW5lL2RhdGFtaW5pbmcvZGIvQ29sdW1uO1sABnNjb3Jlc3QAAltKeHAAAAAAAAAAAP//////////&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AA9USU1FUzkwREFZU0xBVEVwAHNyACRjb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcuZGIuTWFwcGluZ0ltcGxjcjXO4I0QCwIAAkwAEGluZGV4VG9TeW1ib2xNYXBx&#13;
+AH4AHkwAEHN5bWJvbFRvSW5kZXhNYXBxAH4AGHhwc3IAE2phdmEudXRpbC5BcnJheUxpc3R4gdId&#13;
+mcdhnQMAAUkABHNpemV4cAAAAAB3BAAAAAp4c3EAfgAaP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4A&#13;
+IgAAAAAAAAAAAAAAAgAAAAACc3EAfgAgdwQAAAABc3EAfgAnAAAAAAAAAAD//////////wAAAAAA&#13;
+AAAAAAAAAAAAAAAAAAAAcHB4dAAOUkVWT0xWSU5HX1VUSUxwAHNxAH4ALHNxAH4ALgAAAAB3BAAA&#13;
+AAp4c3EAfgAaP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIgAAAAAAAAAAAAAAAwAAAAACc3EAfgAg&#13;
+dwQAAAABc3EAfgAnAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAKREVC&#13;
+VF9SQVRJT3AAc3EAfgAsc3EAfgAuAAAAAHcEAAAACnhzcQB+ABo/QAAAAAAADHcIAAAAEAAAAAB4&#13;
+c3EAfgAiAAAAAAAAAAAAAAAEAAAAAAJzcQB+ACB3BAAAAAFzcQB+ACcAAAAAAAAAAP//////////&#13;
+AAAAAAAAAAAAAAAAAAAAAAAAAABwcHh0AAxDUkVESVRfTElORVNwAHNxAH4ALHNxAH4ALgAAAAB3&#13;
+BAAAAAp4c3EAfgAaP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AIgAAAAAAAAAAAAAABQAAAAACc3EA&#13;
+fgAgdwQAAAABc3EAfgAnAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAO&#13;
+TU9OVEhMWV9JTkNPTUVwAHNxAH4ALHNxAH4ALgAAAAB3BAAAAAp4c3EAfgAaP0AAAAAAAAx3CAAA&#13;
+ABAAAAAAeHNxAH4AIgAAAAAAAAAAAAAABgAAAAADc3EAfgAgdwQAAAABc3EAfgAnAAAAAAAAAAD/&#13;
+/////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4dAAWVElNRVMzMERBWVNMQVRFXzJZRUFSU3AA&#13;
+c3EAfgAsc3EAfgAuAAAAAHcEAAAACnhzcQB+ABo/QAAAAAAADHcIAAAAEAAAAAB4c3IAJmNvbS5h&#13;
+bHBpbmUuZGF0YW1pbmluZy5kYi5Ob21pbmFsQ29sdW1uDVT6IDWHfC0CAAFMAAdtYXBwaW5ncQB+&#13;
+ACN4cQB+ACQAAAAAAAAAAAAAAAcBAAAAAXNxAH4AIHcEAAAAAXNyACtjb20uYWxwaW5lLmRhdGFt&#13;
+aW5pbmcuZGIuTm9taW5hbENvbHVtblN0YXRzXE1wNlSUQOgCAARKAAptYXhDb3VudGVySgAEbW9k&#13;
+ZUwABmNvbHVtbnEAfgAoWwAGc2NvcmVzcQB+ACl4cAAAAAAAAAAA//////////9wcHh0AAlTUlNE&#13;
+TFFOQ1l0ABVBTFBJTkVfREVQRU5ERU5UX05BTUVzcQB+ACxzcQB+AC4AAAACdwQAAAAKdAABMXQA&#13;
+ATB4c3EAfgAaP0AAAAAAAAx3CAAAABAAAAACcQB+AF1zcgARamF2YS5sYW5nLkludGVnZXIS4qCk&#13;
+94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAHEAfgBe&#13;
+c3EAfgBgAAAAAXh4cHBwc3IAIGNvbS5hbHBpbmUuZGF0YW1pbmluZy5kYi5EQlRhYmxlkfA3xbVl&#13;
+A1kCAAZKAARzaXplTAAIcGFzc3dvcmRxAH4AAkwACXRhYmxlTmFtZXEAfgACTAADdXJscQB+AAJM&#13;
+AAh1c2VyTmFtZXEAfgACTAAOd2hlcmVDb25kaXRpb25xAH4AAnhyACpjb20uYWxwaW5lLmRhdGFt&#13;
+aW5pbmcuZGIuQWJzdHJhY3REYXRhVGFibGW9HwMEenr6KgIAAkwAB2NvbHVtbnNxAH4AHkwAEHVu&#13;
+dXNlZENvbHVtbkxpc3RxAH4AHnhwc3EAfgAuAAAAC3cEAAAAEHNxAH4AIgAAAAAAAAAAAAAAAAAA&#13;
+AAADc3EAfgAgdwQAAAABc3EAfgAnAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAA&#13;
+cHB4dAACSURwAHNxAH4ALHNxAH4ALgAAAAB3BAAAAAp4c3EAfgAaP0AAAAAAAAx3CAAAABAAAAAA&#13;
+eHNxAH4AIgAAAAAAAAAAAAAAAQAAAAADc3EAfgAgdwQAAAABc3EAfgAnAAAAAAAAAAD/////////&#13;
+/wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4cQB+ACtwAHEAfgAtc3EAfgAiAAAAAAAAAAAAAAACAAAA&#13;
+AAJzcQB+ACB3BAAAAAFzcQB+ACcAAAAAAAAAAP//////////AAAAAAAAAAAAAAAAAAAAAAAAAABw&#13;
+cHhxAH4ANHAAcQB+ADVzcQB+ACIAAAAAAAAAAAAAAAMAAAAAAnNxAH4AIHcEAAAAAXNxAH4AJwAA&#13;
+AAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHEAfgA7cABxAH4APHNxAH4AIgAA&#13;
+AAAAAAAAAAAABAAAAAACc3EAfgAgdwQAAAABc3EAfgAnAAAAAAAAAAD//////////wAAAAAAAAAA&#13;
+AAAAAAAAAAAAAAAAcHB4cQB+AEJwAHEAfgBDc3EAfgAiAAAAAAAAAAAAAAAFAAAAAAJzcQB+ACB3&#13;
+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&#13;
+C05haXZlIEJheWVz</Model>
+</Operator>
+<Operator X="260" Y="305" name="Naive Bayes Prediction" type="com.alpine.miner.gef.runoperator.naivebayes.NaiveBayesPredictOperator" uuid="1325893632120">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="DJC_NB_PREDICTION"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DJC_NORM"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="TIMES90DAYSLATE" type="NUMBER(0,-127)"/>
+<Field name="REVOLVING_UTIL" type="REAL"/>
+<Field name="DEBT_RATIO" type="REAL"/>
+<Field name="CREDIT_LINES" type="NUMBER(0,-127)"/>
+<Field name="MONTHLY_INCOME" type="REAL"/>
+<Field name="TIMES30DAYSLATE_2YEARS" type="NUMBER(0,-127)"/>
+<Field name="SRSDLQNCY" type="VARCHAR2"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="NUM_DEP" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="credit" target="Table Join"/>
+<Link source="demographics" target="Table Join"/>
+<Link source="Random Sampling" target="train"/>
+<Link source="Random Sampling" target="validate"/>
+<Link source="validate" target="Goodness Of Fit"/>
+<Link source="Table Join" target="Normalization"/>
+<Link source="validate" target="ROC"/>
+<Link source="validate" target="LIFT"/>
+<Link source="NumericToText" target="Random Sampling"/>
+<Link source="Normalization" target="NumericToText"/>
+<Link source="train" target="Naive Bayes"/>
+<Link source="Naive Bayes" target="ROC"/>
+<Link source="Naive Bayes" target="Goodness Of Fit"/>
+<Link source="Naive Bayes" target="LIFT"/>
+<Link source="Naive Bayes" target="Naive Bayes Prediction"/>
+<Link source="NumericToText" target="Naive Bayes Prediction"/>
+</Process>

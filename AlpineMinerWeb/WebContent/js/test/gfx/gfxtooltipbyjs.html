@@ -1,0 +1,69 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<title>A Sample ToolTip using dijit and dojox.gfx</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		@import "../../dojo/resources/dojo.css";
+		@import "../../dijit/tests/css/dijitTests.css";
+		@import "../../dijit/themes/tundra/tundra.css";
+		.tooltipBody {
+			color:#fff;
+		}
+	</style>
+	<script type="text/javascript" djConfig="parseOnLoad:true, isDebug:true" src="../../dojo/dojo.js"></script>
+	<script type="text/javascript"  src="../../alpine/visual/gfxToolTip.js"></script>	
+	
+	<script type="text/javascript">
+		dojo.require("dijit.form.Button");
+		
+		dojo.require("dojox.gfx");
+ 		dojo.require("dojox.gfx.move");
+ 
+		
+ 
+		
+  
+		function example1(){
+			
+		    var surfaceHolder = dojo.byId('container');
+			var surface = dojox.gfx.createSurface(surfaceHolder, 600, 600);//创建surface
+
+			var rect = { x: 0, y: 0, width: 100, height: 100 }; //定义一个矩形
+			var red_rect = surface.createRect(rect);//创建矩形
+
+			red_rect.setFill([255, 0, 0, 0.5]);//设置填充
+			red_rect.setStroke({color: "blue", width: 10, join: "round" });//设置外部填充的颜色
+		 
+			//this is ok, the tooltip itself will handle the mouse event...
+			var tooltip= new alpine.visual.gfxToolTip({
+				parentNode:red_rect,
+				 id:"containeryooltip",
+				 x:100,
+				 y:130 ,
+				 width:120,
+				 height:60,
+				 textArray:["xxxxxxxxxxx","ddd","dfdfdfdfdf"]
+			});
+		
+  			
+			
+		 
+		};
+ 			 
+ 
+		dojo.addOnLoad(example1);
+
+	 
+	</script>
+	
+</head>
+<body class="tundra">
+
+	<h1>dojox.gfx: A Sample gfx tooltip</h1>
+ 
+	
+		<div id="container"></div>	
+ 
+ 
+</body>
+</html>

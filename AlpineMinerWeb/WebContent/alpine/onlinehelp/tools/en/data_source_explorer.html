@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Data Source Explorer</title>
+</head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+<h1>Data Source Explorer</h1>
+<p>Users with the modeler role can explore the data available in all of their 'Personal' data sources.</p>
+<ul>
+    <li>Navigating to the Data tab of the Explorer, the user will see a list of each 'Personal' data source.
+        <br /><img src="./images/dse_loc.png"/> </li>
+    <li>Clicking on the name of a data source will navigate to the first level of the data source.</li>
+    <ul>
+        <li>For database type sources, the second level is the schema level. Clicking on a schema link will navigate to the table/view level. At
+            the table/view level, the user can drag and drop tables/views from the explorer to an open workflow.
+            <br /><img src="./images/dse_schema_level.png"/> </li>
+        <li>For Hadoop type sources, the explorer will navigate the folder hierarchy of hdfs. At each level, a blue link represents a folder and a gray
+            link represents a Hadoop file. Click a folder to view the contents of the directory or drag and drop a Hadoop file to an open workflow.
+            <br /><img src="./images/dse_hadoop_level.png"/> </li>
+        <li>The header above the listing displays the current level name. The user can navigate back by using the breadcrumb control above the level name.
+            THe breadcrumb will collapse as the hierarchy grows. Hover over the breadcrumb to expand the path.
+            <br /><img src="./images/dse_breadcrumb.png"/> </li>
+    </ul>
+</ul>
+</body>
+</html>

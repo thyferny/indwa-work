@@ -1,0 +1,32 @@
+
+a:link,a:visited {
+	text-decoration: none
+}
+ 
+#category {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	white-space: nowrap;
+}
+
+#category li {
+	font-size: 18px;
+}
+
+#category li li {
+	font-size: 16px;
+}
+
+#category li li li {
+	font-size: 14px;
+}
+
+#category li li li li {
+	font-size: 12px;
+}
+
+#category ul {
+	display: none;
+	margin: 0px;
+	margin-left: 10px;
+	padding: 0px 0px 0px 5px 5px;
+}

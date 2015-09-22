@@ -1,0 +1,148 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>Roc Line chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/linechart.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+			dojo.require("dojox.charting.Chart");
+            dojo.require("dojox.charting.axis2d.Default");
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("dojox.charting.plot2d.Grid");
+			dojo.require("dojox.charting.themes.PlotKit.orange");
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.form.RangeSlider");
+			dojo.require("dijit.form.HorizontalRuleLabels");
+			dojo.require("dijit.form.HorizontalRule");
+			dojo.require("dijit.layout.ContentPane");
+			
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+
+			dojo.require("dojox.charting.Chart");
+			dojo.require("dojox.charting.DataSeries");
+
+			dojo.require("dojox.charting.widget.Legend");
+
+			dojo.require("dojox.charting.axis2d.Default");
+
+			dojo.require("dojox.charting.plot2d.Markers");
+			dojo.require("dojox.charting.plot2d.Columns");
+			dojo.require("dojox.charting.plot2d.Pie");
+			dojo.require("dojox.charting.plot2d.Lines");
+
+
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.MoveSlice");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.charting.action2d.Shake");
+			dojo.require("dojox.charting.plot2d.ClusteredColumns");
+
+			dojo.require("dojox.charting.themes.Bahamation");
+			dojo.require("dojox.charting.themes.PlotKit.orange");
+			dojo.require("dojo.data.ItemFileWriteStore");
+
+			dojo.require("dijit.form.NumberSpinner");
+			dojo.require("dijit.form.Textarea"); 
+
+
+			dojo.require("dojox.charting.plot2d.Grid");
+			 
+ 
+			var chart;
+			makeObjects = function(){
+				
+				
+				fillOutPaneLine( dijit.byId("chart"),
+						{"visualData":{
+							"minX":0,
+							"minY":0,
+							"description":
+							"  Logistic Regression AUC = 0.6508  Cart Tree AUC = 0.9618\n  Decision Tree AUC = 0.9618  Naive Bayes AUC = 0.8594\n  Neural Network AUC = 0.3465",
+							"hGrid":true,"height":400,"lines":[
+							{"color":"","label":"Logistic Regression ROC 曲线",
+							"points":
+								[{"x":"0.000 ","y":"0.000 "},
+								 {"x":"0.091 ","y":"0.771 "},
+								 {"x":"0.273 ","y":"0.831 "},
+								 {"x":"0.273 ","y":"0.867 "},
+								 {"x":"0.364 ","y":"0.867 "},
+								 {"x":"0.364 ","y":"0.867 "},
+								 {"x":"0.364 ","y":"0.867 "},
+								 {"x":"0.364 ","y":"0.880 "},
+								 {"x":"0.364 ","y":"0.880 "},
+								 {"x":"0.364 ","y":"0.880 "},
+								 {"x":"0.364 ","y":"0.904 "},
+								 {"x":"0.364 ","y":"0.916 "},
+								 {"x":"0.364 ","y":"0.916 "},
+								  
+								  
+								 {"x":"0.364 ","y":"0.928 "},
+								 {"x":"0.364 ","y":"0.928 "},
+								 {"x":"0.364 ","y":"0.928 "},
+								 
+								 {"x":"0.364 ","y":"0.940 "},
+								 {"x":"0.364 ","y":"0.940 "},
+								 {"x":"0.364 ","y":"0.940 "},
+								 {"x":"0.364 ","y":"0.952 "},
+								 {"x":"0.364 ","y":"0.952 "},
+										 {"x":"0.364 ","y":"0.952 "},
+										 {"x":"0.364 ","y":"0.952 "},
+										 {"x":"0.364 ","y":"0.964 "},
+										 {"x":"0.364 ","y":"0.964 "},
+										 {"x":"0.364 ","y":"0.964 "},
+								 {"x":"0.364 ","y":"0.964 "},
+								 {"x":"0.364 ","y":"0.964 "},
+								 {"x":"0.364 ","y":"0.964 "},
+								 {"x":"0.364 ","y":"0.964 "},
+								 {"x":"0.364 ","y":"0.964 "},
+								 {"x":"1.000 ","y":"1.000 "}]},
+								 
+								 {"color":"green","label":"随机","points":[{"x":"0","y":"0"},
+								    {"x":"1","y":"1"}]}],"markers":false,"maxX":"","maxY":"","minX":"","minY":"",
+								    "title":"ROC","vGrid":true,"visualizationType":9,"width":400,
+								    "xAxisTitle":"假阳性率","xLabels":[],"xMajorTickStep":"0.1",
+								    "xMinorTickStep":"0.05","yAxisTitle":"敏感度","yLabels":[],
+								    "yMajorTickStep":"0.1","yMinorTickStep":"0.05"},"visualType":9,"out_id":1.3119246847415017E12,"out_title":"ROC"}
+
+				);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body class="tundra">
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 800px; height: 500px;"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="52" Y="107" name="数据表" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719824421">
+<Parameter key="dbConnectionName" value="demo_db2"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="SALES_EXAMPLE"/>
+<Parameter key="userName" value="db2inst1"/>
+<Parameter key="url" value="jdbc:db2://192.168.1.236:50001/AM_DEMO"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+</Operator>
+<Operator X="190" Y="184" name="柱状图浏览" type="com.alpine.miner.gef.runoperator.field.BarChartAnalysisOperator" uuid="1277719824437">
+<Parameter key="valueDomain" value="SALES"/>
+<Parameter key="scopeDomain" value="REGION"/>
+<Parameter key="categoryType" value="QUARTER"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://192.168.1.236:50001/AM_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="SALES_EXAMPLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="SALES" type="DECIMAL(31,0)"/>
+<Field name="REGION" type="VARCHAR(10)"/>
+<Field name="QUARTER" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表" target="柱状图浏览"/>
+</Process>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Installation</title>
+</head>
+
+<body style="font-family:Arial, Helvetica, sans-serif">
+<h1>Installation</h1>
+<p>&nbsp;</p>
+<h2>Environment</h2>
+<p>Alpine Data Labs suggests using Firefox 7 and above or IE 8 and above to access Alpine Illuminator. Other web browsers are also supported, but have not been tested for full compatibility.
+</p>
+<p>&nbsp;</p>
+<h2>Prerequisite</h2>
+<p>The installer requires Apache Tomcat to be installed. The application will also work with other web application servers; however, it has not been tested on other servers. Manual installation will be required for running the application on other web server.<br />
+Please make sure Tomcat can be started and the ${tomcatpath}/bin/startup.sh has the executable permission.
+</p>
+<p>&nbsp;</p>
+<h2>Install on Mac or Linux</h2>
+<p>The installer is a self-extracting shell script. i.e. alpine_illuminator_installer.bin<br />
+The installer must be run by the root user.
+</p>
+<h3>Installation steps</h3>
+<ol>
+	<li>Accept the license agreement.</li>
+	<li>Input Tomcat installation path (no default).</li>
+	<li>Input directory name for storing data.</li>
+	<li>Restart tomcat?[y/n], default is yes.</li>
+</ol>
+<h3>Sample installation output</h3>
+<p>[root@localhost]#  ./alpine_illuminator_installer.bin<br />
+Verifying  archive integrity... All good.<br />
+Uncompressing  Alpine Illuminator Installer...........<br />
+***************************************************************************<br />
+You  must read and accept the Alpine Illuminator license agreement before installing<br />
+***************************************************************************<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALPINE ILLUMINATOR(TM) SOFTWARE</p>
+<p>ACCEPTANCE  OF THIS LICENSE AGREEMENT MEANS THAT YOU, OR THE ENTITY THAT YOU<br />
+  REPRESENT,  ARE UNCONDITIONALLY CONSENTING TO BE BOUND BY, AND ARE BECOMING A<br />
+  PARTY  TO, THE LICENSE AGREEMENT CONSISTING OF THIS PARAGRAPH AND THE<br />
+  FOLLOWING  TERMS (THE &quot;AGREEMENT&quot;) WITH RESPECT TO THE APPLICABLE Alpine<br />
+  PRODUCT.  DOWNLOAD AND USE OF THE PRODUCT IS CONDITIONED ON ASSENT TO AND<br />
+  COMPLIANCE  WITH THE TERMS OF THIS AGREEMENT TO THE EXCLUSION OF ALL OTHER<br />
+  TERMS.  IF THESE TERMS ARE CONSIDERED AN OFFER, ACCEPTANCE IS EXPRESSLY<br />
+  LIMITED  TO THESE TERMS. IF YOU AND THE ENTITY YOU REPRESENT, IF ANY, DOES<br />
+  NOT  UNCONDITIONALLY AGREE TO THE FOREGOING THEN DO NOT ACCEPT THE LICENSE<br />
+  AGREEMENT  CONTINUE TO ACCEPT THE LICENSE AGREEMENT IN ORDER TO DOWNLOAD<br />
+  THE  PRODUCT THEN YOU ARE REPRESENTING AND WARRANTING THAT YOU ARE AUTHORIZED<br />
+  TO  BIND THE ENTITY YOU REPRESENT, IF ANY.<br />
+  ......<br />
+  ***************************************************************************<br />
+  &nbsp; Do you accept the Alpine Illuminator license  agreement? [yes | no]<br />
+  ***************************************************************************<br />
+  (Or,  type v to view the full license text.): yes<br />
+  Please  input Tomcat installation path: /home/gpadmin/tomcat/apache-tomcat-6.0.32<br />
+  *****************************************************************<br />
+  &nbsp; Alpine Illuminator Installer will use the  following to store data<br />
+  &nbsp; path: /root/ALPINE_DATA_REPOSITORY</p>
+<p>&nbsp; Provide a path name to store data<br />
+  &nbsp; or press ENTER to accept the default<br>
+  *****************************************************************<br />
+  Data  path: <br />
+  *****************************************************************<br />
+  &nbsp; Tomcat needs to be restarted.<br />
+  *****************************************************************<br />
+  Restart  tomocat? (y/n) [y]: <br />
+  stop  tomcat<br />
+  start  tomcat<br />
+  Using  CATALINA_BASE:&nbsp;&nbsp;  /home/gpadmin/tomcat/apache-tomcat-6.0.32<br />
+  Using  CATALINA_HOME:&nbsp;&nbsp;  /home/gpadmin/tomcat/apache-tomcat-6.0.32<br />
+  Using  CATALINA_TMPDIR: /home/gpadmin/tomcat/apache-tomcat-6.0.32/temp<br />
+  Using  JRE_HOME:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/local/jre1.6.0_23<br />
+  Using  CLASSPATH:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /home/gpadmin/tomcat/apache-tomcat-6.0.32/bin/bootstrap.jar<br />
+  Done.</p>
+<p>&nbsp;</p>
+<h2>Installation in Windows</h2>
+<p>Unzip the package containing Alpine Illuminator. Run install_illuminator_windows.bat to install on Windows.<br />
+The batch command file will ask for the Tomcat install path. 
+</p>
+<p>&nbsp;</p>
+<h2>Post Installation</h2>
+
+<p>After  installation the user can access the application using the flowing web address <a href="http://localhost:8080/AlpineIlluminator">http://localhost:8080/AlpineIlluminator</a>.  There are two default user accounts. admin/alpineadmin and guest/guest. After  login as admin/alpineadmin please perform the following tasks:</p>
+<ul>
+  <li>Update DB connection settings.</li>
+  <li>Configure email settings.</li>
+  <li>Reset admin password.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>Browser Setting<h2>
+<p>The following browser settings will allow results to open in a new tab.
+</p>
+<h3>IE</h3>
+<p>To  change setting on IE Browser, following below steps:</p>
+<ol start="1" type="1">
+  <li>Open Tool menu item.</li>
+  <li>Click Internet Options window.</li>
+  <li>Click the Settings button within the Tabs       section.</li>
+  <li>Select the &ldquo;Always open pop-ups in a       new tab&rdquo; option in When a pop-up is encountered</li>
+  <li>Save the change.</li>
+</ol>
+<h3>Firefox</h3>
+
+<p>To  change setting on Firefox Browser, following below steps:</p>
+<ol start="1" type="1">
+  <li>Open a new tab in your Browser and       enter &ldquo;about:config&rdquo; into the browser&rsquo;s address bar.</li>
+  <li>Navigate to browser.tabs.loadDivertedInBackground.</li>
+  <li>Change its value to true.</li>
+  <li>Navigate to       browser.link.open_newwindow.restriction.</li>
+  <li>Change its value to 0.</li>
+  <li>Save the changes. And restart your       browser.</li>
+</ol>
+<h3>Safari</h3>
+
+<p>To  change setting on Safari Browser, following below steps:</p>
+<ol start="1" type="1">
+  <li>Open Safari menu, and click       Preferences menu item.</li>
+  <li>Open the Tabs section.</li>
+  <li>Select &ldquo;Always&rdquo; for &ldquo;Open pages in       tabs instead of windows.&rdquo;</li>
+  <li>Pitch on box of command-click opens a       link in a new tab.</li>
+</ol>
+<p>Then to open a new tab in the background, click the link (or button) while pressing the command button.
+</p>
+</body>
+</html>

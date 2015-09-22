@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Connecting and Deleting Operators</title>
+</head>
+    <body style="font-family:Arial, Helvetica, sans-serif">
+        <h1>Connecting and Deleting Operators</h1>
+        <ul>
+            <li>Creating Connections
+                <ul>
+                    <li>After dragging operators to the workflow editor from the Operator Explorer, the user can connect operators using the operator's 'ears'.
+                        <br /><img src="./images/reveal_ears.png"/>
+                    </li>
+                    <li>Selecting an operator will reveal ears if the operator is not terminal. Click and drag an ear to create a connection arrow. Any operator with which
+                        the current operator can have a legal connection will remain in color. Each operator with which a valid connection is not currently possible will fade to gray.
+                        <br /><img src="./images/drag_ear.png"/>
+                    </li>
+                    <li>To complete a connection, pull the arrow over the target operator; a black outline will indicate the target operator will receive the connection. Drop the arrow and the connection will be established.
+                        <br /><img src="./images/drop_for_connection.png"/>
+                    </li>
+                </ul>
+            </li>
+            <li>Deleting Connections
+                <ul>
+                    <li>To delete a connection, select the connection (indicated in blue) and click the dot located at the midpoint of the connection.</li>
+                </ul>
+            </li>
+            <li>Moving Connections
+                <ul>
+                    <li>To move a connection, select the connection (indicated in blue) and click and drag the dot located at either the head or tail of the arrow.</li>
+                    <li>As with creating a connection, the operators' color will indicate valid and invalid connections. Drop the arrow on a new, valid target or source operator to move the connection.
+                        <br /><img src="./images/move_connection.png"/>
+                    </li>
+                </ul>
+            </li>
+            <li>Deleting Operators
+                <ul>
+                    <li>To delete an operator, select the operator (indicated by blue highlight) and click Delete in the operator toolbar. All connections to or from the selected operator will be removed when the operator is deleted.</li>
+                    <li>Alternatively, right-click an operator an choose Delete.
+                        <br /><img src="./images/flow_step_run.png"/>
+                    </li>
+                    <li>Multiple operators can be selected using the control key (Windows/Linux) or command key (Mac OS X). Clicking delete will multiple operators selected will delete all selected operators and their connections.</li>
+                </ul>
+            </li>
+        </ul>
+
+    </body>
+</html>

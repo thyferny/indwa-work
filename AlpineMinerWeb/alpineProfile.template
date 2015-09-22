@@ -1,0 +1,38 @@
+var profile = (function(){
+    return {
+        basePath: $basepath,
+        releaseDir: $releaseDir,
+        action: "release",
+        packages:[{
+            name: "dojo",
+            location: "dojo"
+        },{
+            name: "dijit",
+            location: "dijit"
+        },{
+            name: "dojox",
+            location: "dojox"
+        },{
+            name: "alpine",
+            location: "alpine"
+        }],
+        cssOptimize: 'comments',
+        mini: true,
+        optimize: 'closure',
+        layerOptimize: 'closure',
+        stripConsole: 'all',
+        selectorEngine: 'lite',
+        layers: {
+            "alpine/alpineDijit":
+            {
+                include: [
+                    "dijit/dijit-all"
+                ]
+            } ,
+
+            "alpine/alpine": {
+                include: [$theIncludes]
+            }
+        }
+    };
+})();

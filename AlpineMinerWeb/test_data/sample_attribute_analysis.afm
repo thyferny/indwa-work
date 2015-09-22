@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="2.3">
+<Operator X="107" Y="206" name="DB table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303194732664">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="val_analysis"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+</Operator>
+<Operator X="292" Y="85" name="value analysis" type="com.alpine.miner.gef.runoperator.field.ValueAnalysisOperator" uuid="1303194746905">
+<Parameter key="columnNames" value="dt,b,r,n,small int,vc,ch,dp,Timestamp,i"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="val_analysis"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="small int" type="SMALLINT"/>
+<Field name="i" type="INTEGER"/>
+<Field name="b" type="BIGINT"/>
+<Field name="n" type="NUMERIC(10,2)"/>
+<Field name="r" type="REAL"/>
+<Field name="dp" type="DOUBLE PRECISION"/>
+<Field name="dt" type="DATE"/>
+<Field name="Timestamp" type="TIMESTAMP"/>
+<Field name="ch" type="CHAR(10)"/>
+<Field name="vc" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="332" Y="245" name="frequency analysis" type="com.alpine.miner.gef.runoperator.field.FrequencyAnalysisOperator" uuid="1303194750953">
+<Parameter key="columnNames" value="dt,b,r,n,small int,vc,ch,dp,Timestamp,i"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="val_analysis"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="small int" type="SMALLINT"/>
+<Field name="i" type="INTEGER"/>
+<Field name="b" type="BIGINT"/>
+<Field name="n" type="NUMERIC(10,2)"/>
+<Field name="r" type="REAL"/>
+<Field name="dp" type="DOUBLE PRECISION"/>
+<Field name="dt" type="DATE"/>
+<Field name="Timestamp" type="TIMESTAMP"/>
+<Field name="ch" type="CHAR(10)"/>
+<Field name="vc" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="250" Y="392" name="histogram analysis" type="com.alpine.miner.gef.runoperator.field.HistogramOperator" uuid="1303194754297">
+<Parameter key="bin" value="10,10,10,10,10,10"/>
+<Parameter key="columnNames" value="b,r,n,small int,dp,i"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="val_analysis"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="small int" type="SMALLINT"/>
+<Field name="i" type="INTEGER"/>
+<Field name="b" type="BIGINT"/>
+<Field name="n" type="NUMERIC(10,2)"/>
+<Field name="r" type="REAL"/>
+<Field name="dp" type="DOUBLE PRECISION"/>
+<Field name="dt" type="DATE"/>
+<Field name="Timestamp" type="TIMESTAMP"/>
+<Field name="ch" type="CHAR(10)"/>
+<Field name="vc" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="DB table" target="value analysis"/>
+<Link source="DB table" target="frequency analysis"/>
+<Link source="DB table" target="histogram analysis"/>
+</Process>

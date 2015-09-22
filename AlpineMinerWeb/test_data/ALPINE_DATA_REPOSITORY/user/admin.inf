@@ -1,0 +1,10 @@
+#
+#Mon Dec 05 16:25:55 CST 2011
+groups=Oracle_Demo,Business,IT,Marketing,DB2_Demo,
+login=admin
+lastName=Zhao
+password=admin
+email=test@nomail.com
+firstName=John
+description=admin
+notification=true

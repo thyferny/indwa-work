@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<customized>
+	<operator>	
+	<operatorname>my_UDF</operatorname>
+	<udf schema="demo" name="calculator"/>
+	<parameters>
+		<parameter name="calculate_type" position="1" datatype="text" defaultvalue="sum"  optionalvalue="sum,product">combo</parameter>
+		<parameter name="base" position="2">combo</parameter>
+		<parameter name="rate" position="3">text</parameter>
+	</parameters>
+	<output>
+		<column name="result" type="number"/>
+	</output>
+	</operator>
+</customized>

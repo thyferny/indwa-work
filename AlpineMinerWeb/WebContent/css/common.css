@@ -1,0 +1,1899 @@
+table
+{
+    outline: none;
+    border: 0px;
+}
+
+.soria .dijitTreeLabel {
+    font-size: 10pt;
+    font-weight: normal;
+    margin-left: 3px;
+    outline: none;
+}
+
+.soria .dijitTreeRowSelected .dijitTreeLabel {
+    background: none;
+}
+
+.dijitTreeRowSelected {
+    font-family: opensansbold;
+    background-image: url(../images/interface/treeHover.png);
+    background-repeat: repeat;
+    background-color: transparent !important;
+}
+
+.soria .dojoxGridCell {
+    outline: none;
+}
+
+.soria .dijitTitlePaneTextNode {
+    color:
+        #000;
+}
+.soria .dijitDialogTitleBar {
+    background-color: #000;
+    background-image: none;
+}
+
+.soria .dijitDialog .dijitDialogTitle
+{
+    color:#FFF;
+    font-size: 16px;
+    padding-top:4px;
+    padding-bottom: 4px;
+}
+
+.soria .dijitDialog .dijitDialogPaneContent {
+    background: white;
+    border: 0px;
+    padding: 0px;
+}
+
+.innerPadding
+{
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.soria .dijitDialogCloseIcon {
+    background: url("../images/interface/icon_close.png") no-repeat;
+    position: absolute;
+    vertical-align: middle;
+    right: 6px;
+    top: 7px;
+    height: 13px;
+    width: 13px;
+}
+.dj_ie6 .soria .dijitDialogCloseIcon {
+    background: url("../images/interface/icon_close.png") no-repeat;
+}
+.soria .dijitDialogCloseIconHover {
+    background: url("../images/interface/icon_close.png") no-repeat;
+}
+
+
+.popup_alert {
+    width:400px;
+}
+
+.popup_alert .dijitDialogTitleBar
+{
+    background-color: #E5E5E5;
+    background-image: none;
+
+}
+.popup_alert .dijitDialog .dijitDialogTitle
+{
+    color:#000;
+    font-size: 14px;
+    padding-top:4px;
+    padding-bottom: 4px;
+}
+
+
+/******
+Look and feel for non-operator dialogs
+*******/
+
+.whiteDialogFooter
+{
+   /* background: #6d6e71;*/
+    background: transparent;
+    padding-bottom: 8px;
+    padding-top: 4px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.dialogFooter
+{
+    background: #6d6e71 /*url(../images/button-overlay.png) repeat-x*/;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.dijitButtonNode * {
+   outline: none;
+}
+
+.dialogButton .dijitButtonNode
+{
+    background: #DEDEDE url(../images/button-overlay.png) repeat-x;
+    font-size: 11pt;
+    font-family:"Calibri","Myriad Pro", Arial, sans-serif;
+    color: #000;
+    padding: 3px 4px 3px 4px;
+    border: 0;
+    min-width: 70px;
+    -moz-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px #999;
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: 0 1px 3px #999;
+    margin: 3px;
+}
+.dialogButtonHover .dijitButtonNode
+{
+    background: #ffa841 url(../images/button-overlay.png) repeat-x;
+}
+.dialogButtonActive  .dijitButtonNode
+{
+    background: #999999 url(../images/button-overlay.png) repeat-x;
+}
+.dialogButtonDisabled  .dijitButtonNode
+{
+    background: #cccccc url(../images/button-overlay.png) repeat-x;
+    text-shadow: 0 0px 0px #222;
+}
+
+
+.primaryButton .dijitButtonNode
+{
+    background: #00a1e5;
+    font-size: 10pt;
+    color: #FFF;
+    padding: 3px 4px 3px 4px;
+    border: 0;
+    min-width: 70px;
+    margin: 3px;
+    margin-left: 10px;
+}
+
+.primaryButton .dijitButtonText
+{
+    text-transform:uppercase;
+}
+
+.primaryButtonHover .dijitButtonNode
+{
+    background: #1569C7;
+}
+.primaryButtonActive  .dijitButtonNode
+{
+    background: #177DD1;
+}
+.primaryButtonDisabled  .dijitButtonNode
+{
+    background: #cccccc;
+}
+
+.cancelButton .dijitButtonNode
+{
+    background: transparent;
+    font-size: 10pt;
+    color: #555;
+    padding: 3px 4px 3px 4px;
+    border: 0;
+    min-width: 70px;
+    margin: 3px;
+    margin-left: 10px;
+}
+
+.cancelButton .dijitButtonText
+{
+    text-transform:uppercase;
+}
+
+.cancelButtonHover .dijitButtonText
+{
+    text-decoration: underline;
+
+}
+.cancelButtonActive  .dijitButtonNode
+{
+    color: #000;
+}
+.cancelButtonDisabled  .dijitButtonNode
+{
+    color: #BBB;
+}
+
+
+.secondaryButton .dijitButtonNode
+{
+    background: #5B5A5E ;
+    font-size: 10pt;
+    color: #FFF;
+    padding: 3px 4px 3px 4px;
+    border: 0;
+    min-width: 70px;
+    margin: 3px;
+    margin-left: 10px;
+}
+
+.secondaryButton .dijitButtonText
+{
+    text-transform:uppercase;
+}
+.secondaryButtonHover .dijitButtonNode
+{
+    background: #3B3A3E;
+}
+.secondaryButtonActive  .dijitButtonNode
+{
+    background: #999999 ;
+}
+.secondaryButtonDisabled  .dijitButtonNode
+{
+    background: #cccccc;
+}
+
+.alertDialogButtonPanel
+{
+    padding-bottom: 4px;
+    padding-top: 4px;
+    align:center;
+}
+
+.alertDialogMainPanel
+{
+    background:white;
+    border: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+.alertDialogContent
+{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-right:13px;
+    padding-left:13px;
+    font-family:opensanssemibold,"Calibri Bold","Myriad Pro Bold", "Arial Bold", sans-serif;
+}
+
+
+/***
+misc
+****/
+
+.valueLabel
+{
+    font-family:opensanssemibold,"Calibri Bold","Myriad Pro Bold", "Arial Bold", sans-serif;
+}
+
+.left
+{
+    float:left;
+}
+
+.right
+{
+    float:right;
+}
+/****
+headers
+*****/
+
+.subheader
+{
+    height:30px;
+    background: #DEDEDE url("../images/interface/subheader.png") repeat-x;
+    vertical-align:middle;
+}
+
+.subheaderLabel
+{
+    font-size: 16px;
+    font-family:opensansbold,"Calibri Bold","Myriad Pro Bold", "Arial Bold", sans-serif;
+    vertical-align:20%;
+}
+
+.subheaderButtonPanel
+{
+    float:right;
+    background: transparent;
+    height:30px;
+    padding-bottom:0px;
+}
+
+
+.subheaderButtonPanel .dijitInline
+{
+     vertical-align: bottom;
+}
+
+.subheaderDropdownButton .dijitButtonNode
+{
+    color: #6e6d71;
+    font-family: opensanssemibold;
+    font-size: 10pt;
+    border: 0;
+    background:transparent;
+    /*border-bottom: 1px solid #222; */
+    min-width: 89px;
+    margin: 0px;
+    padding:0px;
+    padding-left: 13px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.subheader .dijitButtonText
+{
+    padding-top:5px;
+}
+
+.subheaderButton .dijitButtonNode
+{
+    /*font: 12px Helvetica Neue; */
+    font-size: 10pt;
+    font-family: opensanssemibold;
+    background:transparent;
+    color: #6e6d71;
+    border: 0;
+    /*border-bottom: 1px solid #222; */
+    min-width: 89px;
+    margin: 0px;
+    padding:0px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.subheaderDropdownButtonHover .dijitButtonNode,
+.subheaderButtonHover .dijitButtonNode
+{
+    color: #FFFFFF;
+    background: url("../images/interface/subheaderButtonHover.png");
+}
+.subheaderDropdownButtonActive  .dijitButtonNode,
+.subheaderButtonActive  .dijitButtonNode
+{
+    background:transparent;
+    color: #999999;
+}
+.subheaderButtonDropdownDisabled  .dijitButtonNode,
+.subheaderButtonDisabled  .dijitButtonNode
+{
+   background: transparent;
+   color: #ACACAC;
+}
+
+
+.subheaderDropdownButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    margin-left:4px;
+    margin-right:19px;
+    margin-bottom:3px;
+}
+
+.subheaderDropdownButtonHover  .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown_white.png);
+    margin-left:4px;
+    margin-right:19px;
+}
+
+
+.transparentDropdownButtonExtLabel
+{
+    font-size:10pt;
+    font-family: opensansbold;
+    background:transparent;
+    color:#6e6d71;
+    float:left;
+}
+
+.transparentDropdownButton .dijitButtonNode
+{
+    color: #6e6d71;
+    font-family: opensans;
+    font-size: 9pt;
+    border: 0;
+    background:transparent;
+    margin: 0px;
+    padding:0px;
+    padding-top:1px;
+    padding-left: 4px;
+    height:18px;
+    outline: none
+}
+
+.transparentDropdownButtonHover .dijitButtonNode
+{
+    background:transparent;
+    /*color: #ffa841;*/
+}
+.transparentDropdownButtonActive  .dijitButtonNode
+{
+    background:transparent;
+    color: #999999;
+}
+.transparentButtonDropdownDisabled  .dijitButtonNode
+{
+    background: transparent;
+}
+
+
+.transparentDropdownButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    margin-left:1px;
+    margin-right:1px;
+}
+
+.transparentDropdownButtonHover  .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    margin-left:1px;
+    margin-right:1px;
+}
+
+.dropdownCheckBox {
+    font-family: opensans;
+    font-size: 9pt;
+    color: #000000;
+    padding: 1px 5px 0px 2px;
+}
+
+/****
+output footer
+*****/
+
+.outputTitleBar
+{
+    height:30px;
+    background-color: #E7E7E9;
+    vertical-align:middle;
+    overflow:hidden;
+}
+
+.outputTitleBar .dijitInline
+{
+    vertical-align: bottom;
+}
+
+.outputTitleBar .dijitButtonText
+{
+    padding-top:7px;
+}
+
+.outputTitleBarLabel
+{
+    font-size: 14px;
+    font-family:opensansbold,"Calibri Bold","Myriad Pro Bold", "Arial Bold", sans-serif;
+    vertical-align:6px;
+}
+
+.outputTitleBarButtonPanel
+{
+    float:right;
+    background: transparent;
+    height:30px;
+    padding-bottom:0px;
+}
+
+.outputTitleBarButton .dijitButtonNode
+{
+    font-size: 9pt;
+    font-family: opensans;
+    color: #00A1E5;
+    background: transparent;
+    border: 0;
+    min-width: 89px;
+    margin: 0px;
+    padding:0px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.outputTitleBarDropdownButton .dijitButtonNode
+{
+    font-size: 9pt;
+    font-family: opensans;
+    color: #00A1E5;
+    background: transparent;
+    border: 0;
+    min-width: 89px;
+    margin: 0px;
+    padding:0px;
+    padding-left: 13px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.outputTitleBarHelpButton .dijitButtonNode
+{
+    /*font: 12px Helvetica Neue; */
+    font-size: 9pt;
+    font-family: opensans;
+    color: #00A1E5;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding:0 0 0 5px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.outputTitleBarDropdownButtonHover .dijitButtonNode .dijitButtonText,
+.outputTitleBarButtonHover .dijitButtonNode .dijitButtonText,
+.outputTitleBarHelpButtonHover .dijitButtonNode .dijitButtonText
+{
+    text-decoration: underline;
+}
+
+.outputTitleBarDropdownButtonDisabled .dijitButtonNode,
+.outputTitleBarButtonDisabled  .dijitButtonNode,
+.outputTitleBarHelpButtonDisabled .dijitButtonNode
+{
+    background: transparent;
+    color: #ffffff;
+}
+
+.outputTitleBarDropdownButtonActive .dijitButtonNode,
+.outputTitleBarButtonActive  .dijitButtonNode,
+.outputTitleBarHelpButtonActive  .dijitButtonNode
+{
+}
+
+.outputTitleBarDropdownButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown_blue_inv.png);
+    margin-left:4px;
+    margin-right:19px;
+    margin-bottom:3px;
+}
+
+.outputTitleBarDropdownButtonHover  .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown_blue_inv.png);
+    margin-left:4px;
+    margin-right:19px;
+}
+
+.outputTitleBarDropdownButtonDisabled  .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown_blue_inv_disabled.png);
+    margin-left:4px;
+    margin-right:19px;
+}
+
+.printButton .dijitButtonNode
+{
+    height: 21px;
+    width: 21px;
+    background: transparent;
+    background-image: url(../images/interface/icon_print.jpg);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.printButtonHover .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_print_selected.jpg);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataCreateConnectButton .dijitButtonNode
+{
+    height: 21px;
+    width: 21px;
+    background: transparent;
+    background-image: url(../images/interface/icon_create_connection.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataCreateConnectButtonHover .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_create_connection-selected.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataCreateConnectButtonDisabled .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_create_connection-disabled.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+
+.dataUploadButton .dijitButtonNode
+{
+    height: 21px;
+    width: 21px;
+    background: transparent;
+    background-image: url(../images/interface/icon_dataupload.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataUploadButtonHover .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_dataupload-selected.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataUploadButtonDisabled .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_dataupload-disabled.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataCreateSubFolderButton .dijitButtonNode
+{
+    height: 21px;
+    width: 21px;
+    background: transparent;
+    background-image: url(../images/interface/icon_create_folder.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataCreateSubFolderButtonHover .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_create_folder-selected.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataCreateSubFolderButtonDisabled .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_create_folder-disabled.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataRefreshButton .dijitButtonNode
+{
+    height: 21px;
+    width: 21px;
+    background: transparent;
+    background-image: url(../images/interface/icon_refresh.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+.dataRefreshButtonHover .dijitButtonNode
+{
+    background-image: url(../images/interface/icon_refresh-selected.png);
+    border: 0;
+    margin: 0;
+    padding:0 0 0 0px;
+}
+
+/* User Panel Buttons */
+
+.userPanelButtonPanel
+{
+    float:right;
+    background: transparent;
+    height:30px;
+    padding:10px 0 0 0;
+    background:transparent;
+    font-family: opensanssemibold;
+    font-size: 9pt;
+    color: #ACACAC;
+}
+
+.userPanelButton .dijitButtonNode
+{
+    background: transparent;
+    border: 0;
+    min-width: 70px;
+    margin: 0px;
+    padding:0px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.userPanelDropdownButton .dijitButtonNode
+{
+    background: transparent;
+    border: 0;
+    min-width: 89px;
+    margin: 0px;
+    padding:0px;
+    padding-left: 13px;
+    height:30px;
+    vertical-align:bottom;
+}
+
+.userPanelDropdownButtonHover .dijitButtonNode .dijitButtonText,
+.userPanelButtonHover .dijitButtonNode .dijitButtonText
+{
+    text-decoration: underline;
+}
+
+.userPanelDropdownButtonActive .dijitButtonNode,
+.userPanelButtonActive  .dijitButtonNode
+{
+}
+
+.userPanelDropdownButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown_grey.png);
+    margin-left:4px;
+    margin-right:15px;
+    margin-bottom:3px;
+}
+
+/* worflow panel button */
+.workflowPanelButtonPanel
+{
+    text-align: center;
+    background: transparent;
+    height:25px;
+    padding:10px 0 0 0;
+    background:transparent;
+    font-family: opensans;
+    font-size: 9pt;
+    color: #00A1E5;
+}
+
+.workflowPanelButton .dijitButtonNode
+{
+    background: transparent;
+    border: 0;
+    min-width: 35px;
+    margin: 0px;
+    padding:0px;
+    height:20px;
+    vertical-align:bottom;
+}
+
+.workflowPanelButtonHover .dijitButtonNode .dijitButtonText
+{
+    text-decoration: underline;
+}
+
+.workflowPanelButtonActive  .dijitButtonNode
+{
+}
+
+/* join dialog */
+.allNoneHolder
+{
+    float: right;
+    padding-right: 15px;
+}
+
+/********
+These will be for the error messages and popups
+*********/
+
+.titleBar
+{
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-left:10px;
+    margin-right:10px;
+    border-bottom: 2px solid #F0F0F0;
+    font-family: opensansbold;
+}
+
+.whiteDialogTable
+{
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+.dialogInnerPadding
+{
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.lightTitle
+{
+    padding-top:5px;
+    padding-bottom:0px;
+    margin-left:5px;
+    margin-right:5px;
+    font-family: opensans;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.largeSubtitle
+{
+    padding-top:0px;
+    padding-bottom:5px;
+    margin-left:5px;
+    margin-right:5px;
+    font-family: opensansbold;
+    font-size: 23px;
+    color: #000000;
+}
+
+.leftColumnTitle
+{
+    width: 85px;
+    font-family: opensans;
+    font-size: 14px;
+    color: #000000;
+    vertical-align: top;
+    padding-bottom: 10px;
+}
+
+.rightColumnControl
+{
+    font-family: opensans;
+    font-size: 14px;
+    color: #000000;
+    vertical-align: top;
+    padding-bottom: 10px;
+}
+
+
+.greyDropdownButton
+{
+    width: 100%;
+}
+
+.greyDropdownButtonExtLabel
+{
+    font-size:10pt;
+    font-family: opensansbold;
+    background:#e0e0e0;
+    /*color: #6e6d71;*/
+    color:#000000;
+    float:left;
+}
+
+.greyDropdownButton .dijitInputContainer,
+.greyDropdownButton .dijitButtonNode
+{
+    /*color: #6e6d71;*/
+    color: #000000;
+    font-family: opensans;
+    font-size: 9pt;
+    text-align: left;
+    border: 0;
+    background:#e0e0e0;
+    margin: 0px;
+    padding:0px;
+    padding-top:1px;
+    padding-left: 6px;
+    height:18px;
+    outline: none;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    -webkit-border-top-left-radius: 1em;
+    -webkit-border-bottom-left-radius: 1em;
+    -moz-border-radius-topleft: 1em;
+    -moz-border-radius-bottomleft: 1em;
+}
+
+.greyDropdownButtonHover .dijitButtonNode
+{
+    background:#e0e0e0;
+    /*color: #ffa841;*/
+}
+.greyDropdownButtonActive  .dijitButtonNode
+{
+    background:#e0e0e0;
+    color: #999999;
+}
+.greyDropdownButtonDisabled  .dijitButtonNode,
+.greyDropdownButtonDisabled  .dijitInputField
+{
+    background: transparent;
+}
+
+.soria .greyDropdownButtonError
+{
+   background-color: transparent;
+}
+
+.greyDropdownButtonError  .dijitButtonNode,
+.greyDropdownButtonError  .dijitInputField
+{
+    background-color: #F9F7BA;
+}
+
+.greyDropdownButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    background-repeat: no-repeat;
+    margin-left:1px;
+    margin-right:5px;
+    padding-top: 4px;
+    float: right;
+    text-indent: -1em !important;
+}
+
+.greyDropdownButtonHover  .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    background-repeat: no-repeat;
+}
+
+.greyDropdownButton .dijitArrowButton
+{
+    -webkit-border-top-right-radius: 1em;
+    -webkit-border-bottom-right-radius: 1em;
+    -moz-border-radius-topright: 1em;
+    -moz-border-radius-bottomright: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.greyDropdownButton .dijitInputField
+{
+    font-size: 12px;
+    padding-left: 6px;
+}
+
+.greyDropdownButton  .dijitInputInner
+{
+    outline: none;
+}
+
+.subtleTextbox .dijitTextBox
+{
+    background:none;
+    border-bottom: 1px dotted #999999;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.subtleTextbox .dijitTextBoxDisabled
+{
+    background: none;
+    border: none;
+}
+
+
+/* Uploader */
+.alpineUploaderFileList{
+    border: none;
+    /*min-height:50px;*/
+}
+
+.alpineUploaderFileListText{
+    text-align: left;
+}
+
+.alpineUploaderFileListProgress{
+    border:1px solid #e0e0e0;
+    height:6px;
+    position:relative;
+    background:#e0e0e0;
+    overflow:hidden;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+}
+.alpineUploaderFileListPercentText{
+    position:absolute;
+    right:3px;
+    top:3px;
+    font-size:10px;
+    text-align:right;
+}
+.alpineUploaderFileListProgressBar{
+    position:absolute;
+    top:0px;
+    left:0px;
+    height:6px;
+    width:0%;
+    background:#00A1E5;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+}
+
+.alpineImportDataTable {
+    border-collapse: collapse;
+    margin: auto;
+    white-space: nowrap;
+}
+
+.alpineImportDataColName {
+    background: transparent;
+    padding: 6px;
+    height: 17px;
+    border: 1px solid #999999;
+    border-bottom: none;
+}
+.tableHeaderSelectedContainer,
+.alpineImportDataColType {
+    background: transparent;
+    padding: 6px;
+    height: 17px;
+    border: 1px solid #999999;
+    border-top: none;
+    border-bottom: none;
+}
+
+.alpineDataTypeSelect{
+    position: relative;
+    left: -2px;
+    top: -4px;
+    width:155px;
+    padding-left:5px;
+    padding-top:1px;
+    line-height: 15px; color: #000000;
+    border-style: none;
+    border-width: 0px;
+    background:#e0e0e0;
+    background-image:url("../images/dropdownIcon.png");
+    background-repeat:no-repeat;
+    background-position:108px 9px;
+}
+
+.alpineDataTypeSelectContainer{
+    position: relative;
+    border: 1px solid #F4F4F4;
+    width: 125px;
+    height: 15px;
+    clip: rect( 0px, 80px, 15px, 0px );
+    overflow: hidden;
+    -moz-border-radius: 15px;      /* Gecko browsers */
+    -webkit-border-radius: 15px;   /* Webkit browsers */
+    border-radius:15px;            /* W3C syntax */
+    background:#e0e0e0;
+}
+.alpineDataTypeSelect4Webtoolkit{
+    position: relative;
+
+    top: 0px;
+    width:140px;
+    padding-left:5px;
+    line-height: 15px; color: #000000;
+    border-style: none;
+    border-width: 0px;
+    background:#e0e0e0;
+    -webkit-appearance: none;
+    background-image:url("../images/dropdownIcon.png");
+    background-repeat:no-repeat;
+    background-position:130px 5px;
+}
+
+.alpineDataTypeSelectContainer4Webtoolkit{
+    position: relative;
+    border: 1px solid #F4F4F4;
+    width: 155px;
+    height: 20px;
+    clip: rect( 0px, 80px, 15px, 0px );
+    overflow: hidden;
+    -webkit-border-radius: 15px;   /* Webkit browsers */
+    background:#e0e0e0;
+    padding-left: 8px;
+}
+
+.alpineImportDataColConf {
+    background: transparent;
+    padding: 6px;
+    height: 17px;
+    border: 1px solid #999999;
+    border-top: none;
+}
+
+.alpineImportDataTableBody {
+    background-color: #e0e0e0;
+    color:#6e6d71;
+}
+
+.alpineImportDataTableBody td{
+    border: 1px solid #999999;
+    padding: 3px;
+    height: 14px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.alpineImportDataTableBody div{
+    overflow: hidden;
+    width:100%;
+}
+
+.alpineImportTextbox
+{
+    background:none;
+    border-bottom: 1px dotted #999999;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width:100%;
+}
+
+.alpineImportTextboxInvalidate{
+    background:#ffff00;
+    border-bottom: 1px dotted #999999;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width:100%;
+}
+
+.alpineImportFormatOption,
+.alpineImportFormatOptionName
+{
+    width: 120px;
+    font-family: opensans;
+    font-size: 14px;
+    color: #000000;
+    vertical-align: top;
+    padding-bottom: 10px;
+}
+.seperatorTable{}
+.selectableDiv
+{
+    background: #FFFFFF;
+    padding-left: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.selectableDivSelected
+{
+    background: #CCE0FF;
+    padding-left: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+img.small{
+    width:35px; /* you can use % */
+    height: auto;
+    padding-right:4px;
+}
+
+.tablejoinconditionheader
+{
+    font-family: opensansbold;
+    font-size: 13px;
+    color: #333;
+    padding:0 3px 0 10px;
+}
+
+.tablejointablename
+{
+    font-family: opensansbold;
+    font-size: 13px;
+    color: #333;
+}
+
+.tablejoinlabel
+{
+    font-family: opensansbold;
+    font-size: 13px;
+    color: #333;
+    float:left;
+    padding-right:3px;
+}
+
+.tablejointablecolumn
+{
+    float: left;
+    /*padding-top:4px;*/
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display:block;
+}
+
+.tablejointablecolumnname
+{
+    font-family: opensansbold;
+    font-size: 12px;
+    color: #333;
+
+}
+
+
+.tablejoinsubfield
+{
+    font-family: opensans;
+    font-size: 13px;
+    color: #666;
+    padding-right:3px;
+}
+
+.tablejoinempty
+{
+    font-family: opensans;
+    font-size: 13px;
+    color: #666;
+    padding-right:3px;
+    padding-left:8px;
+    font-style: italic;
+
+}
+
+.tablejointableheader
+{
+    padding-top:10px;
+    padding-bottom:5px;
+    padding-left: 8px;
+    color:#949599;
+    font-size: 13px;
+    text-transform:uppercase;
+}
+
+.bottomborder
+{
+    padding-bottom: 3px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+
+.linkButton .dijitButtonNode
+{
+    background: transparent;
+    font-size: 9pt;
+    color: #00A1E5;
+    padding: 0;
+    border: 0;
+}
+
+.linkButton .dijitButtonText
+{
+    text-transform:lowercase;
+}
+
+.linkButtonHover .dijitButtonText
+{
+    text-decoration: underline;
+
+}
+.linkButtonActive  .dijitButtonNode
+{
+    color: #000;
+}
+.linkButtonDisabled  .dijitButtonNode
+{
+    color: #BBB;
+}
+
+.linkButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown_blue.png);
+}
+
+.displaynone
+{
+    display:none;
+}
+
+/* Define clearableTextBox */
+.soria .clearableTextBox {
+    position: relative;
+}
+.soria .clearableTextBox a.textClear {
+    width: 12px;
+    height: 12px;
+    display: block;
+    overflow: hidden;
+    text-indent: -5000px;
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    background: url(../images/interface/closeButtonSprite.png) 0 0 no-repeat;
+    z-index: 2000;
+    cursor: pointer;
+}
+.soria .clearableTextBox a.textClear:hover {
+    background-position:-12px 0;
+}
+
+.pigSyntaxTable{
+    width:100%;
+    border-collapse: collapse;
+}
+ .pigSyntaxTable tr td {
+     width: 33%;
+     font-size: 12px;
+     border: 1px dotted #999999;
+     padding: 5px;
+ }
+
+.pigSyntaxSubheader{
+    padding: 10px 0 0 5px;
+    font-family: opensansbold;
+    font-size:16px;
+}
+
+.pigSyntaxBold{
+    font-family: opensansbold;
+}
+
+.pigSyntaxReturns{
+    font-style: italic;
+}
+
+.pigSyntaxGroup{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*
+* This is the css for our basic whitebox with title.  For use with PopupDialog
+*/
+.alpineDialog
+{
+    background: #FFF !important;
+}
+.alpineDialog  .dijitDialogTitleBar
+{
+    background: #FFF;
+    font-size: 15px;
+    margin-left:10px;
+    margin-right:10px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 0px !important;
+    border-bottom: 2px solid #F0F0F0;
+}
+
+.alpineDialog .dijitDialogTitle
+{
+    color:#333 !important;
+    font-size: 15px !important;
+    font-family: opensansbold !important;
+    font-weight: normal !important;
+    padding-left: 0px !important;
+}
+
+/*
+* Standard textbox
+*
+*/
+
+.basicTextBox
+{
+    border: 1px solid #999;
+    font-size: 13px;
+    padding:1px;
+    outline: none;
+}
+
+.basicTextBoxFocused
+{
+    border: 1px solid #333;
+}
+
+.basicTextBoxDisabled
+{
+    background: #E0E0E0;
+    border: 1px solid #AAA;
+}
+
+.basicTextBoxReadOnly
+{
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+/* Inline editing style */
+
+.operatorSubText
+{
+    font-size: 12px;
+    font-style: italic;
+    color:  #999999;
+}
+
+.inlineEditTable
+{
+    border-collapse: collapse;
+    margin: auto;
+    white-space: nowrap;
+    table-layout: fixed
+}
+
+.inlineEditTableHead {
+
+}
+
+.inlineEditTableHead tr {
+
+}
+
+.inlineEditTableHead td {
+    font-family: opensanssemibold;
+    font-size: 14px;
+    padding:6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inlineEditTableBody {
+    color:#6e6d71;
+    /*background-color: #e0e0e0;*/
+}
+
+.inlineEditTableBody tr {
+    border: 1px dotted #999999;
+    font-size: 12px;
+}
+
+.inlineRowError {
+    background: #FFFFD9;
+}
+
+.inlineEditTableBody td {
+    padding: 6px;
+}
+
+.inlineRowSelected {
+    background: #FAFAFF;
+}
+
+.inlineEditCustom
+{
+    width:100%;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+}
+
+.inlineEditCustom .dijitButtonNode
+{
+    width:100%;
+    border: none;
+    background:#e0e0e0;
+    color: #000000;
+    margin: 0px;
+    padding:1px 0 0 4px;
+    height:18px;
+    outline: none;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+}
+
+.inlineEditCustom .dijitButtonText
+{
+    float: left;
+}
+
+.inlineEditCustom .dijitArrowButtonInner
+{
+    float: right;
+    padding: 4px 10px 0 0;
+}
+
+.inlineEditCustomHover .dijitButtonNode
+{
+
+}
+.inlineEditCustomActive  .dijitButtonNode
+{
+    color: #999999;
+}
+
+.inlineEditCustomError  .dijitButtonNode
+{
+    background-color: #F9F7BA;
+}
+
+.inlineEditCustomDisabled  .dijitButtonNode
+{
+    /*background: transparent;*/
+}
+
+.inlineEditCustom .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    margin-left:1px;
+    margin-right:1px;
+}
+
+.inlineEditCustomHover  .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    /*margin-left:1px;*/
+    /*margin-right:1px;*/
+}
+
+.inlineDropdownButton
+{
+    width: 100%;
+    font-family: opensans;
+    outline: none;
+}
+
+.inlineDropdownButtonExtLabel
+{
+    background:#e0e0e0;
+    color:#000000;
+    float:left;
+}
+
+.inlineDropdownButton .dijitInputContainer,
+.inlineDropdownButton .dijitButtonNode
+{
+    color: #000000;
+    text-align: left;
+    border: 0;
+    background:#e0e0e0;
+    margin: 0px;
+    padding:1px 0 0 6px;
+    height:18px;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    -webkit-border-top-left-radius: 1em;
+    -webkit-border-bottom-left-radius: 1em;
+    -moz-border-radius-topleft: 1em;
+    -moz-border-radius-bottomleft: 1em;
+}
+
+.inlineDropdownButtonHover .dijitButtonNode
+{
+    /*background:#e0e0e0;*/
+    /*color: #ffa841;*/
+}
+.inlineDropdownButtonActive  .dijitButtonNode
+{
+    /*background:#e0e0e0;*/
+    color: #999999;
+}
+
+.inlineDropdownButtonDisabled  .dijitButtonNode,
+.inlineDropdownButtonDisabled  .dijitInputField,
+.inlineDropdownButtonDisabled  .dijitInputInner
+{
+    background-color: transparent;
+    color: #000000;
+}
+
+.soria .inlineDropdownButtonError
+{
+    background-color: transparent;
+}
+
+.inlineDropdownButtonError  .dijitButtonNode,
+.inlineDropdownButtonError  .dijitInputField
+{
+    background-color: #F9F7BA;
+}
+
+.inlineDropdownButton .dijitArrowButtonInner {
+    background-image: url(../images/interface/dropdown_arrowDown.png);
+    background-repeat: no-repeat;
+    margin-left:1px;
+    margin-right:5px;
+    padding-top: 4px;
+    float: right;
+    text-indent: -1em !important;
+}
+
+.inlineDropdownButtonHover  .dijitArrowButtonInner {
+    /*background-image: url(../images/interface/dropdown_arrowDown.png);
+    background-repeat: no-repeat;*/
+}
+
+.inlineDropdownButtonDisabled .dijitArrowButtonInner {
+    display: none;
+}
+
+.inlineDropdownButton .dijitArrowButton
+{
+    -webkit-border-top-right-radius: 1em;
+    -webkit-border-bottom-right-radius: 1em;
+    -moz-border-radius-topright: 1em;
+    -moz-border-radius-bottomright: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.inlineDropdownButton .dijitPlaceHolder
+{
+    background: transparent;
+}
+
+.inlineDropdownButton .dijitInputField
+{
+    font-size: 12px;
+    padding-left: 6px;
+}
+
+.inlineDropdownButton  .dijitInputInner
+{
+    outline: none;
+}
+
+.dijitDisabled .inlineDropdownButtonLabel
+{
+    color: #CCCCCC;
+}
+
+.inlineTextboxV,
+.inlineTextbox
+{
+    font-size: 12px;
+    background:none;
+    border-bottom: 1px dotted #999999;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0 0 0 3px;
+    color: #000000;
+}
+
+.inlineTextboxV .dijitInputInner,
+.inlineTextbox .dijitInputInner
+{
+    outline:none;
+}
+
+.inlineTextboxV .dijitTextBoxDisabled,
+.inlineTextbox .dijitTextBoxDisabled
+{
+    background: none;
+    border-bottom: 1px dotted #999999;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0 0 0 3px;
+    color: #999999;
+}
+
+.inlineTextboxVDisabled,
+.inlineTextboxDisabled
+{
+    background: none;
+    border: none;
+    padding: 0 0 0 3px;
+    color: transparent;
+}
+
+.inlineTextboxDisabled .dijitInputInner
+{
+    background: none;
+    border: none;
+    padding: 0 0 0 3px;
+    color: transparent;
+}
+
+.inlineTextboxVDisabled .dijitInputInner
+{
+    background: none;
+    border: none;
+    padding: 0 0 0 3px;
+    /*color: transparent;*/
+}
+
+.strikethrough
+{
+    text-decoration: line-through;
+}
+
+.inlineLabel {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.inlineLabelDisabled {
+    color: #CCCCCC
+}
+
+/* Histogram Type Widget */
+.histogramTypeWidget {
+    color: #fff;
+    font-family: opensanssemibold;
+    font-size: 13px;
+    outline: none;
+}
+
+.inlineEditTTDialogContainer {
+    background: #3B3A3E;
+    color: #FFFFFF;
+    padding:12px;
+    border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+}
+
+.alpineDarkTextbox
+{
+    background:none;
+    border-bottom: 1px dotted #FFFFFF;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    padding: 0 0 0 3px;
+}
+
+.alpineDarkTextbox .dijitInputInner
+{
+    outline: none;
+}
+
+.alpineDarkTextboxError
+{
+    color: #000000;
+}
+
+.inlineEditTTDialog {
+    outline: none;
+}
+
+.lightLinkBtn .dijitButtonNode
+{
+    background: transparent;
+    font-size: 9pt;
+    color: #FFFFFF;
+    padding: 0;
+    border: 0;
+}
+
+.lightLinkBtn .dijitButtonText
+{
+    text-transform:lowercase;
+}
+
+.lightLinkBtnHover .dijitButtonText
+{
+    text-decoration: underline;
+}
+
+.lightLinkBtnActive  .dijitButtonNode
+{
+    color: #999999;
+}
+
+.lightLinkBtnDisabled  .dijitButtonNode
+{
+    color: #BBB;
+}
+
+/*.deleteIcon {
+    width: 12px;
+    height: 12px;
+    display: block;
+    overflow: hidden;
+    text-indent: -5000px;
+    top: 3px;
+    right: 1px;
+    background: url(../images/interface/closeButtonSprite.png) 0 0 no-repeat;
+    z-index: 2000;
+}*/
+
+
+.dojo-checkbox {
+    display: none;
+}
+
+.dojo-checkbox + label {
+    background-image: url('../images/interface/spriteCheckbox.gif'); /* checkbox sprite image */
+    background-repeat: no-repeat;
+    background-position:-16px;
+    padding: 0px;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+}
+
+.dojo-checkbox + label:active, .regular-checkbox:checked + label:active {
+}
+
+
+.dojo-checkbox:checked + label,
+.dojo-checkbox:checked + label:after {
+    background-position:0px;
+}
+
+.checkboxList
+{
+    padding-left: 10px;
+    font-size:13px;
+}
+
+.listHeader
+{
+    padding: 3px 3px 3px 10px;
+    font-size:13px;
+    font-family: opensansbold;
+}
+
+.listValueTd
+{
+    padding: 0 10px 0 0;
+}
+
+
+.operatorRenameContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border:none;
+}
+
+.switch_off{
+    width: 29px;
+    height: 15px;
+    background: transparent;
+	background-image: url('../images/interface/icon_disabled.png');background-repeat: no-repeat;
+    border: 0;
+    margin: 0;
+    padding: 0px;
+}
+.switch_on{
+    width: 29px;
+    height: 15px;
+    background: transparent;
+	background-image: url('../images/interface/icon_enabled.png');background-repeat: no-repeat;
+    border: 0;
+    margin: 0;
+    padding: 0px;
+}
+#alpine_flow_scheduler_editor_workflowSelectorPane .dijitArrowNode{
+	/*just hide the icon*/
+	display: none;
+}
+
+
+.downloadIcon
+{
+    background: transparent;
+    background-image: url('../images/interface/downloadicon.png');
+    width: 13px;
+    height: 17px;
+}
+
+.infoIcon
+{
+    background: transparent;
+    background-image: url('../images/interface/infoicon.png');
+    width: 12px;
+    height: 12px;
+}
+
+
+.deleteIcon
+{
+    background: transparent;
+    background-image: url('../images/interface/deleteicon.png');
+    width: 12px;
+    height: 12px;
+}
+
+.arrowButton .dijitButtonNode
+{
+    font-size: 13pt;
+    background: transparent;
+    border: 0;
+    margin: 0px;
+    padding:0px;
+    width: 24px;
+    height: 24px;
+}

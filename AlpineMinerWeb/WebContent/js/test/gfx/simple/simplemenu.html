@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr">
+    
+    <head>
+        <style type="text/css">
+            body, html { font-family:helvetica,arial,sans-serif; font-size:90%; }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js"
+        djConfig="parseOnLoad: true">
+        </script>
+        <script type="text/javascript">
+            dojo.require("dijit.Menu");
+
+            var pMenu;
+            dojo.addOnLoad(function() {
+                pMenu = new dijit.Menu({
+                    targetNodeIds: ["testImgID"]
+                });
+                pMenu.addChild(new dijit.MenuItem({
+                    label: "Simple menu item"
+                }));
+                pMenu.addChild(new dijit.MenuItem({
+                    label: "Disabled menu item",
+                    disabled: true
+                }));
+                pMenu.addChild(new dijit.MenuItem({
+                    label: "Menu Item With an icon",
+                    iconClass: "dijitEditorIcon dijitEditorIconCut",
+                    onClick: function() {
+                        alert('i was clicked')
+                    }
+                }));
+                pMenu.addChild(new dijit.CheckedMenuItem({
+                    label: "checkable menu item"
+                }));
+                pMenu.addChild(new dijit.MenuSeparator());
+
+                var pSubMenu = new dijit.Menu();
+                pSubMenu.addChild(new dijit.MenuItem({
+                    label: "Submenu item"
+                }));
+                pSubMenu.addChild(new dijit.MenuItem({
+                    label: "Submenu item"
+                }));
+                pMenu.addChild(new dijit.PopupMenuItem({
+                    label: "Submenu",
+                    popup: pSubMenu
+                }));
+
+                pMenu.startup();
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dijit/themes/claro/claro.css"
+        />
+    </head>
+    
+    <body class=" claro ">
+        <img id = "testImgID" name = "testImg" src="./image/worker.jpg">
+
+
+</img>
+        <!-- NOTE: the following script tag is not intended for usage in real
+        world!! it is part of the CodeGlass and you should just remove it when
+        you use the code -->
+        <script type="text/javascript">
+            dojo.addOnLoad(function() {
+                if (document.pub) {
+                    document.pub();
+                }
+            });
+        </script>
+    </body>
+
+</html>

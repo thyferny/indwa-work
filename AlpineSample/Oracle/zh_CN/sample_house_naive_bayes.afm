@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="63" Y="44" name="数据表 " type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303264046475">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="HOUSE_TRANSACTION"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="173" Y="45" name="变量器 " type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303264053901">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="water_treatment_mining"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="DISTRICT_ID"/>
+<selectedColumnName columnName="HOUSE_ID"/>
+<selectedColumnName columnName="ROOM"/>
+<selectedColumnName columnName="PRICE"/>
+<selectedColumnName columnName="AGE"/>
+<DerivedFieldItem columnName="dependent_column" dataType="VARCHAR2" expression="CASE WHEN PRICE&lt;3000 THEN 'yes' ELSE 'no' END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="HOUSE_TRANSACTION"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="321" Y="52" name="随机抽样 " type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1303264063261">
+<Parameter key="sampleCount" value="3"/>
+<Parameter key="sampleSizeType" value="Percentage"/>
+<Parameter key="sampleSize" value="50"/>
+<Parameter key="randomSeed" value="0.25"/>
+<Parameter key="consistent" value="true"/>
+<Parameter key="keyColumnList" value="AGE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="water_treatment_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="148" Y="199" name="抽样数据表选择 " type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1303264066724">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="449" Y="195" name="抽样数据表选择  1" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1303264069220">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="299" Y="315" name="朴素贝叶斯分析 " type="com.alpine.miner.gef.runoperator.naivebayes.NaiveBayesOperator" uuid="1303264209511">
+<Parameter key="dependentColumn" value="dependent_column"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="calculateDeviance" value="true"/>
+<Parameter key="columnNames" value="ROOM,PRICE,AGE,HOUSE_ID"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="302" Y="204" name="抽样数据表选择  2" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1303264244798">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_2"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="135" Y="313" name="朴素贝叶斯预测 " type="com.alpine.miner.gef.runoperator.naivebayes.NaiveBayesPredictOperator" uuid="1303264275250">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="result_NB_predict"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="480" Y="313" name="ROC " type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1303264278557">
+<Parameter key="dependentColumn" value="dependent_column"/>
+<Parameter key="columnValue" value="yes"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="dependent_column" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表 " target="变量器 "/>
+<Link source="变量器 " target="随机抽样 "/>
+<Link source="随机抽样 " target="抽样数据表选择 "/>
+<Link source="随机抽样 " target="抽样数据表选择  1"/>
+<Link source="随机抽样 " target="抽样数据表选择  2"/>
+<Link source="抽样数据表选择 " target="朴素贝叶斯预测 "/>
+<Link source="抽样数据表选择  2" target="朴素贝叶斯分析 "/>
+<Link source="朴素贝叶斯分析 " target="ROC "/>
+<Link source="抽样数据表选择  1" target="ROC "/>
+<Link source="朴素贝叶斯分析 " target="朴素贝叶斯预测 "/>
+</Process>

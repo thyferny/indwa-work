@@ -1,0 +1,44 @@
+/**
+ * based on soria's dijit.layout.Accordioncontainer
+ * updated with new colors
+ */
+
+.soria .dijitAccordionContainer {
+    border-color: #b1badf;
+    background-color: #fff;
+}
+
+/* common */
+
+.soria .dijitAccordionTitle {
+    background:#6d6e71;
+    border-top: 1px solid #FFF;
+    padding: 5px 4px 6px 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.soria .dijitAccordionTitleSelected  {
+    background: #EAEAEA;
+    font-weight: bold;
+    border-top: 1px solid #b9bbdd;
+    border-bottom: 1px solid #b9bbdd;
+    padding: 5px 4px 5px 8px;
+    color: #000;
+}
+
+.soria .dijitAccordionArrow {
+    background:url("../images/interface/icon_right.png") no-repeat;
+    margin-left: 2px;
+ }
+
+.soria .dijitAccordionTitleSelected .dijitAccordionArrow {
+    background:url("../images/interface/icon_down.png") no-repeat;
+    margin-left: 0px;
+}
+
+.soria .dijitAccordionText {
+    margin-left: 4px;
+    margin-right: 4px;
+}

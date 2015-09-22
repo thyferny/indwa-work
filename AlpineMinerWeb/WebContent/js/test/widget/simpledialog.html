@@ -1,0 +1,120 @@
+<html>
+
+<head>
+
+<title>Dialog</title>
+
+<style type="text/css">
+
+       @import "../../dojo/resources/dojo.css";
+
+       @import "../../dijit/themes/tundra/tundra.css";
+
+</style>          
+
+<script type="text/javascript"
+
+       djConfig="parseOnLoad: true, isDebug: true"
+
+       src="../../dojo/dojo.js"></script>
+
+<script type="text/javascript">
+
+       dojo.require("dijit.Dialog");
+
+       function showDia(){
+
+              dijit.byId("dialog1").show();         
+
+       }
+
+</script>
+
+<style>
+
+.dijitDialogUnderlay {
+
+       background: #666666;
+
+       opacity: 0.5;
+
+}
+
+</style>
+
+</head>
+
+<body class="tundra">
+
+<button id="b1" onclick="showDia()">show dojo dialog</button> <br>
+
+ 
+
+ 
+
+<div dojoType="dijit.Dialog" id="dialog1" closeNode="hider" title="fillthe form">
+
+       <form onsubmit="return false;">
+
+              <table>
+
+                     <tr>
+
+                            <td><label for="name">name </label></td>
+
+                            <td><input type="text" id="name"></td>
+
+                     </tr>
+
+                     <tr>
+
+                            <td><label for="loc">sex: </label></td>
+
+                            <td><input type="text" id="loc"></td>
+
+                     </tr>
+
+                     <tr>
+
+                            <td><label for="desc">age:</label></td>
+
+                            <td><input type="text" id="desc"></td>
+
+                     </tr>
+
+                     <tr>
+
+                            <td><label for="fileloc">email:</label></td>
+
+                            <td><input type="file" id="fileloc"></td>
+
+                     </tr>
+
+                     <tr>
+
+                            <td colspan="2" align="center">
+
+                                   <input type="button" id="hider" value="done"></td>
+
+                     </tr>
+
+              </table>
+
+       </form>
+
+</div><br>
+
+<br>
+
+<select><option>see</option></select><br>
+
+<br>
+
+can set color
+
+ 
+
+</body>
+
+</html>
+

@@ -1,0 +1,10 @@
+#
+#Tue Jul 26 11:58:03 PDT 2011
+groups=IT,Marketing,Business,
+login=guest
+lastName=Doe
+password=guest
+firstName=John
+description=Hello.
+email=test@nomail.com
+notification=true

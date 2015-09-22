@@ -1,0 +1,21 @@
+/**
+* NOT BEING USED ANYMORE
+* **/
+
+html,body {
+	font-size: 9pt;
+	font-family: "arial";
+}
+
+
+.dijitToolbar .dijitButtonContents {
+    font-size: 11pt;
+}
+
+.soria .dijitToolbar {
+    font-size: 12pt;
+}
+
+.soria .dijitButtonNode {
+    font-size: 10pt;
+}

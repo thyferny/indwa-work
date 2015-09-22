@@ -1,0 +1,47 @@
+body#coverScopeId
+{
+    margin-top: 1em;
+    background:#000000;
+    height: inherit;
+}
+
+.ylabel,.xlabel {
+    font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 10px;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.axisLabel {
+  font: 14px sans-serif;
+		
+	}
+
+.light line {
+	stroke: red;	
+}
+
+.popupTable
+{
+   color: #FFFFFF;
+}
+
+
+.popupTableLeft{
+    font-family:opensanssemibold;
+    padding-right:5px;
+    text-align:right;
+}

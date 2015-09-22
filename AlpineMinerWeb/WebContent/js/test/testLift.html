@@ -1,0 +1,231 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>Lift Line chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/linechart.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+			dojo.require("dojox.charting.Chart");
+            dojo.require("dojox.charting.axis2d.Default");
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("dojox.charting.plot2d.Grid");
+			dojo.require("dojox.charting.themes.PlotKit.orange");
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.form.RangeSlider");
+			dojo.require("dijit.form.HorizontalRuleLabels");
+			dojo.require("dijit.form.HorizontalRule");
+			dojo.require("dijit.layout.ContentPane");
+			
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+
+			dojo.require("dojox.charting.Chart");
+			dojo.require("dojox.charting.DataSeries");
+
+			dojo.require("dojox.charting.widget.Legend");
+
+			dojo.require("dojox.charting.axis2d.Default");
+
+			dojo.require("dojox.charting.plot2d.Markers");
+			dojo.require("dojox.charting.plot2d.Columns");
+			dojo.require("dojox.charting.plot2d.Pie");
+			dojo.require("dojox.charting.plot2d.Lines");
+
+
+			dojo.require("dojox.charting.action2d.Tooltip");
+			dojo.require("dojox.charting.action2d.MoveSlice");
+			dojo.require("dojox.charting.action2d.Magnify");
+			dojo.require("dojox.charting.action2d.Shake");
+			dojo.require("dojox.charting.plot2d.ClusteredColumns");
+
+			dojo.require("dojox.charting.themes.Bahamation");
+			dojo.require("dojox.charting.themes.PlotKit.orange");
+		    dojo.require("dojox.charting.themes.PlotKit.blue");
+			dojo.require("dojo.data.ItemFileWriteStore");
+
+			dojo.require("dijit.form.NumberSpinner");
+			dojo.require("dijit.form.Textarea"); 
+
+
+			dojo.require("dojox.charting.plot2d.Grid");
+			 
+ var result={"visualData":
+	{"width":411,"height":412,"hGrid":true,"vGrid":true,
+	 "description":"","lines":[{"color":"",
+		"label":"Logistic Regression LIFT 曲线",
+		"points":[{"x":"0.832 ","y":"1.103 "},
+		      								 {"x":"0.005 ","y":"1.103 "},
+	    					 {"x":"0.832 ","y":"1.103 "},
+	    					 {"x":"0.832 ","y":"1.103 "},
+	    					 {"x":"0.832 ","y":"1.103 "},
+	    					 {"x":"0.842 ","y":"1.104 "},
+	    			 				 {"x":"0.853 ","y":"1.104 "},
+	    					 {"x":"0.916 ","y":"1.079 "}]},
+	    					 {"color":"","label":"Cart Tree LIFT 曲线","points":[{"x":"0.737 ","y":"1.118 "},
+	    					 {"x":"0.005 ","y":"1.118 "},
+	    										 {"x":"0.737 ","y":"1.118 "},
+	    				   {"x":"0.737 ","y":"1.118 "},
+		 {"x":"0.737 ","y":"1.118 "},
+		 {"x":"0.737 ","y":"1.118 "},
+		 {"x":"0.853 ","y":"1.104 "},
+		 	 {"x":"0.853 ","y":"1.104 "},
+		 {"x":"0.853 ","y":"1.104 "},
+		 {"x":"0.853 ","y":"1.104 "},
+		 {"x":"1.000 ","y":"1.000 "}]},
+		 {"color":"","label":"Naive Bayes LIFT 曲线","points":[{"x":"0.495 ","y":"1.094 "},
+		 {"x":"0.005 ","y":"1.097 "},
+		 {"x":"0.579 ","y":"1.097 "},
+		 {"x":"0.611 ","y":"1.098 "},
+		 {"x":"0.621 ","y":"1.099 "},
+		 {"x":"0.642 ","y":"1.099 "},
+		 {"x":"0.642 ","y":"1.099 "},
+		 {"x":"0.663 ","y":"1.100 "},
+		 {"x":"0.663 ","y":"1.100 "},
+		 {"x":"0.674 ","y":"1.100 "},
+		 {"x":"0.684 ","y":"1.100 "},
+		 {"x":"0.684 ","y":"1.100 "},
+		 {"x":"0.695 ","y":"1.101 "},
+		 {"x":"0.705 ","y":"1.101 "},
+		 {"x":"0.716 ","y":"1.101 "},
+		 {"x":"0.726 ","y":"1.101 "},
+		 {"x":"0.726 ","y":"1.101 "},
+		 {"x":"0.737 ","y":"1.102 "},
+		 {"x":"0.737 ","y":"1.102 "},
+		 {"x":"0.737 ","y":"1.102 "},
+		 {"x":"0.758 ","y":"1.102 "},
+		  {"x":"0.768 ","y":"1.102 "},
+		 {"x":"0.779 ","y":"1.103 "},
+		 {"x":"0.779 ","y":"1.103 "},
+		 {"x":"0.779 ","y":"1.103 "},
+		 {"x":"0.789 ","y":"1.088 "},
+		 {"x":"0.789 ","y":"1.088 "},
+		 {"x":"0.789 ","y":"1.088 "},
+		 {"x":"0.800 ","y":"1.088 "},
+			 {"x":"0.800 ","y":"1.088 "},
+		 {"x":"0.811 ","y":"1.089 "},
+		 {"x":"0.811 ","y":"1.089 "},
+		 {"x":"0.811 ","y":"1.089 "},
+		 {"x":"0.821 ","y":"1.089 "},
+	
+		 {"x":"0.821 ","y":"1.089 "},
+		 {"x":"0.832 ","y":"1.089 "},
+		 {"x":"0.842 ","y":"1.090 "},
+			 {"x":"0.842 ","y":"1.090 "},
+		 {"x":"0.853 ","y":"1.090 "},
+		 {"x":"0.853 ","y":"1.090 "},
+		
+		 {"x":"0.853 ","y":"1.090 "},
+		
+		 {"x":"0.863 ","y":"1.077 "},
+		   {"x":"0.884 ","y":"1.064 "},
+		 {"x":"0.884 ","y":"1.064 "},
+		 {"x":"0.884 ","y":"1.064 "},
+		 {"x":"0.895 ","y":"1.065 "},
+		 {"x":"0.895 ","y":"1.065 "},
+		 {"x":"0.905 ","y":"1.066 "},
+
+		 {"x":"0.905 ","y":"1.066 "},
+		 {"x":"0.916 ","y":"1.053 "},
+		 {"x":"0.916 ","y":"1.053 "},
+		 {"x":"1.000 ","y":"1.000 "}]},
+		 {"color":"","label":"Neural Network LIFT 曲线","points":[{"x":"0.632 ","y":"1.025 "},
+		 {"x":"0.005 ","y":"1.013 "},
+		 {"x":"0.674 ","y":"1.013 "},
+		 {"x":"0.674 ","y":"1.013 "},
+		 {"x":"0.674 ","y":"1.013 "},
+		 {"x":"0.705 ","y":"1.001 "},
+		 {"x":"0.705 ","y":"1.001 "},
+		 {"x":"0.716 ","y":"1.003 "},
+		  	 {"x":"0.716 ","y":"1.003 "},
+		 {"x":"0.716 ","y":"1.003 "},
+		 {"x":"0.726 ","y":"1.004 "},
+		 {"x":"0.737 ","y":"1.006 "},
+		  	 {"x":"0.737 ","y":"1.006 "},
+		 {"x":"0.737 ","y":"1.006 "},
+		 {"x":"0.747 ","y":"1.007 "},
+		 	 {"x":"0.747 ","y":"1.007 "},
+		 {"x":"0.747 ","y":"1.007 "},
+		 {"x":"0.758 ","y":"1.009 "},
+		 {"x":"0.758 ","y":"1.009 "},
+
+		 {"x":"0.768 ","y":"1.010 "},
+		 {"x":"0.779 ","y":"1.012 "},
+		 	 {"x":"0.779 ","y":"1.012 "},
+		 {"x":"0.789 ","y":"1.013 "},
+		  {"x":"0.789 ","y":"1.013 "},
+		 {"x":"0.789 ","y":"1.013 "},
+		 {"x":"0.800 ","y":"1.015 "},
+		
+		 {"x":"0.811 ","y":"1.016 "},
+	
+		 {"x":"0.811 ","y":"1.016 "},
+		 {"x":"0.811 ","y":"1.016 "},
+		 {"x":"0.821 ","y":"1.017 "},
+		 {"x":"0.821 ","y":"1.017 "},
+		 {"x":"0.821 ","y":"1.017 "},
+		 {"x":"0.832 ","y":"1.004 "},
+		 {"x":"0.832 ","y":"1.004 "},
+		 {"x":"0.842 ","y":"1.006 "},
+
+		 {"x":"0.842 ","y":"1.006 "},
+		 {"x":"0.853 ","y":"1.007 "},
+		 {"x":"0.853 ","y":"1.007 "},
+		 {"x":"0.853 ","y":"1.007 "},
+		 {"x":"0.863 ","y":"1.009 "},
+
+		 {"x":"0.874 ","y":"1.010 "},
+		 {"x":"0.884 ","y":"1.011 "},
+		 {"x":"0.895 ","y":"1.012 "},
+		 {"x":"0.895 ","y":"1.012 "},
+		 {"x":"1.000 ","y":"1.000 "}]},
+	                                                      								
+		 {"color":"green","label":"随机","points":[{"x":"0","y":"1"}, {"x":"1","y":"1"}]}],
+		 "markers":false,"maxX":"1.000 ","maxY":"","minX":"0","minY":"","title":"Lift",
+		 "visualizationType":9,"xAxisTitle":"百分比",
+		 "xLabels":[],"yAxisTitle":"LIFT","yLabels":[]},
+		            "visualType":9,"out_id":1.3110550803636821E12,"out_title":"Lift"};
+			
+			var chart;
+			makeObjects = function(){
+				
+				fillOutPaneLine( dijit.byId("chart"),		result	);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body class="tundra">
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 810; height: 880"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

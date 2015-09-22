@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="19" Y="15" name="District" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1280410968437">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="DISTRICT"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="20" Y="95" name="house_transaction" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1280411012640">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="HOUSE_TRANSACTION"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="152" Y="14" name="District_info" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280411285656">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="district_info"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="CRIME"/>
+<selectedColumnName columnName="AREA"/>
+<selectedColumnName columnName="PARK"/>
+<selectedColumnName columnName="INDUSTRY"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="POLLUTION"/>
+<selectedColumnName columnName="BC_DIST"/>
+<selectedColumnName columnName="BUS"/>
+<selectedColumnName columnName="PT_RATIO"/>
+<selectedColumnName columnName="POPULATION"/>
+<selectedColumnName columnName="ADULT"/>
+<selectedColumnName columnName="U_GRAD"/>
+<DerivedFieldItem columnName="crime_rate" dataType="CLOB" expression="CRIME*100.0/POPULATION"/>
+<DerivedFieldItem columnName="park_area" dataType="CLOB" expression="PARK*100.0/AREA"/>
+<DerivedFieldItem columnName="industry_area" dataType="CLOB" expression="INDUSTRY*100.0/AREA"/>
+<DerivedFieldItem columnName="lstat" dataType="CLOB" expression="100-(U_GRAD*100.0/POPULATION)"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DISTRICT"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="CRIME" type="NUMBER(22,0)"/>
+<Field name="AREA" type="NUMBER(22,0)"/>
+<Field name="PARK" type="NUMBER(8,2)"/>
+<Field name="INDUSTRY" type="NUMBER(8,2)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BC_DIST" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="POPULATION" type="NUMBER(22,0)"/>
+<Field name="ADULT" type="NUMBER(22,0)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="386" Y="179" name="housing_price_bin" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280412346343">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_price_bin"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<QuantileModel>
+<QuantileItem columnName="price" isCreateNewColumn="true" newColumnName="price_bin" numberOfBin="3" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+</QuantileItem>
+</QuantileModel>
+<DerivedFieldsModel>
+<selectedColumnName columnName="room"/>
+<selectedColumnName columnName="price"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="POLLUTION"/>
+<selectedColumnName columnName="BUS"/>
+<selectedColumnName columnName="lstat"/>
+<selectedColumnName columnName="industry_area"/>
+<selectedColumnName columnName="park_area"/>
+<selectedColumnName columnName="crime_rate"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_info"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="181" Y="178" name="housing_mining" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280412616078">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_mining"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="room"/>
+<selectedColumnName columnName="price"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="POLLUTION"/>
+<selectedColumnName columnName="BUS"/>
+<selectedColumnName columnName="lstat"/>
+<selectedColumnName columnName="industry_area"/>
+<selectedColumnName columnName="park_area"/>
+<selectedColumnName columnName="crime_rate"/>
+<selectedColumnName columnName="price_bin"/>
+<DerivedFieldItem columnName="price_level" dataType="CLOB" expression="CASE WHEN &quot;price_bin&quot; = 1 THEN 'Low' &#13;&#10;WHEN &quot;price_bin&quot; = 2 THEN 'Mid' &#13;&#10;WHEN &quot;price_bin&quot; = 3 THEN 'High' &#13;&#10;END"/>
+<DerivedFieldItem columnName="price_leval_2" dataType="VARCHAR2" expression="case when &quot;price_bin&quot;=3 then 'good' else 'bad' end"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_price_bin"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="190" Y="277" name="Random Sampling" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1280452277625">
+<Parameter key="sampleCount" value="3"/>
+<Parameter key="sampleSizeType" value="Percentage"/>
+<Parameter key="sampleSize" value="100"/>
+<Parameter key="randomSeed" value="0.1"/>
+<Parameter key="consistent" value="true"/>
+<Parameter key="disjoint" value="true"/>
+<Parameter key="keyColumnList" value="price"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="189" Y="386" name="training_sample" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1280452430078">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="471" Y="279" name="eval_sample" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1280452446890">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_2"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="478" Y="395" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1280452586812">
+<Parameter key="dependentColumn" value="price_leval_2"/>
+<Parameter key="columnValue" value="good"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="404" Y="41" name="housing_info" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1293987239437">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_info"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="d" operID="1280411285656" schema="MINER_DEMO" table="district_info"/>
+<JoinTableModel alias="h" operID="1295500281624" schema="MINER_DEMO" table="house_tx_aggt"/>
+<JoinColumnModel columnName="room" columnType="DOUBLE PRECISION" newColumnName="room" tableAlias="h"/>
+<JoinColumnModel columnName="price" columnType="DOUBLE PRECISION" newColumnName="price" tableAlias="h"/>
+<JoinColumnModel columnName="age" columnType="DOUBLE PRECISION" newColumnName="age" tableAlias="h"/>
+<JoinColumnModel columnName="ID" columnType="NUMBER(22,0)" newColumnName="ID" tableAlias="d"/>
+<JoinColumnModel columnName="WATER_VIEW" columnType="CHAR(1)" newColumnName="WATER_VIEW" tableAlias="d"/>
+<JoinColumnModel columnName="POLLUTION" columnType="REAL" newColumnName="POLLUTION" tableAlias="d"/>
+<JoinColumnModel columnName="BUS" columnType="NUMBER(22,0)" newColumnName="BUS" tableAlias="d"/>
+<JoinColumnModel columnName="lstat" columnType="CLOB" newColumnName="lstat" tableAlias="d"/>
+<JoinColumnModel columnName="industry_area" columnType="CLOB" newColumnName="industry_area" tableAlias="d"/>
+<JoinColumnModel columnName="park_area" columnType="CLOB" newColumnName="park_area" tableAlias="d"/>
+<JoinColumnModel columnName="crime_rate" columnType="CLOB" newColumnName="crime_rate" tableAlias="d"/>
+<JoinConditionModel andOr="" column1="d.ID" column2="h.DISTRICT_ID" condition="=" joinType="JOIN" tableAlias1="d" tableAlias2="h"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="district_info"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="CRIME" type="NUMBER(22,0)"/>
+<Field name="AREA" type="NUMBER(22,0)"/>
+<Field name="PARK" type="NUMBER(8,2)"/>
+<Field name="INDUSTRY" type="NUMBER(8,2)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BC_DIST" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="POPULATION" type="NUMBER(22,0)"/>
+<Field name="ADULT" type="NUMBER(22,0)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="lstat" type="CLOB"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="house_tx_aggt"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="28" Y="477" name="predict_sample" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1294109356906">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="154" Y="99" name="Aggregated transaction" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1295500281624">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="house_tx_aggt"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="DISTRICT_ID"/>
+<groupBy columnName="HOUSE_ID"/>
+<parentFieldList columnName="DISTRICT_ID"/>
+<parentFieldList columnName="HOUSE_ID"/>
+<parentFieldList columnName="ROOM"/>
+<parentFieldList columnName="PRICE"/>
+<parentFieldList columnName="AGE"/>
+<AggregateField columnName="room" dataType="DOUBLE PRECISION" expression="sum(&quot;ROOM&quot;)"/>
+<AggregateField columnName="price" dataType="DOUBLE PRECISION" expression="sum(&quot;PRICE&quot;)"/>
+<AggregateField columnName="age" dataType="DOUBLE PRECISION" expression="sum(&quot;AGE&quot;)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="HOUSE_TRANSACTION"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="DISTRICT_ID" type="NUMBER(22,0)"/>
+<Field name="HOUSE_ID" type="VARCHAR2(10)"/>
+<Field name="ROOM" type="NUMBER(22,0)"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="339" Y="419" name="Logistic Regression" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionOperator" uuid="1303716048265">
+<Parameter key="dependentColumn" value="price_leval_2"/>
+<Parameter key="goodValue" value="good"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="columnNames" value="crime_rate,industry_area,BUS,price,age,park_area"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="250" Y="506" name="Logistic Regression Prediction" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionPredictOperator" uuid="1303716067343">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="logistic_predict"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.230:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="POLLUTION" type="REAL"/>
+<Field name="BUS" type="NUMBER(22,0)"/>
+<Field name="lstat" type="CLOB"/>
+<Field name="industry_area" type="CLOB"/>
+<Field name="park_area" type="CLOB"/>
+<Field name="crime_rate" type="CLOB"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="CLOB"/>
+<Field name="price_leval_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="District" target="District_info"/>
+<Link source="housing_price_bin" target="housing_mining"/>
+<Link source="housing_mining" target="Random Sampling"/>
+<Link source="Random Sampling" target="training_sample"/>
+<Link source="Random Sampling" target="eval_sample"/>
+<Link source="eval_sample" target="ROC"/>
+<Link source="District_info" target="housing_info"/>
+<Link source="housing_info" target="housing_price_bin"/>
+<Link source="Random Sampling" target="predict_sample"/>
+<Link source="house_transaction" target="Aggregated transaction"/>
+<Link source="Aggregated transaction" target="housing_info"/>
+<Link source="training_sample" target="Logistic Regression"/>
+<Link source="predict_sample" target="Logistic Regression Prediction"/>
+<Link source="Logistic Regression" target="Logistic Regression Prediction"/>
+<Link source="Logistic Regression" target="ROC"/>
+</Process>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineDataAnalysis"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineMinerInterface"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineMinerSDK"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineUtility"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpineHadoopAnalytics"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jcommon-1.0.16.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jfreechart-1.0.13-experimental.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jfreechart-1.0.13-swt.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/jfreechart-1.0.13.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/org.eclipse.draw2d_3.5.2.v20091126-1908.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/org.eclipse.swt_3.5.2.v3557f.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/org.eclipse.swt.cocoa.macosx.x86_64_3.7.2.v3740f.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/org.eclipse.swt.gtk.linux.x86_64_3.5.2.v3557f.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/org.eclipse.swt.win32.win32.x86_3.5.2.v3557f.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/AlpineMinerWeb/WebContent/WEB-INF/lib/pig-0.10.0-withouthadoop.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AlpinePig"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

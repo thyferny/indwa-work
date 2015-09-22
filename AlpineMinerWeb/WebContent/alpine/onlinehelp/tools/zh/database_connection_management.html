@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>数据连接配置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+	<h1>数据连接配置</h1>
+	<p>
+		点击用户名后的按钮后点击数据库连接选项。打开数据库连接管理窗口。
+	</p>
+	<p><img src="./images/dbmanage_menu.png"></p>
+	<p>
+		窗口左侧将用户所能访问的连接分为“公共”、“群组”、“个人”三个类别。
+	</p>
+	<p><img src="./images/dbmanage1.png"></p>
+	<p>其中，系统用户都可以访问公共类别中的连接信息，组用户可以访问本组内的连接信息。个人类别的连接信息只能本人访问。</p>
+	<p>
+		可以通过右击连接名称后点击“复制”选项，将公共/群组中的连接复制到个人连接信息中进行编辑和使用。
+	</p>
+	<p>点击一条连接信息后，连接的详细信息将显示在右侧窗口中。</p>
+	<p><b>提示：</b>通过导入JDBC驱动可以导入待连接数据库的连接驱动程序。</p>
+	<p><img src="./images/dbmanage2.png"></p>
+	<p>在要创建连接的的类别中右击任意位置后点击“创建连接”选项会打开创建数据库连接窗口。其中分组名称只有在群组类别下才可选择。填写完相应信息后点击确定按钮进行保存。</p>
+	<p><img src="./images/dbmanage3.png"></p>
+	<p><strong>以下是创建数据库连接的步骤：</strong></p>
+	<ul type="disc">
+	  <li><strong>在数据库连接对话框内填入以下内容</strong>： 
+	    <ul>
+	      <li><strong>连接名称：</strong> 辨别数据库连接的唯一标示</li>
+	      <li><strong>数据库类型：</strong> Alpine 现支持Greenplum/Postgres和Oracle数据库</li>
+	      <li><strong>JDBC路径：</strong>此项仅为Oracle数据库添加JDBC文件。如果JDBC文件已被添加到，此项无法被选择。</li>
+	      <li><strong>主机：</strong> 数据库服务器的主机名或IP</li>
+	      <li><strong>端口：</strong> 数据库服务的端口号</li>
+	      <li><strong>数据库名称：</strong> 要连接数据库的名称</li>
+	      <li><strong>用户名：</strong> 登录用户名</li>
+	      <li><strong>密码：</strong> 登录密码</li>
+	      <li><strong>使用 SSL:</strong>是否使用 SSL 连接到数据库 (只适用于 PostgreSQL 和GreenPlum) </li>
+	      <li><strong>请注意 </strong> 如果选者使用SSL ，您需要以下配置以确保系统能正常工作:
+	        <ul>
+	          <li>从数据库服务器中拷贝 server.crt 文件到本机（运新Alpine的机器）。</li>
+	          <li>从本机打开命令行根据并进入该文件夹。</li>
+	          <li>运行以下命令 :   openssl x509 -in server.crt -out server.crt.der -outform der</li>
+	          <li>运行以下命令 (可能需要root 权限):  keytool -keystore $JAVA_HOME/lib/security/cacerts -alias postgresql -import -file server.crt.der</li>
+	          <li>启动 Alpine （如果已经启动请重启） , 此时应该可以连接到已配置 SSL的 PostgreSQL 或 GreenPlum 数据库。</li>
+	          <li>如需了解更多，请点击 <a href = "http://jdbc.postgresql.org/documentation/80/ssl-client.html">此链接 </a></li>
+            </ul>
+          </li>
+        </ul>
+	  </li>
+</ul>
+	<p>点击左侧连接信息名称后，该连接信息将显示在右侧窗口中。点击确定按钮对修改的内容进行保存。</p>
+</body>
+</html>

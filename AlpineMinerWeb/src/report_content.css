@@ -1,0 +1,158 @@
+body {
+	text-decoration: none;
+	color: balck;
+	font-family: "arial";
+	font-size: 12pt;
+	font-weight: medium;
+}
+/*  the chapter_title of each chapter: should be Node name here*/
+.top_chapter_title {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 22pt;
+	font-weight: heavy;
+}
+
+/*  the chapter_title of input,output,overview */
+.chapter_title {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 20pt;
+	font-weight: heavy;
+}
+
+/*  the sub chapter_title of each chapter: should be overview/input/output*/
+.sub_chapter_title_0 {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 18pt;
+	font-weight: heavy;
+}
+
+.sub_chapter_title_1 {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 16pt;
+	font-weight: heavy;
+}
+
+
+.sub_chapter_title_2 {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 14pt;
+	font-weight: heavy;
+}
+
+.sub_chapter_title_3 {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 12pt;
+	font-weight: heavy;
+}
+
+/* paragraph_title, the output's name here */
+.paragraph_title {
+	text-decoration: bold;
+	color: navy;
+	font-family: "courier, arial";
+	font-size: 12pt;
+	font-weight: heavy;
+}
+ 
+
+ .property_table
+{
+cellspacing:10px;
+	border:1px solid green;
+	border-spacing:10px;
+	border-collapse:collapse;
+ 
+
+}
+ 
+.property_table th
+{
+	width :100%;
+	background-color:green;
+	color:white;
+}
+.property_table tr td{
+	/*width :100%;*/
+ 	border:1px solid green;
+ 	padding:5px;
+}
+.property_table tr{
+	width :100%;
+	border:1px solid green; 
+}
+
+
+.output_table
+{
+cellspacing:10px;
+	border:1px solid green;
+	border-spacing:10px;
+	border-collapse:collapse;
+
+}
+
+.output_table th
+{
+	width :100%;
+	background-color:green;
+	color:white;
+}
+.output_table tr td{
+	/*width :100%;*/
+ 	border:1px solid green;
+ 	padding:5px;
+}
+
+
+.output_table tr{
+	width :100%;
+	border:1px solid green; 
+}
+
+.output_table4scatter{
+	padding:0;
+	margin:0;
+	cellspacing:0;
+	text-align:center;
+}
+.output_table4scatter tr{
+}
+.output_table4scatter td{
+	width:120px;
+	height:100px;
+	padding:2px;
+	margin:2px;
+	border:1px solid green;
+	border-collapse:collapse;
+}
+/*
+Please also handle the following if need:
+
+
+property_table : input's paramter
+sub_property : some special parameter ,like table join ...
+
+
+legendTable :The chart legend table
+tabledGroup : the kmeans profile table
+
+output_image;
+output_text;
+}*/
+
+
+
+
+ 

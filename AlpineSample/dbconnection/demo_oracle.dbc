@@ -1,0 +1,10 @@
+#
+#Fri Mar 11 16:28:53 CST 2011
+passwordText=rO0ABXQACm1pbmVyX2RlbW8\=
+userNameText=miner_demo
+engineCombo=Oracle
+connNameText=demo_oracle
+portText=1521
+jdbc=
+hostText=127.0.0.1
+dbNameText=orcl

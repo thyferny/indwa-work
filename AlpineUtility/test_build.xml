@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AlpineUtility.makejar" default="movejar"
+         basedir=".">
+<property name="bin" value="bin" />
+<path id="AlpineUtility.classpath">
+    <fileset dir="./../AlpineMinerUnitTest/lib">
+    <include name="*.jar" />
+	</fileset>
+    <fileset dir="./../AlpineMinerWeb/WebContent/WEB-INF/lib">
+    <include name="*.jar" />
+	</fileset>
+	<fileset dir="./../AlpineMinerWeb/build_resource/lib_3rd/${hadoopVersion}">
+		<include name="*.jar" />
+	</fileset>
+</path>
+<target name="makejar" depends="init" description="Create a jar for the AlpineUtility project">
+    <javac destdir="${bin}">
+        <src path="src"/>
+        <classpath refid="AlpineUtility.classpath"/>
+    </javac>
+    <copy todir="${bin}">  
+        <fileset dir="./src" includes="**/*.properties"/>
+    </copy>
+    <copy file="./src/illuminator_log4j.properties" tofile="./bin/log4j.properties" overwrite="yes" />
+	<copy file="./src/com/alpine/license/validator/illuminator/productionInfo.properties" tofile="./bin/com/alpine/license/validator/illuminator/productionInfo.properties" overwrite="yes" /> 		
+	<tstamp prefix="build.">
+        <format property="TimeSign" pattern="yyyy-MM-dd HH.mm.ss"/>
+		<format property="Version" pattern="2.8.1.MMdd"/>
+    </tstamp>        
+  	<replace file="./bin/com/alpine/license/validator/illuminator/productionInfo.properties" token="version =" value="version = Rel${build.Version}"/>
+	<replace file="./bin/com/alpine/license/validator/illuminator/productionInfo.properties" token="buildtime =" value="buildtime = ${build.TimeSign}"/>
+    <jar jarfile="AlpineUtility.jar">
+        <fileset dir="./bin" includes="**/*.class" />
+        <fileset dir="./bin" includes="**/*.properties" />
+        <fileset dir="./src" includes="*.xml" />
+    </jar>
+</target>
+
+<target name="makejar.amazon" depends="init" description="Create a jar for the AlpineUtility project">
+    <javac destdir="${bin}">
+        <src path="src"/>
+        <classpath refid="AlpineUtility.classpath"/>
+    </javac>
+    <copy todir="${bin}">  
+        <fileset dir="./src" includes="**/*.properties"/>
+    </copy>
+    <copy file="./src/illuminator_log4j.properties" tofile="./bin/log4j.properties" overwrite="yes" />
+	<copy file="./src/com/alpine/license/validator/illuminator/productionInfo.properties" tofile="./bin/com/alpine/license/validator/illuminator/productionInfo.properties" overwrite="yes" /> 
+	<copy file="./../AlpineUtility/src/com/alpine/utility/hadoop/hadoop_version.properties" tofile="./bin/com/alpine/utility/hadoop/hadoop_version.properties" overwrite="yes" />  			
+	<tstamp prefix="build.">
+        <format property="TimeSign" pattern="yyyy-MM-dd HH.mm.ss"/>
+		<format property="Version" pattern="2.8.1.MMdd"/>
+    </tstamp>        
+  	<replace file="./bin/com/alpine/license/validator/illuminator/productionInfo.properties" token="version =" value="version = Rel${build.Version}"/>
+	<replace file="./bin/com/alpine/license/validator/illuminator/productionInfo.properties" token="buildtime =" value="buildtime = ${build.TimeSign}"/>
+	<replace file="./bin/com/alpine/utility/hadoop/hadoop_version.properties" token="Apache Hadoop 0.20.2" value="Cloudera CDH3 Update 4"/>
+    <jar jarfile="AlpineUtility.jar">
+        <fileset dir="./bin" includes="**/*.class" />
+        <fileset dir="./bin" includes="**/*.properties" />
+        <fileset dir="./src" includes="*.xml" />
+    </jar>
+	<replace file="./bin/com/alpine/utility/hadoop/hadoop_version.properties" token="Cloudera CDH3 Update 4" value="Apache Hadoop 0.20.2"/>
+</target>
+
+<target name="movejar" depends="makejar">
+    <!--because there amight be some error for the latest AlpineDataAnalysis code,
+     this function will be open only when we do build for the release and test
+     It is better for the UI to use the stable not the latest jar files  -->
+    <copy file="AlpineUtility.jar" todir="./../AlpineDataAnalysisTest/lib" />
+    <move file="AlpineUtility.jar" todir="./../AlpineMinerUnitTest/lib" />
+</target>
+<target name="movejar.amazon" depends="makejar.amazon">
+    <!--because there amight be some error for the latest AlpineDataAnalysis code,
+     this function will be open only when we do build for the release and test
+     It is better for the UI to use the stable not the latest jar files  -->
+    <copy file="AlpineUtility.jar" todir="./../AlpineDataAnalysisTest/lib" />
+    <move file="AlpineUtility.jar" todir="./../AlpineMinerUnitTest/lib" />
+</target>
+<target name="clean">
+    <delete dir="${bin}" />
+</target>
+
+<target name="init">
+    <mkdir dir="${bin}" />
+</target>
+</project>

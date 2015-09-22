@@ -1,0 +1,17 @@
+FILES= *.c
+OBJS= *.o
+SO=alpine_miner.so
+DB=miner_demo
+INC=-I$(GPHOME)/include/postgresql/server/ -I$(GPHOME)/include/postgresql/server/utils/ -I$(GPHOME)/include/postgresql/server/catalog/
+DEFINE_FLAG=
+#DEFINE_FLAG=-DALPINE_DEBUG
+all: $(FILES)
+	gcc ${DEFINE_FLAG} -fPIC $(INC) -c $(FILES)
+	gcc -no-cpp-precomp -std=gnu99  -bundle -multiply_defined suppress -bundle_loader $(GPHOME)/bin/postgres -o $(SO) $(OBJS)
+	cp $(SO) $(GPHOME)/lib/postgresql/
+install: all
+	psql -f alpine_miner_register_c_functions.sql $(DB)
+uninstall:
+	rm  $(GPHOME)/lib/postgresql/$(SO)
+clean:
+	rm $(SO) $(OBJS) 

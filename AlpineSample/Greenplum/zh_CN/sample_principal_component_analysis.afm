@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="guohui.gao" Version="3.0">
+<Operator X="50" Y="105" name="数据表 water_treatment" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1317036573967_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="water_treatment"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="253" Y="104" name="主成分分析" type="com.alpine.miner.gef.runoperator.pca.PCAOperator" uuid="1317036595792">
+<Parameter key="analysisType" value="COV-SAM"/>
+<Parameter key="percent" value="0.99"/>
+<Parameter key="PCAQoutputSchema" value="demo"/>
+<Parameter key="PCAQoutputTable" value="pca_output"/>
+<Parameter key="PCAQDropIfExist" value="Yes"/>
+<Parameter key="PCAQvalueOutputSchema" value="demo"/>
+<Parameter key="PCAQvalueOutputTable" value="pca_result"/>
+<Parameter key="PCAQvalueDropIfExist" value="Yes"/>
+<Parameter key="columnNames" value="input Biological demand of oxygen to plant,input Biological demand of oxygen to primary settler,input Biological demand of oxygen to secondary settler,input Zinc to plant,input chemical demand of oxygen to plant,input chemical demand of oxygen to secondary settler,input conductivity to plant,input conductivity to primary settler,input conductivity to secondary settler,input flow to plant,input pH to plant,input pH to primary settler,input pH to secondary settler,input sediments to plant,input sediments to primary settler,input sediments to secondary settler,input suspended solids to plant,input suspended solids to primary settler,input suspended solids to secondary settler,input volatile supended solids to plant,input volatile supended solids to primary settler,input volatile supended solids to secondary settler"/>
+<Parameter key="remainColumns" value="date,global performance input Biological demand of oxygen,global performance input chemical demand of oxygen,global performance input sediments,global performance input suspended solids,output Biological demand of oxygen,output chemical demand of oxygen,output conductivity,output pH,output sediments,output suspended solids,output volatile supended solids,performance input Biological demand of oxygen in primary settle,performance input Biological demand of oxygen to secondary sett,performance input chemical demand of oxygen to secondary settle,performance input sediments to primary settler,performance input suspended solids to primary settler"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="water_treatment"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</InPutFieldList>
+</Operator>
+<Link source="数据表 water_treatment" target="主成分分析"/>
+</Process>

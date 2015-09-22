@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="52" Y="107" name="数据表" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719824421">
+<Parameter key="dbConnectionName" value="demo_nz"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="SALES_EXAMPLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+</Operator>
+<Operator X="185" Y="175" name="柱状图浏览" type="com.alpine.miner.gef.runoperator.field.BarChartAnalysisOperator" uuid="1277719824437">
+<Parameter key="valueDomain" value="SALES"/>
+<Parameter key="scopeDomain" value="REGION"/>
+<Parameter key="categoryType" value="QUARTER"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="SALES_EXAMPLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="SALES" type="INTEGER"/>
+<Field name="REGION" type="CHARACTER VARYING(10)"/>
+<Field name="QUARTER" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表" target="柱状图浏览"/>
+</Process>

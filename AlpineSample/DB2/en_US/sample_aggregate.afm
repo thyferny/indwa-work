@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="69" Y="130" name="DB Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719718562">
+<Parameter key="dbConnectionName" value="demo_db2"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="AGGREGATETEST"/>
+<Parameter key="userName" value="db2inst1"/>
+<Parameter key="url" value="jdbc:db2://192.168.1.230:50001/M_DEMO"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+</Operator>
+<Operator X="188" Y="245" name="Aggregate Operator" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1277719718578">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="aggt_view"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="SHOP_ID"/>
+<parentFieldList columnName="SHOP_ID"/>
+<parentFieldList columnName="PRODUCT_ID"/>
+<parentFieldList columnName="SALES"/>
+<parentFieldList columnName="SALES_RETURN"/>
+<AggregateField columnName="sum(SALES)" dataType="DOUBLE PRECISION" expression="sum(&quot;SALES&quot;)"/>
+<AggregateField columnName="count(SALES_RETURN)" dataType="DOUBLE PRECISION" expression="count(&quot;SALES_RETURN&quot;)"/>
+<AggregateField columnName="sum(sales+sales_return)" dataType="DOUBLE PRECISION" expression="sum(SALES+SALES_RETURN)"/>
+</AggregateFieldsModel>
+<WindowFieldsModel>
+<WindowField columnName="rank" dataType="CLOB" function="rank()" specification="partition by  SHOP_ID  order by sum(SALES+SALES_RETURN) desc"/>
+</WindowFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://192.168.1.230:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="AGGREGATETEST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="SHOP_ID" type="INTEGER"/>
+<Field name="PRODUCT_ID" type="INTEGER"/>
+<Field name="SALES" type="DOUBLE"/>
+<Field name="SALES_RETURN" type="DOUBLE"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="DB Table" target="Aggregate Operator"/>
+</Process>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="1.00">
+<Operator X="208" Y="127" name="Db Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1289465752658">
+<Parameter key="system" value="Oracle"/>
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="GOLFNEW"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="GOLFNEW"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="OUTLOOK" type="VARCHAR2(10)"/>
+<Field name="TEMPERATURE" type="NUMBER(22,0)"/>
+<Field name="HUMIDITY" type="NUMBER(22,0)"/>
+<Field name="WIND" type="VARCHAR2(10)"/>
+<Field name="PLAY" type="VARCHAR2(10)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="201" Y="255" name="Univariate Operator" type="com.alpine.miner.gef.runoperator.field.UnivariateOperator" uuid="1289465758612">
+<Parameter key="dependentColumn" value="PLAY"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="columnNames" value="OUTLOOK,HUMIDITY,WIND,TEMPERATURE"/>
+<Parameter key="goodValue" value="yes"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="GOLFNEW"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="OUTLOOK" type="VARCHAR2(10)"/>
+<Field name="TEMPERATURE" type="NUMBER(22,0)"/>
+<Field name="HUMIDITY" type="NUMBER(22,0)"/>
+<Field name="WIND" type="VARCHAR2(10)"/>
+<Field name="PLAY" type="VARCHAR2(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="Db Table" target="Univariate Operator"/>
+</Process>

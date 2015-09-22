@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>安全配置管理</title>
+</head>
+<body>
+	<h1>安全配置管理</h1>
+	<p>
+		点击用户名后面的下拉菜单后点击安全配置按钮打开安全配置窗口。
+	</p>
+	<p><img src="./images/security_config_1.png"></p>
+	<h2>认证方式</h2>
+	<p>
+		Alpine 支持四种认证方式：本地认证，LDAP认证，Active Directory认证，自定义认证。
+	</p>
+	<p><img src="./images/security_config_2.png"></p>
+	<h2>本地认证</h2>
+	<p>
+		如果选中本地认证单选按钮，则不需要在界面上进行相关配置。用户和用户组将使用系统默认方式进行认证和管理。详情参见群组和用户管理。
+	</p>
+	<h2>LDAP认证</h2>
+	<p>
+		当选中LDAP认证方式时，系统会打开LDAP配置界面，如下图：
+	</p>
+	<p><img src="./images/security_config_3.png"></p>
+	<ul>
+		<li>主机和端口是LDAP服务器所在的主机地址和通讯端口</li>
+		<li>主目录和证书是对LDAP根DN的相关配置。</li>
+		<li>
+			LDAP登录安全级别可以是"检测用户名和密码"或"只检测用户名"。
+		</li>
+		<li>用户组根目录和组名属性名称定义了组信息在LDAP中的位置。</li>
+	</ul>
+	<p>当配置完成后，可以点击测试连接来测试是否可以连接LDAP 服务。</p>
+	<h2>自定义认证</h2>
+	<p>
+		用户可以自定义一系列的Java Class实现自定义用户和用户组管理。以下是当自定义认证时，需要修改的地方以及所必需实现的接口声明：
+		需要实现的接口：com.alpine.miner.security.AuthenticationProvider
+	</p>
+	<p><img src="./images/security_config_4.png"></p>
+	<p>
+		将包含实现代码的Jar文件拷贝到下面的目录中，并重启Web服务器：
+		&lt;tomcat install path&gt;/webapps/AlpineIlluminator/WEB-INF/lib
+		以下是给出的接口定义：
+	</p>
+	<p><img src="./images/security_config_5.png"></p>
+	<h2>Active Directory认证 </h2>
+<p>当选中Active Directory认证方式后，系统会切换到Active Directory配置界面： <br>
+        <img width="826" height="543" src="images/security_config_7.png"></p>
+	<ol>
+	<ul>
+	  <li>Active Directory服务器的主机、端口信息 </li>
+	  <li>主目录为AD的管理员登录名 </li>
+	  <li>证书为管理员登录密码 </li>
+	  <li>域名 </li>
+</ul>
+	<p>&nbsp;</p>
+</body>
+</html>

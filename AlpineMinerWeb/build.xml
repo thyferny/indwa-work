@@ -1,0 +1,201 @@
+<?xml version="1.0" ?>
+<project name="AlpineMinerWeb" basedir="." default="buildwar">
+
+	<description>
+      Create the WAR file for Alpine Illuminator
+    </description>
+
+	<property name="product" value="AlpineIlluminator" />
+	<property name="path.build.lib" value="WebContent/WEB-INF/lib" />
+	<property name="path.build.class" value="WebContent/WEB-INF/classes" />
+	<property name="path.build.xml" value="WebContent/WEB-INF/web.xml" />
+	<property name="path.build.lib_3rd"  value="build_resource/lib_3rd"/>
+
+
+	<path id="project.class.path">
+		<fileset dir="${path.build.lib}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${path.build.lib_3rd}">
+					<include name="*.jar" />
+				</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="${path.build.class}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${path.build.class}" />
+	</target>
+
+	<target name="javac" depends="init" description="Compile java source">
+		<javac srcdir="src" includes="**" encoding="utf-8" destdir="${path.build.class}" source="1.6" target="1.6" nowarn="true" debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${path.build.class}">
+			<fileset dir="src" excludes="**/*.java" />
+		</copy>
+		 	
+	</target>
+
+	<target name="version">
+		<echo message="3.0" file="ReleaseData/Version" />
+	</target>
+    <path id="builddojo.path">
+      <fileset dir="${path.build.lib}">
+        <include name="**/*.jar"/>
+      </fileset>
+      <pathelement location="${path.build.class}"/>
+    </path>
+	<target name="builddojo" depends="javac" description="Compile dojo source">
+		<java classname="com.alpine.miner.utils.DojoBuild" >
+	         <classpath refid="builddojo.path" />
+            <arg value="-webProjectDir" />
+            <arg value="" /> <!-- should be AlpineMinerWeb directory -->
+            <arg value="-dojoReleaseDirJS" />
+            <arg value="./WebContent/jsRelease" />
+		</java>
+		<chmod perm="755">
+			<fileset dir="./WebContent/js/util/buildscripts">
+				<include name="build.sh" />
+			</fileset>
+		</chmod>
+		<exec executable="./WebContent/js/util/buildscripts/build.sh">
+			<arg value="--profile ./WebContent/js/alpine.profile.js" />
+		</exec>
+        <copy todir="./WebContent/js">
+            <fileset dir="./WebContent/jsRelease"/>
+        </copy>
+        <replace file="./WebContent/alpine/commons/dojoinclude.jsp" token="isDebug: true" value="isDebug: false"/>
+	</target>
+
+	<target name="buildsetup"  >
+        <property name="target_miner_root_dir" value="ReleaseData" />
+
+		<mkdir dir="${target_miner_root_dir}/setup" />
+		<delete>
+				<fileset dir="${target_miner_root_dir}/setup" includes="**/*" />
+		</delete>
+		<!--copy set up files-->
+		<property name="setupDir" value="${target_miner_root_dir}/setup/Greenplum" />
+
+		<mkdir dir="${setupDir}" />
+		<copy todir="${setupDir}" overwrite="yes">
+			<fileset dir="./../AlpineSample/Greenplum/setup" />
+		</copy>
+
+	 
+
+		<!--build alpine_miner_setup.sql and clean the others-->
+		<concat destfile="${setupDir}/alpine_miner_setup.sql" append="true">
+			<fileset dir="${setupDir}/sharedLib" includes="*.sql" />
+		</concat>
+		<delete>
+			<fileset dir="${setupDir}/sharedLib" includes="*.sql" />
+		</delete>
+		<delete file="${setupDir}/sharedLib/create_functions_dev.sh">
+		</delete>
+
+		<!--build Postgres alpine_miner_setup.sql and clean the others-->
+		<property name="setupPostgresDir" value="${target_miner_root_dir}/setup/Postgres" />
+		<mkdir dir="${setupPostgresDir}" />
+		<copy todir="${setupPostgresDir}" overwrite="yes">
+			<fileset dir="./../AlpineSample/Postgres/setup" />
+		</copy>
+
+
+		<!--build Postgrs alpine_miner_setup_postgres.sql -->
+		<concat destfile="${setupPostgresDir}/alpine_miner_setup.sql" append="true">
+			<fileset dir="${setupPostgresDir}/sharedLib" includes="*.sql" />
+		</concat>
+		<delete>
+			<fileset dir="${setupPostgresDir}/sharedLib" includes="*.sql" />
+		</delete>
+
+
+
+
+		<!--build DB2 alpine_miner_setup.sql and clean the others-->
+		<property name="setupDB2Dir" value="${target_miner_root_dir}/setup/DB2" />
+		<mkdir dir="${setupDB2Dir}" />
+		<copy todir="${setupDB2Dir}" overwrite="yes">
+			<fileset dir="./../AlpineSample/DB2/setup" />
+		</copy>
+
+
+		<!--build alpine_miner_setup_db2.sql -->
+		<concat destfile="${setupDB2Dir}/alpine_miner_setup.sql" append="no">
+			<fileset dir="${setupDB2Dir}/sql" includes="alpine_miner_data_type_db2.sql" />
+		</concat>
+		<concat destfile="${setupDB2Dir}/alpine_miner_setup.sql" append="true">
+			<fileset dir="${setupDB2Dir}/sql" includes="*.sql" excludes="alpine_miner_data_type_db2.sql" />
+		</concat>
+		<delete dir="${setupDB2Dir}/sql" />
+
+		<!--build Netezza alpine_miner_setup.sql and clean the others-->
+		<property name="setupNetezzaDir" value="${target_miner_root_dir}/setup/Netezza" />
+		<mkdir dir="${setupNetezzaDir}" />
+		<copy todir="${setupNetezzaDir}" overwrite="yes">
+			<fileset dir="./../AlpineSample/Netezza/setup" />
+		</copy>
+
+
+		<!--build alpine_miner_setup_Netezza.sql -->
+		<concat destfile="${setupNetezzaDir}/alpine_miner_setup.sql" append="no">
+			<fileset dir="${setupNetezzaDir}/sql" includes="dropifexists.sql" />
+		</concat>
+		<concat destfile="${setupNetezzaDir}/alpine_miner_setup.sql" append="true">
+			<fileset dir="${setupNetezzaDir}/sql" includes="*.sql" excludes="dropifexists.sql" />
+		</concat>
+		<delete dir="${setupNetezzaDir}/sql" />
+		
+	 
+		
+		<!--build Oracle alpine_miner_setup.sql and clean the others-->
+		<property name="setupOracleDir" value="${target_miner_root_dir}/setup/Oracle" />
+		<mkdir dir="${setupOracleDir}" />
+		<copy todir="${setupOracleDir}" overwrite="yes">
+			<fileset dir="./../AlpineSample/Oracle/setup" />
+		</copy>
+
+
+
+		<!--build alpine_miner_setup_oracle.sql -->
+		<concat destfile="${setupOracleDir}/alpine_miner_setup_oracle.sql" append="no">
+			<fileset dir="${setupOracleDir}/sql" includes="alpine_miner_oracle_data_type.sql" />
+		</concat>
+		<concat destfile="${setupOracleDir}/alpine_miner_setup_oracle.sql" append="true">
+			<fileset dir="${setupOracleDir}/sql" includes="*.sql" excludes="alpine_miner_oracle_data_type.sql" />
+		</concat>
+		<delete dir="${setupOracleDir}/sql" />
+
+		<!--build alpine_miner_setup_oracle_10g.sql -->
+		<concat destfile="${setupOracleDir}/alpine_miner_setup_oracle_10g.sql" append="no">
+			<fileset dir="${setupOracleDir}/sql_10g" includes="alpine_miner_oracle_data_type.sql" />
+		</concat>
+		<concat destfile="${setupOracleDir}/alpine_miner_setup_oracle_10g.sql" append="true">
+			<fileset dir="${setupOracleDir}/sql_10g" includes="*.sql" excludes="alpine_miner_oracle_data_type.sql" />
+		</concat>
+		<delete dir="${setupOracleDir}/sql_10g" />
+	</target>
+	
+	<target name="buildwar" depends="version, javac, builddojo,buildsetup">	
+		<war basedir="./WebContent" destfile="./ReleaseData/${product}.war" webxml="${path.build.xml}">
+			<exclude name="WEB-INF/**" />
+			<webinf dir="WebContent/WEB-INF/">
+				<include name="**/*" />
+			</webinf>
+
+			<include name="alpine/**" />
+			<include name="css/**" />
+			<include name="resource/**" />
+			<include name="images/**" />
+			<include name="js/**" />
+			<include name="index.jsp" />
+			<include name="favicon.ico" />
+			<include name="Version" />
+		</war>
+	</target>
+
+</project>

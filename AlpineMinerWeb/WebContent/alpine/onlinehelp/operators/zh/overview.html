@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>概览</title>
+</head>
+
+<body style="font-family:Arial, Helvetica, sans-serif">
+<h1>概览</h1>
+<p>
+Alpine 是一个基于Greenplum数据库的数据挖掘工具。由于Greenplum数据库内置的MPP的技术，Alpine 充分利用了MPP的技术，使其具备高效率挖掘海量数据的能力。同时Alpine 支持Oracle、Postgres、DB2、和Netezza数据库的数据处理。
+</p>
+<h3>操作单元</h3>
+<p>Alpine 把数据挖掘定义为一个流程，流程由多个分析器(Operator)组成，分析器是分析流程的基本单元，分析器的分类如下：</p>
+<table border="1" cellspacing="0" cellpadding="0" width="473">
+  <tr>
+    <td width="161"><p align="center"><strong>类别 </strong></p></td>
+    <td width="312"><p align="center"><strong>算法 </strong></p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="4"><p>数据抽取 </p></td>
+    <td width="312"><p>数据表 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>Hadoop文件</p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>复制到数据库</p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>复制到Hadoop</p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="9"><p>数据勘察 </p></td>
+    <td width="312"><p>柱状图预览 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>相关分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313024981"></a>
+      <td width="312"><p>频率分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313024985"></a>
+      <td width="312"><p>直方图分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313024993"></a>
+      <td width="312"><p>信息值分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>散点矩阵分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313024998"></a>
+      <td width="312"><p>单变量分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025006"></a>
+      <td width="312"><p>值分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025014"></a>
+      <td width="312"><p>变量筛选 </p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="12"><p>数据转换 </p></td>
+    <td width="312"><p>表集合 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025025"></a>
+      <td width="312"><p>聚合器 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025052"></a>
+      <td width="312"><p>规范化分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>空值替换分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025063"></a>
+      <td width="312"><p>Numeric转化Text</p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>透视分析 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025076"></a>
+      <td width="312"><p>数据行筛选器 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>列筛选器 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025087"></a>
+      <td width="312"><p>表连接 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>变量器 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>表征权重分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>表征权重生成器 </p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="3"><p align="left">数据抽样</p></td>
+    <td width="312"><p>随机抽样 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025113"></a>
+      <td width="312"><p>分层抽样 </p></td>
+  </tr>
+  <tr> <a name="_Hlk313025133"></a>
+      <td width="312"><p>抽样数据表选择 </p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="17"><p>模型 </p></td>
+    <td width="312"><p>AdaBoost</p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>关联规则分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>分类回归树分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>决策树分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>K-Means</p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>线性回归分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>逻辑回归分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>模型分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>朴素贝叶斯分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>神经网络分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>主成分分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>PLDA分析 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>分类支持向量机 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>新颖检测支持向量机 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>回归支持向量机 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>SVD</p></td>
+  </tr>
+  <tr> <a name="_Hlk313025238"></a>
+      <td width="312"><p>时间序列分析 </p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="13"><p>评分 </p></td>
+    <td width="312"><p>AdaBoost预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>线性回归预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>逻辑回归预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>朴素贝叶斯预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>神经网络预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>PLDA预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>支持向量机预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>时间序列预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>树预测 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>SVD计算器 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>拟合优度 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>提升度 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>ROC</p></td>
+  </tr>
+  <tr>
+    <td width="161" rowspan="3"><p align="left">其他</p></td>
+    <td width="312"><p>可执行SQL</p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>子流程 </p></td>
+  </tr>
+  <tr>
+    <td width="312"><p>注释</p></td>
+  </tr>
+</table>
+</body>
+</html>

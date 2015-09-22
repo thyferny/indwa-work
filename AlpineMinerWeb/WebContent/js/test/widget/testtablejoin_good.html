@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr">
+    
+    <head>
+        <style type="text/css">
+            body, html { font-family:helvetica,arial,sans-serif; font-size:90%; }
+        </style>
+        <script src="../../dojo/dojo.js"
+        djConfig="parseOnLoad: true">
+        </script>
+        <script type="text/javascript">
+            dojo.require("dojox.grid.DataGrid");
+       
+        	dojo.require("dojo.data.ItemFileReadStore");   
+        	dojo.require("dojo.data.ItemFileWriteStore"); 
+
+            dojo.addOnLoad(function() {
+            	var dataTable={items:[{JoinType:"aaa"},
+            	                      {JoinType:"bbb"}]};
+                // our test data store for this example:
+                var store4 	     = new dojo.data.ItemFileReadStore({data: dataTable});
+
+                // set the layout structure:
+                var layout4 = [{
+                    field: 'JoinType',
+                    name: 'Join Type',
+                    width: '60px',
+                    cellType:"dojox.grid.cells.Select",
+                   options:"Join, Left Join,Right Joint",
+                    editable :true
+                    
+                }
+              ];
+
+                // create a new grid:
+                var grid4 = new dojox.grid.DataGrid({
+                    query: {
+                        JoinType: '*'
+                    },
+                    store: store4,
+                    clientSort: true,
+                    rowSelector: '20px',
+                    structure: layout4
+                },
+                document.createElement('div'));
+
+                // append the new grid to the div "gridContainer4":
+                dojo.byId("gridContainer4").appendChild(grid4.domNode);
+
+                // Call startup, in order to render the grid:
+                grid4.startup();
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="../../dijit/themes/claro/claro.css"
+        />
+        <style type="text/css">
+            @import "../../dojox/grid/resources/Grid.css";
+            @import "../../dojox/grid/resources/claroGrid.css";
+            .dojoxGrid table { margin: 0; } html, body { width: 100%; height: 100%;
+            margin: 0; }
+        </style>
+    </head>
+    
+    <body class=" claro ">
+    <table>
+    <tr><td> <div id="tableAliasDiv" style="width: 100%; height: 100%;">
+    <a>table alias</a>
+        </div></td>
+    <td> <div id="joinColumnsDiv" style="width: 100%; height: 100%;">
+        <a>join colulmns</a>
+        </div></td></tr>
+    <tr >   
+        <td colspan=2 height=200 width=400> 
+        <div id="gridContainer4" style="width: 100%; height: 100%;">
+        </div>
+        </td></tr>
+    </table>
+ 
+        <!-- NOTE: the following script tag is not intended for usage in real
+        world!! it is part of the CodeGlass and you should just remove it when
+        you use the code -->
+        <script type="text/javascript">
+            dojo.addOnLoad(function() {
+                if (document.pub) {
+                    document.pub();
+                }
+            });
+        </script>
+    </body>
+
+</html>

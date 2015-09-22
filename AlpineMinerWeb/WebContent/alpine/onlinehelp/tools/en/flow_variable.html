@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Worklow Variables</title>
+</head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+	<h1>Workflow Variables</h1>
+	<p>
+		Users are able to define variables for a workflow, which can then be used within SQL and Pig statements and other parameters defined for the operators of the workflow.
+        The value of the workflow variable will be substituted appropriately at runtime giving more flexibility at design time.
+	</p>
+    <p>
+        Each workflow variable begins with the '@' symbol. and each flow contains 2 variables by default: @default_schema (used as the default schema for database output)
+        and @default_prefix (used as the default prefix for output tables and output files).
+        The default variables cannot be deleted, but their values can be changed.
+    </p>
+    <ul>
+        <li>To define Workflow Variables, open a workflow and click Workflow Variables in the Actions drop-down.
+        <br/><img src="./images/variable_setting_1.png"></li>
+        <li>The dialog displays the currently configured variables for the open workflow.</li>
+        <li>Double-click a variable to update its value.</li>
+        <li>Click create to specify a new workflow variable.</li>
+        <li>Select a variable with a single click and click Delete to remove that variable.</li>
+        <li>For flows containing a sub-flow, the variables of the sub-flow will also appear in this dialog.</li>
+        <ul>
+            <li>The user can only change the value of sub-flow variables.</li>
+            <li>If a variable in the sub-flow has the same name as a variable in the parent flow, the user will be warned that the value will be overridden.</li>
+        </ul>
+        <li>Click OK to save the workflow variables, or click Cancel to discard changes.
+        <br/><img src="./images/variable_setting_2.png"></li>
+    </ul>
+</body>
+</html>

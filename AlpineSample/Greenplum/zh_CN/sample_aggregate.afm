@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="40" Y="53" name="数据表" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719718562">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="aggregatetest"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="294" Y="64" name="聚合器" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1295499467749">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="aggt_view"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="shop_id"/>
+<groupBy columnName="product_id"/>
+<parentFieldList columnName="shop_id"/>
+<parentFieldList columnName="product_id"/>
+<parentFieldList columnName="sales"/>
+<parentFieldList columnName="sales_return"/>
+<AggregateField columnName="sales" dataType="DOUBLE PRECISION" expression="sum(&quot;sales&quot;)"/>
+<AggregateField columnName="sales_return" dataType="DOUBLE PRECISION" expression="sum(&quot;sales_return&quot;)"/>
+<AggregateField columnName="net_sales" dataType="DOUBLE PRECISION" expression="sum(sales+sales_return)"/>
+</AggregateFieldsModel>
+<WindowFieldsModel>
+<WindowField columnName="rank" dataType="BIGINT" function="rank()" specification="partition by shop_id order by sum(sales+sales_return) desc"/>
+</WindowFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="aggregatetest"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="shop_id" type="INTEGER"/>
+<Field name="product_id" type="INTEGER"/>
+<Field name="sales" type="DOUBLE PRECISION"/>
+<Field name="sales_return" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表" target="聚合器"/>
+</Process>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="1.00">
+<Operator X="62" Y="50" name="Db Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719865828">
+<Parameter key="system" value="Oracle"/>
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="IRIS"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="IRIS"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="A1" type="NUMBER(5,1)"/>
+<Field name="A2" type="NUMBER(5,1)"/>
+<Field name="A3" type="NUMBER(5,1)"/>
+<Field name="A4" type="NUMBER(5,1)"/>
+<Field name="ID" type="VARCHAR2(10)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="190" Y="221" name="Row Filter" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1277719865843">
+<Parameter key="whereClause" value="A1 &gt; 6 AND A2 &lt;3 AND A3 &gt;4"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="columnNames" value=""/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="iris_view"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="IRIS"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="A1" type="NUMBER(5,1)"/>
+<Field name="A2" type="NUMBER(5,1)"/>
+<Field name="A3" type="NUMBER(5,1)"/>
+<Field name="A4" type="NUMBER(5,1)"/>
+<Field name="ID" type="VARCHAR2(10)"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="iris_view"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="A1" type="NUMBER(5,1)"/>
+<Field name="A2" type="NUMBER(5,1)"/>
+<Field name="A3" type="NUMBER(5,1)"/>
+<Field name="A4" type="NUMBER(5,1)"/>
+<Field name="ID" type="VARCHAR2(10)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Link source="Db Table" target="Row Filter"/>
+</Process>

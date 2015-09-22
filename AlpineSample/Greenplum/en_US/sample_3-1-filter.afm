@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="40" Y="95" name="credit_card_util" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324580117975_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="credit_card_util"/>
+<Parameter key="userName" value="gpadmin"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="201" Y="95" name="qtr_averages" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1324580722032">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_avg"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="period_00"/>
+<selectedColumnName columnName="period_01"/>
+<selectedColumnName columnName="period_02"/>
+<selectedColumnName columnName="period_03"/>
+<selectedColumnName columnName="period_04"/>
+<selectedColumnName columnName="period_05"/>
+<selectedColumnName columnName="period_06"/>
+<selectedColumnName columnName="period_07"/>
+<selectedColumnName columnName="period_08"/>
+<selectedColumnName columnName="period_09"/>
+<selectedColumnName columnName="period_10"/>
+<selectedColumnName columnName="period_11"/>
+<DerivedFieldItem columnName="avg_year" dataType="NUMERIC" expression="( period_00 + period_01 + period_02 + period_03 + period_04 + period_05 + period_06 + period_07 + period_08 + period_09 + period_10 + period_11 )/12"/>
+<DerivedFieldItem columnName="qtr_11_09" dataType="NUMERIC" expression="(period_11 + period_10 + period_09) / 3"/>
+<DerivedFieldItem columnName="qtr_08_06" dataType="NUMERIC" expression="(period_08 + period_07 + period_06) / 3"/>
+<DerivedFieldItem columnName="qtr_05_03" dataType="NUMERIC" expression="(period_05 + period_04 + period_03) / 3"/>
+<DerivedFieldItem columnName="qtr_02_00" dataType="NUMERIC" expression="(period_02 + period_01 + period_00) / 3"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="credit_card_util"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_00" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="370" Y="95" name="qtr_differences" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1325028285036">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_qtr_differences"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="period_00"/>
+<selectedColumnName columnName="period_01"/>
+<selectedColumnName columnName="period_02"/>
+<selectedColumnName columnName="period_03"/>
+<selectedColumnName columnName="period_04"/>
+<selectedColumnName columnName="period_05"/>
+<selectedColumnName columnName="period_06"/>
+<selectedColumnName columnName="period_07"/>
+<selectedColumnName columnName="period_08"/>
+<selectedColumnName columnName="period_09"/>
+<selectedColumnName columnName="period_10"/>
+<selectedColumnName columnName="period_11"/>
+<selectedColumnName columnName="avg_year"/>
+<selectedColumnName columnName="qtr_11_09"/>
+<selectedColumnName columnName="qtr_08_06"/>
+<selectedColumnName columnName="qtr_05_03"/>
+<selectedColumnName columnName="qtr_02_00"/>
+<DerivedFieldItem columnName="qtr_d1" dataType="INTEGER" expression="qtr_08_06 - qtr_11_09"/>
+<DerivedFieldItem columnName="qtr_d2" dataType="INTEGER" expression="qtr_05_03 - qtr_08_06"/>
+<DerivedFieldItem columnName="qtr_d3" dataType="INTEGER" expression="qtr_02_00 - qtr_05_03"/>
+<DerivedFieldItem columnName="qtr_d4" dataType="INTEGER" expression="qtr_02_00 - qtr_11_09"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_avg"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_00" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="499" Y="95" name="nonzero_year" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1325028437637">
+<Parameter key="whereClause" value="avg_year &lt;&gt; 0"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_nonzero_year"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_qtr_differences"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_00" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+<Field name="qtr_d1" type="INTEGER"/>
+<Field name="qtr_d2" type="INTEGER"/>
+<Field name="qtr_d3" type="INTEGER"/>
+<Field name="qtr_d4" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="608" Y="95" name="pcnt_change" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1325028501025">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_pcnt_change"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="avg_year"/>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="qtr_02_00"/>
+<selectedColumnName columnName="qtr_05_03"/>
+<selectedColumnName columnName="qtr_08_06"/>
+<selectedColumnName columnName="qtr_11_09"/>
+<DerivedFieldItem columnName="pcnt_change" dataType="NUMERIC" expression="(qtr_d4*1.0) / (avg_year*1.0)"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_nonzero_year"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="period_00" type="INTEGER"/>
+<Field name="period_01" type="INTEGER"/>
+<Field name="period_02" type="INTEGER"/>
+<Field name="period_03" type="INTEGER"/>
+<Field name="period_04" type="INTEGER"/>
+<Field name="period_05" type="INTEGER"/>
+<Field name="period_06" type="INTEGER"/>
+<Field name="period_07" type="INTEGER"/>
+<Field name="period_08" type="INTEGER"/>
+<Field name="period_09" type="INTEGER"/>
+<Field name="period_10" type="INTEGER"/>
+<Field name="period_11" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+<Field name="qtr_d1" type="INTEGER"/>
+<Field name="qtr_d2" type="INTEGER"/>
+<Field name="qtr_d3" type="INTEGER"/>
+<Field name="qtr_d4" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="883" Y="50" name="increasing use" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1325028554287">
+<Parameter key="whereClause" value=" pcnt_change &gt; .25"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_use_increase"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_join_cust"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="edu" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="pcnt_change" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="882" Y="140" name="declining use" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1325028608992">
+<Parameter key="whereClause" value=" pcnt_change &lt; -.25"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_use_decline"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_join_cust"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="edu" type="INTEGER"/>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="pcnt_change" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="723" Y="97" name="join growing" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1325028808933">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="util_join_cust"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="demo_demographics_a" operID="1325028828852_0" schema="demo" table="demographics"/>
+<JoinTableModel alias="public_util_pcnt_change_a" operID="1325028501025" schema="demo" table="util_pcnt_change"/>
+<JoinColumnModel columnName="id" columnType="BIGINT" newColumnName="id" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="name" columnType="TEXT" newColumnName="name" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="age" columnType="BIGINT" newColumnName="age" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="edu" columnType="INTEGER" newColumnName="edu" tableAlias="demo_demographics_a"/>
+<JoinColumnModel columnName="avg_year" columnType="NUMERIC" newColumnName="avg_year" tableAlias="public_util_pcnt_change_a"/>
+<JoinColumnModel columnName="qtr_02_00" columnType="NUMERIC" newColumnName="qtr_02_00" tableAlias="public_util_pcnt_change_a"/>
+<JoinColumnModel columnName="qtr_05_03" columnType="NUMERIC" newColumnName="qtr_05_03" tableAlias="public_util_pcnt_change_a"/>
+<JoinColumnModel columnName="qtr_08_06" columnType="NUMERIC" newColumnName="qtr_08_06" tableAlias="public_util_pcnt_change_a"/>
+<JoinColumnModel columnName="qtr_11_09" columnType="NUMERIC" newColumnName="qtr_11_09" tableAlias="public_util_pcnt_change_a"/>
+<JoinColumnModel columnName="pcnt_change" columnType="NUMERIC" newColumnName="pcnt_change" tableAlias="public_util_pcnt_change_a"/>
+<JoinConditionModel andOr="" column1="demo_demographics_a.id" column2="public_util_pcnt_change_a.id" condition="=" joinType="JOIN" tableAlias1="demo_demographics_a" tableAlias2="public_util_pcnt_change_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="demographics"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="BIGINT"/>
+<Field name="name" type="TEXT"/>
+<Field name="age" type="BIGINT"/>
+<Field name="num_dep" type="INTEGER"/>
+<Field name="edu" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="schema" value="public"/>
+<Parameter key="table" value="util_pcnt_change"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="gpadmin"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="avg_year" type="NUMERIC"/>
+<Field name="id" type="BIGINT"/>
+<Field name="qtr_02_00" type="NUMERIC"/>
+<Field name="qtr_05_03" type="NUMERIC"/>
+<Field name="qtr_08_06" type="NUMERIC"/>
+<Field name="qtr_11_09" type="NUMERIC"/>
+<Field name="pcnt_change" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="718" Y="224" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1325028828852_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="demographics"/>
+<Parameter key="userName" value="gpadmin"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.148:5432/storyboards"/>
+<Parameter key="password" value="YWRsc0Rh"/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Link source="credit_card_util" target="qtr_averages"/>
+<Link source="qtr_averages" target="qtr_differences"/>
+<Link source="qtr_differences" target="nonzero_year"/>
+<Link source="demographics" target="join growing"/>
+<Link source="pcnt_change" target="join growing"/>
+<Link source="join growing" target="increasing use"/>
+<Link source="join growing" target="declining use"/>
+<Link source="nonzero_year" target="pcnt_change"/>
+</Process>

@@ -1,0 +1,13 @@
+#
+#Fri Nov 18 19:46:47 GMT+08:00 2011
+sys.debug_level=Info
+alg.distinct_value_count=100000
+alg.va_distinct_value_count=1000
+alg.decimal_precision=4
+alg.hd_local_data_size_threshold=100
+ui.add_outputtable_prefix=false
+db.connection_timeout=15
+ui.max_table_lines=100
+ui.max_scatter_points = 60
+ui.max_timeseries_points = 30
+ui.max_cluster_points = 60

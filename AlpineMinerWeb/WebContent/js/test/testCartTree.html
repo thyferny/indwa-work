@@ -1,0 +1,89 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>cart tree chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/result.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/treechart.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+ <script type="text/javascript"  src="../alpine/visual/gfxToolTip.js"></script>	
+ 
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+		 	dojo.require("dijit.Tooltip"); 
+			dojo.require("dojox.gfx");
+			dojo.require("dojox.gfx.move");
+			dojo.require("dojo.colors");
+			dojo.require("dijit.layout.ContentPane");
+			dojo.require("dijit.Dialog");
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+ 
+			var result={"visualData":{"XMinorTickStep":"","allChildNodes":
+				[{"childNodes":[],"label":"output sedim...","nodeType":0,"toolTip":"output sediments","xGrid":2,"yGrid":0},
+ {"childNodes":[],"label":"input sedime...","nodeType":0,"toolTip":"input sediments to plant","xGrid":1,"yGrid":1},
+ {"childNodes":[],"label":"no","nodeType":1,"toolTip":"Count(yes): 1\nCount(no): 6\n","xGrid":0,"yGrid":2},
+   {"childNodes":[],"label":"yes","nodeType":1,"toolTip":"Count(yes): 74\nCount(no): 0\n","xGrid":2,"yGrid":2},
+   {"childNodes":[],"label":"input sedime...","nodeType":0,"toolTip":"input sediments to plant","xGrid":4,"yGrid":1},
+  {"childNodes":[],"label":"no","nodeType":1,"toolTip":"Count(yes): 0\nCount(no): 10\n","xGrid":3,"yGrid":2},
+  {"childNodes":[],"label":"input suspen...","nodeType":0,"toolTip":"input suspended solids to plant","xGrid":5,"yGrid":2},
+ {"childNodes":[],"label":"yes","nodeType":1,"toolTip":"Count(yes): 2\nCount(no): 0\n","xGrid":4,"yGrid":3},
+  {"childNodes":[],"label":"no","nodeType":1,"toolTip":"Count(yes): 0\nCount(no): 2\n","xGrid":6,"yGrid":3}],
+  "description":"","hGrid":false,"height":0,"links":[{"endIndex":2,"label":" <= 2.25","startIndex":1},
+ {"endIndex":3,"label":" > 2.25","startIndex":1},
+   {"endIndex":7,"label":" <= 211.0","startIndex":6},
+  {"endIndex":8,"label":" > 211.0","startIndex":6},
+	  {"endIndex":5,"label":" <= 5.25","startIndex":4},
+	 {"endIndex":6,"label":" > 5.25","startIndex":4},
+	  {"endIndex":1,"label":" <= 0.04","startIndex":0},
+  {"endIndex":4,"label":" > 0.04","startIndex":0}],
+  "markers":false,"maxX":"","maxY":"","minX":"","minY":"",
+  "title":"Cart Tree","vGrid":false,"visualizationType":3,
+  "width":0,"xAxisTitle":"","xLabels":[],
+  "xMajorTickStep":"","yAxisTitle":"",
+  "yLabels":[],"yMajorTickStep":"","yMinorTickStep":""},
+  "visualType":3,"out_id":1.3119219190720479E12,"out_title":"Cart Tree"};
+			var chart;
+			makeObjects = function(){
+				
+				
+				fillOutPutPan( dijit.byId("chart"),
+						result				
+				);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body  >
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 1800px; height: 500px;"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

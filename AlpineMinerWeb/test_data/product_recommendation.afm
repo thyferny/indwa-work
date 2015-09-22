@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="2.3">
+<Operator X="216" Y="133" name="Product Recommendation" type="com.alpine.miner.gef.runoperator.solutions.ProductRecommendationOperator" uuid="1301413503843">
+<Parameter key="customerTable" value="&quot;demo&quot;.&quot;golfnew&quot;"/>
+<Parameter key="dropIfExist" value="yes"/>
+<Parameter key="scoreThreshold" value="1"/>
+<Parameter key="outputTable" value="recommendation"/>
+<Parameter key="cohortsAbove" value="1"/>
+<Parameter key="customerIDColumn" value="outlook"/>
+<Parameter key="customerProductCountColumn" value="temperature"/>
+<Parameter key="maxRecords" value="10"/>
+<Parameter key="selectionIDColumn" value="outlook"/>
+<Parameter key="cohorts" value="1:-Infinity:0;2:0:Infinity"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="selectionTable" value="&quot;demo&quot;.&quot;golfnew&quot;"/>
+<Parameter key="customerValueColumn" value="temperature"/>
+<Parameter key="minProductCount" value="10"/>
+<Parameter key="simThreshold" value="0.9"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="cohortsBelow" value="1"/>
+<Parameter key="customerProductColumn" value="outlook"/>
+<Parameter key="targetCohort" value="4"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="golfnew"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="outlook" type="TEXT"/>
+<Field name="temperature" type="INTEGER"/>
+<Field name="humidity" type="INTEGER"/>
+<Field name="wind" type="TEXT"/>
+<Field name="play" type="TEXT"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="golfnew"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="outlook" type="TEXT"/>
+<Field name="temperature" type="INTEGER"/>
+<Field name="humidity" type="INTEGER"/>
+<Field name="wind" type="TEXT"/>
+<Field name="play" type="TEXT"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="71" Y="123" name="hh_selection" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1301413545312_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="golfnew"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+</Operator>
+<Operator X="87" Y="33" name="data_jan" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1301413559312_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="golfnew"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+</Operator>
+<Operator X="185" Y="274" name="Product Recommendation Evaluation" type="com.alpine.miner.gef.runoperator.solutions.ProductRecommendationEvaluationOperator" uuid="1301414076921">
+<Parameter key="postIdColumn" value="outlook"/>
+<Parameter key="preTable" value="&quot;demo&quot;.&quot;golfnew&quot;"/>
+<Parameter key="recommendationProductColumn" value="outlook"/>
+<Parameter key="recommendationIdColumn" value="outlook"/>
+<Parameter key="postValueColumn" value="temperature"/>
+<Parameter key="postTable" value="&quot;demo&quot;.&quot;golfnew&quot;"/>
+<Parameter key="recommendationTable" value="&quot;demo&quot;.&quot;golfnew&quot;"/>
+<Parameter key="preValueColumn" value="temperature"/>
+<Parameter key="preIdColumn" value="temperature"/>
+<Parameter key="postProductColumn" value="outlook"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="recommendation"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="outlook" type="TEXT"/>
+<Field name="rank" type=""/>
+<Field name="prod_id" type=""/>
+<Field name="outlook" type="TEXT"/>
+<Field name="score" type=""/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="golfnew"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="outlook" type="TEXT"/>
+<Field name="temperature" type="INTEGER"/>
+<Field name="humidity" type="INTEGER"/>
+<Field name="wind" type="TEXT"/>
+<Field name="play" type="TEXT"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="golfnew"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="outlook" type="TEXT"/>
+<Field name="temperature" type="INTEGER"/>
+<Field name="humidity" type="INTEGER"/>
+<Field name="wind" type="TEXT"/>
+<Field name="play" type="TEXT"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="85" Y="321" name="post_data" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1301414084358_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="golfnew"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+</Operator>
+<Operator X="93" Y="227" name="pre" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1301414086562_0">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="golfnew"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5556/miner_demo"/>
+</Operator>
+<Link source="hh_selection" target="Product Recommendation"/>
+<Link source="Product Recommendation" target="Product Recommendation Evaluation"/>
+<Link source="pre" target="Product Recommendation Evaluation"/>
+<Link source="post_data" target="Product Recommendation Evaluation"/>
+<Link source="data_jan" target="Product Recommendation"/>
+</Process>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Robbie Gill" Version="3.0">
+<Operator X="40" Y="95" name="credit_card_util" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1324580117975_0">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="CREDIT_CARD_UTIL"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="201" Y="95" name="qtr_averages" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1324580722032">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_AVG"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="PERIOD_10"/>
+<selectedColumnName columnName="PERIOD_09"/>
+<selectedColumnName columnName="PERIOD_08"/>
+<selectedColumnName columnName="PERIOD_07"/>
+<selectedColumnName columnName="PERIOD_06"/>
+<selectedColumnName columnName="PERIOD_05"/>
+<selectedColumnName columnName="PERIOD_04"/>
+<selectedColumnName columnName="PERIOD_03"/>
+<selectedColumnName columnName="PERIOD_02"/>
+<selectedColumnName columnName="PERIOD_01"/>
+<selectedColumnName columnName="PERIOD_00"/>
+<selectedColumnName columnName="PERIOD_11"/>
+<selectedColumnName columnName="ID"/>
+<DerivedFieldItem columnName="AVG_YEAR" dataType="NLOB" expression="( PERIOD_00 + PERIOD_01 + PERIOD_02 + PERIOD_03 + PERIOD_04 + PERIOD_05 + PERIOD_06 + PERIOD_07 + PERIOD_08 + PERIOD_09 + PERIOD_10 + PERIOD_11 )/12"/>
+<DerivedFieldItem columnName="QTR_11_09" dataType="NLOB" expression="(PERIOD_11 + PERIOD_10 + PERIOD_09) / 3"/>
+<DerivedFieldItem columnName="QTR_08_06" dataType="NLOB" expression="(PERIOD_08 + PERIOD_07 + PERIOD_06) / 3"/>
+<DerivedFieldItem columnName="QTR_05_03" dataType="NLOB" expression="(PERIOD_05 + PERIOD_04 + PERIOD_03) / 3"/>
+<DerivedFieldItem columnName="QTR_02_00" dataType="NLOB" expression="(PERIOD_02 + PERIOD_01 + PERIOD_00) / 3"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="CREDIT_CARD_UTIL"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="PERIOD_11" type="NUMBER(22,0)"/>
+<Field name="PERIOD_10" type="NUMBER(22,0)"/>
+<Field name="PERIOD_09" type="NUMBER(22,0)"/>
+<Field name="PERIOD_08" type="NUMBER(22,0)"/>
+<Field name="PERIOD_07" type="NUMBER(22,0)"/>
+<Field name="PERIOD_06" type="NUMBER(22,0)"/>
+<Field name="PERIOD_05" type="NUMBER(22,0)"/>
+<Field name="PERIOD_04" type="NUMBER(22,0)"/>
+<Field name="PERIOD_03" type="NUMBER(22,0)"/>
+<Field name="PERIOD_02" type="NUMBER(22,0)"/>
+<Field name="PERIOD_01" type="NUMBER(22,0)"/>
+<Field name="PERIOD_00" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="370" Y="95" name="qtr_differences" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1325028285036">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_QTR_DIFF"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="PERIOD_10"/>
+<selectedColumnName columnName="PERIOD_09"/>
+<selectedColumnName columnName="PERIOD_08"/>
+<selectedColumnName columnName="PERIOD_07"/>
+<selectedColumnName columnName="PERIOD_06"/>
+<selectedColumnName columnName="PERIOD_05"/>
+<selectedColumnName columnName="PERIOD_04"/>
+<selectedColumnName columnName="PERIOD_03"/>
+<selectedColumnName columnName="PERIOD_02"/>
+<selectedColumnName columnName="PERIOD_01"/>
+<selectedColumnName columnName="PERIOD_00"/>
+<selectedColumnName columnName="PERIOD_11"/>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="AVG_YEAR"/>
+<selectedColumnName columnName="QTR_11_09"/>
+<selectedColumnName columnName="QTR_08_06"/>
+<selectedColumnName columnName="QTR_05_03"/>
+<selectedColumnName columnName="QTR_02_00"/>
+<DerivedFieldItem columnName="QTR_D1" dataType="INTEGER" expression="QTR_08_06 - QTR_11_09"/>
+<DerivedFieldItem columnName="QTR_D2" dataType="INTEGER" expression="QTR_05_03 - QTR_08_06"/>
+<DerivedFieldItem columnName="QTR_D3" dataType="INTEGER" expression="QTR_02_00 - QTR_05_03"/>
+<DerivedFieldItem columnName="QTR_D4" dataType="INTEGER" expression="QTR_02_00 - QTR_11_09"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="UTIL_AVG"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="PERIOD_10" type="NUMBER(22,0)"/>
+<Field name="PERIOD_09" type="NUMBER(22,0)"/>
+<Field name="PERIOD_08" type="NUMBER(22,0)"/>
+<Field name="PERIOD_07" type="NUMBER(22,0)"/>
+<Field name="PERIOD_06" type="NUMBER(22,0)"/>
+<Field name="PERIOD_05" type="NUMBER(22,0)"/>
+<Field name="PERIOD_04" type="NUMBER(22,0)"/>
+<Field name="PERIOD_03" type="NUMBER(22,0)"/>
+<Field name="PERIOD_02" type="NUMBER(22,0)"/>
+<Field name="PERIOD_01" type="NUMBER(22,0)"/>
+<Field name="PERIOD_00" type="NUMBER(22,0)"/>
+<Field name="PERIOD_11" type="NUMBER(22,0)"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="AVG_YEAR" type="NLOB"/>
+<Field name="QTR_11_09" type="NLOB"/>
+<Field name="QTR_08_06" type="NLOB"/>
+<Field name="QTR_05_03" type="NLOB"/>
+<Field name="QTR_02_00" type="NLOB"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="499" Y="95" name="nonzero_year" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1325028437637">
+<Parameter key="whereClause" value="AVG_YEAR &lt;&gt; 0"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_NONZERO_YEAR"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="UTIL_QTR_DIFF"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="PERIOD_10" type="NUMBER(22,0)"/>
+<Field name="PERIOD_09" type="NUMBER(22,0)"/>
+<Field name="PERIOD_08" type="NUMBER(22,0)"/>
+<Field name="PERIOD_07" type="NUMBER(22,0)"/>
+<Field name="PERIOD_06" type="NUMBER(22,0)"/>
+<Field name="PERIOD_05" type="NUMBER(22,0)"/>
+<Field name="PERIOD_04" type="NUMBER(22,0)"/>
+<Field name="PERIOD_03" type="NUMBER(22,0)"/>
+<Field name="PERIOD_02" type="NUMBER(22,0)"/>
+<Field name="PERIOD_01" type="NUMBER(22,0)"/>
+<Field name="PERIOD_00" type="NUMBER(22,0)"/>
+<Field name="PERIOD_11" type="NUMBER(22,0)"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="AVG_YEAR" type="NLOB"/>
+<Field name="QTR_11_09" type="NLOB"/>
+<Field name="QTR_08_06" type="NLOB"/>
+<Field name="QTR_05_03" type="NLOB"/>
+<Field name="QTR_02_00" type="NLOB"/>
+<Field name="QTR_D1" type="INTEGER"/>
+<Field name="QTR_D2" type="INTEGER"/>
+<Field name="QTR_D3" type="INTEGER"/>
+<Field name="QTR_D4" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="608" Y="95" name="pcnt_change" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1325028501025">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_PCNT_CHANGE"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="AVG_YEAR"/>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="QTR_02_00"/>
+<selectedColumnName columnName="QTR_05_03"/>
+<selectedColumnName columnName="QTR_08_06"/>
+<selectedColumnName columnName="QTR_11_09"/>
+<DerivedFieldItem columnName="PCNT_CHANGE" dataType="NLOB" expression="(QTR_D4*1.0) / (AVG_YEAR*1.0)"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="UTIL_NONZERO_YEAR"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="PERIOD_10" type="NUMBER(22,0)"/>
+<Field name="PERIOD_09" type="NUMBER(22,0)"/>
+<Field name="PERIOD_08" type="NUMBER(22,0)"/>
+<Field name="PERIOD_07" type="NUMBER(22,0)"/>
+<Field name="PERIOD_06" type="NUMBER(22,0)"/>
+<Field name="PERIOD_05" type="NUMBER(22,0)"/>
+<Field name="PERIOD_04" type="NUMBER(22,0)"/>
+<Field name="PERIOD_03" type="NUMBER(22,0)"/>
+<Field name="PERIOD_02" type="NUMBER(22,0)"/>
+<Field name="PERIOD_01" type="NUMBER(22,0)"/>
+<Field name="PERIOD_00" type="NUMBER(22,0)"/>
+<Field name="PERIOD_11" type="NUMBER(22,0)"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="AVG_YEAR" type="NLOB"/>
+<Field name="QTR_11_09" type="NLOB"/>
+<Field name="QTR_08_06" type="NLOB"/>
+<Field name="QTR_05_03" type="NLOB"/>
+<Field name="QTR_02_00" type="NLOB"/>
+<Field name="QTR_D1" type="INTEGER"/>
+<Field name="QTR_D2" type="INTEGER"/>
+<Field name="QTR_D3" type="INTEGER"/>
+<Field name="QTR_D4" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="883" Y="50" name="increasing use" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1325028554287">
+<Parameter key="whereClause" value="PCNT_CHANGE &gt; .25"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_USE_INCREASE"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="UTIL_JOIN_CUST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+<Field name="AVG_YEAR" type="NLOB"/>
+<Field name="QTR_02_00" type="NLOB"/>
+<Field name="QTR_05_03" type="NLOB"/>
+<Field name="QTR_08_06" type="NLOB"/>
+<Field name="QTR_11_09" type="NLOB"/>
+<Field name="PCNT_CHANGE" type="NLOB"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="882" Y="140" name="declining use" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1325028608992">
+<Parameter key="whereClause" value="PCNT_CHANGE &lt; -.25"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_USE_DECREASE"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="UTIL_JOIN_CUST"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(0,-127)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(0,-127)"/>
+<Field name="EDU" type="NUMBER(0,-127)"/>
+<Field name="AVG_YEAR" type="NLOB"/>
+<Field name="QTR_02_00" type="NLOB"/>
+<Field name="QTR_05_03" type="NLOB"/>
+<Field name="QTR_08_06" type="NLOB"/>
+<Field name="QTR_11_09" type="NLOB"/>
+<Field name="PCNT_CHANGE" type="NLOB"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="723" Y="97" name="join growing" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1325028808933">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="UTIL_JOIN_CUST"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="MINER_DEMO_DEMOGRAPHICS_a" operID="1325028828852_0" schema="MINER_DEMO" table="DEMOGRAPHICS"/>
+<JoinTableModel alias="MINER_DEMO_UTIL_PCNT_CHANGE_a" operID="1325028501025" schema="MINER_DEMO" table="UTIL_PCNT_CHANGE"/>
+<JoinColumnModel columnName="ID" columnType="NUMBER(0,-127)" newColumnName="ID" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="NAME" columnType="VARCHAR2(30)" newColumnName="NAME" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="AGE" columnType="NUMBER(0,-127)" newColumnName="AGE" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="EDU" columnType="NUMBER(0,-127)" newColumnName="EDU" tableAlias="MINER_DEMO_DEMOGRAPHICS_a"/>
+<JoinColumnModel columnName="AVG_YEAR" columnType="NLOB" newColumnName="AVG_YEAR" tableAlias="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+<JoinColumnModel columnName="QTR_02_00" columnType="NLOB" newColumnName="QTR_02_00" tableAlias="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+<JoinColumnModel columnName="QTR_05_03" columnType="NLOB" newColumnName="QTR_05_03" tableAlias="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+<JoinColumnModel columnName="QTR_08_06" columnType="NLOB" newColumnName="QTR_08_06" tableAlias="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+<JoinColumnModel columnName="QTR_11_09" columnType="NLOB" newColumnName="QTR_11_09" tableAlias="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+<JoinColumnModel columnName="PCNT_CHANGE" columnType="NLOB" newColumnName="PCNT_CHANGE" tableAlias="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+<JoinConditionModel andOr="" column1="MINER_DEMO_DEMOGRAPHICS_a.ID" column2="MINER_DEMO_UTIL_PCNT_CHANGE_a.ID" condition="=" joinType="JOIN" tableAlias1="MINER_DEMO_DEMOGRAPHICS_a" tableAlias2="MINER_DEMO_UTIL_PCNT_CHANGE_a"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DEMOGRAPHICS"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="NAME" type="VARCHAR2(30)"/>
+<Field name="AGE" type="NUMBER(22,0)"/>
+<Field name="NUM_DEP" type="NUMBER(22,0)"/>
+<Field name="EDU" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="UTIL_PCNT_CHANGE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="AVG_YEAR" type="NLOB"/>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="QTR_02_00" type="NLOB"/>
+<Field name="QTR_05_03" type="NLOB"/>
+<Field name="QTR_08_06" type="NLOB"/>
+<Field name="QTR_11_09" type="NLOB"/>
+<Field name="PCNT_CHANGE" type="NLOB"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="718" Y="224" name="demographics" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1325028828852_0">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="DEMOGRAPHICS"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Link source="credit_card_util" target="qtr_averages"/>
+<Link source="demographics" target="join growing"/>
+<Link source="join growing" target="increasing use"/>
+<Link source="join growing" target="declining use"/>
+<Link source="qtr_averages" target="qtr_differences"/>
+<Link source="qtr_differences" target="nonzero_year"/>
+<Link source="nonzero_year" target="pcnt_change"/>
+<Link source="pcnt_change" target="join growing"/>
+</Process>

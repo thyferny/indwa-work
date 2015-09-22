@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="105" Y="170" name="store" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1322820035895_0">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="store"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="246" Y="170" name="SVD" type="com.alpine.miner.gef.runoperator.svd.SVDLanczosOperator" uuid="1322820039583">
+<Parameter key="dependentColumn" value="value"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="colName" value="user_id"/>
+<Parameter key="rowName" value="item"/>
+<Parameter key="numFeatures" value="7"/>
+<Parameter key="UmatrixSchema" value="demo"/>
+<Parameter key="UmatrixTable" value="svd_u"/>
+<Parameter key="UmatrixDropIfExist" value="Yes"/>
+<Parameter key="VmatrixSchema" value="demo"/>
+<Parameter key="VmatrixTable" value="svd_v"/>
+<Parameter key="VmatrixDropIfExist" value="Yes"/>
+<Parameter key="singularValueSchema" value="demo"/>
+<Parameter key="singularValueTable" value="svd_s"/>
+<Parameter key="singularValueDropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="store"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="user_id" type="INTEGER"/>
+<Field name="item" type="TEXT"/>
+<Field name="value" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+<Model>rO0ABXNyACpjb20uYWxwaW5lLmRhdGFtaW5pbmcuYXBpLmltcGwuRW5naW5lTW9kZWxyBs7TjRuF&#13;
+xwIAA0wABW1vZGVsdAAmTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9vcGVyYXRvci9Nb2RlbDtMAAlt&#13;
+b2RlbFR5cGV0ABJMamF2YS9sYW5nL1N0cmluZztMAARuYW1lcQB+AAJ4cHNyACtjb20uYWxwaW5l&#13;
+LmRhdGFtaW5pbmcub3BlcmF0b3Iuc3ZkLlNWRE1vZGVsggdALdElsWMCAARMAAdVbWF0cml4cQB+&#13;
+AAJMAAdWbWF0cml4cQB+AAJMAAdjb2xOYW1lcQB+AAJMAAdyb3dOYW1lcQB+AAJ4cgAyY29tLmFs&#13;
+cGluZS5kYXRhbWluaW5nLm9wZXJhdG9yLnRyYWluaW5nLlByZWRpY3Rpb25BFoip8770gAIAAHhy&#13;
+ACxjb20uYWxwaW5lLmRhdGFtaW5pbmcub3BlcmF0b3IuQWJzdHJhY3RNb2RlbPaLwYG1INscAgAB&#13;
+TAANaGVhZGVyRGF0YVNldHQAJExjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvREJEYXRhU2V0O3hy&#13;
+ACtjb20uYWxwaW5lLmRhdGFtaW5pbmcub3BlcmF0b3IuT3V0cHV0T2JqZWN0W4/atPz2d24CAAFM&#13;
+AAZzb3VyY2VxAH4AAnhwcHNyACJjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuREJEYXRhU2V0oy02&#13;
+rpEIYIwCAAdMAAdhdmVyYWdldAATTGphdmEvdXRpbC9IYXNoTWFwO0wAB2NvbHVtbnN0ACJMY29t&#13;
+L2FscGluZS9kYXRhbWluaW5nL2RiL0NvbHVtbnM7TAAHbWF4aW11bXEAfgALTAAHbWluaW11bXEA&#13;
+fgALTAADc3VtcQB+AAtMAAV0YWJsZXQAIExjb20vYWxwaW5lL2RhdGFtaW5pbmcvZGIvVGFibGU7&#13;
+TAAIdmFyaWFuY2VxAH4AC3hyAChjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuQWJzdHJhY3REYXRh&#13;
+U2V0IFxxzNEBLwQCAARaABtjb21wdXRlZEFsbENvbHVtblN0YXRpc3RpY3NaABVjb21wdXRlZEFs&#13;
+bFN0YXRpc3RpY3NMAAVpZE1hcHQAD0xqYXZhL3V0aWwvTWFwO0wADXN0YXRpc3RpY3NNYXBxAH4A&#13;
+D3hxAH4ACHAAAHNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkA&#13;
+CXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAAAeHNxAH4AET9AAAAAAAAMdwgAAAAQAAAAAHhw&#13;
+c3IAI2NvbS5hbHBpbmUuZGF0YW1pbmluZy5kYi5Db2x1bW5zSW1wILHMJPtWhd0CAAFMAAdjb2x1&#13;
+bW5zdAAQTGphdmEvdXRpbC9MaXN0O3hwc3IAFGphdmEudXRpbC5MaW5rZWRMaXN0DClTXUpgiCID&#13;
+AAB4cHcEAAAAAXNyACZjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuTnVtZXJpY0NvbHVtbgAAAAAA&#13;
+AAABAgACWgAIY2F0ZWdvcnlMAAdtYXBwaW5ndAAiTGNvbS9hbHBpbmUvZGF0YW1pbmluZy9kYi9N&#13;
+YXBwaW5nO3hyACdjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuQWJzdHJhY3RDb2x1bW7e2t2RhMB0&#13;
+agIAB0QADGRlZmF1bHRWYWx1ZUkABWluZGV4WgAHc3BlY2lhbEkACXZhbHVlVHlwZUwAC2NvbHVt&#13;
+blN0YXRzcQB+ABVMAARuYW1lcQB+AAJMAAtzcGVjaWFsTmFtZXEAfgACeHAAAAAAAAAAAAAAAAIB&#13;
+AAAABHNxAH4AF3cEAAAAAXNyACtjb20uYWxwaW5lLmRhdGFtaW5pbmcuZGIuTnVtZXJpY0NvbHVt&#13;
+blN0YXRzbbfBUwTZ3sICAAdKAAptYXhDb3VudGVySgAEbW9kZUQACnNxdWFyZWRTdW1EAANzdW1J&#13;
+AAx2YWx1ZUNvdW50ZXJMAAZjb2x1bW50ACFMY29tL2FscGluZS9kYXRhbWluaW5nL2RiL0NvbHVt&#13;
+bjtbAAZzY29yZXN0AAJbSnhwAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAcHB4&#13;
+dAAFdmFsdWV0ABVBTFBJTkVfREVQRU5ERU5UX05BTUUAc3IAJGNvbS5hbHBpbmUuZGF0YW1pbmlu&#13;
+Zy5kYi5NYXBwaW5nSW1wbGNyNc7gjRALAgACTAAQaW5kZXhUb1N5bWJvbE1hcHEAfgAVTAAQc3lt&#13;
+Ym9sVG9JbmRleE1hcHEAfgAPeHBzcgATamF2YS51dGlsLkFycmF5TGlzdHiB0h2Zx2GdAwABSQAE&#13;
+c2l6ZXhwAAAAAHcEAAAACnhzcQB+ABE/QAAAAAAADHcIAAAAEAAAAAB4eHBwcHNyACBjb20uYWxw&#13;
+aW5lLmRhdGFtaW5pbmcuZGIuREJUYWJsZZHwN8W1ZQNZAgAGSgAEc2l6ZUwACHBhc3N3b3JkcQB+&#13;
+AAJMAAl0YWJsZU5hbWVxAH4AAkwAA3VybHEAfgACTAAIdXNlck5hbWVxAH4AAkwADndoZXJlQ29u&#13;
+ZGl0aW9ucQB+AAJ4cgAqY29tLmFscGluZS5kYXRhbWluaW5nLmRiLkFic3RyYWN0RGF0YVRhYmxl&#13;
+vR8DBHp6+ioCAAJMAAdjb2x1bW5zcQB+ABVMABB1bnVzZWRDb2x1bW5MaXN0cQB+ABV4cHNxAH4A&#13;
+JgAAAAN3BAAAAApzcQB+ABkAAAAAAAAAAAAAAAAAAAAAA3NxAH4AF3cEAAAAAXNxAH4AHgAAAAAA&#13;
+AAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAAAHBweHQAB3VzZXJfaWRwAHNxAH4AJHNxAH4A&#13;
+JgAAAAB3BAAAAAp4c3EAfgARP0AAAAAAAAx3CAAAABAAAAAAeHNyACZjb20uYWxwaW5lLmRhdGFt&#13;
+aW5pbmcuZGIuTm9taW5hbENvbHVtbg1U+iA1h3wtAgABTAAHbWFwcGluZ3EAfgAaeHEAfgAbAAAA&#13;
+AAAAAAAAAAABAAAAAAFzcQB+ABd3BAAAAAFzcgArY29tLmFscGluZS5kYXRhbWluaW5nLmRiLk5v&#13;
+bWluYWxDb2x1bW5TdGF0c1xNcDZUlEDoAgAESgAKbWF4Q291bnRlckoABG1vZGVMAAZjb2x1bW5x&#13;
+AH4AH1sABnNjb3Jlc3EAfgAgeHAAAAAAAAAAAP//////////cHB4dAAEaXRlbXBzcQB+ACRzcQB+&#13;
+ACYAAAAAdwQAAAAKeHNxAH4AET9AAAAAAAAMdwgAAAAQAAAAAHhzcQB+ABkAAAAAAAAAAAAAAAIB&#13;
+AAAABHNxAH4AF3cEAAAAAXNxAH4AHgAAAAAAAAAA//////////8AAAAAAAAAAAAAAAAAAAAAAAAA&#13;
+AHBweHEAfgAicQB+ACMAcQB+ACV4c3EAfgAXdwQAAAAAeP//////////dAAKbWluZXJfZGVtb3QA&#13;
+DiJkZW1vIi4ic3RvcmUidAAvamRiYzpwb3N0Z3Jlc3FsOi8vMTkyLjE2OC4xLjIzMDo1NDMyL21p&#13;
+bmVyX2RlbW90AAptaW5lcl9kZW1vcHB0AA4iZGVtbyIuInN2ZF91InQADiJkZW1vIi4ic3ZkX3Yi&#13;
+dAAJInVzZXJfaWQidAAGIml0ZW0icHQAA1NWRA==</Model>
+</Operator>
+<Operator X="355" Y="169" name="SVD计算器" type="com.alpine.miner.gef.runoperator.svd.SVDLanczosCalculatorOperator" uuid="1322820044598">
+<Parameter key="UmatrixTableF" value="&quot;demo&quot;.&quot;svd_u&quot;"/>
+<Parameter key="rowNameF" value="item"/>
+<Parameter key="UfeatureColumn" value="alpine_feature"/>
+<Parameter key="UdependentColumnF" value="value"/>
+<Parameter key="VmatrixTableF" value="&quot;demo&quot;.&quot;svd_v&quot;"/>
+<Parameter key="colNameF" value="user_id"/>
+<Parameter key="VfeatureColumn" value="alpine_feature"/>
+<Parameter key="VdependentColumnF" value="value"/>
+<Parameter key="singularValueTableF" value="&quot;demo&quot;.&quot;svd_s&quot;"/>
+<Parameter key="singularValuefeatureColumn" value="alpine_feature"/>
+<Parameter key="singularValuedependentColumnF" value="value"/>
+<Parameter key="crossProduct" value="true"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="svd_output"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="store"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="user_id" type="INTEGER"/>
+<Field name="item" type="TEXT"/>
+<Field name="value" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="store" target="SVD"/>
+<Link source="SVD" target="SVD计算器"/>
+</Process>

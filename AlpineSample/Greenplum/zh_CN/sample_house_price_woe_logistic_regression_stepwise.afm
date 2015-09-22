@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="19" Y="15" name="地区" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1280410968437">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="district"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="13" Y="96" name="房屋交易" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1280411012640">
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="tableName" value="house_transaction"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+</Operator>
+<Operator X="146" Y="14" name="地区信息" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280411285656">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="district_info"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="crime"/>
+<selectedColumnName columnName="area"/>
+<selectedColumnName columnName="park"/>
+<selectedColumnName columnName="industry"/>
+<selectedColumnName columnName="water_view"/>
+<selectedColumnName columnName="pollution"/>
+<selectedColumnName columnName="bc_dist"/>
+<selectedColumnName columnName="bus"/>
+<selectedColumnName columnName="pt_ratio"/>
+<selectedColumnName columnName="population"/>
+<selectedColumnName columnName="adult"/>
+<selectedColumnName columnName="u_grad"/>
+<DerivedFieldItem columnName="crime_rate" dataType="NUMERIC" expression="crime*100.0/population"/>
+<DerivedFieldItem columnName="park_area" dataType="NUMERIC" expression="park*100.0/area"/>
+<DerivedFieldItem columnName="industry_area" dataType="NUMERIC" expression="industry*100.0/area"/>
+<DerivedFieldItem columnName="lstat" dataType="NUMERIC" expression="100-(u_grad*100.0/population)"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="district"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="crime" type="INTEGER"/>
+<Field name="area" type="INTEGER"/>
+<Field name="park" type="NUMERIC(8,2)"/>
+<Field name="industry" type="NUMERIC(8,2)"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="population" type="INTEGER"/>
+<Field name="adult" type="INTEGER"/>
+<Field name="u_grad" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="395" Y="12" name="房屋价格" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280412346343">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="housing_price_bin"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<QuantileModel>
+<QuantileItem columnName="price" isCreateNewColumn="true" newColumnName="price_bin" numberOfBin="3" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+</QuantileItem>
+</QuantileModel>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="water_view"/>
+<selectedColumnName columnName="pollution"/>
+<selectedColumnName columnName="bc_dist"/>
+<selectedColumnName columnName="bus"/>
+<selectedColumnName columnName="pt_ratio"/>
+<selectedColumnName columnName="crime_rate"/>
+<selectedColumnName columnName="park_area"/>
+<selectedColumnName columnName="industry_area"/>
+<selectedColumnName columnName="lstat"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="room"/>
+<selectedColumnName columnName="price"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_info"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="541" Y="14" name="房屋价格等级" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280412616078">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="housing_price_level"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="water_view"/>
+<selectedColumnName columnName="pollution"/>
+<selectedColumnName columnName="bc_dist"/>
+<selectedColumnName columnName="bus"/>
+<selectedColumnName columnName="pt_ratio"/>
+<selectedColumnName columnName="crime_rate"/>
+<selectedColumnName columnName="park_area"/>
+<selectedColumnName columnName="industry_area"/>
+<selectedColumnName columnName="lstat"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="room"/>
+<selectedColumnName columnName="price"/>
+<selectedColumnName columnName="price_bin"/>
+<DerivedFieldItem columnName="price_level" dataType="VARCHAR" expression="CASE WHEN price_bin = 1 THEN 'Low' &#13;&#10;WHEN price_bin = 2 THEN 'Mid' &#13;&#10;WHEN price_bin = 3 THEN 'High' &#13;&#10;END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_price_bin"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="384" Y="101" name="随即抽样" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1280452277625">
+<Parameter key="sampleCount" value="3"/>
+<Parameter key="sampleSizeType" value="Percentage"/>
+<Parameter key="sampleSize" value="100"/>
+<Parameter key="randomSeed" value="0.1"/>
+<Parameter key="consistent" value="true"/>
+<Parameter key="replacement" value="false"/>
+<Parameter key="disjoint" value="true"/>
+<Parameter key="keyColumnList" value="crime_rate,id,industry_area,park_area,pt_ratio"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="housing_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="409" Y="183" name="训练抽样" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1280452430078">
+<Parameter key="selectedTable" value="demo.housing_sample_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="581" Y="180" name="评估抽样" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1280452446890">
+<Parameter key="selectedTable" value="demo.housing_sample_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="624" Y="388" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1280452586812">
+<Parameter key="dependentColumn" value="price_level_2"/>
+<Parameter key="columnValue" value="Good"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="eva_sample_woe"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+<Field name="WOE(age)" type="DOUBLE PRECISION"/>
+<Field name="WOE(bc_dist)" type="DOUBLE PRECISION"/>
+<Field name="WOE(bus)" type="DOUBLE PRECISION"/>
+<Field name="WOE(crime_rate)" type="DOUBLE PRECISION"/>
+<Field name="WOE(industry_area)" type="DOUBLE PRECISION"/>
+<Field name="WOE(lstat)" type="DOUBLE PRECISION"/>
+<Field name="WOE(park_area)" type="DOUBLE PRECISION"/>
+<Field name="WOE(pollution)" type="DOUBLE PRECISION"/>
+<Field name="WOE(pt_ratio)" type="DOUBLE PRECISION"/>
+<Field name="WOE(room)" type="DOUBLE PRECISION"/>
+<Field name="WOE(water_view)" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="417" Y="395" name="逻辑回归" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionOperator" uuid="1280464402906">
+<Parameter key="dependentColumn" value="price_level_2"/>
+<Parameter key="goodValue" value="Good"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="columnNames" value="WOE(age),WOE(bc_dist),WOE(bus),WOE(crime_rate),WOE(industry_area),WOE(lstat),WOE(park_area),WOE(pollution),WOE(pt_ratio),WOE(room),WOE(water_view)"/>
+<Parameter key="isStepWise" value="true"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="criterionType" value="SBC"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="training_sample_woe"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+<Field name="WOE(age)" type="DOUBLE PRECISION"/>
+<Field name="WOE(bc_dist)" type="DOUBLE PRECISION"/>
+<Field name="WOE(bus)" type="DOUBLE PRECISION"/>
+<Field name="WOE(crime_rate)" type="DOUBLE PRECISION"/>
+<Field name="WOE(industry_area)" type="DOUBLE PRECISION"/>
+<Field name="WOE(lstat)" type="DOUBLE PRECISION"/>
+<Field name="WOE(park_area)" type="DOUBLE PRECISION"/>
+<Field name="WOE(pollution)" type="DOUBLE PRECISION"/>
+<Field name="WOE(pt_ratio)" type="DOUBLE PRECISION"/>
+<Field name="WOE(room)" type="DOUBLE PRECISION"/>
+<Field name="WOE(water_view)" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="553" Y="101" name="房屋信息分析" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1280464514703">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="housing_mining"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="id"/>
+<selectedColumnName columnName="water_view"/>
+<selectedColumnName columnName="pollution"/>
+<selectedColumnName columnName="bc_dist"/>
+<selectedColumnName columnName="bus"/>
+<selectedColumnName columnName="pt_ratio"/>
+<selectedColumnName columnName="crime_rate"/>
+<selectedColumnName columnName="park_area"/>
+<selectedColumnName columnName="industry_area"/>
+<selectedColumnName columnName="lstat"/>
+<selectedColumnName columnName="age"/>
+<selectedColumnName columnName="room"/>
+<selectedColumnName columnName="price"/>
+<selectedColumnName columnName="price_bin"/>
+<selectedColumnName columnName="price_level"/>
+<DerivedFieldItem columnName="price_level_2" dataType="VARCHAR" expression="CASE WHEN price_bin = 3 THEN 'Good' ELSE 'Bad' END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_price_level"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="213" Y="392" name="逻辑回归预测" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionPredictOperator" uuid="1280464817390">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="house_predict_logistic_regression"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="predict_sample_woe"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+<Field name="WOE(age)" type="DOUBLE PRECISION"/>
+<Field name="WOE(bc_dist)" type="DOUBLE PRECISION"/>
+<Field name="WOE(bus)" type="DOUBLE PRECISION"/>
+<Field name="WOE(crime_rate)" type="DOUBLE PRECISION"/>
+<Field name="WOE(industry_area)" type="DOUBLE PRECISION"/>
+<Field name="WOE(lstat)" type="DOUBLE PRECISION"/>
+<Field name="WOE(park_area)" type="DOUBLE PRECISION"/>
+<Field name="WOE(pollution)" type="DOUBLE PRECISION"/>
+<Field name="WOE(pt_ratio)" type="DOUBLE PRECISION"/>
+<Field name="WOE(room)" type="DOUBLE PRECISION"/>
+<Field name="WOE(water_view)" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="286" Y="14" name="房屋信息" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1293988463234">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="housing_info"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="d" operID="1280411285656" schema="demo" table="district_info"/>
+<JoinTableModel alias="t" operID="1295498798171" schema="demo" table="house_tx_aggt"/>
+<JoinColumnModel columnName="id" columnType="INTEGER" newColumnName="id" tableAlias="d"/>
+<JoinColumnModel columnName="water_view" columnType="BOOLEAN" newColumnName="water_view" tableAlias="d"/>
+<JoinColumnModel columnName="pollution" columnType="REAL" newColumnName="pollution" tableAlias="d"/>
+<JoinColumnModel columnName="bc_dist" columnType="REAL" newColumnName="bc_dist" tableAlias="d"/>
+<JoinColumnModel columnName="bus" columnType="INTEGER" newColumnName="bus" tableAlias="d"/>
+<JoinColumnModel columnName="pt_ratio" columnType="NUMERIC(5,1)" newColumnName="pt_ratio" tableAlias="d"/>
+<JoinColumnModel columnName="crime_rate" columnType="NUMERIC" newColumnName="crime_rate" tableAlias="d"/>
+<JoinColumnModel columnName="park_area" columnType="NUMERIC" newColumnName="park_area" tableAlias="d"/>
+<JoinColumnModel columnName="industry_area" columnType="NUMERIC" newColumnName="industry_area" tableAlias="d"/>
+<JoinColumnModel columnName="lstat" columnType="NUMERIC" newColumnName="lstat" tableAlias="d"/>
+<JoinColumnModel columnName="room" columnType="DOUBLE PRECISION" newColumnName="room" tableAlias="t"/>
+<JoinColumnModel columnName="price" columnType="DOUBLE PRECISION" newColumnName="price" tableAlias="t"/>
+<JoinColumnModel columnName="age" columnType="DOUBLE PRECISION" newColumnName="age" tableAlias="t"/>
+<JoinConditionModel andOr="" column1="d.id" column2="t.district_id" condition="=" joinType="JOIN" tableAlias1="d" tableAlias2="t"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="district_info"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="crime" type="INTEGER"/>
+<Field name="area" type="INTEGER"/>
+<Field name="park" type="NUMERIC(8,2)"/>
+<Field name="industry" type="NUMERIC(8,2)"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="population" type="INTEGER"/>
+<Field name="adult" type="INTEGER"/>
+<Field name="u_grad" type="INTEGER"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="house_tx_aggt"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="district_id" type="INTEGER"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="248" Y="182" name="预测抽样" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1294109033906">
+<Parameter key="selectedTable" value="demo.housing_sample_2"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="152" Y="93" name="房屋聚合" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1295498798171">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="house_tx_aggt"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="district_id"/>
+<parentFieldList columnName="district_id"/>
+<parentFieldList columnName="house_id"/>
+<parentFieldList columnName="room"/>
+<parentFieldList columnName="price"/>
+<parentFieldList columnName="age"/>
+<AggregateField columnName="room" dataType="DOUBLE PRECISION" expression="sum(&quot;room&quot;)"/>
+<AggregateField columnName="price" dataType="DOUBLE PRECISION" expression="sum(&quot;price&quot;)"/>
+<AggregateField columnName="age" dataType="DOUBLE PRECISION" expression="sum(&quot;age&quot;)"/>
+</AggregateFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="house_transaction"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="district_id" type="INTEGER"/>
+<Field name="house_id" type="CHARACTER VARYING(10)"/>
+<Field name="room" type="INTEGER"/>
+<Field name="price" type="INTEGER"/>
+<Field name="age" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="215" Y="292" name="预测表征权重表" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOETableGeneratorOperator" uuid="1323257618535">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="predict_sample_woe"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="405" Y="289" name="训练表征权重表" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOETableGeneratorOperator" uuid="1323257620111">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="training_sample_woe"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="582" Y="281" name="评估表征权重表" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOETableGeneratorOperator" uuid="1323257621359">
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="outputTable" value="eva_sample_woe"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="71" Y="228" name="表征权重分析" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOEOperator" uuid="1323257624666">
+<Parameter key="dependentColumn" value="price_level_2"/>
+<Parameter key="goodValue" value="Good"/>
+<Parameter key="columnNames" value="age,bc_dist,bus,crime_rate,industry_area,lstat,park_area,pollution,pt_ratio,room,water_view"/>
+<WOETable>
+<WOEInforList columnName="water_view" gini="0.43190192743764166" inforValue="0.0">
+<WOENominalNode WOEValue="0.0" groupInfo="Group1">
+<choosedList columnName="t"/>
+<choosedList columnName="f"/>
+</WOENominalNode>
+</WOEInforList>
+<WOEInforList columnName="pollution" gini="0.41289975109540666" inforValue="0.20097398702237793">
+<WOENumbernicNode WOEValue="0.7746402148111281" bottom="-Infinity" groupInfo="1" upper="0.412"/>
+<WOENumbernicNode WOEValue="0.48695814235934726" bottom="0.412" groupInfo="2" upper="0.5015"/>
+<WOENumbernicNode WOEValue="-0.29799658745372076" bottom="0.5015" groupInfo="3" upper="0.601"/>
+<WOENumbernicNode WOEValue="-0.4540252021051793" bottom="0.601" groupInfo="4" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="bc_dist" gini="0.3775809118828254" inforValue="0.44410657527858255">
+<WOENumbernicNode WOEValue="-0.7962426895869195" bottom="-Infinity" groupInfo="Group1" upper="2.8228"/>
+<WOENumbernicNode WOEValue="0.5790018353463863" bottom="2.8228" groupInfo="Group2" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="bus" gini="0.36674388215728193" inforValue="0.8630184057380379">
+<WOENumbernicNode WOEValue="0.4199626831746509" bottom="-Infinity" groupInfo="Group1" upper="16.0"/>
+<WOENumbernicNode WOEValue="-2.2037392583574134" bottom="16.0" groupInfo="Group2" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="pt_ratio" gini="0.3047524852911341" inforValue="1.4454278632584356">
+<WOENumbernicNode WOEValue="1.3724772155667488" bottom="-Infinity" groupInfo="1" upper="18.1"/>
+<WOENumbernicNode WOEValue="-1.1930099208805909" bottom="18.1" groupInfo="2" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="crime_rate" gini="0.36022875812657" inforValue="1.2253373772020681">
+<WOENumbernicNode WOEValue="0.08149303425118301" bottom="-Infinity" groupInfo="Group1" upper="0.3003"/>
+<WOENumbernicNode WOEValue="1.416494100983523" bottom="0.3003" groupInfo="Group2" upper="2.0796"/>
+<WOENumbernicNode WOEValue="-4.929142259845073" bottom="2.0796" groupInfo="Group3" upper="4.4831"/>
+<WOENumbernicNode WOEValue="-1.081657775554498" bottom="4.4831" groupInfo="Group4" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="park_area" gini="0.3270248270248269" inforValue="1.1807203432130249">
+<WOENumbernicNode WOEValue="-0.6116541463087622" bottom="-Infinity" groupInfo="Group1" upper="15.25"/>
+<WOENumbernicNode WOEValue="2.4793883070495535" bottom="15.25" groupInfo="Group2" upper="20.5"/>
+<WOENumbernicNode WOEValue="0.0814930342511828" bottom="20.5" groupInfo="Group3" upper="31.5"/>
+<WOENumbernicNode WOEValue="2.854081756490964" bottom="31.5" groupInfo="Group4" upper="70.0"/>
+<WOENumbernicNode WOEValue="0.997783766125338" bottom="70.0" groupInfo="Group5" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="industry_area" gini="0.2178004535147392" inforValue="2.70071996770082">
+<WOENumbernicNode WOEValue="2.6464423917127196" bottom="-Infinity" groupInfo="Group1" upper="3.0848"/>
+<WOENumbernicNode WOEValue="-0.07265764557607539" bottom="3.0848" groupInfo="Group2" upper="3.7098"/>
+<WOENumbernicNode WOEValue="2.160934575931019" bottom="3.7098" groupInfo="Group3" upper="5.04"/>
+<WOENumbernicNode WOEValue="-0.5246427693191327" bottom="5.04" groupInfo="Group4" upper="6.0796"/>
+<WOENumbernicNode WOEValue="2.6464423917127196" bottom="6.0796" groupInfo="Group5" upper="6.9599"/>
+<WOENumbernicNode WOEValue="-1.7903091426504085" bottom="6.9599" groupInfo="Group6" upper="19.5797"/>
+<WOENumbernicNode WOEValue="-0.6116541463087622" bottom="19.5797" groupInfo="Group7" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="lstat" gini="0.31991258142429535" inforValue="2.118519495434838">
+<WOENumbernicNode WOEValue="6.072957581359165" bottom="-Infinity" groupInfo="1" upper="29.1051"/>
+<WOENumbernicNode WOEValue="0.669279699153302" bottom="29.1051" groupInfo="2" upper="39.6347"/>
+<WOENumbernicNode WOEValue="-0.46855330266808914" bottom="39.6347" groupInfo="3" upper="49.6607"/>
+<WOENumbernicNode WOEValue="-2.721867346655352" bottom="49.6607" groupInfo="4" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="age" gini="0.36207310510411056" inforValue="0.5896629106650834">
+<WOENumbernicNode WOEValue="1.379779680098697" bottom="-Infinity" groupInfo="Group1" upper="97.5"/>
+<WOENumbernicNode WOEValue="-0.17356876568436" bottom="97.5" groupInfo="Group2" upper="242.5"/>
+<WOENumbernicNode WOEValue="-1.1275998255413622" bottom="242.5" groupInfo="Group3" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="room" gini="0.223342044134727" inforValue="2.5757904983297566">
+<WOENumbernicNode WOEValue="-1.1994408112108814" bottom="-Infinity" groupInfo="Group1" upper="16.5"/>
+<WOENumbernicNode WOEValue="1.8732525034792378" bottom="16.5" groupInfo="Group2" upper="17.5"/>
+<WOENumbernicNode WOEValue="3.2169872501803325" bottom="17.5" groupInfo="Group3" upper="Infinity"/>
+</WOEInforList>
+</WOETable>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.236:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="id" type="INTEGER"/>
+<Field name="water_view" type="BOOLEAN"/>
+<Field name="pollution" type="REAL"/>
+<Field name="bc_dist" type="REAL"/>
+<Field name="bus" type="INTEGER"/>
+<Field name="pt_ratio" type="NUMERIC(5,1)"/>
+<Field name="crime_rate" type="NUMERIC"/>
+<Field name="park_area" type="NUMERIC"/>
+<Field name="industry_area" type="NUMERIC"/>
+<Field name="lstat" type="NUMERIC"/>
+<Field name="age" type="DOUBLE PRECISION"/>
+<Field name="room" type="DOUBLE PRECISION"/>
+<Field name="price" type="DOUBLE PRECISION"/>
+<Field name="price_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR"/>
+<Field name="price_level_2" type="VARCHAR"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="地区" target="地区信息"/>
+<Link source="房屋价格" target="房屋价格等级"/>
+<Link source="随即抽样" target="训练抽样"/>
+<Link source="随即抽样" target="评估抽样"/>
+<Link source="房屋价格等级" target="房屋信息分析"/>
+<Link source="房屋信息分析" target="随即抽样"/>
+<Link source="逻辑回归" target="ROC"/>
+<Link source="逻辑回归" target="逻辑回归预测"/>
+<Link source="地区信息" target="房屋信息"/>
+<Link source="房屋信息" target="房屋价格"/>
+<Link source="随即抽样" target="预测抽样"/>
+<Link source="房屋交易" target="房屋聚合"/>
+<Link source="房屋聚合" target="房屋信息"/>
+<Link source="表征权重分析" target="预测表征权重表"/>
+<Link source="训练抽样" target="训练表征权重表"/>
+<Link source="表征权重分析" target="训练表征权重表"/>
+<Link source="评估抽样" target="评估表征权重表"/>
+<Link source="表征权重分析" target="评估表征权重表"/>
+<Link source="预测表征权重表" target="逻辑回归预测"/>
+<Link source="训练表征权重表" target="逻辑回归"/>
+<Link source="评估表征权重表" target="ROC"/>
+<Link source="预测抽样" target="预测表征权重表"/>
+<Link source="训练抽样" target="表征权重分析"/>
+</Process>

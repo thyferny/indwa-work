@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr">
+    
+    <head>
+        <style type="text/css">
+            body, html { font-family:helvetica,arial,sans-serif; font-size:90%; }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js"
+        djConfig="parseOnLoad: true">
+        </script>
+        <script type="text/javascript">
+            dojo.require("dojox.charting.Chart2D");
+            dojo.require("dojox.charting.axis2d.Default");
+            dojo.require("dojox.charting.plot2d.ClusteredColumns");
+            dojo.require("dojo.fx.easing");
+            //dojo.require("dojox.charting.themes.Tom");
+
+            dojo.addOnLoad(function() {
+                var animChart = new dojox.charting.Chart2D("animChart");
+                animChart.//setTheme(dojox.charting.themes.Tom).
+                addAxis("x", {
+                    fixLower: "minor",
+                    fixUpper: "minor",
+                    natural: true
+                }).
+                addAxis("y", {
+                    vertical: true,
+                    fixLower: "major",
+                    fixUpper: "major",
+                    includeZero: true
+                }).
+                addPlot("default", {
+                    type: "ClusteredColumns",
+                    gap: 10,
+     
+                }).
+                addSeries("Series A", [2, 1, 0.5, 1, 2]).
+                addSeries("Series B", [2, 1, 0.5, 1, 2]).
+                addSeries("Series C", [1, 0.5, 1, 2, 3]).
+                addSeries("Series D", [0.7, 1.5, 1.2, 1.25, 3]).
+                render();
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dijit/themes/soria/soria.css"
+        />
+    </head>
+    
+    <body class="soria">
+        <div id="animChart" style="width: 300px; height: 300px;">
+        </div>
+ 
+    </body>
+
+</html>

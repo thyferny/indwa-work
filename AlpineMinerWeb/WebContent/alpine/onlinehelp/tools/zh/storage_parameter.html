@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>存储参数</title>
+</head>
+<body>
+	<h1>存储参数</h1>
+	<p>
+		当操作单元可产生输出表时，用户可通过存储参数对数据设置生成表的进行参数设置。用于提高存储性能。当前只支持PostgreeSQL数据库。
+	</p>
+	<p><img src="./images/storage_parmeters.png"></p>
+	<p>&nbsp;</p>
+	<p>目前的参数仅支持 Greenplum ，参数如下（默认值为粗体）: </p>
+    <ul>
+      <LI>追加模式 （AOT）？ (Yes or <strong>No</strong>)   
+      <LI>列存储 ？ (Yes or <strong>No</strong>) 。仅当追加模式为 Yes是生效。   
+      <LI>压缩 ？ (Yes or <strong>No</strong>) 。仅当追加模式为 Yes是生效。如果选择 'Yes'，用户需要输入压缩级别（从 1 到9， 默认值为 1   ）。   
+      <LI>分布列模式？ (<strong>Randomly</strong>, or Distribute by)。如果用户选择 'Distribute   by'，则需要输入分布子句，表现为以 ‘，’分割的字段名（字段类型不能是数组）。</LI>
+    </ul>
+</body>
+</html>

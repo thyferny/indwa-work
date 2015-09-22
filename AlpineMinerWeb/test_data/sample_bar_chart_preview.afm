@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="2.3">
+<Operator X="52" Y="107" name="DB table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719824421">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="sales_example"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value=""/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+</Operator>
+<Operator X="243" Y="180" name="Bar Chart" type="com.alpine.miner.gef.runoperator.field.BarChartAnalysisOperator" uuid="1277719824437">
+<Parameter key="scopeDomain" value="region"/>
+<Parameter key="valueDomain" value="sales"/>
+<Parameter key="categoryType" value="quarter"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.230:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="sales_example"/>
+<Parameter key="tableType" value=""/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="sales" type="INTEGER"/>
+<Field name="region" type="CHARACTER VARYING(10)"/>
+<Field name="quarter" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="DB table" target="Bar Chart"/>
+</Process>

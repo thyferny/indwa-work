@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr">
+    
+    <head>
+        <style type="text/css">
+            body, html { font-family:helvetica,arial,sans-serif; font-size:90%; }
+        </style>
+        <script src="../../dojo/dojo.js"
+        djConfig="parseOnLoad: true">
+        </script>
+        <script type="text/javascript">
+            dojo.require("dojox.grid.DataGrid");
+            dojo.require("dojo.data.ItemFileWriteStore");
+        </script>
+        <link rel="stylesheet" type="text/css" href="../../dijit/themes/claro/claro.css"
+        />
+        <style type="text/css">
+            @import "../../dojox/grid/resources/claroGrid.css";
+            html, body { width: 100%; margin: 0; } .info { margin: 10px; }
+        </style>
+    </head>
+    
+    <body class=" claro ">
+        <span dojoType="dojo.data.ItemFileWriteStore" jsId="store3" url="../countries.json">
+        </span>
+        <p class="info">
+            This example shows, how to make the column "Type" editable. In order to
+            select a new value, you have to double click on the current value in the
+            second column.
+        </p>
+        <table dojoType="dojox.grid.DataGrid" jsId="grid3" store="store3" query="{ name: '*' }"
+        rowsPerPage="20" clientSort="true" style="width: 100%; height: 300px;"
+        rowSelector="20px">
+            <thead>
+                <tr>
+                    <th width="200px" field="name">
+                        Country/Continent Name
+                    </th>
+                    <th width="auto" field="type" cellType="dojox.grid.cells.Select" options="country,city,continent"
+                    editable="true">
+                        Type
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <!-- NOTE: the following script tag is not intended for usage in real
+        world!! it is part of the CodeGlass and you should just remove it when
+        you use the code -->
+        <script type="text/javascript">
+            dojo.addOnLoad(function() {
+                if (document.pub) {
+                    document.pub();
+                }
+            });
+        </script>
+    </body>
+
+</html>

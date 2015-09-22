@@ -1,0 +1,53 @@
+/*.hadoop_to_right{background:url("../images/hadoop_agg_to_right.png");}
+.hadoop_to_left{}
+.hadoop_move_up{}
+.hadoop_move_down{}
+.hadoop_clear{}    */
+#alpine_props_hadoop_agg_to_right_label{background-image:url("../images/right_arrow.png");background-repeat: no-repeat;}
+#alpine_props_hadoop_agg_to_left_label{background-image:url("../images/left_arrow.png");background-repeat: no-repeat;}
+#alpine_props_hadoop_agg_method_to_right_label{background-image:url("../images/right_arrow.png");background-repeat: no-repeat;}
+#alpine_props_hadoop_agg_group_clear_label{background-image:url("../images/delete-icon.png");background-repeat: no-repeat;}
+#alpine_props_hadoop_agg_method_clear_label{background-image:url("../images/delete-icon.png");background-repeat: no-repeat;}
+#alpine_props_hadoop_agg_group_moveup_label{background-image:url("../images/up_arrow.png");background-repeat: no-repeat;}
+#alpine_props_hadoop_agg_group_movedown_label{background-image:url("../images/down_arrow.png");background-repeat: no-repeat;}
+
+/*
+#hadoopPropery_Config_Colum_Choose_Separator_Container label{margin: 2px 8px;}
+#hadoopPropery_Config_Colum_Choose_Separator_Container label input{cursor:pointer;vertical-align:middle;}
+#hadoopPropery_Config_Colum_OtherSeparator_Value{vertical-align:top;width:40px;}
+#hadoopPropery_Config_Colum_List_Container{margin: 5px 10px;;border:1px solid #a4a6a8;height:320px;width:770px;overflow:auto;}
+#hadoopPropery_Config_Colum_List_Table{margin-left:5px;margin-top: 5px;}
+#hadoopPropery_Config_Colum_List_Table .tableHeaderInputContainer{width:90px;height:34px; text-align:center; vertical-align:middle; padding:2px 2px; border-top:1px solid #b9bbbd;border-left:1px solid #b9bbbd;border-right:1px solid #b9bbbd;border-bottom:2px solid #b9bbbd; border-collapse:collapse;}
+#hadoopPropery_Config_Colum_List_Table .tableHeaderInput{ width:98%;height:25px; vertical-align:middle;}
+#hadoopPropery_Config_Colum_List_Table .tableHeaderSelectedContainer{ padding:0px 2px;border-top:0px none;border-left:1px solid #b9bbbd;border-right:1px solid #b9bbbd;border-bottom:3px double #b9bbbd; border-collapse:collapse;text-align: center;}
+#hadoopPropery_Config_Colum_List_Table .tableHeaderSelected{width:100%;}
+#hadoopPropery_Config_Colum_List_Table .tableBodyDataContent{ text-align:left; vertical-align:middle; height:22px;border-top:0px none;border-left:1px solid #b9bbbd;border-right:1px solid #b9bbbd;border-bottom:1px dotted #b9bbbd;border-top:1px solid #b9bbbd; border-collapse:collapse;}
+#hadoopPropery_Config_Colum_List_Table .tableBodyDataContent-end{ text-align:left; vertical-align:middle; height:22px;border-top:0px none;border-left:1px solid #b9bbbd;border-right:1px solid #b9bbbd;border-bottom:2px solid #b9bbbd; border-collapse:collapse;}
+#hadoopPropery_Config_Colum_Dlg_Btn_Container{margin:0; padding: 5px 0px auto 0px;height:100%;width: 100%;}
+*/
+#hadoop_select_join_column_grids_container fieldset{padding:0px;border:1px solid #D2D2C2;overflow:hidden;float: left;height:190px;width:310px}
+#hadoop_select_join_column_grids_container fieldset>legend{margin-left: 10px;}
+#hadoop_select_join_column_grids_container fieldset.Even{margin-left: 15px}
+
+#hadoop_select_tableset_column_grids_container fieldset{padding:0px;border:1px solid #D2D2C2;overflow:hidden;float: left;height:190px;width:310px}
+#hadoop_select_tableset_column_grids_container fieldset>legend{margin-left: 10px;}
+#hadoop_select_tableset_column_grids_container fieldset.Even{margin-left: 15px}
+
+.xmlfileStruct{
+    margin: 0px 5px!important;
+    border: 1px solid #f0f3f3!important;
+}
+
+.xmlfileStruct legend{
+   margin-left: 25px!important;
+   font-weight: bold;
+}
+
+#xmlDomTreeContainer dl{display: block;padding-left:10px;}
+#xmlDomTreeContainer dt{padding-left:20px;font-weight:bold;margin:5px 5px;}
+#xmlDomTreeContainer dt>span{width:20px;height:20px;background:url('../images/spriteTree.gif') no-repeat -2px 3px;}
+#xmlDomTreeContainer dt>span.close{width:20px;height:20px;background:url('../images/spriteTree.gif') no-repeat -2px 3px;cursor:pointer;}
+#xmlDomTreeContainer dt>span.open{width:20px;height:20px;background:url('../images/spriteTree.gif') no-repeat -20px 3px;cursor:pointer;}
+#xmlDomTreeContainer dl>dd{display:block;padding:5px 5px;margin-left:45px}
+#xmlDomTreeContainer dd:hover{background-color:#f0f3f3;}
+#xmlDomTreeContainer dt:hover{background-color:#f0f3f3;}

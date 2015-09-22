@@ -1,0 +1,18 @@
+#
+#Mon Dec 05 16:29:45 CST 2011
+engineCombo=PostgreSQL
+dbNameText=miner_demo
+resourceType=Group
+modifiesTime=1323073785165
+id=Connection Demo
+passwordText=rO0ABXQACm1pbmVyX2RlbW8\=
+portText=5432
+categories=
+modifiedUser=admin
+version=
+userNameText=miner_demo
+createTime=1316923928659
+hostText=localhost
+groupName=IT
+connNameText=Connection Demo
+createUser=admin

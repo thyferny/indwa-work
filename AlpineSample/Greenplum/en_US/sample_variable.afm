@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="1.00">
+<Operator X="79" Y="190" name="DB Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1303209121217">
+<Parameter key="system" value="PostgreSQL"/>
+<Parameter key="schemaName" value="demo"/>
+<Parameter key="dbConnectionName" value="Connection Demo"/>
+<Parameter key="tableName" value="quantile_test_01"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="quantile_test_01"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="d" type="DATE"/>
+<Field name="t" type="TIME"/>
+<Field name="ts" type="TIMESTAMP"/>
+<Field name="i" type="INTEGER"/>
+<Field name="r" type="REAL"/>
+<Field name="tx" type="CHARACTER VARYING(10)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="208" Y="251" name="Variable" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1303209124753">
+<QuantileModel>
+<QuantileItem columnName="d" isCreateNewColumn="true" newColumnName="d_bin" numberOfBin="4" quantileType="0">
+<QuantileItemBinDateTime binIndex="1" binType="0" endDate="2/1/2011" endTime="" startDate="1/1/2011" startTime=""/>
+<QuantileItemBinDateTime binIndex="2" binType="0" endDate="3/1/2011" endTime="" startDate="2/1/2011" startTime=""/>
+<QuantileItemBinDateTime binIndex="3" binType="0" endDate="4/1/2011" endTime="" startDate="3/1/2011" startTime=""/>
+<QuantileItemBinDateTime binIndex="4" binType="0" endDate="5/1/2011" endTime="" startDate="4/1/2011" startTime=""/>
+</QuantileItem>
+<QuantileItem columnName="t" isCreateNewColumn="true" newColumnName="t_bin" numberOfBin="2" quantileType="0">
+<QuantileItemBinDateTime binIndex="1" binType="0" endDate="" endTime="12:0:0" startDate="" startTime="0:0:0"/>
+<QuantileItemBinDateTime binIndex="2" binType="0" endDate="" endTime="23:59:59" startDate="" startTime="12:0:0"/>
+</QuantileItem>
+<QuantileItem columnName="tx" isCreateNewColumn="true" newColumnName="tx_bin" numberOfBin="2" quantileType="0">
+<QuantileItemBinCategory binIndex="1" binType="1" values="Friday,Monday,Thursday,Tuesday,Wednesday"/>
+<QuantileItemBinCategory binIndex="2" binType="2" values=""/>
+</QuantileItem>
+</QuantileModel>
+<Parameter key="fieldList" value="new_i&amp;&amp;st"/>
+<Parameter key="expressionList" value="i*r&amp;&amp;CASE WHEN tx = 'Saturday' OR tx = 'Sunday' THEN 'Weekend' ELSE 'Weekday' END"/>
+<Parameter key="outputSchema" value="demo"/>
+<Parameter key="dataTypeList" value="NUMERIC&amp;&amp;VARCHAR"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<Parameter key="outputTable" value="var_view"/>
+<Parameter key="selectedFieldList" value="d,t,ts,i,r,tx"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="quantile_test_01"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="d" type="DATE"/>
+<Field name="t" type="TIME"/>
+<Field name="ts" type="TIMESTAMP"/>
+<Field name="i" type="INTEGER"/>
+<Field name="r" type="REAL"/>
+<Field name="tx" type="CHARACTER VARYING(10)"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:postgresql://192.168.1.212:5432/miner_demo"/>
+<Parameter key="schema" value="demo"/>
+<Parameter key="table" value="var_view"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="PostgreSQL"/>
+<Fields>
+<Field name="d" type="DATE"/>
+<Field name="t" type="TIME"/>
+<Field name="ts" type="TIMESTAMP"/>
+<Field name="i" type="INTEGER"/>
+<Field name="r" type="REAL"/>
+<Field name="tx" type="CHARACTER VARYING(10)"/>
+<Field name="new_i" type="NUMERIC"/>
+<Field name="st" type="VARCHAR"/>
+<Field name="d_bin" type="INTEGER"/>
+<Field name="t_bin" type="INTEGER"/>
+<Field name="tx_bin" type="INTEGER"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Link source="DB Table" target="Variable"/>
+</Process>

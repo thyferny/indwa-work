@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Data Source Management</title>
+</head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+	<h1>Data Source Management</h1>
+	<p>
+		The Data Sources management dialog is used for configuring and maintaining both database and Hadoop connection details.
+		To open the Data Sources management dialog, click the user drop down button (located to the right of your user name), then click the Data Sources button on the drop down menu.
+	</p>
+	<p><img src="./images/dbmanage_menu.png"></p>
+	<p>
+		The Data Sources management dialog displays all of the connections currently configured in Alpine.
+		The connections are organized in three groups within the dialog: Public, Group, and Personal.</p>
+	<p><img src="./images/dbmanage1.png"></p>
+	<p>The Public section displays 'public' connection information available for any user of the system.</p>
+	<p>
+		The Group section displays connection information available to user groups. Alpine users can be members of zero or more groups (e.g. Marketing, Sales, IT, Analytics, etc.) and each group can be given access to specific database connections.
+		This section will display connections for groups of which the user is a member. Administrative users will be able to make changes to group database connections, while non-administrative users must copy a connection to personal before making changes.
+	</p>
+	<p>The Personal section displays connections created by the user and connections copied from the Public and Group sections. These connections are only visible for the current user.</p>
+	<p>Some database systems may require an external JDBC driver be imported into Alpine for proper connectivity with the database. To import a JDBC driver click the 'Import JDBC Driver' button and choose the proper JDBC driver from the local filesystem.</p>
+	<p>To create a new connection for the selected section, click the 'Create' button to open the Edit Data Source dialog, seen below. Specify the Platform type and connection information and click 'OK'. Specifying a Group Name is only available when creating a connection in the Group section.</p>
+	<h4>Follow the steps below to create a database connection:</h4>
+	<ul>
+      <LI>For a Database Connection:
+	      <UL type="disc">
+              <LI><STRONG>Platform:</STRONG> Database
+              <LI><STRONG>Type:</STRONG> Specify Public, Group, or Personal.
+              <LI><STRONG>Group:</STRONG> If Type: Group, specify a group name.
+              <LI><STRONG>Connection Name:</STRONG> Specify a unique name for identifying the connection.
+              <LI><STRONG>Database Engine:</STRONG> Specify the type of database.
+              <LI><STRONG>Host:</STRONG>Specify the IP address or hostname of the database server.
+              <LI><STRONG>Port:</STRONG>Specify the port number of the database.
+              <LI><STRONG>Database Name:</STRONG>Specify the name of the database to be connected.
+              <LI><STRONG>User Name:</STRONG>Specify the username with which Alpine will connect to the database.
+              <LI><STRONG>Password:</STRONG>Specify the password of the connecting user to the database.
+              <LI><STRONG>Use SSL:</STRONG>Specify whether to use SSL to connect to the database (only for PostgreSQL and Greenplum).
+          </UL>
+      <LI><EM>(Optional)</EM> Test the connection by clicking on the 'Test Connection' button. The Data Source Connection Manager will try establishing a connection to the database using the parameters provided. A confirmation or failure message will be displayed based on the test result.
+      <LI>Click the 'OK' button to save the connection.</LI>
+    </ul>
+	<ol></ol>
+	<p>To update a database connection, click on the connection name in the  pane and click the 'Update' button. The connection dialog will open to display the current configuration for the selected database connection. Make the desired changes, test the connection, and click 'OK' to save the changes.</p>
+    <ul>
+        <LI><STRONG>Please note that if SSL is enabled and the server certificate is not signed by a global certificate authority recognized by Java, you will need to take the following actions to install the certificate on the client machine.</STRONG>
+            <ul>
+                <li>Copy the certificate (server.crt) from the database server (make sure the server is configured to support SSL) the web-server hosting Alpine.</li>
+                <li>Open the command line on that machine and go to the folder where server.crt is copied. </li>
+                <li>Run the command : openssl x509 -in server.crt -out server.crt.der -outform der </li>
+                <li>Run the command (you may need to run as root or an administrator): keytool -keystore $JAVA_HOME/lib/security/cacerts -alias postgresql -import -file server.crt.der </li>
+                <li>Restart Alpine and you should be able to create a connection to an SSL-enabled PostgreSQL or Greenplum database. </li>
+                <li>Please refer to this URL for more information: <A href="http://jdbc.postgresql.org/documentation/81/ssl.html">PostgreSQL JDBC/SSL Connections</A></li>
+            </ul>
+    </ul>
+    <p><img src="./images/dbmanage3.png"></p>
+    <h4>Follow the steps below to create a Hadoop connection:</h4>
+    <ul>
+        <LI>For a Hadoop Connection:
+            <UL type="disc">
+                <LI><STRONG>Platform:</STRONG> Hadoop
+                <LI><STRONG>Type:</STRONG> Specify Public, Group, or Personal.
+                <LI><STRONG>Group:</STRONG> If Type: Group, specify a group name.
+                <LI><STRONG>Connection Name:</STRONG> Specify a unique name for identifying the connection.
+                <LI><STRONG>HDFS Host:</STRONG> Specify the IP address or hostname of the HDFS server.
+                <LI><STRONG>HDFS Port:</STRONG>Specify the port number for HDFS.
+                <LI><STRONG>Job Host:</STRONG>Specify the IP address or hostname of the Job Tracker.
+                <LI><STRONG>Job Port:</STRONG>Specify the port of the Job Tracker.
+                <LI><STRONG>Version:</STRONG>Specify the version of Hadoop.
+                <LI><STRONG>User Name:</STRONG>Specify the username of the connecting user.
+                <LI><STRONG>Hadoop Group Name:</STRONG>Specify the password of the connecting user.
+            </UL>
+        <LI><EM>(Optional)</EM> Test the connection by clicking on the 'Test Connection' button. The Data Source Connection Manager will try establishing a connection to the Hadoop server using the parameters provided. A confirmation or failure message will be displayed based on the test result.
+        <LI>Click the 'OK' button to save the connection.</LI>
+    </ul>
+    <ol></ol>
+    <p>To update a Hadoop connection, click on the connection name in the  pane and click the 'Update' button. The connection dialog will open to display the current configuration for the selected Hadoop connection. Make the desired changes, test the connection, and click 'OK' to save the changes.</p>
+    <p><img src="./images/dbmanage4.png"></p>
+</body>
+</html>

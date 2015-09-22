@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="guohui.gao" Version="3.0">
+<Operator X="108" Y="39" name="地区" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1323330241459_0">
+<Parameter key="dbConnectionName" value="demo_nz"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="DISTRICT"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+</Operator>
+<Operator X="101" Y="112" name="房屋交易" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1323330245807_0">
+<Parameter key="dbConnectionName" value="demo_nz"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="HOUSE_TRANSACTION"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+</Operator>
+<Operator X="245" Y="23" name="地区信息" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1323330324431">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="district_info"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="CRIME"/>
+<selectedColumnName columnName="AREA"/>
+<selectedColumnName columnName="PARK"/>
+<selectedColumnName columnName="INDUSTRY"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="POLLUTION"/>
+<selectedColumnName columnName="BC_DIST"/>
+<selectedColumnName columnName="BUS"/>
+<selectedColumnName columnName="PT_RATIO"/>
+<selectedColumnName columnName="POPULATION"/>
+<selectedColumnName columnName="ADULT"/>
+<selectedColumnName columnName="U_GRAD"/>
+<DerivedFieldItem columnName="CRIME_RATE" dataType="NUMBER" expression="CRIME*100.0/POPULATION"/>
+<DerivedFieldItem columnName="PARK_AREA" dataType="NUMBER" expression="PARK*100.0/AREA"/>
+<DerivedFieldItem columnName="INDUSTRY_AREA" dataType="NUMBER" expression="INDUSTRY*100.0/AREA"/>
+<DerivedFieldItem columnName="LSTAT" dataType="NUMBER" expression="100-(U_GRAD*100.0/POPULATION)"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="DISTRICT"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="INTEGER"/>
+<Field name="CRIME" type="INTEGER"/>
+<Field name="AREA" type="INTEGER"/>
+<Field name="PARK" type="NUMERIC(8,2)"/>
+<Field name="INDUSTRY" type="NUMERIC(8,2)"/>
+<Field name="WATER_VIEW" type="CHARACTER VARYING(50)"/>
+<Field name="POLLUTION" type="DOUBLE"/>
+<Field name="BC_DIST" type="DOUBLE"/>
+<Field name="BUS" type="INTEGER"/>
+<Field name="PT_RATIO" type="NUMERIC(5,1)"/>
+<Field name="POPULATION" type="INTEGER"/>
+<Field name="ADULT" type="INTEGER"/>
+<Field name="U_GRAD" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="251" Y="112" name="交易聚合" type="com.alpine.miner.gef.runoperator.field.AggregateOperator" uuid="1323330361439">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="house_tx_aggt"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<AggregateFieldsModel>
+<groupBy columnName="DISTRICT_ID"/>
+<groupBy columnName="PRICE"/>
+<parentFieldList columnName="DISTRICT_ID"/>
+<parentFieldList columnName="HOUSE_ID"/>
+<parentFieldList columnName="ROOM"/>
+<parentFieldList columnName="PRICE"/>
+<parentFieldList columnName="AGE"/>
+<AggregateField columnName="sum_ROOM" dataType="NUMBER(22,0)" expression="sum(&quot;ROOM&quot;)"/>
+<AggregateField columnName="sum_PRICE" dataType="NUMBER(22,0)" expression="sum(&quot;PRICE&quot;)"/>
+<AggregateField columnName="sum_AGE" dataType="NUMBER(22,0)" expression="sum(&quot;AGE&quot;)"/>
+</AggregateFieldsModel>
+<WindowFieldsModel/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="HOUSE_TRANSACTION"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="DISTRICT_ID" type="INTEGER"/>
+<Field name="HOUSE_ID" type="CHARACTER VARYING(10)"/>
+<Field name="ROOM" type="INTEGER"/>
+<Field name="PRICE" type="INTEGER"/>
+<Field name="AGE" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="379" Y="49" name="房屋信息" type="com.alpine.miner.gef.runoperator.datasource.TableJoinOperator" uuid="1323330390742">
+<Parameter key="createSequenceID" value="No"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_info"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<TableJoinDefinition>
+<JoinTableModel alias="d" operID="1323330324431" schema="MINER_DEMO" table="district_info"/>
+<JoinTableModel alias="H" operID="1323330361439" schema="MINER_DEMO" table="house_tx_aggt"/>
+<JoinColumnModel columnName="ID" columnType="NUMBER(22,0)" newColumnName="ID" tableAlias="d"/>
+<JoinColumnModel columnName="WATER_VIEW" columnType="CHAR(1)" newColumnName="WATER_VIEW" tableAlias="d"/>
+<JoinColumnModel columnName="PT_RATIO" columnType="NUMBER(5,1)" newColumnName="PT_RATIO" tableAlias="d"/>
+<JoinColumnModel columnName="U_GRAD" columnType="NUMBER(22,0)" newColumnName="U_GRAD" tableAlias="d"/>
+<JoinColumnModel columnName="CRIME_RATE" columnType="NUMBER" newColumnName="CRIME_RATE" tableAlias="d"/>
+<JoinColumnModel columnName="PARK_AREA" columnType="NUMBER" newColumnName="PARK_AREA" tableAlias="d"/>
+<JoinColumnModel columnName="INDUSTRY_AREA" columnType="NUMBER" newColumnName="INDUSTRY_AREA" tableAlias="d"/>
+<JoinColumnModel columnName="LSTAT" columnType="NUMBER" newColumnName="LSTAT" tableAlias="d"/>
+<JoinColumnModel columnName="PRICE" columnType="NUMBER(22,0)" newColumnName="PRICE" tableAlias="H"/>
+<JoinColumnModel columnName="sum_ROOM" columnType="NUMBER(22,0)" newColumnName="sum_ROOM" tableAlias="H"/>
+<JoinColumnModel columnName="sum_PRICE" columnType="NUMBER(22,0)" newColumnName="sum_PRICE" tableAlias="H"/>
+<JoinColumnModel columnName="sum_AGE" columnType="NUMBER(22,0)" newColumnName="sum_AGE" tableAlias="H"/>
+<JoinConditionModel andOr="" column1="d.ID" column2="H.DISTRICT_ID" condition="=" joinType="JOIN" tableAlias1="d" tableAlias2="H"/>
+</TableJoinDefinition>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="district_info"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="INTEGER"/>
+<Field name="CRIME" type="INTEGER"/>
+<Field name="AREA" type="INTEGER"/>
+<Field name="PARK" type="NUMERIC(8,2)"/>
+<Field name="INDUSTRY" type="NUMERIC(8,2)"/>
+<Field name="WATER_VIEW" type="CHARACTER VARYING(50)"/>
+<Field name="POLLUTION" type="DOUBLE"/>
+<Field name="BC_DIST" type="DOUBLE"/>
+<Field name="BUS" type="INTEGER"/>
+<Field name="PT_RATIO" type="NUMERIC(5,1)"/>
+<Field name="POPULATION" type="INTEGER"/>
+<Field name="ADULT" type="INTEGER"/>
+<Field name="U_GRAD" type="INTEGER"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="house_tx_aggt"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="DISTRICT_ID" type="INTEGER"/>
+<Field name="PRICE" type="INTEGER"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="562" Y="39" name="房屋价格" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1323330736718">
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_price_bin"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<QuantileModel>
+<QuantileItem columnName="PRICE" isCreateNewColumn="true" newColumnName="PRICE_bin" numberOfBin="3" quantileType="1">
+<QuantileItemBinNumeric binIndex="1" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="2" binType="0" values=""/>
+<QuantileItemBinNumeric binIndex="3" binType="0" values=""/>
+</QuantileItem>
+</QuantileModel>
+<DerivedFieldsModel>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="PT_RATIO"/>
+<selectedColumnName columnName="U_GRAD"/>
+<selectedColumnName columnName="CRIME_RATE"/>
+<selectedColumnName columnName="PARK_AREA"/>
+<selectedColumnName columnName="INDUSTRY_AREA"/>
+<selectedColumnName columnName="LSTAT"/>
+<selectedColumnName columnName="PRICE"/>
+<selectedColumnName columnName="sum_ROOM"/>
+<selectedColumnName columnName="sum_PRICE"/>
+<selectedColumnName columnName="sum_AGE"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_info"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="549" Y="151" name="房屋价格等级" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1323331229831">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_price_level"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="PT_RATIO"/>
+<selectedColumnName columnName="U_GRAD"/>
+<selectedColumnName columnName="CRIME_RATE"/>
+<selectedColumnName columnName="PARK_AREA"/>
+<selectedColumnName columnName="INDUSTRY_AREA"/>
+<selectedColumnName columnName="LSTAT"/>
+<selectedColumnName columnName="PRICE"/>
+<selectedColumnName columnName="sum_ROOM"/>
+<selectedColumnName columnName="sum_PRICE"/>
+<selectedColumnName columnName="sum_AGE"/>
+<selectedColumnName columnName="PRICE_bin"/>
+<DerivedFieldItem columnName="price_level" dataType="VARCHAR2" expression="CASE WHEN &quot;PRICE_bin&quot;= 1 THEN 'Low' &#13;&#10;WHEN &quot;PRICE_bin&quot;=2 THEN 'Mid' &#13;&#10;WHEN &quot;PRICE_bin&quot;= 3 THEN 'High' &#13;&#10;END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_price_bin"/>
+<Parameter key="tableType" value="VIEW"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="374" Y="140" name="房屋信息分析" type="com.alpine.miner.gef.runoperator.field.VariableOperator" uuid="1323331393095">
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_mining"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<DerivedFieldsModel>
+<selectedColumnName columnName="ID"/>
+<selectedColumnName columnName="WATER_VIEW"/>
+<selectedColumnName columnName="PT_RATIO"/>
+<selectedColumnName columnName="U_GRAD"/>
+<selectedColumnName columnName="CRIME_RATE"/>
+<selectedColumnName columnName="PARK_AREA"/>
+<selectedColumnName columnName="INDUSTRY_AREA"/>
+<selectedColumnName columnName="LSTAT"/>
+<selectedColumnName columnName="PRICE"/>
+<selectedColumnName columnName="sum_ROOM"/>
+<selectedColumnName columnName="sum_PRICE"/>
+<selectedColumnName columnName="sum_AGE"/>
+<selectedColumnName columnName="PRICE_bin"/>
+<selectedColumnName columnName="price_level"/>
+<DerivedFieldItem columnName="price_level_2" dataType="VARCHAR2" expression="CASE WHEN &quot;PRICE_bin&quot; = 3 THEN 'Good' ELSE 'Bad' END"/>
+</DerivedFieldsModel>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_price_level"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="385" Y="241" name="随机抽样" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1323331489615">
+<Parameter key="sampleCount" value="3"/>
+<Parameter key="sampleSizeType" value="Percentage"/>
+<Parameter key="sampleSize" value="100"/>
+<Parameter key="randomSeed" value="0.1"/>
+<Parameter key="consistent" value="true"/>
+<Parameter key="replacement" value="false"/>
+<Parameter key="disjoint" value="true"/>
+<Parameter key="keyColumnList" value="PRICE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_mining"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="214" Y="313" name="预测抽样" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1323331541231">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="389" Y="317" name="训练抽样" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1323331542471">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="567" Y="304" name="评估抽样" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1323331543911">
+<Parameter key="selectedTable" value="MINER_DEMO.housing_sample_2"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="78" Y="368" name="表征权重分析" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOEOperator" uuid="1323331612927">
+<Parameter key="dependentColumn" value="price_level_2"/>
+<Parameter key="goodValue" value="Good"/>
+<Parameter key="columnNames" value="CRIME_RATE,INDUSTRY_AREA,LSTAT,PARK_AREA,PT_RATIO,U_GRAD,WATER_VIEW,sum_AGE,sum_ROOM"/>
+<WOETable>
+<WOEInforList columnName="WATER_VIEW" gini="0.4370732786024269" inforValue="0.06896199770358849">
+<WOENominalNode WOEValue="-0.07816477284933626" groupInfo="Group1">
+<choosedList columnName="f"/>
+</WOENominalNode>
+<WOENominalNode WOEValue="0.8873031950009027" groupInfo="Group2">
+<choosedList columnName="t"/>
+</WOENominalNode>
+</WOEInforList>
+<WOEInforList columnName="PT_RATIO" gini="0.365428173699931" inforValue="0.9649392603115413">
+<WOENumbernicNode WOEValue="0.8155491620726233" bottom="-Infinity" groupInfo="1" upper="18.75"/>
+<WOENumbernicNode WOEValue="-2.2380465718564744" bottom="18.75" groupInfo="2" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="U_GRAD" gini="0.40102165698531045" inforValue="0.9038050305195331">
+<WOENumbernicNode WOEValue="-6.327936783729195" bottom="-Infinity" groupInfo="1" upper="9004.5"/>
+<WOENumbernicNode WOEValue="-0.23753228876630933" bottom="9004.5" groupInfo="2" upper="17089.5"/>
+<WOENumbernicNode WOEValue="-0.0317486983145803" bottom="17089.5" groupInfo="3" upper="22503.0"/>
+<WOENumbernicNode WOEValue="1.3437347467010947" bottom="22503.0" groupInfo="4" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="CRIME_RATE" gini="0.3696957242950619" inforValue="0.935739242982707">
+<WOENumbernicNode WOEValue="1.9740810260220096" bottom="-Infinity" groupInfo="1" upper="0.03"/>
+<WOENumbernicNode WOEValue="0.6733445532637656" bottom="0.03" groupInfo="2" upper="0.1"/>
+<WOENumbernicNode WOEValue="-0.04445176257083381" bottom="0.1" groupInfo="3" upper="0.2"/>
+<WOENumbernicNode WOEValue="-0.6466271649250525" bottom="0.2" groupInfo="4" upper="0.3"/>
+<WOENumbernicNode WOEValue="0.5668534552356532" bottom="0.3" groupInfo="5" upper="1.0"/>
+<WOENumbernicNode WOEValue="-0.31015492830383945" bottom="1.0" groupInfo="6" upper="2.0"/>
+<WOENumbernicNode WOEValue="-1.0045833390198333" bottom="2.0" groupInfo="7" upper="5.0"/>
+<WOENumbernicNode WOEValue="-1.3581234841531944" bottom="5.0" groupInfo="8" upper="10.0"/>
+<WOENumbernicNode WOEValue="-2.3513752571634776" bottom="10.0" groupInfo="9" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="PARK_AREA" gini="0.3810654089206048" inforValue="0.6195717787710762">
+<WOENumbernicNode WOEValue="-0.504684355743908" bottom="-Infinity" groupInfo="Group1" upper="15.0"/>
+<WOENumbernicNode WOEValue="1.2930368676333077" bottom="15.0" groupInfo="Group2" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="INDUSTRY_AREA" gini="0.3155387329035598" inforValue="1.3981935784153858">
+<WOENumbernicNode WOEValue="1.7209334166594425" bottom="-Infinity" groupInfo="Group1" upper="3.9853"/>
+<WOENumbernicNode WOEValue="-0.05715841383994852" bottom="3.9853" groupInfo="Group2" upper="6.0903"/>
+<WOENumbernicNode WOEValue="2.890371757896165" bottom="6.0903" groupInfo="Group3" upper="6.9097"/>
+<WOENumbernicNode WOEValue="-0.8808888048232391" bottom="6.9097" groupInfo="Group4" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="LSTAT" gini="0.34296163446911854" inforValue="1.5699180407167772">
+<WOENumbernicNode WOEValue="3.3081069585961433" bottom="-Infinity" groupInfo="1" upper="29.0097"/>
+<WOENumbernicNode WOEValue="0.5012561727498399" bottom="29.0097" groupInfo="2" upper="44.7192"/>
+<WOENumbernicNode WOEValue="-1.271631452799751" bottom="44.7192" groupInfo="3" upper="55.76"/>
+<WOENumbernicNode WOEValue="-3.817712325956905" bottom="55.76" groupInfo="4" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="sum_ROOM" gini="0.3651990055468882" inforValue="0.9580761107156986">
+<WOENumbernicNode WOEValue="-2.388762789235098" bottom="-Infinity" groupInfo="Group1" upper="2.0"/>
+<WOENumbernicNode WOEValue="-0.2633825944943916" bottom="2.0" groupInfo="Group2" upper="4.0"/>
+<WOENumbernicNode WOEValue="1.4529857356185627" bottom="4.0" groupInfo="Group3" upper="Infinity"/>
+</WOEInforList>
+<WOEInforList columnName="sum_AGE" gini="0.40310568142131953" inforValue="0.450837259904574">
+<WOENumbernicNode WOEValue="0.7423374247507171" bottom="-Infinity" groupInfo="Group1" upper="24.5"/>
+<WOENumbernicNode WOEValue="0.2833624113072646" bottom="24.5" groupInfo="Group2" upper="39.5"/>
+<WOENumbernicNode WOEValue="-0.42845462633286296" bottom="39.5" groupInfo="Group3" upper="46.5"/>
+<WOENumbernicNode WOEValue="-1.0141949468555265" bottom="46.5" groupInfo="Group4" upper="Infinity"/>
+</WOEInforList>
+</WOETable>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="198" Y="412" name="预测表征权重表" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOETableGeneratorOperator" uuid="1323333212960">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="woe_predict_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="372" Y="415" name="训练表征权重表" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOETableGeneratorOperator" uuid="1323333219639">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="woe_training_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="555" Y="408" name="评估表征权重表" type="com.alpine.miner.gef.runoperator.logisticregression.woe.WOETableGeneratorOperator" uuid="1323333224822">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="woe_eval_sample"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="housing_sample_2"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="397" Y="516" name="逻辑回归" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionOperator" uuid="1323333306415">
+<Parameter key="dependentColumn" value="price_level_2"/>
+<Parameter key="goodValue" value="Good"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="max_generations" value="25"/>
+<Parameter key="epsilon" value="0.00000001"/>
+<Parameter key="columnNames" value="WOE(CRIME_RATE),WOE(INDUSTRY_AREA),WOE(LSTAT),WOE(PARK_AREA),WOE(PT_RATIO),WOE(U_GRAD),WOE(WATER_VIEW),WOE(sum_AGE),WOE(sum_ROOM)"/>
+<Parameter key="isStepWise" value="true"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="criterionType" value="SBC"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="woe_training_sample"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+<Field name="WOE(CRIME_RATE)" type="DOUBLE PRECISION"/>
+<Field name="WOE(INDUSTRY_AREA)" type="DOUBLE PRECISION"/>
+<Field name="WOE(LSTAT)" type="DOUBLE PRECISION"/>
+<Field name="WOE(PARK_AREA)" type="DOUBLE PRECISION"/>
+<Field name="WOE(PT_RATIO)" type="DOUBLE PRECISION"/>
+<Field name="WOE(U_GRAD)" type="DOUBLE PRECISION"/>
+<Field name="WOE(WATER_VIEW)" type="DOUBLE PRECISION"/>
+<Field name="WOE(sum_AGE)" type="DOUBLE PRECISION"/>
+<Field name="WOE(sum_ROOM)" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="208" Y="518" name="逻辑回归预测" type="com.alpine.miner.gef.runoperator.logisticregression.LogisticRegressionPredictOperator" uuid="1323333315071">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="housing_predict"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="woe_predict_sample"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+<Field name="WOE(CRIME_RATE)" type="DOUBLE PRECISION"/>
+<Field name="WOE(INDUSTRY_AREA)" type="DOUBLE PRECISION"/>
+<Field name="WOE(LSTAT)" type="DOUBLE PRECISION"/>
+<Field name="WOE(PARK_AREA)" type="DOUBLE PRECISION"/>
+<Field name="WOE(PT_RATIO)" type="DOUBLE PRECISION"/>
+<Field name="WOE(U_GRAD)" type="DOUBLE PRECISION"/>
+<Field name="WOE(WATER_VIEW)" type="DOUBLE PRECISION"/>
+<Field name="WOE(sum_AGE)" type="DOUBLE PRECISION"/>
+<Field name="WOE(sum_ROOM)" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="589" Y="506" name="ROC" type="com.alpine.miner.gef.runoperator.model.evaluator.ROCOperator" uuid="1323333317289">
+<Parameter key="dependentColumn" value="price_level_2"/>
+<Parameter key="columnValue" value="Good"/>
+<Parameter key="useModel" value="true"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:netezza://192.168.1.232:5480/miner_demodb"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="woe_eval_sample"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Netezza"/>
+<Fields>
+<Field name="ID" type="NUMBER(22,0)"/>
+<Field name="WATER_VIEW" type="CHAR(1)"/>
+<Field name="PT_RATIO" type="NUMBER(5,1)"/>
+<Field name="U_GRAD" type="NUMBER(22,0)"/>
+<Field name="CRIME_RATE" type="NUMBER"/>
+<Field name="PARK_AREA" type="NUMBER"/>
+<Field name="INDUSTRY_AREA" type="NUMBER"/>
+<Field name="LSTAT" type="NUMBER"/>
+<Field name="PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_ROOM" type="NUMBER(22,0)"/>
+<Field name="sum_PRICE" type="NUMBER(22,0)"/>
+<Field name="sum_AGE" type="NUMBER(22,0)"/>
+<Field name="PRICE_bin" type="INTEGER"/>
+<Field name="price_level" type="VARCHAR2"/>
+<Field name="price_level_2" type="VARCHAR2"/>
+<Field name="WOE(CRIME_RATE)" type="DOUBLE PRECISION"/>
+<Field name="WOE(INDUSTRY_AREA)" type="DOUBLE PRECISION"/>
+<Field name="WOE(LSTAT)" type="DOUBLE PRECISION"/>
+<Field name="WOE(PARK_AREA)" type="DOUBLE PRECISION"/>
+<Field name="WOE(PT_RATIO)" type="DOUBLE PRECISION"/>
+<Field name="WOE(U_GRAD)" type="DOUBLE PRECISION"/>
+<Field name="WOE(WATER_VIEW)" type="DOUBLE PRECISION"/>
+<Field name="WOE(sum_AGE)" type="DOUBLE PRECISION"/>
+<Field name="WOE(sum_ROOM)" type="DOUBLE PRECISION"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="地区" target="地区信息"/>
+<Link source="房屋交易" target="交易聚合"/>
+<Link source="地区信息" target="房屋信息"/>
+<Link source="房屋信息" target="房屋价格"/>
+<Link source="交易聚合" target="房屋信息"/>
+<Link source="房屋价格" target="房屋价格等级"/>
+<Link source="房屋价格等级" target="房屋信息分析"/>
+<Link source="房屋信息分析" target="随机抽样"/>
+<Link source="随机抽样" target="预测抽样"/>
+<Link source="随机抽样" target="训练抽样"/>
+<Link source="随机抽样" target="评估抽样"/>
+<Link source="训练抽样" target="表征权重分析"/>
+<Link source="预测抽样" target="预测表征权重表"/>
+<Link source="训练抽样" target="训练表征权重表"/>
+<Link source="评估抽样" target="评估表征权重表"/>
+<Link source="表征权重分析" target="预测表征权重表"/>
+<Link source="表征权重分析" target="训练表征权重表"/>
+<Link source="表征权重分析" target="评估表征权重表"/>
+<Link source="预测表征权重表" target="逻辑回归预测"/>
+<Link source="训练表征权重表" target="逻辑回归"/>
+<Link source="逻辑回归" target="逻辑回归预测"/>
+<Link source="评估表征权重表" target="ROC"/>
+<Link source="逻辑回归" target="ROC"/>
+</Process>

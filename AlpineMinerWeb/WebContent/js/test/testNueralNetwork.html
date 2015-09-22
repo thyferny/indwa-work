@@ -1,0 +1,294 @@
+<!--[if IE 8]>
+<!DOCTYPE>
+<html lang="en">
+    <head>
+           <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<![endif]-->
+<![if !(IE 8)]>
+<!DOCTYPE>
+<html lang="en">
+	<head>
+<![endif]>
+		<title>Network chart test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import "../dojo/resources/dojo.css";
+			@import "../dijit/themes/tundra/tundra.css";
+			@import "../dijit/tests/css/dijitTests.css";
+			@import "../dojox/form/resources/RangeSlider.css";
+			#hrXAxisSlider .dijitSliderProgressBar{
+				height: 12px;
+				overflow: visible;
+				margin-top: -5px;
+			}
+		</style>
+		<script type="text/javascript" src="../dojo/dojo.js" djConfig="isDebug: true, parseOnLoad: true"></script>
+
+ <script type="text/javascript" src= "../alpine/alpineConstants.js"></script>
+ <script type="text/javascript" src= "../alpine/result.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/networkchart.js"></script>
+ <script type="text/javascript" src= "../alpine/visual/visualUtils.js"></script>
+  <script type="text/javascript"  src="../alpine/visual/gfxToolTip.js"></script>	
+ 
+		<script type="text/javascript">
+			dojo.require("dojo.parser");
+		 	dojo.require("dijit.Tooltip"); 
+			dojo.require("dojox.gfx");
+			dojo.require("dojox.gfx.move");
+			dojo.require("dojo.colors");
+			dojo.require("dijit.layout.ContentPane");
+			dojo.require("dijit.Dialog");
+			dojo.require("dojo.string");
+			dojo.require("dojo.i18n");
+ 
+			var result={"visualData":{"XMinorTickStep":"","allChildNodes":[
+{"childNodes":[],"label":"input flow to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":1},
+{"childNodes":[],"label":"input Zinc to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":2},
+{"childNodes":[],"label":"input pH to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":3},
+{"childNodes":[],"label":"input Biological demand of oxygen to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":4},
+{"childNodes":[],"label":"input chemical demand of oxygen to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":5},
+{"childNodes":[],"label":"input suspended solids to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":6},
+{"childNodes":[],"label":"input volatile supended solids to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":7},
+{"childNodes":[],"label":"input sediments to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":8},
+{"childNodes":[],"label":"input conductivity to plant","nodeType":0,"toolTip":"","xGrid":1,"yGrid":9},
+{"childNodes":[],"label":"output pH","nodeType":0,"toolTip":"","xGrid":1,"yGrid":10},
+{"childNodes":[],"label":"output Biological demand of oxygen","nodeType":0,"toolTip":"","xGrid":1,"yGrid":11},
+{"childNodes":[],"label":"output chemical demand of oxygen","nodeType":0,"toolTip":"","xGrid":1,"yGrid":12},
+{"childNodes":[],"label":"output suspended solids","nodeType":0,"toolTip":"","xGrid":1,"yGrid":13},
+{"childNodes":[],"label":"output volatile supended solids","nodeType":0,"toolTip":"","xGrid":1,"yGrid":14},
+{"childNodes":[],"label":"output sediments","nodeType":0,"toolTip":"","xGrid":1,"yGrid":15},
+{"childNodes":[],"label":"output conductivity","nodeType":0,"toolTip":"","xGrid":1,"yGrid":16},
+{"childNodes":[],"label":"Threshhold","nodeType":2,"toolTip":"","xGrid":1,"yGrid":17},
+{"childNodes":[],"label":"Class 'yes'","nodeType":0,"toolTip":"","xGrid":3,"yGrid":1},
+{"childNodes":[],"label":"Class 'no'","nodeType":0,"toolTip":"","xGrid":3,"yGrid":2},
+{"childNodes":[],"label":"NNNode 1.1","nodeType":0,"toolTip":"","xGrid":2,"yGrid":1},
+{"childNodes":[],"label":"NNNode 1.2","nodeType":0,"toolTip":"","xGrid":2,"yGrid":2},
+{"childNodes":[],"label":"NNNode 1.3","nodeType":0,"toolTip":"","xGrid":2,"yGrid":3},
+{"childNodes":[],"label":"NNNode 1.4","nodeType":0,"toolTip":"","xGrid":2,"yGrid":4},
+{"childNodes":[],"label":"NNNode 1.5","nodeType":0,"toolTip":"","xGrid":2,"yGrid":5},
+{"childNodes":[],"label":"NNNode 1.6","nodeType":0,"toolTip":"","xGrid":2,"yGrid":6},
+{"childNodes":[],"label":"NNNode 1.7","nodeType":0,"toolTip":"","xGrid":2,"yGrid":7},
+{"childNodes":[],"label":"NNNode 1.8","nodeType":0,"toolTip":"","xGrid":2,"yGrid":8},
+{"childNodes":[],"label":"NNNode 1.9","nodeType":0,"toolTip":"","xGrid":2,"yGrid":9},
+{"childNodes":[],"label":"NNNode 1.10","nodeType":0,"toolTip":"","xGrid":2,"yGrid":10},
+{"childNodes":[],"label":"Threshhold","nodeType":2,"toolTip":"","xGrid":2,"yGrid":11}],
+"description":"null Deviance: 92.2372; deviance: 94.5993\n","hGrid":false,
+"height":0,"links":
+	[{"color":"","endIndex":17,"label":"3.559517528416202","startIndex":19},
+{"color":"","endIndex":17,"label":"7.978685628499416","startIndex":20},
+{"color":"","endIndex":17,"label":"-8.035197204050473","startIndex":21},
+{"color":"","endIndex":17,"label":"1.44465447433437","startIndex":22},
+{"color":"","endIndex":17,"label":"0.9729321597024359","startIndex":23},
+{"color":"","endIndex":17,"label":"1.74890194296778","startIndex":24},
+{"color":"","endIndex":17,"label":"-4.021316317519612","startIndex":25},
+{"color":"","endIndex":17,"label":"-2.8361449949634823","startIndex":26},
+{"color":"","endIndex":17,"label":"3.925568242288166","startIndex":27},
+{"color":"","endIndex":17,"label":"3.9885976821824896","startIndex":28},
+{"color":"","endIndex":17,"label":"-7.076336711373459","startIndex":10},
+{"color":"","endIndex":24,"label":"0.7794605035529281","startIndex":0},
+{"color":"","endIndex":24,"label":"-0.7236838447798479","startIndex":1},
+{"color":"","endIndex":24,"label":"0.8358795825900125","startIndex":2},
+{"color":"","endIndex":24,"label":"-0.08894355066880902","startIndex":3},
+{"color":"","endIndex":24,"label":"-0.816765316272174","startIndex":4},
+{"color":"","endIndex":24,"label":"0.1688908353671417","startIndex":5},
+{"color":"","endIndex":24,"label":"-1.5249465783584062","startIndex":6},
+{"color":"","endIndex":24,"label":"-0.882396620439409","startIndex":7},
+{"color":"","endIndex":24,"label":"0.05685503580132349","startIndex":8},
+{"color":"","endIndex":24,"label":"-0.43065708670288066","startIndex":9},
+{"color":"","endIndex":24,"label":"0.8572529797758464","startIndex":10},
+{"color":"","endIndex":24,"label":"0.009968267561213471","startIndex":11},
+{"color":"","endIndex":24,"label":"-1.5890254985983612","startIndex":12},
+{"color":"","endIndex":24,"label":"-0.9009930857252396","startIndex":13},
+{"color":"","endIndex":24,"label":"1.6049394562913606","startIndex":14},
+{"color":"","endIndex":24,"label":"-0.9535491814975807","startIndex":15},
+{"color":"","endIndex":24,"label":"-2.332837002710002","startIndex":16},
+{"color":"","endIndex":21,"label":"1.8095610633608696","startIndex":0},
+{"color":"","endIndex":21,"label":"-2.0207076310497545","startIndex":1},
+{"color":"","endIndex":21,"label":"5.693917261043363","startIndex":2},
+{"color":"","endIndex":21,"label":"2.8227717293810906","startIndex":3},
+{"color":"","endIndex":21,"label":"-0.15550757396821097","startIndex":4},
+{"color":"","endIndex":21,"label":"2.9493891329139443","startIndex":5},
+{"color":"","endIndex":21,"label":"-3.6109648080368038","startIndex":6},
+{"color":"","endIndex":21,"label":"3.848144260489187","startIndex":7},
+{"color":"","endIndex":21,"label":"-0.8889972450664737","startIndex":8},
+{"color":"","endIndex":21,"label":"3.6184276342137607","startIndex":9},
+{"color":"","endIndex":21,"label":"-0.8040165159796605","startIndex":10},
+{"color":"","endIndex":21,"label":"0.5821892009995603","startIndex":11},
+{"color":"","endIndex":21,"label":"2.462043996464042","startIndex":12},
+{"color":"","endIndex":21,"label":"2.0159393320325725","startIndex":13},
+{"color":"","endIndex":21,"label":"0.13737559340502334","startIndex":14},
+{"color":"","endIndex":21,"label":"0.5461623432711478","startIndex":15},
+{"color":"","endIndex":21,"label":"-2.291764177904877E-4","startIndex":16},
+{"color":"","endIndex":27,"label":"2.816514832813098","startIndex":0},
+{"color":"","endIndex":27,"label":"2.033375681473101","startIndex":1},
+{"color":"","endIndex":27,"label":"-0.01071731910632908","startIndex":2},
+{"color":"","endIndex":27,"label":"2.4134481306342788","startIndex":3},
+{"color":"","endIndex":27,"label":"1.5825441961675606","startIndex":4},
+{"color":"","endIndex":27,"label":"-3.19242610479383","startIndex":5},
+{"color":"","endIndex":27,"label":"1.1557588508048666","startIndex":6},
+{"color":"","endIndex":27,"label":"-0.07204236908197977","startIndex":7},
+{"color":"","endIndex":27,"label":"0.7174924323625536","startIndex":8},
+{"color":"","endIndex":27,"label":"-0.8017723471554697","startIndex":9},
+{"color":"","endIndex":27,"label":"4.17024478899813","startIndex":10},
+{"color":"","endIndex":27,"label":"-0.7385399826475529","startIndex":11},
+{"color":"","endIndex":27,"label":"-4.509427756182759","startIndex":12},
+{"color":"","endIndex":27,"label":"-1.9131123222480817","startIndex":13},
+{"color":"","endIndex":27,"label":"1.2581922135732522","startIndex":14},
+{"color":"","endIndex":27,"label":"1.7858108467429394","startIndex":15},
+{"color":"","endIndex":27,"label":"-1.1403664902662944","startIndex":16},
+{"color":"","endIndex":22,"label":"1.294026065454581","startIndex":0},
+{"color":"","endIndex":22,"label":"-0.31587732734183427","startIndex":1},
+{"color":"","endIndex":22,"label":"0.860357600788387","startIndex":2},
+{"color":"","endIndex":22,"label":"0.1465501200247388","startIndex":3},
+{"color":"","endIndex":22,"label":"-0.8100868884478892","startIndex":4},
+{"color":"","endIndex":22,"label":"0.21032323843484305","startIndex":5},
+{"color":"","endIndex":22,"label":"-0.7135262103032808","startIndex":6},
+{"color":"","endIndex":22,"label":"-0.6525777889041372","startIndex":7},
+{"color":"","endIndex":22,"label":"0.6242839229157927","startIndex":8},
+{"color":"","endIndex":22,"label":"-0.34876267687648477","startIndex":9},
+{"color":"","endIndex":22,"label":"0.862744925772942","startIndex":10},
+{"color":"","endIndex":22,"label":"-0.07534617665493666","startIndex":11},
+{"color":"","endIndex":22,"label":"-2.0872924983646937","startIndex":12},
+{"color":"","endIndex":22,"label":"-0.5628926055083948","startIndex":13},
+{"color":"","endIndex":22,"label":"1.3727725895492549","startIndex":14},
+{"color":"","endIndex":22,"label":"-1.0312672162130818","startIndex":15},
+{"color":"","endIndex":22,"label":"-2.4627474944251655","startIndex":16},
+{"color":"","endIndex":25,"label":"1.62387898290806","startIndex":0},
+{"color":"","endIndex":25,"label":"1.380892489692752","startIndex":1},
+{"color":"","endIndex":25,"label":"-1.3799382880142999","startIndex":2},
+{"color":"","endIndex":25,"label":"1.7094165246246849","startIndex":3},
+{"color":"","endIndex":25,"label":"2.1338055922247183","startIndex":4},
+{"color":"","endIndex":25,"label":"-2.174480631152887","startIndex":5},
+{"color":"","endIndex":25,"label":"0.9272105892467867","startIndex":6},
+{"color":"","endIndex":25,"label":"1.4613563009223258","startIndex":7},
+{"color":"","endIndex":25,"label":"-0.18655545615878077","startIndex":8},
+{"color":"","endIndex":25,"label":"0.7669648499621335","startIndex":9},
+{"color":"","endIndex":25,"label":"2.313433066088791","startIndex":10},
+{"color":"","endIndex":25,"label":"-0.687357969418276","startIndex":11},
+{"color":"","endIndex":25,"label":"1.6380853405330613","startIndex":12},
+{"color":"","endIndex":25,"label":"-1.8668199521628264","startIndex":13},
+{"color":"","endIndex":25,"label":"-0.9707751896776036","startIndex":14},
+{"color":"","endIndex":25,"label":"1.7976816514182805","startIndex":15},
+{"color":"","endIndex":25,"label":"-0.20139346939263672","startIndex":16},
+{"color":"","endIndex":20,"label":"6.103082798462574","startIndex":0},
+{"color":"","endIndex":20,"label":"-2.4587287588479967","startIndex":1},
+{"color":"","endIndex":20,"label":"-0.21292537487431346","startIndex":2},
+{"color":"","endIndex":20,"label":"2.495260442023978","startIndex":3},
+{"color":"","endIndex":20,"label":"-2.4443196126567144","startIndex":4},
+{"color":"","endIndex":20,"label":"-0.8164900812931714","startIndex":5},
+{"color":"","endIndex":20,"label":"-4.548788969909873","startIndex":6},
+{"color":"","endIndex":20,"label":"2.3887691581130617","startIndex":7},
+{"color":"","endIndex":20,"label":"1.7974771199490645","startIndex":8},
+{"color":"","endIndex":20,"label":"1.4387047926804246","startIndex":9},
+{"color":"","endIndex":20,"label":"4.231825838716585","startIndex":10},
+{"color":"","endIndex":20,"label":"-4.674849914253198","startIndex":11},
+{"color":"","endIndex":20,"label":"-3.3632488407282555","startIndex":12},
+{"color":"","endIndex":20,"label":"1.7416077262730092","startIndex":13},
+{"color":"","endIndex":20,"label":"0.42747677082286334","startIndex":14},
+{"color":"","endIndex":20,"label":"5.303134916051941","startIndex":15},
+{"color":"","endIndex":20,"label":"-2.130293417669866","startIndex":16},
+{"color":"","endIndex":18,"label":"-3.5686776311901154","startIndex":19},
+{"color":"","endIndex":18,"label":"-7.975169857383436","startIndex":20},
+{"color":"","endIndex":18,"label":"8.04657147672527","startIndex":21},
+{"color":"","endIndex":18,"label":"-1.4731294347432822","startIndex":22},
+{"color":"","endIndex":18,"label":"-0.9532337649899416","startIndex":23},
+{"color":"","endIndex":18,"label":"-1.747449479943706","startIndex":24},
+{"color":"","endIndex":18,"label":"4.068898284131656","startIndex":25},
+{"color":"","endIndex":18,"label":"2.7538322609349404","startIndex":26},
+{"color":"","endIndex":18,"label":"-3.935042574399532","startIndex":27},
+{"color":"","endIndex":18,"label":"-3.9574218945086423","startIndex":28},
+{"color":"","endIndex":18,"label":"7.064499807605197","startIndex":10},
+{"color":"","endIndex":19,"label":"1.5553453361968457","startIndex":0},
+{"color":"","endIndex":19,"label":"-0.4463075570849304","startIndex":1},
+{"color":"","endIndex":19,"label":"2.6088325747812307","startIndex":2},
+{"color":"","endIndex":19,"label":"0.09132657885949223","startIndex":3},
+{"color":"","endIndex":19,"label":"-1.4903392089388714","startIndex":4},
+{"color":"","endIndex":19,"label":"1.1005410601023553","startIndex":5},
+{"color":"","endIndex":19,"label":"-1.3420755094216046","startIndex":6},
+{"color":"","endIndex":19,"label":"-0.6960550941847786","startIndex":7},
+{"color":"","endIndex":19,"label":"1.1787908929301132","startIndex":8},
+{"color":"","endIndex":19,"label":"0.026850775483891736","startIndex":9},
+{"color":"","endIndex":19,"label":"0.6994051292657918","startIndex":10},
+{"color":"","endIndex":19,"label":"0.47429478016963333","startIndex":11},
+{"color":"","endIndex":19,"label":"-2.164527823262608","startIndex":12},
+{"color":"","endIndex":19,"label":"0.1280246823694646","startIndex":13},
+{"color":"","endIndex":19,"label":"2.4604863219498148","startIndex":14},
+{"color":"","endIndex":19,"label":"-2.284874746783708","startIndex":15},
+{"color":"","endIndex":19,"label":"-3.276762051908936","startIndex":16},
+{"color":"","endIndex":28,"label":"3.056468621679881","startIndex":0},
+{"color":"","endIndex":28,"label":"1.8171359107728045","startIndex":1},
+{"color":"","endIndex":28,"label":"-0.699514142010411","startIndex":2},
+{"color":"","endIndex":28,"label":"1.3821949087346503","startIndex":3},
+{"color":"","endIndex":28,"label":"1.4369949764189813","startIndex":4},
+{"color":"","endIndex":28,"label":"-3.294634176718498","startIndex":5},
+{"color":"","endIndex":28,"label":"-1.0409990474797066","startIndex":6},
+{"color":"","endIndex":28,"label":"0.2514105275940968","startIndex":7},
+{"color":"","endIndex":28,"label":"0.9770355352542398","startIndex":8},
+{"color":"","endIndex":28,"label":"-1.2176510600461903","startIndex":9},
+{"color":"","endIndex":28,"label":"4.847969891435607","startIndex":10},
+{"color":"","endIndex":28,"label":"-0.9579420286300497","startIndex":11},
+{"color":"","endIndex":28,"label":"-3.9302403843304523","startIndex":12},
+{"color":"","endIndex":28,"label":"-1.5703630044191987","startIndex":13},
+{"color":"","endIndex":28,"label":"1.8592921074379405","startIndex":14},
+{"color":"","endIndex":28,"label":"0.9402045903369425","startIndex":15},
+{"color":"","endIndex":28,"label":"-1.7306076608153766","startIndex":16},
+{"color":"","endIndex":23,"label":"0.40206313760572326","startIndex":0},
+{"color":"","endIndex":23,"label":"-0.6981456374158245","startIndex":1},
+{"color":"","endIndex":23,"label":"0.2280409815610296","startIndex":2},
+{"color":"","endIndex":23,"label":"-0.036210017143207304","startIndex":3},
+{"color":"","endIndex":23,"label":"-0.45022443158166087","startIndex":4},
+{"color":"","endIndex":23,"label":"-0.2106874068752772","startIndex":5},
+{"color":"","endIndex":23,"label":"-1.203252604461015","startIndex":6},
+{"color":"","endIndex":23,"label":"-0.8592129017503807","startIndex":7},
+{"color":"","endIndex":23,"label":"-0.05720198936248607","startIndex":8},
+{"color":"","endIndex":23,"label":"-0.30355016298912074","startIndex":9},
+{"color":"","endIndex":23,"label":"0.7529637380523022","startIndex":10},
+{"color":"","endIndex":23,"label":"-0.14670038986254821","startIndex":11},
+{"color":"","endIndex":23,"label":"-1.0210697960880966","startIndex":12},
+{"color":"","endIndex":23,"label":"-1.0867066447761988","startIndex":13},
+{"color":"","endIndex":23,"label":"0.9131475663080821","startIndex":14},
+{"color":"","endIndex":23,"label":"-0.5760217937485401","startIndex":15},
+{"color":"","endIndex":23,"label":"-1.8738159607494151","startIndex":16},
+{"color":"","endIndex":26,"label":"1.4404096309343841","startIndex":0},
+{"color":"","endIndex":26,"label":"1.0186080642964306","startIndex":1},
+{"color":"","endIndex":26,"label":"-0.6894654153198188","startIndex":2},
+{"color":"","endIndex":26,"label":"1.0995484022504833","startIndex":3},
+{"color":"","endIndex":26,"label":"1.47567139146705","startIndex":4},
+{"color":"","endIndex":26,"label":"-1.523820168496244","startIndex":5},
+{"color":"","endIndex":26,"label":"0.3040823190046681","startIndex":6},
+{"color":"","endIndex":26,"label":"0.978587981437052","startIndex":7},
+{"color":"","endIndex":26,"label":"-0.07911662049261939","startIndex":8},
+{"color":"","endIndex":26,"label":"0.5116633801644604","startIndex":9},
+{"color":"","endIndex":26,"label":"1.9242253263102742","startIndex":10},
+{"color":"","endIndex":26,"label":"-0.5582775178209847","startIndex":11},
+{"color":"","endIndex":26,"label":"1.2069194369488503","startIndex":12},
+{"color":"","endIndex":26,"label":"-1.403509306844634","startIndex":13},
+{"color":"","endIndex":26,"label":"-0.21284110143166482","startIndex":14},
+{"color":"","endIndex":26,"label":"1.2249511545490956","startIndex":15},
+{"color":"","endIndex":26,"label":"-0.6283379775817325","startIndex":16}],
+"markers":false,"maxX":"","maxY":"","minX":"","minY":"","title":"Neural Network",
+"vGrid":false,"visualizationType":4,"xAxisTitle":"","xLabels":[["1","Input"],["2","Hidden 1"],["3","Output"]],"yAxisTitle":"","yLabels":[]},
+"visualType":4,"out_id":1.3117613506265283E12,"out_title":"Neural Network"} 
+			;
+			var chart;
+			makeObjects = function(){
+				
+				
+				fillOutPutPan( dijit.byId("chart"),
+						result				
+				);
+			};
+ 
+			dojo.addOnLoad(makeObjects);
+		</script>
+	</head>
+	<body  >
+		 
+		<div style="margin:20px">
+			<div id="chart"  dojoType="dijit.layout.ContentPane" style="width: 1000px; height: 800px;"></div>
+ 
+		</div>
+		 
+	</body>
+
+</html>

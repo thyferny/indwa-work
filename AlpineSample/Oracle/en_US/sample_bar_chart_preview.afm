@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="1.00">
+<Operator X="52" Y="107" name="DB Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719824421">
+<Parameter key="system" value="Oracle"/>
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="SALES_EXAMPLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="SALES_EXAMPLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SALES" type="NUMBER(22,0)"/>
+<Field name="REGION" type="VARCHAR2(10)"/>
+<Field name="QUARTER" type="NUMBER(22,0)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Operator X="185" Y="175" name="Bar Chart Preview" type="com.alpine.miner.gef.runoperator.field.BarChartAnalysisOperator" uuid="1277719824437">
+<Parameter key="scopeDomain" value="REGION"/>
+<Parameter key="valueDomain" value="SALES"/>
+<Parameter key="categoryType" value="QUARTER"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="SALES_EXAMPLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SALES" type="NUMBER(22,0)"/>
+<Field name="REGION" type="VARCHAR2(10)"/>
+<Field name="QUARTER" type="NUMBER(22,0)"/>
+</Fields>
+</InPutFieldList>
+<OutPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.212:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="SALES_EXAMPLE"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="SALES" type="NUMBER(22,0)"/>
+<Field name="REGION" type="VARCHAR2(10)"/>
+<Field name="QUARTER" type="NUMBER(22,0)"/>
+</Fields>
+</OutPutFieldList>
+</Operator>
+<Link source="DB Table" target="Bar Chart Preview"/>
+</Process>

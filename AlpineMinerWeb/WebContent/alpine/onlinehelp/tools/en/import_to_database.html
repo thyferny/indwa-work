@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Import to Database</title>
+</head>
+<body style="font-family:Arial, Helvetica, sans-serif">
+    <h1>Import to Database</h1>
+    <p>Users with the modeler role can upload and import datasets though any database connection. The following steps are a guide to uploading and importing data in Alpine.</p>
+    <ul>
+        <li>Navigate to a schema within a database connection in the Data Explorer and click the upload data button.
+        <br /><img src="./images/import_data_btn.png"/> </li>
+        <li>Chose a file from the local disk. When the file finishes uploading click 'Next: Format Fields'.
+            <br /><img src="./images/import_data_upload.png"/></li>
+        <li>The following dialog displays a preview of the dataset to be imported. The user can specify the name of the table to be create in the database.</li>
+        <li>Alpine will guess the delimiter used in the file and the data type of each column. The user can override the recommendation if necessary. </li>
+        <li>By clicking 'Show additional formatting options' the user can specify the delimiter, the escape, and the quote character used by the file. The user can specify if the uploaded file contains a header. For each column, the user can specify the name, data type, to include the column, and if rows with null values in the column should be imported. </li>
+        <li>To begin the import click 'Start Import'.</li>
+        <li>When the import is complete, the user will be notified by a toast style message.
+        <br /><img src="./images/import_data_format_fields.png"/></li>
+    </ul>
+</body>
+</html>

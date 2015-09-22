@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="" UserName="Administrator" Version="3.0">
+<Operator X="169" Y="54" name="Db Table" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719849359">
+<Parameter key="dbConnectionName" value="demo_db2"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="WINEQUALITY_RED"/>
+<Parameter key="userName" value="db2inst1"/>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+</Operator>
+<Operator X="261" Y="362" name="Linear Regression" type="com.alpine.miner.gef.runoperator.linearregression.LinearRegressionOperator" uuid="1291103329046">
+<Parameter key="dependentColumn" value="QUALITY"/>
+<Parameter key="forceRetrain" value="Yes"/>
+<Parameter key="columnNames" value="VOLATILE_ACIDITY,FREE_SULFUR_DIOXIDE,RESIDUAL_SUGAR,PH,CITRIC_ACID,DENSITY,CHLORIDES,SULPHATES,ALCOHOL,TOTAL_SULFUR_DIOXIDE,FIXED_ACIDITY"/>
+<Parameter key="isStepWise" value="false"/>
+<Parameter key="stepWiseType" value="FORWARD"/>
+<Parameter key="checkValue" value="0.05"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="s_WINEQUALIT_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="144" Y="142" name="Random Sampling" type="com.alpine.miner.gef.runoperator.sampling.RandomSamplingOperator" uuid="1291105169359">
+<Parameter key="sampleCount" value="2"/>
+<Parameter key="sampleSizeType" value="Percentage"/>
+<Parameter key="sampleSize" value="80"/>
+<Parameter key="consistent" value="false"/>
+<Parameter key="replacement" value="false"/>
+<Parameter key="disjoint" value="false"/>
+<Parameter key="outputType" value="TABLE"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="s_WINEQUALIT"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="WINEQUALITY_RED"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="40" Y="225" name="Sample Selector0" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1291105177750">
+<Parameter key="selectedTable" value="MINER_DEMO.s_WINEQUALIT_0"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="s_WINEQUALIT_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="s_WINEQUALIT_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="260" Y="218" name="Sample Selector1" type="com.alpine.miner.gef.runoperator.sampling.SampleSelectorOperator" uuid="1291105179171">
+<Parameter key="selectedTable" value="MINER_DEMO.s_WINEQUALIT_1"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="s_WINEQUALIT_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="s_WINEQUALIT_1"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Operator X="10" Y="361" name="Linear Regression Prediction" type="com.alpine.miner.gef.runoperator.linearregression.LinearRegressionPredictOperator" uuid="1291105314671">
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="wine_predict"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:db2://114.132.246.180:50001/M_DEMO"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="s_WINEQUALIT_0"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="db2inst1"/>
+<Parameter key="password" value="ZGIyaW5zdDFkZXZlbG9wZXI="/>
+<Parameter key="system" value="DB2"/>
+<Fields>
+<Field name="FIXED_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="VOLATILE_ACIDITY" type="DECIMAL(10,2)"/>
+<Field name="CITRIC_ACID" type="DECIMAL(10,2)"/>
+<Field name="RESIDUAL_SUGAR" type="DECIMAL(10,2)"/>
+<Field name="CHLORIDES" type="DECIMAL(10,3)"/>
+<Field name="FREE_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="TOTAL_SULFUR_DIOXIDE" type="DECIMAL(10,2)"/>
+<Field name="DENSITY" type="DECIMAL(10,5)"/>
+<Field name="PH" type="DECIMAL(10,2)"/>
+<Field name="SULPHATES" type="DECIMAL(10,2)"/>
+<Field name="ALCOHOL" type="DECIMAL(10,2)"/>
+<Field name="QUALITY" type="DECIMAL(31,0)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="Db Table" target="Random Sampling"/>
+<Link source="Random Sampling" target="Sample Selector0"/>
+<Link source="Random Sampling" target="Sample Selector1"/>
+<Link source="Sample Selector1" target="Linear Regression"/>
+<Link source="Sample Selector0" target="Linear Regression Prediction"/>
+<Link source="Linear Regression" target="Linear Regression Prediction"/>
+</Process>

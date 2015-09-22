@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AlpinePig.makejar" default="movejar"
+	basedir=".">
+    <property name="bin" value="bin" />
+
+    <path id="AlpinePig.classpath">
+        <fileset dir="./../AlpineMinerUnitTest/lib">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="./../AlpineMinerWeb/WebContent/WEB-INF/lib">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="./../AlpineMinerWeb/build_resource/lib_3rd/${hadoopVersion}">
+		<include name="*.jar" />
+        </fileset>
+    </path>
+	<target name="makejar"  depends="init" description="Create a jar for the AlpinePig project">
+		<echo>PigStorage${pigVersion}.java</echo>
+		<mkdir dir="./tmp" />
+		<move todir="./tmp">
+			<fileset dir="./src/main/java/org/apache/pig/builtin" includes="*PigStorage*"/>
+		</move>
+		<move todir="./src/main/java/org/apache/pig/builtin">  
+			<fileset dir="./tmp" includes="*PigStorage${pigVersion}.java"/>
+		</move>
+        <javac destdir="${bin}" srcdir="./src" classpathref="AlpinePig.classpath"/>
+        <jar jarfile="AlpinePig.jar">
+            <fileset dir="./bin" includes="**/*.class" />
+            <fileset dir="./src" includes="**/*.properties" />
+            <fileset dir="./src" includes="**/*.xml" />
+        </jar>
+		<move todir="./src/main/java/org/apache/pig/builtin">
+			<fileset dir="./tmp" includes="*PigStorage*"/>
+		</move>	
+		<delete dir="./tmp" />
+	</target>
+
+	<target name="movejar" depends="makejar">
+	<!--hi xx because there might be some error for the latest AlpinePig code,
+	this function will be open only when we do build for the release and test
+	It is better for the UI to use the stable not the latest jar files  -->
+        <copy file="AlpinePig.jar" todir="./../AlpineDataAnalysisTest/lib" />
+        <move file="AlpinePig.jar" todir="./../AlpineMinerUnitTest/lib" />
+	</target>
+
+    <target name="clean">
+        <delete dir="${bin}" />
+    </target>
+
+    <target name="init">
+        <mkdir dir="${bin}" />
+    </target>
+
+</project>

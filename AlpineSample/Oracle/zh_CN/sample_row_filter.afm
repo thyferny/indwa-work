@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Process Description="Analytic flow created for demo" UserName="Alpine Demo User" Version="3.0">
+<Operator X="62" Y="50" name="数据表" type="com.alpine.miner.gef.runoperator.datasource.DbTableOperator" uuid="1277719865828">
+<Parameter key="dbConnectionName" value="demo_oracle"/>
+<Parameter key="schemaName" value="MINER_DEMO"/>
+<Parameter key="tableName" value="IRIS"/>
+<Parameter key="userName" value="miner_demo"/>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+</Operator>
+<Operator X="190" Y="221" name="数据行筛选器" type="com.alpine.miner.gef.runoperator.field.FilterOperator" uuid="1277719865843">
+<Parameter key="whereClause" value="A1 &gt; 6 AND A2 &lt;3 AND A3 &gt;4"/>
+<Parameter key="outputType" value="VIEW"/>
+<Parameter key="outputSchema" value="MINER_DEMO"/>
+<Parameter key="outputTable" value="iris_view"/>
+<Parameter key="dropIfExist" value="Yes"/>
+<InPutFieldList>
+<Parameter key="url" value="jdbc:oracle:thin:@192.168.1.235:1521:orcl"/>
+<Parameter key="schema" value="MINER_DEMO"/>
+<Parameter key="table" value="IRIS"/>
+<Parameter key="tableType" value="TABLE"/>
+<Parameter key="username" value="miner_demo"/>
+<Parameter key="password" value="bWluZXJfZGVtbw=="/>
+<Parameter key="system" value="Oracle"/>
+<Fields>
+<Field name="A1" type="NUMBER(5,1)"/>
+<Field name="A2" type="NUMBER(5,1)"/>
+<Field name="A3" type="NUMBER(5,1)"/>
+<Field name="A4" type="NUMBER(5,1)"/>
+<Field name="ID" type="VARCHAR2(10)"/>
+</Fields>
+</InPutFieldList>
+</Operator>
+<Link source="数据表" target="数据行筛选器"/>
+</Process>

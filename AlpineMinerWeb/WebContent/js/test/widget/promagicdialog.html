@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Dialog</title>
+<style type="text/css">
+       @import "../../dojo/resources/dojo.css";
+       @import "../../dijit/themes/tundra/tundra.css";
+</style>          
+<script type="text/javascript"
+       djConfig="parseOnLoad: true, isDebug: true"
+       src="../../dojo/dojo.js"></script>
+<script type="text/javascript">
+       dojo.require("dijit.Dialog");
+       function showDia(cont){
+              var pane=dojo.byId("Dpane");
+              if(!pane){
+                     pane=document.createElement("DIV");
+                     pane.setAttribute("id","Dpane");
+                     pane.style.width = "300px";
+                     document.body.appendChild(pane);
+              }
+              pane.innerHTML=cont;         
+              var dia=new dijit.Dialog({title:"dojo对话框"},pane);
+              dia.show();            
+       }
+       
+       var alert=showDia;
+</script>
+<style>
+.dijitDialogUnderlay {
+       background: #666666;
+       opacity: 0.5;
+}
+</style>
+</head>
+<body class="tundra">
+<button id="b1" onclick="alert('测试编程方式')">显示dojo对话框</button> <br>
+ 
+
+<br>
+<select><option>看看对话框能不能挡住这个东西</option></select><br>
+<br>
+遮罩的颜色可以通过设置.dijitDialogUnderlay来控制
+ 
+
+</body>
+</html>
+
