@@ -1,12 +1,4 @@
-/**
- * ClassName FPGrowthDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import java.math.BigDecimal;
@@ -39,9 +31,7 @@ import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
 
-/**
- * @author Eason
- */
+
 public class FPGrowthDBArray extends AbstractFPGrowthDB {
     private static Logger itsLogger = Logger.getLogger(FPGrowthDBArray.class);
 
@@ -351,15 +341,7 @@ public class FPGrowthDBArray extends AbstractFPGrowthDB {
 	}
 
 
-	/**
-	 * Returns a new FPTree, representing the complete DataSet.
-	 * 
-	 * @param dataSet
-	 *            is the dataSet, which shall be represented
-	 * @param itemMapping
-	 *            is the mapping of column of the dataSet to items
-	 * @throws SQLException
-	 */
+	
 	private FPTree getFPTree(DataSet dataSet, double[] positiveIndices,
 			Map<Integer, Item> itemMapping,ArrayList<Integer> arrayIndexes,ArrayList<Integer> localArrayIndexes,ArrayList<Integer> oldArrayIndexes,ArrayList<Integer> oldLocalArrayIndexes) throws SQLException {
 

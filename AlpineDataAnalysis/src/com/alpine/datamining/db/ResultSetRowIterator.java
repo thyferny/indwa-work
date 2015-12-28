@@ -1,12 +1,4 @@
-/**
- * ClassName ResultSetRowIterator.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.ResultSet;
@@ -17,10 +9,7 @@ import org.apache.log4j.Logger;
 
 
 
-/**
- * Objects of this class read data from a ResultSet
- *@author eason 
- */
+
 public class ResultSetRowIterator implements RowIterator {
     private static Logger itsLogger= Logger.getLogger(ResultSetRowIterator.class);
 
@@ -38,14 +27,7 @@ public class ResultSetRowIterator implements RowIterator {
 
 	private RowFactory factory;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param columnList
-	 *            List of columns
-	 * @param resultSet
-	 *            A ResultSet as returned from a database query
-	 */
+	
 	public ResultSetRowIterator(RowFactory rowFactory, List<Column> columnList, ResultSet resultSet) {
 		this.factory = rowFactory;
 		this.resultSet = resultSet;

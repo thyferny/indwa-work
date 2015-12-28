@@ -1,12 +1,4 @@
-/**
- * ClassName SVMClassification.java
- *
- * Version information: 1.00
- *
- * Data: Apr 18, 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.Array;

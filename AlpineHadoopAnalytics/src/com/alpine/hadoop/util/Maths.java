@@ -1,17 +1,9 @@
-/**
- * ClassName Maths.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.util;
 
 public class Maths {
 
-   /** sqrt(a^2 + b^2) without under/overflow. **/
+   
 
    public static double hypot(double a, double b) {
       double r;

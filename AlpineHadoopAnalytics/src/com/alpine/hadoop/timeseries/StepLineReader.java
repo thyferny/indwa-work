@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName StepLineReader.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 
 import java.io.IOException;
@@ -26,10 +16,7 @@ import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.util.LineReader;
-/**
-* @author Shawn 
-* 
-*/
+
 public class StepLineReader extends RecordReader<Text, DoubleWritable>{
 
 
@@ -116,9 +103,7 @@ public class StepLineReader extends RecordReader<Text, DoubleWritable>{
 	    return value;
 	  }
 
-	  /**
-	   * Get the progress within the split
-	   */
+	  
 	  public float getProgress() {
 	    if (start == end) {
 	      return 0.0f;

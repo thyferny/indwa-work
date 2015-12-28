@@ -4,7 +4,7 @@ public class LM {
 
 	static public LMRet dqrls(double[][] x, int n, int p, double[][] y, int ny,
 			double tol, double[][] b, double[][] rsd, double[][] qty,
-			int k/* 1 */, int[]jpvt/* 1..p */, double[] qraux, double[][] work) {
+			int k, int[]jpvt, double[] qraux, double[][] work) {
 
 		int i, info = 0, j, jj, kk;
 

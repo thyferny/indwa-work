@@ -1,12 +1,4 @@
-/**
- * ClassName CopyToDBOperator.java
- *
- * Version information: 1.00
- *
- * Data: 2012-8-23
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.hadoop;
 
 import java.util.ArrayList;
@@ -41,10 +33,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.NLSUtility;
 import com.alpine.utility.xml.XmlDocManager;
 
-/**
- * @author Jeff Dong
- *
- */
+
 public class CopyToDBOperator extends DataOperationOperator {
 
     private static final Logger itsLogger=Logger.getLogger(CopyToDBOperator.class);

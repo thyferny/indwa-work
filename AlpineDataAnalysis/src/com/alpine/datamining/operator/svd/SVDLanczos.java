@@ -1,12 +1,4 @@
-/**
- * ClassName SVD
- *
- * Version Information: 1.00
- *
- * Data: 2011-6-16
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svd;
 
 import com.alpine.datamining.db.DBTable;
@@ -21,10 +13,7 @@ import com.alpine.utility.db.DataSourceInfoNZ;
 import com.alpine.utility.db.DataSourceInfoOracle;
 import com.alpine.utility.db.DataSourceInfoPostgres;
 
-/**
- *  <p>This operator calculates SVD . </p>
- *
- */
+
 public class SVDLanczos extends Trainer {
 	
 	public SVDLanczos() {

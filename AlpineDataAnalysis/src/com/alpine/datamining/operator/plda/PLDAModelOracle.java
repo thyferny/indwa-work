@@ -1,12 +1,4 @@
-/**
-* ClassName PLDAModelOracle.java
-*
-* Version information: 1.00
-*
-* Data: 2012-2-6
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.plda;
@@ -21,21 +13,14 @@ import com.alpine.utility.db.Resources;
 import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
-/**
- * @author Shawn
- *
- */
+
 public class PLDAModelOracle extends PLDAModel{
 
-	/**
-	 * 
-	 */
+	
     private static Logger itsLogger= Logger.getLogger(PLDAModelOracle.class);
     private static final long serialVersionUID = 3166129764726661789L;
 
-	/**
-	 * @param trainingDataSet
-	 */
+	
 	public PLDAModelOracle(DataSet trainingDataSet) {
 		super(trainingDataSet);
 		// TODO Auto-generated constructor stub

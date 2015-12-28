@@ -1,21 +1,10 @@
-/**
- * ClassName :OpratorOutputTableInfo.java
- *
- * Version information: 3.0
- *
- * Data: 2011-8-22
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author zhaoyong
- *
- */
+
 public class OperatorInputTableInfo {
 	  
  
@@ -187,9 +176,7 @@ public class OperatorInputTableInfo {
 		
 		return operatorInputTableInfo;
 	}
-	/**
-	 * @param uuid  for MINER-1992
-	 */
+	
 	public void setOperatorUUID(String uuid) {
 		this.operatorUUID= uuid;
 		

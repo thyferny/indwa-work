@@ -1,12 +1,4 @@
-/**
- * ClassName OperatorStatus.java
- *
- * Version information: 1.00
- *
- * Data: 2011-9-2
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator;
 
 import java.util.HashMap;

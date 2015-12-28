@@ -1,12 +1,4 @@
-/**
-* ClassName ChiSquareIndexStandard.java
-*
-* Version information: 1.00
-*
-* Data: 3 Nov 2011
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 package com.alpine.datamining.operator.tree.cartclassification;
 
 import java.util.ArrayList;
@@ -24,10 +16,7 @@ import com.alpine.datamining.operator.tree.cart.AbstractStandard;
 import com.alpine.datamining.operator.tree.cart.Combination;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * @author Shawn
- *
- */
+
 public class ChiSquareIndexStandard extends AbstractStandard{
     private ArrayList<String> bestValues = null;
     private double bestSplit = Double.NaN;
@@ -268,8 +257,7 @@ public class ChiSquareIndexStandard extends AbstractStandard{
 		}
 
 
-/** Returns an array with  size of the number of different label
-  *  values. */
+
  public double[] getLabelWeights(DataSet dataSet) {
      Column label = dataSet.getColumns().getLabel();
 
@@ -393,7 +381,7 @@ public class ChiSquareIndexStandard extends AbstractStandard{
 //		double pTest=StatisticsChiSquareTest.chiSquareTest(0.5, chiSquareTestValue);
 		return chiSquareTestValue;
 	}
-    /** Returns the sum of the given weights. */
+    
     public double getTotalNumber(double[] weights) {
         double sum = 0.0d;
         for (double w : weights)

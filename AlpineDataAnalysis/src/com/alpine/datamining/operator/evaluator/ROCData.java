@@ -1,12 +1,4 @@
-/**
- * ClassName ROCData.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.evaluator;
 
 import java.util.ArrayList;
@@ -15,11 +7,7 @@ import java.util.List;
 
 import com.alpine.datamining.utility.Tools;
 
-/**
- * 
- * @author Eason
- * 
- */
+
 public class ROCData implements Iterable<ROCPoint> {
 
 	private List<ROCPoint> points = new ArrayList<ROCPoint>();

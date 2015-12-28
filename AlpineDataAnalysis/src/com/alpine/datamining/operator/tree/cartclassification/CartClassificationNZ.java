@@ -1,12 +1,4 @@
-/**
-* ClassName CartClassificationNZ.java
-*
-* Version information: 1.00
-*
-* Data: 29 Dec 2011
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.tree.cartclassification;
@@ -16,10 +8,7 @@ import java.util.List;
 import com.alpine.datamining.db.Column;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- *
- */
+
 public class CartClassificationNZ implements ICartClassfication{
 	@Override
 	public String generateNumericSql(Column labelColumn,
@@ -316,9 +305,7 @@ public class CartClassificationNZ implements ICartClassfication{
 		return countProbability;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.tree.cartclassification.ICartClassfication#genarateProbability(java.lang.String, java.lang.StringBuffer, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	public void genarateProbability(String columnName,
 			StringBuffer countAllSum, StringBuffer countProbability) {{

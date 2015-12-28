@@ -1,12 +1,4 @@
-/**
- * ClassName TreeModelDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.SQLException;
@@ -21,15 +13,10 @@ import com.alpine.datamining.operator.training.SingleModel;
 import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 
-/**
- * The tree model is the model created by all decision trees.
- * 
- */
+
 public class DecisionTreeModel extends SingleModel {
     private static Logger itsLogger= Logger.getLogger(DecisionTreeModel.class);
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 6047261092664473196L;
 
 	public String[] UPDATE;

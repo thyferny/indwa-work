@@ -1,12 +1,4 @@
-/**
- * ClassName SVMNoveltyDetectionModel
- *
- * Version information: 1.00
- *
- * Data: 2011-4-20
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.ResultSet;
@@ -21,9 +13,7 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 
 
-/**
- * @author Eason
- */
+
 public class SVMNoveltyDetectionModel extends SVMModel {
     private static final Logger itsLogger = Logger.getLogger(SVMNoveltyDetectionModel.class);
 	private static final long serialVersionUID = 4486928292072567374L;

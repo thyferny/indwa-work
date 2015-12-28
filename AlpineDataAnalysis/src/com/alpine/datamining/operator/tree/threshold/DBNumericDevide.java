@@ -1,12 +1,4 @@
-/**
- * ClassName DBNumericDevide
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.ResultSet;
@@ -26,11 +18,7 @@ import com.alpine.utility.db.DataSourceInfoNZ;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * Calculates the best split point for numerical columns according to 
- * a given criterion.
- * This class is used for data in database.
- */
+
 public class DBNumericDevide {
     private static Logger itsLogger= Logger.getLogger(DBNumericDevide.class);
 

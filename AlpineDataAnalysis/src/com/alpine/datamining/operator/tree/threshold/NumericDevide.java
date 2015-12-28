@@ -1,12 +1,4 @@
-/**
- * ClassName NumericDevide
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
@@ -16,11 +8,7 @@ import com.alpine.datamining.db.SortedDataSet;
 import com.alpine.datamining.exception.OperatorException;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * Calculates the best split point for numerical columns according to 
- * a given criterion.
- * 
- */
+
 
 
 public class NumericDevide {

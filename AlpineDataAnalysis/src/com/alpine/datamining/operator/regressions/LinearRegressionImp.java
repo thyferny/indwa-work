@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionImp.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.sql.ResultSet;
@@ -33,13 +25,7 @@ import com.alpine.utility.log.LogUtils;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * <p>
- * This algorithm to calculate a linear regression model.
- * </p>
- * 
- * @author Eason
- */
+
 public abstract class LinearRegressionImp {
 
     private static final Logger itsLogger = Logger.getLogger(LinearRegressionImp.class);
@@ -261,14 +247,7 @@ public abstract class LinearRegressionImp {
 		return sb_notNull;
 	}
 
-	/**
-	 * @param datasize
-	 * @param tableName
-	 * @param label
-	 * @param columnNames
-	 * @param coefficients
-	 * @return
-	 */
+	
 	protected StringBuffer createSSQLL(int datasize, String tableName,
 			Column label, String[] columnNames, Double[] coefficients) {
 		StringBuffer predictedY = new StringBuffer("("
@@ -288,9 +267,7 @@ public abstract class LinearRegressionImp {
 		return sSQL;
 	}
 
-	/**
-	 * @param coefficients
-	 */
+	
 	protected void convertCoefficients(Double[] coefficients) {
 		if (coefficients.length >= 2) {
 			double bias = coefficients[0];
@@ -301,13 +278,7 @@ public abstract class LinearRegressionImp {
 		}
 	}
 
-	/**
-	 * @param columnNames
-	 * @param coefficients
-	 * @param model
-	 * @param s
-	 * @param varianceCovarianceMatrix
-	 */
+	
 	protected void caculateStatistics(String[] columnNames,
 			Double[] coefficients, LinearRegressionModelDB model, double s,
 			Matrix varianceCovarianceMatrix, long dof) {

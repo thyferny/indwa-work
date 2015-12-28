@@ -1,12 +1,4 @@
-/**
- * ClassName Container.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator;
 
 import java.io.Serializable;
@@ -19,16 +11,9 @@ import java.util.List;
 import com.alpine.datamining.utility.Tools;
 
 
-/**
- * 
- * @author Eason
- * 
- * 
- */
+
 public class Container implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7448881930208584737L;
 	private List<ConsumerProducer> cpObject;
 
@@ -78,36 +63,27 @@ public class Container implements Serializable {
 		return cpObject.toArray(new ConsumerProducer[cpObject.size()]);
 	}
 
-	/** Gets the first ConsumerProducer which is of class cls. */
+	
     public <T extends ConsumerProducer> T get(Class<T> cls) {
 		return getInput(cls, 0, false);
 	}
 
-	/** Gets the nr-th ConsumerProducer which is of class cls. */
+	
     public <T extends ConsumerProducer> T get(Class<T> cls, int nr) {
 		return getInput(cls, nr, false);
 	}
 
-	/**
-	 * Removes the first ConsumerProducer which is of class cls. The removed object is
-	 * returned.
-	 */
+	
     public <T extends ConsumerProducer> T remove(Class<T> cls){
 		return getInput(cls, 0, true);
 	}
 
-	/**
-	 * Removes the nr-th ConsumerProducer which is of class cls. The removed object is
-	 * returned.
-	 */
+	
 	public <T extends ConsumerProducer> T remove(Class<T> cls, int nr)   {
 		return getInput(cls, nr, true);
 	}
 
-	/**
-	 * Returns true if this Container containts an ConsumerProducer of the desired
-	 * class.
-	 */
+	
 	public boolean contains(Class<? extends ConsumerProducer> cls) {
 		try {
 			getInput(cls, 0, false);
@@ -117,9 +93,7 @@ public class Container implements Serializable {
 		}
 	}
 
-	/**
-	 * Gets the nr-th ConsumerProducer which is of class cls.
-	 */
+	
 	@SuppressWarnings("unchecked")
 	private <T extends ConsumerProducer> T getInput(Class<T> cls, int nr, boolean remove) {
 		int n = 0;
@@ -139,10 +113,7 @@ public class Container implements Serializable {
 		throw new RuntimeException("Wrong class type!");
 	}
 
-	/**
-	 * Creates a new Container by adding all IOObjects of this container to
-	 * the given ConsumerProducer.
-	 */
+	
 	public Container append(ConsumerProducer object) {
 		return append(new ConsumerProducer[] { object });
 	}
@@ -156,7 +127,7 @@ public class Container implements Serializable {
 	}
 
 
-	/** Appends this container's IOObjects to output. */
+	
 	public Container append(Collection<ConsumerProducer> output) {
 		List<ConsumerProducer> newObjects = new LinkedList<ConsumerProducer>();
 		newObjects.addAll(output);
@@ -164,7 +135,7 @@ public class Container implements Serializable {
 		return new Container(newObjects);
 	}
 
-	/** Copies the contents of this Container by invoking the method copy of all IOObjects. */
+	
 	public Container copy() {
 		List<ConsumerProducer> clones = new LinkedList<ConsumerProducer>();
 		Iterator<ConsumerProducer> i = cpObject.iterator();
@@ -174,7 +145,7 @@ public class Container implements Serializable {
 		return new Container(clones);
 	}
 
-	/** Removes all Objects from this Container. */
+	
 	public void removeAll() {
 		cpObject.clear();		
 	}

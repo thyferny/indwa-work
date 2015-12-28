@@ -1,23 +1,11 @@
-/**
- * ClassName GreaterDevideCond
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
 
-/**
- * Returns true if the value of the desired column is greater then a given threshold.
- */
+
 public class GreaterDevideCond extends AbstractDevideCond {
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -5048656184753767009L;
 	private double value;
     

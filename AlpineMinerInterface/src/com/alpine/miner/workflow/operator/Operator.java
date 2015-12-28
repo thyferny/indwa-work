@@ -1,12 +1,4 @@
-/**
- * ClassName Operator.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-26
- *
- * COPYRIGHT   2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator;
 
 import java.util.List;
@@ -21,31 +13,10 @@ import com.alpine.miner.workflow.model.UIOperatorModel;
 import com.alpine.miner.workflow.operator.parameter.OperatorParameter;
 import com.alpine.utility.xml.XmlDocManager;
 
-/**
- * Operators are the objects which actually get input from the preceding operators,
- * execute the operation according to the parameters being set by user.
- * Operators produce output which will be fetched by the succeeding operators.
- *
- * Operator is the object do the actual job in the process flow.
- * 
- * 1. It takes the configuration parameters from the OperatorConfiguration object as key-value pairs.
- * 2. It is instantiated by the server.
- * 3. It usually takes input object from the preceding Operator.
- * 4. It usually produces output object for the succeeding Operator.
- * 5. It produces log.
- * 6. It may produces result output to be displayed.
 
- * @author jeff
- *
- */
 public interface Operator {
 
-	/**
-	 * Check if this operator can be linked to the preceding operator.
-	 * @param precedingOperator
-	 * @param multiple, if false will only allow one data set...
-	 * @return
-	 */
+	
 	public String validateInputLink(Operator precedingOperator,boolean multiple);
  
 	

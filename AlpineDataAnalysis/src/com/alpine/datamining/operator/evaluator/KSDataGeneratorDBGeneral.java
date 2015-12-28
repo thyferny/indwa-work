@@ -1,12 +1,4 @@
-/**
- * ClassName KSDataGeneratorDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.evaluator;
 
 import java.io.Serializable;
@@ -29,18 +21,12 @@ import com.alpine.datamining.resources.AlpineAnalysisErrorName;
 import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 
-/**
- * Helper class containing some methods for K-S plots, and ks calculation.
- * 
- * @author Eason
- */
+
 public class KSDataGeneratorDBGeneral extends Operator implements Serializable {
-	/**
-	 * 
-	 */
+	
     private static final Logger itsLogger = Logger.getLogger(KSDataGeneratorDBGeneral.class);
     private static final long serialVersionUID = 6284474543865201106L;
-	/** Defines the maximum amount of points which is plotted in the ks curve. */
+	
 	public static final int MAX_KS_POINTS = 200;
 	private List<double[]> data = null;
 //	public static final String PARAMETER_USE_MODEL = "use_model";
@@ -48,7 +34,7 @@ public class KSDataGeneratorDBGeneral extends Operator implements Serializable {
 	EvaluatorParameter para;
 
 
-	/** Creates a new Lift data generator. */
+	
 	public KSDataGeneratorDBGeneral() {
 		super();
 	}

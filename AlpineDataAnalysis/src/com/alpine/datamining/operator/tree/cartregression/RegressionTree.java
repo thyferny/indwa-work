@@ -1,12 +1,4 @@
-/**
- * ClassName RegressionTree
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartregression;
 
 import java.util.ArrayList;
@@ -19,14 +11,10 @@ import com.alpine.datamining.operator.tree.threshold.DevideCond;
 import com.alpine.datamining.operator.tree.threshold.Tree;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * A tree is a node in a tree model
- */
+
 public class RegressionTree extends Tree {
     
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5892655273119897457L;
 
     private double avg = Double.NaN;

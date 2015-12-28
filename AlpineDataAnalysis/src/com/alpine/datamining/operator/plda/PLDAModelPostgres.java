@@ -1,12 +1,4 @@
-/**
-* ClassName PLDAModelPostgres.java
-*
-* Version information: 1.00
-*
-* Data: 2012-2-6
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.plda;
@@ -21,21 +13,14 @@ import com.alpine.utility.db.Resources;
 import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
-/**
- * @author Shawn
- *
- */
+
 public class PLDAModelPostgres extends PLDAModel{
     private static Logger itsLogger= Logger.getLogger(PLDAModelPostgres.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -4404507960517382916L;
 
-	/**
-	 * @param trainingDataSet
-	 */
+	
 	public PLDAModelPostgres(DataSet trainingDataSet) {
 		super(trainingDataSet);
 		// TODO Auto-generated constructor stub

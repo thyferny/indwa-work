@@ -1,12 +1,4 @@
-/**
- * ClassName AssociationOperator.java
- *
- * Version information: 1.00
- *
- * Data: 2011-4-12
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.association;
 
 import java.util.ArrayList;
@@ -29,10 +21,7 @@ import com.alpine.utility.db.Resources;
 import com.alpine.utility.file.StringUtil;
 import com.alpine.utility.xml.XmlDocManager;
 
-/**
- * @author zhao yong
- *
- */
+
 public class AssociationOperator extends LearnerOperator {
 	public static final List<String> parameterNames = Arrays.asList(new String[]{
 			OperatorParameter.NAME_minSupport,

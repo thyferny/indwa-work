@@ -1,16 +1,4 @@
-/**
- * 
 
-* ClassName DecisionTreePreemptionMapper.java
-*
-* Version information: 1.00
-*
-* Date: 2013-1-15
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-
-
- */
 package com.alpine.hadoop.tree.mapper;
 
 import java.io.ByteArrayOutputStream;
@@ -45,11 +33,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-/**
- * @author Shawn
- *
- *  
- */
+
 
 public class DecisionTreePreemptionMapper extends Mapper<LongWritable, Text, Text, Text>{
 	private static Logger itsLogger = Logger

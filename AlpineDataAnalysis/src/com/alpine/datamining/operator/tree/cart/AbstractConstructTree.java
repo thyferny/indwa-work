@@ -1,12 +1,4 @@
-/**
- * ClassName AbstractConstructTree
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cart;
 
 import java.util.List;
@@ -28,13 +20,10 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import com.alpine.datamining.utility.OperatorUtil;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * Build a tree from an data set.
- * This class is used for data in database.
- */
+
 public abstract class AbstractConstructTree {
 	
-	/* for data not loaded in memory */
+	
 	
 	protected Stop minLeafSizeTerminator;
 
@@ -138,9 +127,7 @@ public abstract class AbstractConstructTree {
 	
 	protected abstract Tree trainDT(DataSet dataSet) throws OperatorException;
 
-	/** This method calculates the benefit of the given column. This implementation
-	 *  utilizes the defined {@link Standard}. Subclasses might want to override this
-	 *  method in order to calculate the benefit in other ways. */
+	
 	public Score calculateBenefit(DataSet trainingSet, Column column, boolean loadData) throws OperatorException {	
 		Standard criterionLocal = null;
 		if (loadData)
@@ -222,12 +209,7 @@ public abstract class AbstractConstructTree {
 	protected abstract void constTree(Tree current, DataSet dataSet, int depth) throws OperatorException;
 
 
-	/**
-	 * @param dataSet
-	 * @param newdataet
-	 * @return
-	 * @throws OperatorException
-	 */
+	
 	protected DataSet getDataSetMem(DataSet dataSet
 	) throws OperatorException {
 			DataSet newDataSet = null;
@@ -289,9 +271,7 @@ public abstract class AbstractConstructTree {
 					databaseConnection, false, null);
 			return newDataSet;
 }
-	/**
-	 * @param dataSet
-	 */
+	
 	protected boolean needLoadData(DataSet dataSet) {
 		boolean loadData = false;
 		if (dataSet.size() * dataSet.getColumns().size() < sizeThreshold)

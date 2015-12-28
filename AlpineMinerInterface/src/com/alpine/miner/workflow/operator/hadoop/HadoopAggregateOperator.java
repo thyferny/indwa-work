@@ -1,12 +1,4 @@
-/**
- * ClassName  HadoopAggregateOperator.java
- *
- * Version information: 1.00
- *
- * Data: Jun 28, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.hadoop;
 
 import java.util.ArrayList;
@@ -27,11 +19,7 @@ import com.alpine.miner.workflow.operator.parameter.aggregate.AggregateField;
 import com.alpine.miner.workflow.operator.parameter.aggregate.AggregateFieldsModel;
 import com.alpine.utility.db.Resources;
 import com.alpine.utility.xml.XmlDocManager;
-/**
- * 
- * @author John Zhao
- *
- */
+
 public class HadoopAggregateOperator extends HadoopDataOperationOperator {
 	
 	public static final List<String> parameterNames = Arrays.asList(new String[]{
@@ -123,10 +111,7 @@ public class HadoopAggregateOperator extends HadoopDataOperationOperator {
 		return operatorInputList;
 	}
 
-	/**
-	 * @param columnInfo
-	 * @param operatorInputFileInfo 
-	 */
+	
 	private void fillColumnInfo2NewOutput(FileStructureModel columnInfo) {
 		List<String> oldColumns =columnInfo.getColumnNameList() ;
 		List<String> oldColumnTypes =columnInfo.getColumnTypeList() ;

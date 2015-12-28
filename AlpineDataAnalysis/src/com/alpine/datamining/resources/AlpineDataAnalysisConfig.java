@@ -1,12 +1,4 @@
-/**
- * ClassName AlpineDataAnalysisConfig
- *
- * Version information: 1.00
- *
- * Data: 2010-3-26
- *
- * COPYRIGHT   2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.resources;
 
 import java.util.Locale;

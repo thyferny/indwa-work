@@ -1,12 +1,4 @@
-/**
- * ClassName SVD
- *
- * Version information: 1.00
- *
- * Data: 2011-6-16
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svd;
 
 import java.sql.ResultSet;
@@ -23,10 +15,7 @@ import com.alpine.utility.db.DataSourceInfoOracle;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- *  <p>This operator calculates SVD . </p>
- *
- */
+
 public class SVD extends Trainer {
     private static final Logger itsLogger = Logger.getLogger(SVD.class);
 

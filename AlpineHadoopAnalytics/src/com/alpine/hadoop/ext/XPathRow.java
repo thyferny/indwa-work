@@ -1,12 +1,4 @@
-/**
- * ClassName XPathRow.java
- *
- * Version information: 1.00
- *
- * Data: 2012-11-20
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.ext;
 
 import java.util.ArrayList;
@@ -14,10 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @author Jeff Dong
- *
- */
+
 public class XPathRow {
 	HashMap<Integer, String> attributeColumns = new HashMap<Integer, String>();
 	// tag name -> list

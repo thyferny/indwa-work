@@ -1,12 +1,4 @@
-/**
- * ClassName SVMNoveltyDetectionLearner.java
- *
- * Version information: 1.00
- *
- * Data: Apr 18, 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.ResultSet;
@@ -21,11 +13,7 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import com.alpine.utility.db.DataSourceInfoFactory;
 import com.alpine.utility.db.DataSourceInfoOracle;
 import org.apache.log4j.Logger;
-/**
- * 
- * @author Eason
- *
- */
+
 public class SVMNoveltyDetectionLearner extends AbstractSVMLearner {
     private static final Logger itsLogger = Logger.getLogger(SVMNoveltyDetectionLearner.class);
     public Model train(DataSet dataSet, SVMParameter parameter) throws OperatorException {

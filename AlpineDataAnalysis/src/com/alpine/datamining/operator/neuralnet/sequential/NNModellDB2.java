@@ -1,12 +1,4 @@
-/**
- * ClassName NNModellOracle
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.sql.Array;
@@ -29,11 +21,7 @@ import com.alpine.datamining.utility.Tools;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * The model of the  neural net of DB2.
- * @author Eason
- * 
- */
+
 public class NNModellDB2 extends NNModel {
     private static Logger itsLogger= Logger.getLogger(NNModellDB2.class);
 
@@ -92,7 +80,7 @@ public class NNModellDB2 extends NNModel {
 				.append("?").append(",")
 				.append("?").append(",")
 				.append("?").append(")");
-				CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); /* con is the connection */
+				CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); 
 				Array weightArg = getWeightSqlArray(databaseConnection);
 				Array columnsArg = getColumnNamesSqlArray(databaseConnection,false);
 				Array inputRangeArg = getInputRangeSqlArray(databaseConnection);
@@ -370,7 +358,7 @@ public class NNModellDB2 extends NNModel {
 			DatabaseConnection databaseConnection = ((DBTable) dataSet
 					.getDBTable()).getDatabaseConnection();
 
-			CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); /* con is the connection */
+			CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); 
 			Array weightArg = getWeightSqlArray(databaseConnection);
 			Array columnsArg = getColumnNamesSqlArray(databaseConnection,false);
 			Array inputRangeArg = getInputRangeSqlArray(databaseConnection);
@@ -616,7 +604,7 @@ public class NNModellDB2 extends NNModel {
 		.append("?").append(",")
 		.append("?").append(",")
 		.append("?").append(")");
-		CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); /* con is the connection */
+		CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); 
 		Array weightArg = getWeightSqlArray(databaseConnection);
 		Array columnsArg = getColumnNamesSqlArray(databaseConnection, true);
 		Array inputRangeArg = getInputRangeSqlArray(databaseConnection);

@@ -1,12 +1,4 @@
-/**
- * ClassName MinerInit
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining;
 
 import com.alpine.datamining.resources.AlpineDataAnalysisConfig;
@@ -17,10 +9,7 @@ import com.alpine.utility.profile.ProfileUtility;
 import com.alpine.utility.tools.AlpineMath;
 import com.alpine.utility.tools.ProfileReader;
 
-/**
- * 
- * @author Eason
- */
+
 public class MinerInit {
 
 
@@ -31,10 +20,7 @@ public class MinerInit {
     private static final Logger itsLogger = Logger.getLogger(MinerInit.class);
 
 
-    /**
-	 * Initializes Miner.
-	 * 
-	 */
+    
 	private static void initAll() {
 
 		DatabaseUtil.init();

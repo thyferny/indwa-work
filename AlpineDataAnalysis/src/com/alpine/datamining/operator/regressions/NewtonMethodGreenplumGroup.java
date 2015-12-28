@@ -628,7 +628,7 @@ public class NewtonMethodGreenplumGroup extends NewtonMethodGreenplum {
 		return where;
 	}
 
-	/* GenerateSql for fitness */
+	
 	protected StringBuilder GenerateFitnessSqlGroup(Map<String,double[]> beta) {
 		int columnCount = dataSet.getColumns().size();
 		String[] columnName = new String[columnCount];

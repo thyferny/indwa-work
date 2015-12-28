@@ -6,9 +6,7 @@ import com.alpine.datamining.db.Column;
 import com.alpine.datamining.utility.Tools;
 
 public class SingleARIMARPredictResult  implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private double[] trainLastData;
 	private Object[] trainLastIDData;

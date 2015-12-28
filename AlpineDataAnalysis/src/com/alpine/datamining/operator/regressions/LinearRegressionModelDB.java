@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionModelDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.sql.SQLException;
@@ -32,16 +24,11 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * The model for linear regression.
- *  @author Eason
- */
+
 public class LinearRegressionModelDB extends Prediction {
     private static final Logger logger = Logger.getLogger(LinearRegressionModelDB.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -9077215958415330973L;
 
 	private String[] columnNames;
@@ -237,81 +224,59 @@ public class LinearRegressionModelDB extends Prediction {
 		
 	}
 	
-	/**
-	 * @return the coefficients
-	 */
+	
 	public Double[] getCoefficients() {
 		return coefficients;
 	}
 
-	/**
-	 * @param coefficients the coefficients to set
-	 */
+	
 	public void setCoefficients(Double[] coefficients) {
 		this.coefficients = coefficients;
 	}
 
-	/**
-	 * @return the se
-	 */
+	
 	public double[] getSe() {
 		return se;
 	}
 
-	/**
-	 * @param se the se to set
-	 */
+	
 	public void setSe(double[] se) {
 		this.se = se;
 	}
 
-	/**
-	 * @return the t
-	 */
+	
 	public double[] getT() {
 		return t;
 	}
 
-	/**
-	 * @param t the t to set
-	 */
+	
 	public void setT(double[] t) {
 		this.t = t;
 	}
 
-	/**
-	 * @return the p
-	 */
+	
 	public double[] getP() {
 		return p;
 	}
 
-	/**
-	 * @param p the p to set
-	 */
+	
 	public void setP(double[] p) {
 		this.p = p;
 	}
 	public double getR2() {
 		return r2;
 	}
-	/**
-	 * @param r2 the r2 to set
-	 */
+	
 	public void setR2(double r2) {
 		this.r2 = r2;
 	}
 
-	/**
-	 * @return the s
-	 */
+	
 	public double getS() {
 		return s;
 	}
 
-	/**
-	 * @param s the s to set
-	 */
+	
 	public void setS(double s) {
 		this.s = s;
 	}

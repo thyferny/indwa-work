@@ -1,20 +1,9 @@
-/**
- * ClassName GeneralizedIDivergenceDistance.java
- *
- * Version information: 1.00
- *
- * Data: 2012-9-12
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.cluster.util.distance;
 
 import org.apache.hadoop.io.DoubleWritable;
 
-/**
- * @author Jeff Dong
- *
- */
+
 public class GeneralizedIDivergenceDistance implements Distance {
 
 	@Override

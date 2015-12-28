@@ -1,12 +1,4 @@
-/**
- * ClassName NNModelNetezza.java
- *
- * Version information: 1.00
- *
- * Data: 2012-1-4
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.sql.ResultSet;
@@ -33,11 +25,7 @@ import com.alpine.datamining.utility.Tools;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * The model of the  neural net of Netezza.
- * @author Eason
- * 
- */
+
 public class NNModelNetezza extends NNModel {
     private static Logger itsLogger= Logger.getLogger(NNModelNetezza.class);
 

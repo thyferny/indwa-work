@@ -1,21 +1,8 @@
-/**
- * 
- * ClassName KeyComparator.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
-/**
-* @author Shawn 
-* 
-*/
+
 public class KeyComparator extends WritableComparator {
 		protected KeyComparator() {
 			super(LongSort.class, true);

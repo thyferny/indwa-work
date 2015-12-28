@@ -1,12 +1,4 @@
-/**
- * ClassName  AnalysisStorageParameterModel.java
- *
- * Version information: 1.00
- *
- * Data: 2012-4-5
- *
- * COPYRIGHT (C) 2010-2012 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.configure;
 
 import java.util.ArrayList;
@@ -16,10 +8,7 @@ import com.alpine.utility.common.ListUtility;
 import com.alpine.utility.db.SqlUtil;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Eason
- *
- */
+
 public class AnalysisStorageParameterModel{
 	public static final String COLUMN_SEPARATOR = SqlUtil.COMMA;
 	

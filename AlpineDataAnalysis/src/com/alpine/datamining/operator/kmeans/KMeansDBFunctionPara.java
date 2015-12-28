@@ -1,12 +1,4 @@
-/**
- * ClassName KMeansDBFunctionPara.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.kmeans;
 
@@ -53,12 +45,7 @@ import com.alpine.utility.file.StringUtil;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * This operator represents an implementation of k-means. This operator will
- * create a cluster column if not present yet.
- * 
- * @author Eason Yu,Jeff Dong
- */
+
 public class KMeansDBFunctionPara extends AbstractClusterer {
     private static Logger itsLogger= Logger.getLogger(KMeansDBFunctionPara.class);
     private static final String[] PARAMETER_DISTANCE_TYPE = { "Euclidean",

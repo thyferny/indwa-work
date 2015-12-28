@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName RocMapper.java
- *
- * Version information: 1.00
- *
- * Date: Sep 9, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.roc;
 
 import java.io.IOException;
@@ -24,10 +14,7 @@ import com.alpine.hadoop.RocKeySet;
 import com.alpine.hadoop.util.MapReduceHelper;
 import com.alpine.hadoop.utily.type.DoubleArrayWritable;
 
-/**
- * @author Peter
- * 
- */
+
 
 public class RocMapper extends
 		Mapper<LongWritable, Text, LongWritable, DoubleArrayWritable> {

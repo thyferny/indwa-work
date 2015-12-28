@@ -1,12 +1,4 @@
-/**
- * ClassName Count
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
@@ -15,10 +7,7 @@ import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.db.SplitDataSet;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * counts frequencies.
- * 
- */
+
 public class Count implements ICount{
 
     public Count() {}
@@ -81,7 +70,7 @@ public class Count implements ICount{
     	return weightCounts;
     }
     
-    /** Returns an array of the size of the partitions.  */
+    
     public double[] getPartitionCount(SplitDataSet splitted) {
         double[] weights = new double[splitted.getNumberOfSubsets()];
         for (int i = 0; i < splitted.getNumberOfSubsets(); i++) {
@@ -94,8 +83,7 @@ public class Count implements ICount{
         return weights;
     }
     
-    /** Returns an array of size of the number of different label
-     *  values.*/
+    
     public double[] getLabelCounts(DataSet dataSet) {
         Column label = dataSet.getColumns().getLabel();
         double[] weights = new double[label.getMapping().size()];
@@ -115,7 +103,7 @@ public class Count implements ICount{
         return weights;
     }
     
-    /** Returns the sum of the given weights. */
+    
     public double getTotalCount(double[] weights) {
         double sum = 0.0d;
         for (double w : weights)

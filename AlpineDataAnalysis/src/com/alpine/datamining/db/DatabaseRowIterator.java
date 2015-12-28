@@ -1,12 +1,4 @@
-/**
- * ClassName DatabaseRowIterator.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.ResultSet;
@@ -14,13 +6,7 @@ import java.sql.SQLException;
 
 
 
-/**
- * This class read data from a ResultSet, a data structure that
- * is returned from a database query.
- * 
- * @author Eason
- *          
- */
+
 public class DatabaseRowIterator implements RowIterator {
 
 	private ResultSet resultSet;
@@ -33,10 +19,7 @@ public class DatabaseRowIterator implements RowIterator {
 
 	private int hasNext = DONT_KNOW_YET;
 
-	/**
-	 * Creates a datarow reader from a ResultSet. The column meta data must be
-	 * tranformed to an {@link Column} array.
-	 */
+	
 	public DatabaseRowIterator(ResultSet resultSet) throws SQLException {
 		this.resultSet = resultSet;
 	}

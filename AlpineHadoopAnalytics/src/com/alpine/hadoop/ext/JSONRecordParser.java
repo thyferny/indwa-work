@@ -1,12 +1,4 @@
-/**
- * ClassName JSONRecordParser.java
- *
- * Version information: 1.00
- *
- * Data: 2012-11-5
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.ext;
 
 import java.util.ArrayList;
@@ -19,10 +11,7 @@ import com.alpine.hadoop.ext.json.JSONArray;
 import com.alpine.hadoop.ext.json.JSONException;
 import com.alpine.hadoop.ext.json.JSONObject;
 
-/**
- * @author Jeff Dong
- * 
- */
+
 public class JSONRecordParser extends AbstractRecordParser {
 
 	private List<String> jsonPathList=new ArrayList<String>();

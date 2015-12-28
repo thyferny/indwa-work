@@ -1,12 +1,4 @@
-/**
- * ClassName Tree
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.io.Serializable;
@@ -21,15 +13,9 @@ import java.util.Map;
 import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * A tree is a node in a tree model 
- * 
- * Leafs contain the class label which should be predicted.
- */
+
 public class Tree implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7082725237610097022L;
 
 	private String label = null;

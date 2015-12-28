@@ -1,23 +1,9 @@
-/**
- * ClassName OutputObject.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator;
 
-/**
- * 
- * @author Eason
- *          
- */
+
 public abstract class OutputObject implements ConsumerProducer {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6597732449994045294L;
 	private String source = null;
 

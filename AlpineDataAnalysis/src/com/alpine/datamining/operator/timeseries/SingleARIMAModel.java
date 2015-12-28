@@ -1,12 +1,4 @@
-/**
- * ClassName ARIMA Model
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.timeseries;
 
 import java.io.Serializable;
@@ -26,14 +18,9 @@ import com.alpine.datamining.resources.AlpineAnalysisErrorName;
 import com.alpine.datamining.utility.DataType;
 import com.alpine.datamining.utility.Tools;
 import org.apache.log4j.Logger;
-/**
- * The model of the improved neural net.
- * 
- */
+
 public class SingleARIMAModel implements Serializable {
-	/**
-	 * 
-	 */
+	
     private static final Logger itsLogger = Logger.getLogger(SingleARIMAModel.class);
     private static final long serialVersionUID = -3496752146166330659L;
 	private String dbType;

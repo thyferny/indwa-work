@@ -1,12 +1,4 @@
-/**
- * ClassName DBBuildLeaf
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartregression;
 
 import java.sql.ResultSet;
@@ -24,10 +16,7 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * This class can be used to change an inner tree node into a leaf . This class is for database
- * 
- */
+
 public class DBBuildLeaf
 	implements IBuildLeaf
 {

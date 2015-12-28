@@ -1,12 +1,4 @@
-/**
- * ClassName NBModelOracle.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.bayes;
 
 import java.sql.ResultSet;
@@ -26,15 +18,11 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * 
- */
+
 public class NBModelOracle extends NBModel{
 
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2184046417856337653L;
     private static Logger itsLogger= Logger.getLogger(NBModelOracle.class);
 

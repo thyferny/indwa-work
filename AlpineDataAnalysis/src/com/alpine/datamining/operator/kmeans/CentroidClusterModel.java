@@ -1,12 +1,4 @@
-/**
- * ClassName ClusterModel.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-24
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.kmeans;
 
 import java.util.ArrayList;
@@ -21,15 +13,13 @@ import com.alpine.datamining.exception.OperatorException;
 
 
 public class CentroidClusterModel extends ClusterModel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 4647820502405349141L;
 	private Collection<String> dimensionNames;
 	private ArrayList<Centroid> centroids;
 //	private DistanceMeasure distanceMeasure;
 	
-	public CentroidClusterModel(int k, Collection<String> dimensionNames/*, DistanceMeasure distanceMeasure*/) {
+	public CentroidClusterModel(int k, Collection<String> dimensionNames) {
 		super(k);
 //		this.distanceMeasure = distanceMeasure;
 		this.dimensionNames = dimensionNames;
@@ -50,7 +40,7 @@ public class CentroidClusterModel extends ClusterModel {
 		}
 	}
 
-	/* This model does not need ids*/
+	
 	public void checkCapabilities(DataSet dataSet) throws OperatorException {
 		
 	}

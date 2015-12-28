@@ -1,20 +1,8 @@
-/**
- * ClassName SVMParameter
- *
- * Version information: 1.00
- *
- * Data: 2011-4-20
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import com.alpine.datamining.operator.Parameter;
-/**
- * 
- * @author Eason
- *
- */
+
 public class SVMParameter implements Parameter {
 	private int kernelType = 1;
 	private int degree = 2;

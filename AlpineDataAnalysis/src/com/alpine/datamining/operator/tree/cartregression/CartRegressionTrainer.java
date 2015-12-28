@@ -1,12 +1,4 @@
-/**
- * ClassName CartRegressionTrainer
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartregression;
 
 import java.util.LinkedList;
@@ -23,13 +15,10 @@ import com.alpine.datamining.operator.tree.threshold.DepthStop;
 import com.alpine.datamining.operator.tree.threshold.NoDataStop;
 import com.alpine.datamining.operator.tree.threshold.NoColumnStop;
 
-/**
- * <p>This operator learns cart regression trees .
- * This class is for data in database.
- */
+
 public class CartRegressionTrainer extends AbstractTreeTrainer {
 
-	/** The parameter name for the maximum tree depth. */
+	
 	CartParameter para;
     public CartRegressionTrainer() {
         super();

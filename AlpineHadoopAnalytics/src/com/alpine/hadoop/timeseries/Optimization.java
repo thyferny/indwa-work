@@ -1,29 +1,16 @@
-/**
- * 
- * ClassName Optimization.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 
  
 import com.alpine.hadoop.util.Matrix;
-/**
-* @author Shawn 
-* 
-*/
+
  
 
 public class Optimization {
-	double  big   =       1.0e+35 ;  /*a very large number*/
+	double  big   =       1.0e+35 ;  
 
 
-	double  E1 = 1.7182818 ; /* exp(1.0)-1.0 */
+	double  E1 = 1.7182818 ; 
 
 
 	static double  stepredn = 0.2;
@@ -72,7 +59,7 @@ public class Optimization {
 				//error(("non-finite finite-difference value [%d]"), i+1);\
 				(x)[i] = p[i] * OS.getParscale()[i];
 			}
-		} else { /* usebounds */
+		} else { 
 			for (i = 0; i < n; i++) {
 				epsused = eps = OS.getNdeps()[i];
 				tmp = p[i] + eps;
@@ -204,7 +191,7 @@ public class Optimization {
 	        if (msp > 0) partrans(msp, in_v, params_v);
 	    }
 	    if (ns > 0) {
-	        /* expand out seasonal ARMA models */
+	        
 	        for (i = 0; i < mp; i++) phi[i] = params[i];
 	        for (i = 0; i < mq; i++) theta[i] = params[i + mp];
 	        for (i = mp; i < p; i++) phi[i] = 0.0;
@@ -240,11 +227,9 @@ public class Optimization {
 	    double work[] = new double[n];
 
 //	    if(p > 100) error(_("can only transform 100 pars in arima0"));
-	    /* Step one: map (-Inf, Inf) to (-1, 1) via tanh
-	       The parameters are now the pacf phi_{kk} */
+	    
 	    for(j = 0; j < p; j++) work[j] = newdata[j] = Math.tanh(raw[j]);
-	    /* Step two: run the Durbin-Levinson recursions to find phi_{j.},
-	       j = 2, ..., p and phi_{p.} are the autoregression coefficients */
+	    
 	    for(j = 1; j < p; j++) {
 	        a = newdata[j];
 	        for(k = 0; k < j; k++)
@@ -319,14 +304,14 @@ public class Optimization {
 				gradproj += s * g[l[i]];
 			}
 
-			if (gradproj < 0.0) {	/* search direction is downhill */
+			if (gradproj < 0.0) {	
 				steplength = 1.0;
 				accpoint = false;
 				do {
 					count = 0;
 					for (i = 0; i < n; i++) {
 						b[l[i]] = X[i] + steplength * t[i];
-						if (reltest + X[i] == reltest + b[l[i]]) /* no change */
+						if (reltest + X[i] == reltest + b[l[i]]) 
 							count++;
 					}
 					if (count < n) {
@@ -341,12 +326,12 @@ public class Optimization {
 				} while (!(count == n || accpoint));
 				enough = (f > abstol) &&
 				Math.abs(f - Fmin[0]) > reltol * (Math.abs(Fmin[0]) + reltol);
-				/* stop if value if small or if relative change is low */
+				
 				if (!enough) {
 					count = n;
 					Fmin[0] = f;
 				}
-				if (count < n) {/* making progress */
+				if (count < n) {
 					Fmin[0] = f;
 					fmingr(n0, b, g, ex,z,xReg);
 					gradcount++;
@@ -374,26 +359,26 @@ public class Optimization {
 								B[i][j] += (D2 * t[i] * t[j]
 								                          - X[i] * t[j] - t[i] * X[j]) / D1;
 						}
-					} else {	/* D1 < 0 */
+					} else {	
 						ilast = gradcount;
 					}
-				} else {	/* no progress */
+				} else {	
 					if (ilast < gradcount) {
 						count = 0;
 						ilast = gradcount;
 					}
 				}
-			} else {		/* uphill search */
+			} else {		
 				count = 0;
 				if (ilast == gradcount) count = n;
 				else ilast = gradcount;
-				/* Resets unless has just been reset */
+				
 			}
 			if (trace != 0 && (iter % nREPORT == 0)){}
 			//			    Rprintf("iter%4d value %f\n", iter, f);
 			if (iter >= maxit) break;
 			if (gradcount - ilast > 2 * n)
-				ilast = gradcount;	/* periodic restart */
+				ilast = gradcount;	
 		} while (count != n || ilast != gradcount);
 		if (trace != 0) {
 			{}//Rprintf("final  value %f \n", *Fmin);
@@ -405,7 +390,7 @@ public class Optimization {
 		grcount = gradcount;
 	}
 
-	/* par fn gr options */
+	
 	static double[][]do_optimhess(
 			double[] par
 			,double fnscale
@@ -525,7 +510,7 @@ public class Optimization {
 	}
 
 
-	/* par fn gr method options */
+	
 	static OptimRet do_optim(double[] par, double[] parscale,int trace, double fnscale, double abstol, double reltol, int maxit,double[] ndeps, int []arma, int ncond,double[] z, XReg xReg)//SEXP call, SEXP op, SEXP args, SEXP rho)
 	{
 		int nREPORT = 10;

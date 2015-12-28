@@ -1,22 +1,11 @@
-/**
- * ClassName DBGiniIndexStandard
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
 import com.alpine.datamining.db.Data;
 import com.alpine.datamining.db.DataSet;
 
-/**
- * This DBGiniIndexStandard class can be used for the incremental calculation of benefits.
- * 
- */
+
 public abstract class AbstractStandard implements Standard {
 	
     // data for incremental calculation

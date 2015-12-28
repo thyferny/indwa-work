@@ -1,12 +1,4 @@
-/**
- * ClassName TreeTrainer
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.util.LinkedList;
@@ -15,10 +7,7 @@ import java.util.List;
 import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.exception.OperatorException;
 
-/**
- * This operator learns decision trees
- * This class is for data in database.
- */
+
 public class TreeTrainer extends AbstractTreeTrainer {
 
 	DecisionTreeParameter para ;

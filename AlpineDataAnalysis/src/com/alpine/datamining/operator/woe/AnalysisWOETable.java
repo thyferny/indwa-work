@@ -1,12 +1,4 @@
-/**
- * ClassName WOETable.java
- *
- * Version information: 1.00
- *
- * Data: 1 Nov 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.woe;
 
@@ -17,14 +9,9 @@ import java.util.List;
 
 import com.alpine.utility.common.ListUtility;
 
-/**
- * @author Shawn
- * 
- */
+
 public class AnalysisWOETable implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -3826655007319336538L;
 	private List<AnalysisWOEColumnInfo> DataTableWOE = new ArrayList<AnalysisWOEColumnInfo>();
 

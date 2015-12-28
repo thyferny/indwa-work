@@ -1,12 +1,4 @@
-/**
- * ClassName LogisticRegressionModelDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.sql.SQLException;
@@ -38,17 +30,11 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * The model determined by the {@link LogisticRegressionDBNewton} operator.
- * @author Eason Yu,Jeff Dong
 
- */
 public class LogisticRegressionModelDB extends BinaryPredictionModel implements LoRModelIfc{
     private static final Logger logger = Logger.getLogger(LogisticRegressionModelDB.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -4961451839928536806L;
 
 	public static final String interceptString = "intercept:lr:alpine";
@@ -166,39 +152,27 @@ public class LogisticRegressionModelDB extends BinaryPredictionModel implements 
     {
     	this.good = good;
     }
-	/**
-	 * @return the modelDeviance
-	 */
+	
 	public double getModelDeviance() {
 		return modelDeviance;
 	}
-	/**
-	 * @param modelDeviance the modelDeviance to set
-	 */
+	
 	public void setModelDeviance(double modelDeviance) {
 		this.modelDeviance = modelDeviance;
 	}
-	/**
-	 * @return the nullDeviance
-	 */
+	
 	public double getNullDeviance() {
 		return nullDeviance;
 	}
-	/**
-	 * @param nullDeviance the nullDeviance to set
-	 */
+	
 	public void setNullDeviance(double nullDeviance) {
 		this.nullDeviance = nullDeviance;
 	}
-	/**
-	 * @return the chiSquare
-	 */
+	
 	public double getChiSquare() {
 		return chiSquare;
 	}
-	/**
-	 * @param chiSquare the chiSquare to set
-	 */
+	
 	public void setChiSquare(double chiSquare) {
 		this.chiSquare = chiSquare;
 	}

@@ -1,12 +1,4 @@
-/**
-* ClassName PLDAModelGreenplum.java
-*
-* Version information: 1.00
-*
-* Data: 2012-2-6
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.plda;
@@ -21,21 +13,14 @@ import com.alpine.utility.db.Resources;
 import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
-/**
- * @author Shawn
- *
- */
+
 public class PLDAModelGreenplum extends PLDAModel{
     private static final Logger itsLogger = Logger.getLogger(PLDAModelGreenplum.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -9113653305848033520L;
 
-	/**
-	 * @param trainingDataSet
-	 */
+	
 	public PLDAModelGreenplum(DataSet trainingDataSet) {
 		super(trainingDataSet);
 		}

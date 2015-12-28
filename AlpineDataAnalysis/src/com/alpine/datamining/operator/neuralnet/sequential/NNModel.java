@@ -1,12 +1,4 @@
-/**
- * ClassName NNModel
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.sql.ResultSet;
@@ -37,16 +29,11 @@ import com.alpine.utility.db.MultiDBUtilityFactory;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * The model of the neural net.
- * 
- */
+
 public class NNModel extends Prediction {
     private static Logger logger = Logger.getLogger(NNModel.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -3149637264324149694L;
 	private static final Sigmod sigmod = new Sigmod();
 	private static final Linear linear = new Linear();	
@@ -113,16 +100,12 @@ public class NNModel extends Prediction {
 
 	boolean useCFunction = false;
 
-	/**
-	 * @return the updateColumns
-	 */
+	
 	public ArrayList<String> getUpdateColumns() {
 		return updateColumns;
 	}
 
-	/**
-	 * @param updateColumns the updateColumns to set
-	 */
+	
 	public void setUpdateColumns(ArrayList<String> updateColumns) {
 		this.updateColumns = updateColumns;
 	}
@@ -630,11 +613,7 @@ public class NNModel extends Prediction {
 	}
 	
 
-	/**
-	 * @param tableName
-	 * @param label
-	 * @return
-	 */
+	
 	private StringBuffer createSql(String tableName, Column label) {
 		StringBuffer sql = new StringBuffer("select ");
 		for (int i = 0; i < columnNamesList.size(); i++)
@@ -651,11 +630,7 @@ public class NNModel extends Prediction {
 		return sql;
 	}
 
-	/**
-	 * @param fetchSize
-	 * @param totalSize
-	 * @return
-	 */
+	
 	private boolean needReload(int fetchSize, double totalSize) {
 		boolean needReload;
 		if (totalSize > fetchSize && fetchSize != 0)
@@ -669,14 +644,7 @@ public class NNModel extends Prediction {
 		return needReload;
 	}
 
-	/**
-	 * @param fetchSize
-	 * @param needReload
-	 * @param databaseConnection
-	 * @param st
-	 * @return
-	 * @throws OperatorException
-	 */
+	
 	private Statement createStatement(int fetchSize, boolean needReload,
 			DatabaseConnection databaseConnection)
 			throws OperatorException {
@@ -705,15 +673,7 @@ public class NNModel extends Prediction {
 		return st;
 	}
 
-	/**
-	 * @param dataSet
-	 * @param dataArray
-	 * @param needReload
-	 * @param label
-	 * @param iter
-	 * @param rowNumber
-	 * @return
-	 */
+	
 	private double[] getRow(DataSet dataSet,
 			ArrayList<double[]> dataArray, boolean needReload, Column label,
 			DatabaseRowIterator iter, int rowNumber) {
@@ -738,12 +698,7 @@ public class NNModel extends Prediction {
 		return row;
 	}
 
-	/**
-	 * @param dataSet
-	 * @param label
-	 * @param data
-	 * @return
-	 */
+	
 	private double[] getRowFromData(DataSet dataSet, Column label,
 			Data data) {
 		double[] row = new double[columnNamesList.size()+1];
@@ -755,12 +710,7 @@ public class NNModel extends Prediction {
 		return row;
 	}
 
-	/**
-	 * @param totalSize
-	 * @param needReload
-	 * @param reader
-	 * @param rowNumber
-	 */
+	
 	private boolean hasNext(double totalSize, boolean needReload,
 			DatabaseRowIterator reader, int rowNumber) {
 		boolean hasNext;
@@ -788,13 +738,7 @@ public class NNModel extends Prediction {
 		}
 		return hasNext;
 	}
-	/**
-	 * @param st
-	 * @param sql
-	 * @param dataSet
-	 * @return
-	 * @throws OperatorException
-	 */
+	
 	private ArrayList<double[]> getDataArray(Statement st, StringBuffer sql, DataSet dataSet) throws OperatorException
 	{
 		ArrayList<double[]> dataArray = new ArrayList<double[]>();

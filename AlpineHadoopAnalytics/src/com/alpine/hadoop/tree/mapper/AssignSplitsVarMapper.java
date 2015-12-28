@@ -1,14 +1,4 @@
-/**
- *
- * ClassName AssignSplits.java
- *
- * Version information: 1.00
- *
- * Aug 31, 2012
- * 
- * COPYRIGHT (C) Alpine Data Labs. All Rights Reserved.
- *
- */
+
 
 package com.alpine.hadoop.tree.mapper;
 
@@ -30,10 +20,7 @@ import com.alpine.hadoop.DecisionTreeConfigureKeySet;
 import com.alpine.hadoop.tree.model.SplitRecordWritable;
 import com.alpine.hadoop.util.MapReduceHelper;
 
-/**
- * @author Shawn
- * 
- */
+
 
 public class AssignSplitsVarMapper extends
 		Mapper<LongWritable, Text, SplitRecordWritable, Text> {

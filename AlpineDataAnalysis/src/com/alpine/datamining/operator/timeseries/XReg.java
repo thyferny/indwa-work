@@ -3,9 +3,7 @@ package com.alpine.datamining.operator.timeseries;
 import java.io.Serializable;
 
 public class XReg  implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private int ncxreg;
 	private int narma;

@@ -1,12 +1,4 @@
-/**
- * ClassName NewtonMethod.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.regressions;
 
@@ -37,10 +29,7 @@ import com.alpine.utility.db.MultiDBUtilityFactory;
 import com.alpine.utility.file.StringUtil;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
-/**
- * This algorithm to determine a logistic regression model.
- * @author Eason Yu,Jeff Dong
- */
+
 public abstract class NewtonMethod {
     private static final Logger logger = Logger.getLogger(NewtonMethod.class);
 
@@ -497,7 +486,7 @@ public abstract class NewtonMethod {
 		where.append(" and ").append(StringHandler.doubleQ(label.getName())).append(" is not null ");
 		return where;
 	}
-	/*GenerateSql for fitness */
+	
 	protected StringBuilder GenerateFitnessSql(double [] beta) {
 		int columnCount = dataSet.getColumns().size();
 		String[] columnName = new String[columnCount];

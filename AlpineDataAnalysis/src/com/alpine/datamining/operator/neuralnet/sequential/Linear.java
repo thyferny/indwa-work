@@ -1,12 +1,4 @@
-/**
- * ClassName Linear
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.io.Serializable;
@@ -14,13 +6,10 @@ import java.io.Serializable;
 import com.alpine.datamining.db.DataSet;
 
 
-/**
- */
+
 public class Linear  implements Base, Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 4253274454853943456L;
 
 	public String getTypeName() {

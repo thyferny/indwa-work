@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionImpPGGP.java
- *
- * Version information: 1.00
- *
- * Data: 2011-7-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.math.BigDecimal;
@@ -23,10 +15,7 @@ import com.alpine.datamining.tools.matrix.Matrix;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- *  <p>This PG and GP algorithm to calculate a linear regression model.</p>
- * @author Eason
- */
+
 public class LinearRegressionImpPGGP extends LinearRegressionImp {
     private static Logger itsLogger = Logger.getLogger(LinearRegressionImpPGGP.class);
     public LinearRegressionImpPGGP() {

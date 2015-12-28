@@ -1,12 +1,4 @@
-/**
- * ClassName NewtonMethodGreenplum.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.regressions;
 
@@ -15,10 +7,7 @@ import java.sql.SQLException;
 import com.alpine.datamining.exception.OperatorException;
 import com.alpine.datamining.tools.matrix.Matrix;
 import org.apache.log4j.Logger;
-/**
- * This greenplum algorithm to determine a logistic regression model.
- * @author Eason Yu,Jeff Dong
- */
+
 public class NewtonMethodGreenplum extends NewtonMethod {
     private static final Logger itsLogger = Logger.getLogger(NewtonMethodGreenplum.class);
 

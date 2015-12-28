@@ -1,20 +1,8 @@
-/**
- * ClassName LogisticRegressionParameter.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import com.alpine.datamining.operator.Parameter;
-/**
- * The logistic regression parameter.
- * @author Eason Yu
 
- */
 public class LogisticRegressionParameter implements Parameter {
 	private boolean addInercept = true;
 	private int maxGenerations = 25;

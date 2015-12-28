@@ -1,12 +1,4 @@
-/**
- * ClassName XMLInputFormat.java
- *
- * Version information: 1.00
- *
- * Date: Oct 24, 2012
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.ext;
 
 import java.io.IOException;
@@ -30,9 +22,7 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 import com.alpine.hadoop.AlpineHadoopConfKeySet;
 
-/**
- * Reads records that are delimited by a specifc begin/end tag.
- */
+
 public class XMLInputFormat extends TextInputFormat {
 	
 	public static final String NO_ATTRIBUTE = "no" ;
@@ -75,11 +65,7 @@ public class XMLInputFormat extends TextInputFormat {
 		return null;
 	}
 
-	/**
-	 * XMLRecordReader class to read through a given xml document to output xml
-	 * blocks as records as specified by the start tag and end tag
-	 * 
-	 */
+	
 	public static class XmlRecordReader extends
 			RecordReader<LongWritable, Text> {
 		private byte[] startTag;
@@ -102,11 +88,7 @@ public class XMLInputFormat extends TextInputFormat {
 		public static final String STRUCTURE_TYPE_STANDARD = "sts";
 		public static final String STRUCTURE_TYPE_LINE = "stl";
 		
-		/**
-		 * @param rootTag2
-		 * @param endTag2
-		 * @throws UnsupportedEncodingException
-		 */
+		
 		
 		public XmlRecordReader(){
 			
@@ -142,16 +124,7 @@ public class XMLInputFormat extends TextInputFormat {
 			this.xmlDataStructureType=xmlDataStructureType;
 		}
 
-		/**
-		 * Called once at initialization.
-		 * 
-		 * @param split
-		 *            the split that defines the range of records to read
-		 * @param context
-		 *            the information about the task
-		 * @throws IOException
-		 * @throws InterruptedException
-		 */
+		
 		
 		
 		//this is for hadoop
@@ -198,13 +171,7 @@ public class XMLInputFormat extends TextInputFormat {
 			}
 		}
 
-		/**
-		 * Read the next key, value pair.
-		 * 
-		 * @return true if a key/value pair was read
-		 * @throws IOException
-		 * @throws InterruptedException
-		 */
+		
 		public boolean nextKeyValue() throws IOException, InterruptedException {
 			if (key == null) {
 				key = new LongWritable();
@@ -275,14 +242,7 @@ public class XMLInputFormat extends TextInputFormat {
 			return value;
 		}
 
-		/**
-		 * The current progress of the record reader through its data.
-		 * 
-		 * @return a number between 0.0 and 1.0 that is the fraction of the data
-		 *         read
-		 * @throws IOException
-		 * @throws InterruptedException
-		 */
+		
 
 		@Override
 		public void close() throws IOException {

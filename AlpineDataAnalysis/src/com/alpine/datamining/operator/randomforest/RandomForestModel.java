@@ -1,16 +1,4 @@
-/**
- * 
 
-* ClassName RandomForestModel.java
-*
-* Version information: 1.00
-*
-* Data: 2012-10-9
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-
-
- */
 package com.alpine.datamining.operator.randomforest;
 
 import java.sql.SQLException;
@@ -40,17 +28,11 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import com.alpine.datamining.utility.OperatorUtil;
 import org.apache.log4j.Logger;
 
-/**
- * @author Shawn
- *
- *  
- */
+
 
 public abstract class RandomForestModel extends Prediction{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4269257709330617314L;
 	protected static final Logger itsLogger = Logger.getLogger(AdaboostModelGreenplum.class);
 
@@ -298,46 +280,18 @@ public abstract class RandomForestModel extends Prediction{
 	protected abstract StringBuffer spellArray(StringBuffer inforArray,
 			Iterator<String> localIterator);
 
-	/**
-	 * @param outTable
-	 * @param timeStamp
-	 * @param tempOutTable
-	 * @param dependentColumn
-	 * @param st
-	 * @param inforArray
-	 * @param localIterator
-	 * @param sumc
-	 * @throws OperatorException
-	 */
+	
 protected abstract void randomForestPredictResult(String outTable, long timeStamp,
 			String tempOutTable, String dependentColumn, Statement st,
 			StringBuffer inforArray,  double sumc,DataSet dataSet)
 			throws OperatorException;
 	
-	/**
-	 * @param outTable
-	 * @param tempOutTable
-	 * @param dependentColumn
-	 * @param st
-	 * @param sampleDvalueIterator
-	 * @param sampleArray
-	 * @throws SQLException
-	 */
+	
 	protected abstract void randomForestPredictStep(String outTable, String tempOutTable,
 			String dependentColumn, Statement st, Iterator<String> sampleDvalueIterator, StringBuffer sampleArray)
 			throws SQLException;
 
-	/**
-	 * @param outTable
-	 * @param timeStamp
-	 * @param tempOutTable
-	 * @param schemaName
-	 * @param dependentColumn
-	 * @param st
-	 * @param inforArray
-	 * @return
-	 * @throws OperatorException
-	 */
+	
 	protected abstract String randomForestPredictionInit(String outTable, String tempOutTable,
 			long timeStamp, String schemaName, String dependentColumn,
 			Statement st, StringBuffer inforArray) throws OperatorException ;

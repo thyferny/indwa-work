@@ -1,12 +1,4 @@
-/**
- * ClassName ItemSets.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import java.util.ArrayList;
@@ -18,16 +10,10 @@ import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.operator.OutputObject;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * Contains a collection of {@link ItemSet}s.
- * 
- * @author Eason
- */
+
 public class ItemSets extends OutputObject implements Iterable<ItemSet> {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2938299071173105508L;
 
 	private static final int MAX_NUMBER_OF_ITEMSETS = 100;
@@ -57,12 +43,7 @@ public class ItemSets extends OutputObject implements Iterable<ItemSet> {
 		this.dataSet = dataSet;
 	}
 
-	/**
-	 * Adds a frequent item set to this container. ConditionalItems and frequentItems are merged.
-	 * 
-	 * @param itemSet
-	 *            the frequent set
-	 */
+	
 	public void addFrequentSet(ItemSet itemSet) {
 		frequentSets.add(itemSet);
         maximumSetSize = Math.max(itemSet.getNumberOfItems(), maximumSetSize);
@@ -108,12 +89,12 @@ public class ItemSets extends OutputObject implements Iterable<ItemSet> {
         return toString(-1);
     }
 
-    /** This method generates the a string representation of this object. */
+    
     public String toString() {
         return toString(MAX_NUMBER_OF_ITEMSETS);
     }
     
-    /** This method generates the a string representation of this object. */
+    
     public String toString(int maxNumber) {
         StringBuffer output = new StringBuffer("Frequent Item Sets (" + size() + "):" + Tools.getLineSeparator());
         if (frequentSets.size() == 0) {

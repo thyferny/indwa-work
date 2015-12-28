@@ -1,24 +1,13 @@
-/**
- * ClassName NodeOutput
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import com.alpine.datamining.db.Column;
 import com.alpine.datamining.db.DataSet;
 
-/**
- */
+
 public class NodeOutput extends NNNode{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -59898700869636570L;
 
 	private Column label;

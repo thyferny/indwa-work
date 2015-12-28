@@ -1,12 +1,4 @@
-/**
- * ClassName ColumnsImp.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.util.HashMap;
@@ -18,10 +10,7 @@ import java.util.Map;
 import com.alpine.datamining.utility.Tools;
 
 
-/**
- *  Columns Implement
- * @author  Eason
- */
+
 
 public class ColumnsImp  implements Columns {
 
@@ -29,13 +18,9 @@ public class ColumnsImp  implements Columns {
 
 	private List<Column> columns = new LinkedList<Column>();
 	
-	/**
-	 * map of name to column
-	 */
+	
 	private transient Map<String,Column> nameToColumnMap = new HashMap<String,Column>();
-	/**
-	 * map of special name to column
-	 */
+	
 	private transient Map<String,Column> specialNameToColumnap = new HashMap<String,Column>();
 	
 	public ColumnsImp() {
@@ -46,18 +31,12 @@ public class ColumnsImp  implements Columns {
             register((Column)column.clone(), false);
         }
 	}
-	/**
-	 * @param name
-	 * @return column by name
-	 */
+	
 	private Column getColumnByName(String name) {
 		return nameToColumnMap.get(name);
 	}
 
-	/**
-	 * @param specialName
-	 * @return column by special name
-	 */
+	
 	private Column getColumnBySpecialName(String specialName) {
 		return specialNameToColumnap.get(specialName);
 	}
@@ -201,9 +180,7 @@ public class ColumnsImp  implements Columns {
 		return result.toString();
 	}
 
-	/**
-	 * @return all columns iterator
-	 */
+	
 	private Iterator<Column> allColumnsInner() {
 		final Iterator<Column> i = columns.iterator();
 		return new Iterator<Column>() {
@@ -223,11 +200,7 @@ public class ColumnsImp  implements Columns {
 		};
 	}
 
-	/**
-	 * register column
-	 * @param column
-	 * @param onlyMaps
-	 */
+	
 	private void register(Column column, boolean onlyMaps) {
 		String name = column.getName();		
 		if (nameToColumnMap.containsKey(name)) {
@@ -248,10 +221,7 @@ public class ColumnsImp  implements Columns {
 		}
 	}
 	
-	/**
-	 *	 
-	 * @param onlyMap if true, removes the column only from the maps, but not from the list.
-	 */
+	
 	private boolean unregister(Column column, boolean onlyMap) {
 		if (!nameToColumnMap.containsKey(column.getName())) {
 			return false;
@@ -266,16 +236,12 @@ public class ColumnsImp  implements Columns {
 		return true;
 	}
 
-	/**
-	 * see com.alpine.datamining.db.Columns#add(com.alpine.datamining.db.Column)
-	 */
+	
 	public void add(Column column) {
 		register(column, false);		
 	}
 	
-	/**
-	 * see com.alpine.datamining.db.Columns#remove(com.alpine.datamining.db.Column)
-	 */
+	
 	public boolean remove(Column column) {
 		return unregister(column, false);		
 	}

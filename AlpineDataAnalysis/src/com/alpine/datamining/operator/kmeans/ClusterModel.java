@@ -1,12 +1,4 @@
-/**
- * ClassName ClusterModel.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.kmeans;
 
 import java.util.ArrayList;
@@ -22,9 +14,7 @@ import com.alpine.datamining.utility.Tools;
 
 public class ClusterModel extends OutputObject {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 3503104282041912663L;
 	public static final int UNASSIGNABLE = -1;
 	private String schemaName;

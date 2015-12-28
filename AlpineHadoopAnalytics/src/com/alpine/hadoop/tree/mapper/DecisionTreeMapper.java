@@ -1,14 +1,4 @@
-/**
-*
-* ClassName DecisionTreeMapper.java
-*
-* Version information: 1.00
-*
-* Aug 31, 2012
-* 
-* COPYRIGHT (C) Alpine Data Labs. All Rights Reserved.
-*
-*/
+
 
 package com.alpine.hadoop.tree.mapper;
 
@@ -43,10 +33,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-/**
- * @author Shawn
- *  
- */
+
 
 public class DecisionTreeMapper extends Mapper<LongWritable, Text, Text, Text> {
 	private static Logger itsLogger = Logger

@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ARIMARPredictResult  implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private List<SingleARIMARPredictResult> results = new ArrayList<SingleARIMARPredictResult>();
 	private String groupColumnName = null;

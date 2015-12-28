@@ -2,9 +2,7 @@ package com.alpine.datamining.db;
 
 
 
-/** Column statistics object for numerical columns. 
- * @author Eason
- */
+
 public class NumericColumnStats implements ColumnStats {
 
 	private static final long serialVersionUID = 7906000233180028610L;
@@ -22,7 +20,7 @@ public class NumericColumnStats implements ColumnStats {
     
     public NumericColumnStats() {}
     
-    /** Clone constructor. */
+    
     private NumericColumnStats(NumericColumnStats other) {
         this.sum = other.sum;
         this.squaredSum = other.squaredSum;

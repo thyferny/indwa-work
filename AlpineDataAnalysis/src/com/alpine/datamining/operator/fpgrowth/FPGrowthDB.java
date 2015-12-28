@@ -1,12 +1,4 @@
-/**
- * ClassName FPGrowthDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import com.alpine.datamining.db.DBTable;
@@ -22,9 +14,7 @@ import com.alpine.utility.log.LogUtils;
 import org.apache.log4j.Logger;
 
 
-/**
- * @author Eason
- */
+
 public class FPGrowthDB extends Operator {
     private static final Logger itsLogger = Logger.getLogger(FPGrowthDB.class);
 

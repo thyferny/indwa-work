@@ -1,23 +1,8 @@
- /**
- * 
-
-* ClassName EMModelDB2.java
-*
-* Version information: 1.00
-*
-* Data: Jul 30, 2012
-*
-* COPYRIGHT   2011 Alpine Solutions. All Rights Reserved.
-
- */
+ 
 
 package com.alpine.datamining.operator.EMCluster;
 
-/**
- * @author Shawn
- *
- *  
- */
+
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

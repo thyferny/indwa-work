@@ -1,12 +1,4 @@
-/**
- * ClassName SVDModel
- *
- * Version information: 1.00
- *
- * Data: 2011-6-16
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svd;
 
 import java.sql.SQLException;
@@ -26,10 +18,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * The model for svd.
- * 
- */
+
 public class SVDModel extends Prediction {
     private static final Logger itsLogger = Logger.getLogger(SVDModel.class);
 

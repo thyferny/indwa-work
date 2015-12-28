@@ -1,12 +1,4 @@
-/**
- * ClassName DBDataSet.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.ResultSet;
@@ -31,27 +23,18 @@ import com.alpine.utility.tools.ProfileReader;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * A simple implementation of DataSet containing a list of columns and a
- * special column map.  This simple data set implementation usually is
- * the basic data set of the multi-layered data view.
- * 
- * @author  Eason
- *          
- */
+
 public class DBDataSet extends AbstractDataSet {
 
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6688629748189863796L;
     private static final Logger itsLogger = Logger.getLogger(DBDataSet.class);
 
-    /** The table used for reading the data from. */
+    
 	private Table table;
 
-	/** Holds all information about the columns. */
+	
 	private Columns columns = new ColumnsImp();
 	
 	private HashMap<String,Double> average;
@@ -59,30 +42,22 @@ public class DBDataSet extends AbstractDataSet {
 	private HashMap<String,Double> minimum;
 	private HashMap<String,Double> maximum;
 	private HashMap<String,Double> sum;
-	/**
-	 * Constructs a new MemoryDataSet backed by the given data table. 
-	 */
+	
 	public DBDataSet(Table table) {
 		this(table, null, null);
 	}
 
-	/**
-	 * Constructs a new MemoryDataSet backed by the given data table. 
-	 */
+	
 	public DBDataSet(Table table, List<Column> regularColumns) {
 		this(table, regularColumns, null);
 	}
 	
-	/**
-	 * Constructs a new MemoryDataSet backed by the given data table. 
-	 */
+	
 	public DBDataSet(Table table, Map<Column, String> specialColumns) {
 		this(table, null, specialColumns);
 	}
 	
-	/**
-	 * Constructs a new MemoryDataSet backed by the given data table.
-	 */
+	
 	public DBDataSet(Table table, List<Column> regularColumns, Map<Column, String> specialColumns) {
 		this.table = table;
 		List<Column> regularList = regularColumns;
@@ -114,9 +89,7 @@ public class DBDataSet extends AbstractDataSet {
 		this.columns = (Columns)dataSet.getColumns().clone();
 	}
 	
-	/**
-	 * @param dataSet
-	 */
+	
 	public DBDataSet(DataSet dataSet) {
 		this.table = dataSet.getDBTable();
 		this.columns = (Columns)dataSet.getColumns().clone();

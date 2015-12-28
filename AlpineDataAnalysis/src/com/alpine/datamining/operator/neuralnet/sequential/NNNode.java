@@ -1,24 +1,13 @@
-/**
- * ClassName NNNode
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.io.Serializable;
 
 import com.alpine.datamining.db.DataSet;
 
-/** 
- */
+
 public abstract class NNNode implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4739380417814094034L;
 	public static final int INPUT  = -1;
 	public static final int MIDDLE = 0;
@@ -45,7 +34,7 @@ public abstract class NNNode implements Serializable{
 		this.nodeType = nodeType;
 	}
 
-	/** Calculates the output. */
+	
 	public abstract double computeValue(boolean calculate, double[] row);
 	
 	
@@ -53,10 +42,10 @@ public abstract class NNNode implements Serializable{
 	
 	public abstract String computeValuePrediction(boolean calculate, DataSet dataSet);
 
-	/** Calculates the error. */
+	
 	public abstract double computeError(boolean calculate, double[] row);
 	
-	/**  Subclasses should overwrite this method. */
+	
 	public double getWeight(int n) {
 		return 1;
 	}

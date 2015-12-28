@@ -1,16 +1,4 @@
-/**
- * 
 
-* ClassName LinearRegressionIMPGroupbyPGGP.java
-*
-* Version information: 1.00
-*
-* Data: Jun 15, 2012
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-
-
- */
 package com.alpine.datamining.operator.regressions;
 
 import java.math.BigDecimal;
@@ -39,11 +27,7 @@ import com.alpine.utility.log.LogUtils;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- *
- *  
- */
+
 
 public class LinearRegressionIMPGroupbyPGGP extends LinearRegressionImpPGGP{
     private static final Logger itsLogger = Logger.getLogger(LinearRegressionIMPGroupbyPGGP.class);

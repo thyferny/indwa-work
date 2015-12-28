@@ -1,12 +1,4 @@
-/**
- * ClassName NodeInput
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.util.HashMap;
@@ -20,13 +12,10 @@ import com.alpine.datamining.db.DataSet;
 import com.alpine.utility.db.DataSourceInfoNZ;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- */
+
 public class NodeInput extends NNNode {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6707683446031638414L;
 
 	private Column column;

@@ -1,26 +1,13 @@
-/**
- * ClassName LessEqualDevideCond
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
 
 
-/**
- * A split condition for numerical values (less equals).
- * 
- */
+
 public class LessEqualDevideCond extends AbstractDevideCond {
     
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4550957191601520532L;
 	private double value;
     

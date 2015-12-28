@@ -1,25 +1,12 @@
-/**
- * ClassName WOENumbernicNode.java
- *
- * Version information: 1.00
- *
- * Data: 28 Oct 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.woe;
 
 
 
-/**
- * @author Shawn
- * 
- */
+
 public class AnalysisWOENumericNode extends AnalysisWOENode {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 4035347843991818928L;
 	private double upper;
 	private double bottom;

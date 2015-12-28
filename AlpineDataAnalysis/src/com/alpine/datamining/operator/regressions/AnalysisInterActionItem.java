@@ -1,19 +1,8 @@
-/**
- * ClassName AnalysisInterActionItem.java
- *
- * Version information: 1.00
- *
- * Data: 2011-5-23
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 
-/**
- * @author Eason
- *
- */
+
 public class AnalysisInterActionItem {
 	
 	private String id="";

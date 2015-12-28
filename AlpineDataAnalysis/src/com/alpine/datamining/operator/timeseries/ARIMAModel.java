@@ -1,12 +1,4 @@
-/**
- * ClassName ARIMA Model
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.timeseries;
 
 import java.sql.Connection;
@@ -29,10 +21,7 @@ import com.alpine.utility.db.SqlGeneratorMultiDBFactory;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * The model of the improved neural net.
- * 
- */
+
 public class ARIMAModel extends Prediction {
     private static final Logger itsLogger = Logger.getLogger(ARIMAModel.class);
     private static final long serialVersionUID = -3496752146166330659L;

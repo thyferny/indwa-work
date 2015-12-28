@@ -1,12 +1,4 @@
-/**
- * ClassName TreeBuilderDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartclassification;
 
 import java.util.ArrayList;
@@ -36,10 +28,7 @@ import com.alpine.datamining.resources.AlpineDataAnalysisConfig;
 import com.alpine.datamining.utility.StatisticsChiSquareTest;
 import com.alpine.utility.tools.AlpineMath;
 
-/**
- * Build a tree from an data set.
- * This class is used for data in database.
- */
+
 public class ConstructTree extends AbstractConstructTree{
 	
 	

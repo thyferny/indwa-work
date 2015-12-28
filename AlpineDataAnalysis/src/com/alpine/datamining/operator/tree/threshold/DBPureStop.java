@@ -1,12 +1,4 @@
-/**
- * ClassName DBPureStop
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.ResultSet;
@@ -20,10 +12,7 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * This DBPureStop terminates if only one single label is left. 
- * This class is used for data in database.
- */
+
 public class DBPureStop implements Stop {
     private static Logger itsLogger = Logger.getLogger(DBPureStop.class);
 

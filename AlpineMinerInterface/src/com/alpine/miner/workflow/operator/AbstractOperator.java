@@ -1,12 +1,4 @@
-/**
- * ClassName AbstractOperator.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-26
- *
- * COPYRIGHT   2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator;
 
 import java.io.File;
@@ -64,10 +56,7 @@ import com.alpine.utility.tools.NLSUtility;
 import com.alpine.utility.tools.StringHandler;
 import com.alpine.utility.xml.XmlDocManager;
 
-/**
- * @author zhaoyong
- * 
- */
+
 public abstract class AbstractOperator implements Operator {
     private static final Logger itsLogger=Logger.getLogger(SubFlowOperator.class);
     // most have one ,but sampling and cvd have multipule
@@ -271,9 +260,7 @@ public abstract class AbstractOperator implements Operator {
 						.validateInputLink(operatorList.get(0).getOperator(),multiple);
 			}
 		} else {
-			/**
-			 * check inputClass and outputClass is equals
-			 */
+			
 			Operator subFlowOperator = precedingOperator;
 			if(precedingOperator instanceof SubFlowOperator){
 				precedingOperator = ((SubFlowOperator)precedingOperator).getExitOperator();
@@ -314,9 +301,7 @@ public abstract class AbstractOperator implements Operator {
 				}
 			}
 	
-			/**
-			 * check repick linked
-			 */
+			
 			if (precedingOperator.getOperModel().containTarget(getOperModel())) {
 				return LanguagePack.getMessage(LanguagePack.MESSAGE_ALREADY_LINK,locale);
 			}
@@ -373,9 +358,7 @@ public abstract class AbstractOperator implements Operator {
 	}
 
 	protected String validateMultipleInput(Operator precedingOperator) {
-		/**
-		 * check only one table output operator linked
-		 */
+		
 		List<String> list = precedingOperator.getOutputClassList();
 		if(precedingOperator instanceof ModelOperator && list==null){
 			list = fillModelType(precedingOperator);

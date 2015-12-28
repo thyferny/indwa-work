@@ -1,25 +1,13 @@
-/**
- * ClassName Sigmod
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.io.Serializable;
 
 import com.alpine.datamining.db.DataSet;
 
-/**
- *
- */
+
 public class Sigmod implements Base, Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 4598833104501642810L;
 
 	public String getTypeName() {

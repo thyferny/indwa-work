@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionImpDB2.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.math.BigDecimal;
@@ -24,10 +16,7 @@ import com.alpine.datamining.tools.matrix.Matrix;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- *  <p>This DB2 algorithm to calculate a linear regression model.</p>
- * @author Eason
- */
+
 public class LinearRegressionImpDB2 extends LinearRegressionImp {
     private static Logger itsLogger = Logger.getLogger(LinearRegressionImpDB2.class);
     private int maxColumn = 1012;
@@ -187,14 +176,7 @@ public class LinearRegressionImpDB2 extends LinearRegressionImp {
     	}
 		return coefficients;
 	}
-	/**
-	 * @param datasize
-	 * @param tableName
-	 * @param label
-	 * @param columnNames
-	 * @param coefficients
-	 * @return
-	 */
+	
 	protected StringBuffer createSSQLL(int datasize, String tableName,
 			Column label, String[] columnNames, Double[] coefficients) {
 		StringBuffer predictedY = new StringBuffer("double("+coefficients[coefficients.length - 1]);

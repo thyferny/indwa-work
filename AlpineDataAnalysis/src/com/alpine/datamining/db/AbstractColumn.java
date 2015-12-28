@@ -1,12 +1,4 @@
-/**
- * ClassName AbstractColumn.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.util.Iterator;
@@ -15,12 +7,7 @@ import java.util.List;
 
 import com.alpine.datamining.utility.DataType;
 
-/**
- * This is an abstract superclass for all column implementations.
- * Most methods of Column are already implemented here.
- * 
- * @author Eason
- */
+
 public abstract class AbstractColumn implements Column {
 
 	private static final long serialVersionUID = -2388353035299425174L;
@@ -29,32 +16,23 @@ public abstract class AbstractColumn implements Column {
 	
 	private String specialName = null;
 	
-	/** 
-	 * The column name. 
-	 */
+	
 	private String name;
 
-	/**
-	 * An int indicating the value type.
-	 */
+	
 	private int valueType = DataType.COLUMN_VALUE;
 
-	/** 
-	 * The default value. 
-	 */
+	
 	
 	private double defaultValue = 0.0;
 
-	/** Index in its Table. */
+	
 	private int index = Column.UNDEFINED_COLUMN_INDEX;
 
-	/** Contains all columnStats calculation. */
+	
 	private List<ColumnStats> columnStats = new LinkedList<ColumnStats>();
 	
-	/**
-	 * Creates a simple column. Only the last transformation
-	 * is cloned, the other shifts are cloned by reference.
-	 */
+	
 	AbstractColumn(AbstractColumn column) {
 	    this.special = column.special;
 	    this.specialName = column.specialName;
@@ -69,9 +47,7 @@ public abstract class AbstractColumn implements Column {
 		this.index = column.index;
 	}
 	
-	/**
-	 * Creates a simple column. 
-	 */
+	
 	AbstractColumn(String name, int valueType) {
 		this.name = name;
 		this.valueType = valueType;
@@ -80,7 +56,7 @@ public abstract class AbstractColumn implements Column {
 
 	}
 	
-	/** Clones. */
+	
 	public abstract Object clone();
 	
 	public double getValue(Row row) {
@@ -102,7 +78,7 @@ public abstract class AbstractColumn implements Column {
 		return true;
 	}
 
-	/** Returns the columnStats. */
+	
 	public Iterator<ColumnStats> getAllStats() {
 		return this.columnStats.iterator();
 	}

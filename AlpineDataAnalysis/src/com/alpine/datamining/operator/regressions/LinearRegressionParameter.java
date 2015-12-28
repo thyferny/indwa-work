@@ -1,18 +1,6 @@
-/**
- * ClassName LinearRegressionParameter.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
-package com.alpine.datamining.operator.regressions;
-/**
- * The linear regression parameter.
- * @author Eason Yu
 
- */
+package com.alpine.datamining.operator.regressions;
+
 import com.alpine.datamining.operator.Parameter;
 
 public class LinearRegressionParameter implements Parameter {

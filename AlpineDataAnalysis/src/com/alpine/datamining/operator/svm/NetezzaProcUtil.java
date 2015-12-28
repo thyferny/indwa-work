@@ -1,12 +1,4 @@
-/**
- * ClassName NetezzaProcUtil.java
- *
- * Version information: 1.00
- *
- * Data: 2011-12-28
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.io.Serializable;
@@ -23,11 +15,7 @@ import com.alpine.datamining.exception.OperatorException;
 import com.alpine.datamining.utility.TableTransferParameter;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * 
- * @author Eason
- *
- */
+
 public class NetezzaProcUtil implements Serializable {
 	private static final long serialVersionUID = -4806059428506736319L;
 	private String whereCondTableName;

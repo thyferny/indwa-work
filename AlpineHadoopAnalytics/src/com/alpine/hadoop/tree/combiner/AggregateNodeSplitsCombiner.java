@@ -1,14 +1,4 @@
-/**
-*
-* ClassName AggregateNodeSplitsCombiner.java
-*
-* Version information: 1.00
-*
-* Sep 6, 2012
-* 
-* COPYRIGHT (C) Alpine Data Labs. All Rights Reserved.
-*
-*/
+
 
 package com.alpine.hadoop.tree.combiner;
 
@@ -25,10 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.alpine.hadoop.tree.model.SplitMappingWritable;
 
-/**
- * @author Jonathan
- *  
- */
+
 
 public class AggregateNodeSplitsCombiner extends Reducer<Text, SplitMappingWritable, Text, SplitMappingWritable> { 
 	private static Logger itsLogger = Logger

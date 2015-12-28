@@ -5,9 +5,7 @@ import java.io.Serializable;
 //import com.alpine.datamining.operator.timeseries.ARIMAR.makeARIMARes;
 
 public class ARIMARet implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private double[]coef;
 	private double sigma2 ;

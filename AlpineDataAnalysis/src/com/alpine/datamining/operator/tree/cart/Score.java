@@ -1,23 +1,11 @@
-/**
- * ClassName Benefit.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cart;
 
 import java.util.List;
 
 import com.alpine.datamining.db.Column;
 
-/**
- * some information about the score of a split.
- * 
- *
- */
+
 public class Score implements Comparable<Score> {
 
 	private Column column;

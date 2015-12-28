@@ -1,20 +1,9 @@
-/**
-* ClassName CartRegressionNZ.java
-*
-* Version information: 1.00
-*
-* Data: 29 Dec 2011
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.tree.cartregression;
 
-/**
- * @author Shawn
- *
- */
+
 public class CartRegressionNZ implements INumericalSql {
 	public String getAvgString(String labelColumnName, String columnName, String tableName, String whereCondition){
 		String sql = "";

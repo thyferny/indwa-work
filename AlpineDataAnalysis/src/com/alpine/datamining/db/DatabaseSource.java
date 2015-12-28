@@ -1,12 +1,4 @@
-/**
- * ClassName DatabaseSource.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.ResultSet;
@@ -26,51 +18,33 @@ import com.alpine.utility.file.StringUtil;
 import org.apache.log4j.Logger;
 
 
-/**
- * <p>This operator reads a DataSet from an SQL
- * database. 
- * @author Eason
- */
+
 public class DatabaseSource extends DataSource {
     private static Logger itsLogger= Logger.getLogger(DatabaseSource.class);
 
     private DatabaseSourceParameter para;
 	
-	/** The database connection handler. */
+	
 	private DatabaseConnection databaseConnection;
 
-	/**
-	 * @return DatabaseConnection
-	 */
+	
 	public DatabaseConnection getDatabaseConnection() {
 		return databaseConnection;
 	}
 
-	/**
-	 * set database connection
-	 * @param databaseConnection
-	 */
+	
 	public void setDatabaseConnection(DatabaseConnection databaseConnection) {
 		this.databaseConnection = databaseConnection;
 	}
 
-	/** 
-	 * This is only used for the case that the data is read into memory. 
-	 */
+	
 	private Statement statement;
 	
 	
 	public DatabaseSource() {
 		super();
 	}
-	/**
-	 * create DataSet Using Exiting DBHandler
-	 * @param databaseConnection
-	 * @param isCategoryLabel
-	 * @param label
-	 * @return
-	 * @throws OperatorException
-	 */
+	
 	public DataSet createDataSetUsingExitingDBHandler(DatabaseConnection databaseConnection, boolean isCategoryLabel, String label)throws OperatorException {
 		para = (DatabaseSourceParameter)getParameter();
 		ResultSet resultSet = getResultSet(databaseConnection);
@@ -96,9 +70,7 @@ public class DatabaseSource extends DataSource {
 
 		return createDataSet(table, this);
 	}
-	/**
-	 * teardown, close statment
-	 */
+	
 	public void tearDown() {
 		if (this.statement != null) {
 			try {
@@ -109,10 +81,7 @@ public class DatabaseSource extends DataSource {
 		}
 	}
 
-	/**
-	 * @return select query by the table name
-	 * @throws OperatorException
-	 */
+	
 	private String getQuery() throws OperatorException {
 		para = (DatabaseSourceParameter)getParameter();
 		String query = para.getQuery();
@@ -138,11 +107,7 @@ public class DatabaseSource extends DataSource {
 	}
 
 
-	/**
-	 * @param databaseConnection
-	 * @return resultset 
-	 * @throws OperatorException
-	 */
+	
 	public ResultSet getResultSet(DatabaseConnection databaseConnection) throws OperatorException {
 		ResultSet rs = null;
 		try {
@@ -157,12 +122,7 @@ public class DatabaseSource extends DataSource {
 		return rs;
 	}
 
-	/**
-	 * @param columnList
-	 * @param name
-	 * @return column by name from a column list
-	 * @throws OperatorException
-	 */
+	
 	protected static Column find(List columnList, String name) throws OperatorException {
 		if (name == null)
 			return null;
@@ -175,12 +135,7 @@ public class DatabaseSource extends DataSource {
 		throw new WrongUsedException(null, AlpineAnalysisErrorName.NO_SUCH_COL, name);
 	}
 
-	/**
-	 * @param table
-	 * @param operator
-	 * @return dataSet from table and the id, dependent column
-	 * @throws OperatorException
-	 */
+	
 	public static DataSet createDataSet(Table table, Operator operator) throws OperatorException {
 		String labelName =((DatabaseSourceParameter)operator.getParameter()).getLabel();
 		String idName = ((DatabaseSourceParameter)operator.getParameter()).getId();

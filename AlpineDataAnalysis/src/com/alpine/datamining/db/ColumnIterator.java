@@ -1,47 +1,25 @@
-/**
- * ClassName ColumnIterator.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.util.Iterator;
 
 
-/**
- * Iterates columns.
- * 
- * @author  Eason
- */
+
 public class ColumnIterator implements Iterator<Column> {
 	
-	/**
-	 * the columns iterator
-	 */
+	
 	private Iterator<Column> parent;
 	
-	/**
-	 * column type, regular or specical
-	 */
+	
 	private int type = Column.REGULAR;
 	
-	/**
-	 * current column
-	 */
+	
 	private Column current = null;
 	
-	/**
-	 * indicate has next invoked
-	 */
+	
 	private boolean hasNextInvoked = false;
 
-	/**
-	 * current column
-	 */
+	
 	private Column currentColumn = null;
 	
 	public ColumnIterator(Iterator<Column> parent, int type) {
@@ -49,9 +27,7 @@ public class ColumnIterator implements Iterator<Column> {
 		this.type = type;
 	}
 	
-	/**
-	 * see java.util.Iterator#hasNext()
-	 */
+	
 	public boolean hasNext() {
 		this.hasNextInvoked = true;
 		if (!parent.hasNext() && currentColumn == null) {
@@ -92,9 +68,7 @@ public class ColumnIterator implements Iterator<Column> {
 		}
 	}
 
-	/**
-	 * see java.util.Iterator#next()
-	 */
+	
 	public Column next() {
 		if (!this.hasNextInvoked)
 			hasNext();
@@ -103,9 +77,7 @@ public class ColumnIterator implements Iterator<Column> {
 		return current;
 	}
 
-	/**
-	 * see java.util.Iterator#remove()
-	 */
+	
 	public void remove() {
 		parent.remove();
 		this.currentColumn = null;

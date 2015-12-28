@@ -1,12 +1,4 @@
-/**
- * ClassName InterActionModel.java
- *
- * Version information: 1.00
- *
- * Data: 2011-5-23
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.util.ArrayList;
@@ -16,10 +8,7 @@ import java.util.List;
 import com.alpine.utility.common.ListUtility;
 import com.alpine.utility.db.Resources;
 
-/**
- * @author Eason
- *
- */
+
 public class AnalysisInterActionColumnsModel {
 	
 	private List<AnalysisInterActionItem> analysisInterActionItems;

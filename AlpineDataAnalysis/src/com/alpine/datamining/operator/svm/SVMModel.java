@@ -1,12 +1,4 @@
-/**
- * ClassName SVMModel
- *
- * Version information: 1.00
- *
- * Data: 2011-4-20
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.Array;
@@ -29,9 +21,7 @@ import com.alpine.utility.db.IDataSourceInfo;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * @author Eason
- */
+
 public abstract class SVMModel extends Prediction {
 
 	private static final long serialVersionUID = 4486928292072567374L;

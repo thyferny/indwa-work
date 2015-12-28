@@ -3,9 +3,7 @@ package com.alpine.datamining.operator.timeseries;
 import java.io.Serializable;
 
 public class KalmanForeRet implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private double[] forecasts;
 	private double[] se;

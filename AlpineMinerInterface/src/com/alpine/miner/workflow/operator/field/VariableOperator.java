@@ -1,12 +1,4 @@
-/**
- * ClassName VariableOperator.java
- *
- * Version information: 1.00
- *
- * Data: 2011-4-11
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.field;
 
 import java.util.ArrayList;
@@ -33,10 +25,7 @@ import com.alpine.miner.workflow.operator.parameter.variable.QuantileItem;
 import com.alpine.utility.file.StringUtil;
 import com.alpine.utility.xml.XmlDocManager;
 
-/**
- * @author zhao yong
- *
- */
+
 public class VariableOperator extends DataOperationOperator {
 	
 	public static final List<String> parameterNames = Arrays.asList(new String[]{

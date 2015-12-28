@@ -1,12 +1,4 @@
-/**
- * ClassName SVMClassificationModelNetezza.java
- *
- * Version information: 1.00
- *
- * Data: 2011-12-28
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.ResultSet;
@@ -24,9 +16,7 @@ import com.alpine.datamining.utility.TableTransferParameter;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Eason
- */
+
 public class SVMClassificationModelNetezza extends SVMClassificationModel {
     private static final Logger itsLogger = Logger.getLogger(SVMClassificationModelNetezza.class);
 

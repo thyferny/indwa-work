@@ -1,23 +1,7 @@
-/**
- * 
 
-* ClassName test.java
-*
-* Version information: 1.00
-*
-* Data: May 31, 2012
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-
-
- */
 package com.alpine.datamining.operator.regressions;
 
-/**
- * @author Shawn
- *
- *  
- */
+
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -40,9 +24,7 @@ import com.alpine.utility.tools.StringHandler;
 public class LogisticRegressionGroupModel extends LogisticRegressionModelDB {
     private static final Logger itsLogger = Logger.getLogger(LogisticRegressionGroupModel.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 5509473799240707998L;
 
 	private String groupByColumn;
@@ -50,9 +32,7 @@ public class LogisticRegressionGroupModel extends LogisticRegressionModelDB {
 	
 	
 	private Map<String,LogisticRegressionModelDB> modelList = new LinkedHashMap<String,LogisticRegressionModelDB>();
-	/**
-	 * 
-	 */
+	
 	 
 	public LogisticRegressionGroupModel(DataSet dataSet, DataSet oldDataSet,
 			double[] beta, double[] variance, boolean interceptAdded,

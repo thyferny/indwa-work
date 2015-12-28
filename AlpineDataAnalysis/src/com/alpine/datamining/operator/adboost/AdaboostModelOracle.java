@@ -1,12 +1,4 @@
-/**
- * ClassName AdaboostModelOracle.java
- *
- * Version information: 1.00
- *
- * Data: 9 Oct 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.adboost;
 
@@ -22,32 +14,19 @@ import com.alpine.datamining.exception.OperatorException;
 import com.alpine.utility.file.StringUtil;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- * 
- */
+
 public class AdaboostModelOracle extends AdaboostModel {
 
-	/**
-	 * 
-	 */
+	
 	private static final Logger itsLogger = Logger.getLogger(AdaboostModelOracle.class);
 	private static final long serialVersionUID = 217156591719684515L;
 
-	/**
-	 * @param paramDataSet
-	 */
+	
 	public AdaboostModelOracle(DataSet paramDataSet) {
 		super(paramDataSet);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.alpine.datamining.operator.adboost.AdaboostModel#spellArray(java.
-	 * lang.StringBuffer, java.util.Iterator)
-	 */
+	
 	@Override
 	protected StringBuffer spellArray(StringBuffer inforArray,
 			Iterator<String> localIterator) {
@@ -67,14 +46,7 @@ public class AdaboostModelOracle extends AdaboostModel {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.alpine.datamining.operator.adboost.AdaboostModel#adaboostPredictionInit
-	 * (java.lang.String, java.lang.String, long, java.lang.String,
-	 * java.lang.String, java.sql.Statement, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	protected String adaboostPredictionInit(String outTable,
 			String tempOutTable, long timeStamp, String schemaName,
@@ -129,14 +101,7 @@ public class AdaboostModelOracle extends AdaboostModel {
 		return tempOutTable;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.alpine.datamining.operator.adboost.AdaboostModel#adaboostPredictStep
-	 * (java.lang.String, java.lang.String, java.lang.String,
-	 * java.sql.Statement, double, java.util.Iterator, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	protected void adaboostPredictStep(String outTable, String tempOutTable,
 			String dependentColumn, Statement st, double algWeight,
@@ -175,14 +140,7 @@ public class AdaboostModelOracle extends AdaboostModel {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.alpine.datamining.operator.adboost.AdaboostModel#adaboostPredictResult
-	 * (java.lang.String, long, java.lang.String, java.lang.String,
-	 * java.sql.Statement, java.lang.StringBuffer, double)
-	 */
+	
 	@Override
 	protected void adaboostPredictResult(String outTable, long timeStamp,
 			String tempOutTable, String dependentColumn, Statement st,

@@ -1,12 +1,4 @@
-/**
- * ClassName ItemSet.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import java.util.ArrayList;
@@ -14,10 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
-/**
- * 
- * @author Eason
- */
+
 public class ItemSet implements Comparable<ItemSet>, Cloneable {
 
 	private ArrayList<Item> items;
@@ -56,10 +45,7 @@ public class ItemSet implements Comparable<ItemSet>, Cloneable {
 		return frequency;
 	}
 
-	/**
-	 * This method compares ItemSets. It first compares the length of items sets, then the items itself. If they are the same, the Sets are
-	 * equal.
-	 */
+	
 	public int compareTo(ItemSet o) {
 		// compare size
 		Collection<Item> hisItems = o.getItems();
@@ -81,9 +67,7 @@ public class ItemSet implements Comparable<ItemSet>, Cloneable {
 		}
 	}
 
-	/**
-	 * this method returns true if the frequent Items set are equal in size and items.
-	 */
+	
 	public boolean equals(Object o) {
 		if (o instanceof ItemSet) {
 			return (this.compareTo((ItemSet) o) == 0);
@@ -95,9 +79,7 @@ public class ItemSet implements Comparable<ItemSet>, Cloneable {
 		return items.hashCode();
 	}
 
-	/**
-	 * This method returns a representation of the items
-	 */
+	
 	public String getItemsAsString() {
 		StringBuffer buffer = new StringBuffer();
 		Iterator<Item> iterator = items.iterator();
@@ -110,9 +92,7 @@ public class ItemSet implements Comparable<ItemSet>, Cloneable {
 		return buffer.toString();
 	}
 
-	/**
-	 * This method should return a proper String representation of this frequent Item Set
-	 */
+	
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
 		Iterator<Item> iterator = items.iterator();

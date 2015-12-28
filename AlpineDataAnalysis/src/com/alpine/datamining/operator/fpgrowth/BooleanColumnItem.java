@@ -1,26 +1,12 @@
-/**
- * ClassName BooleanColumnItem.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import com.alpine.datamining.db.Column;
 
-/**
- * This is an {@link Item} based on columns.
- * 
- * @author Eason
- */
+
 public class BooleanColumnItem implements Item {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7909167219175202234L;
 
 	private long frequency = 0;

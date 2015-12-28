@@ -1,12 +1,4 @@
-/**
- * ClassName CartClassificationTrainer
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartclassification;
 
 import java.util.LinkedList;
@@ -31,11 +23,7 @@ import com.alpine.datamining.operator.tree.threshold.Prune;
 import com.alpine.datamining.operator.tree.threshold.Stop;
 import com.alpine.datamining.operator.tree.threshold.Tree;
 
-/**
- * <p>
- * This operator learns cart classification trees. This class is for data in
- * database.
- */
+
 public class CartClassificationTrainer extends AbstractTreeTrainer {
 
 	CartParameter para;

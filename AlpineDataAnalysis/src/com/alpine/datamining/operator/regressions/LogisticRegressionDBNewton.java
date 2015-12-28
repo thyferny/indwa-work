@@ -1,12 +1,4 @@
-/**
- * ClassName LogisticRegressionDBNewton.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.regressions;
 
@@ -18,10 +10,7 @@ import com.alpine.datamining.operator.training.Trainer;
 import com.alpine.utility.db.DataSourceInfoDB2;
 import com.alpine.utility.db.DataSourceInfoNZ;
 import com.alpine.utility.db.DataSourceInfoOracle;
-/**
- * This operator determines a logistic regression model.
- * @author Eason Yu,Jeff Dong
- */
+
 public class LogisticRegressionDBNewton extends Trainer {
 
 

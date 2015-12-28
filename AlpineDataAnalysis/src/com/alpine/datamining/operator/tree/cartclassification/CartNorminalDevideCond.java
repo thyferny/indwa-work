@@ -1,12 +1,4 @@
-/**
- * ClassName CartNorminalDevideCond
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartclassification;
 
 import java.util.List;
@@ -18,9 +10,7 @@ import com.alpine.datamining.operator.tree.threshold.AbstractDevideCond;
 
 public class CartNorminalDevideCond extends AbstractDevideCond {
     
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -8004406184932008839L;
 
 	private List<String> valueString;

@@ -1,26 +1,11 @@
-/**
- * ClassName PowerSet.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * The power set of a collection of items.
- * 
- * 
- * @param <ItemT> the item type
- 
- * @author Eason
- */
+
 public class PowerSet<ItemT> implements Iterable<Collection<ItemT>>, Iterator<Collection<ItemT>>{
 
     private ArrayList<ItemT> set;
@@ -95,7 +80,7 @@ public class PowerSet<ItemT> implements Iterable<Collection<ItemT>>, Iterator<Co
 		return subset;
 	}
 
-    /** Throws an {@link UnsupportedOperationException} since removal is not supported. */
+    
     public void remove() {
         throw new UnsupportedOperationException("The 'remove' operation is not supported by power sets!");
     }

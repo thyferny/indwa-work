@@ -1,12 +1,4 @@
-/**
- * ClassName GiniIndexStandard
- *
- * Version information: 1.00
- *
- * Data: 2010-5-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartregression;
 
 import java.util.ArrayList;
@@ -20,10 +12,7 @@ import com.alpine.datamining.operator.tree.cart.AbstractStandard;
 import com.alpine.datamining.operator.tree.cart.Combination;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * Calculates the variance for the given split.
- * 
- */
+
 public class GiniIndexStandard extends AbstractStandard {
     
 //    private FrequencyCalculator frequencyCalculator = new FrequencyCalculator();
@@ -275,9 +264,7 @@ public class GiniIndexStandard extends AbstractStandard {
         }
         return totalEntropy - gain;
     }
-//    /** Returns an array of the size of the partitions. 
-//     *  Each entry contains the sum of all weights of the 
-//     *  corresponding partition. */
+//    
 //    public double[] getPartitionWeights(SplitDataSet splitted) {
 //        Column weightColumn = splitted.getcolumns().getWeight();
 //        double[] weights = new double[splitted.getNumberOfSubsets()];
@@ -294,9 +281,7 @@ public class GiniIndexStandard extends AbstractStandard {
 //        return weights;
 //    }
 //    
-//    /** Returns an array of size of the number of different label
-//     *  values. Each entry corresponds to the weight sum of all
-//     *  data with the current label. */
+//    
 //    public double[] getLabelWeights(DataSet dataSet) {
 //        Column label = dataSet.getcolumns().getLabel();
 //        Column weightColumn = dataSet.getcolumns().getWeight();
@@ -312,7 +297,7 @@ public class GiniIndexStandard extends AbstractStandard {
 //        return weights;
 //    }
     
-    /** Returns the sum of the given weights. */
+    
     public double getTotalWeight(double[] weights) {
         double sum = 0.0d;
         for (double w : weights)

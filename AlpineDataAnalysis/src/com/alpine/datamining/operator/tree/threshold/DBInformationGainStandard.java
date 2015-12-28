@@ -1,22 +1,11 @@
-/**
- * ClassName DBInformationGainStandard
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
 import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.exception.OperatorException;
 
-/**
- * This Standard implements the information gain .
- * This class is used for data in database.
- */
+
 public class DBInformationGainStandard extends AbstractStandard implements StandardI {
    
     private static double LOG_FACTOR = 1d / Math.log(2);

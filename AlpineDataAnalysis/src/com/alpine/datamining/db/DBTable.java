@@ -1,12 +1,4 @@
-/**
- * ClassName DBTable.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.ResultSet;
@@ -17,11 +9,7 @@ import java.util.List;
 import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 
-/**
- * This class is a data supplier for data sets. 
- * 
- * @author  Eason
- */
+
 public class DBTable extends AbstractDataTable {
     private static Logger itsLogger= Logger.getLogger(DBTable.class);
 
@@ -41,23 +29,17 @@ public class DBTable extends AbstractDataTable {
 	String userName;
     String password;
 
-    /**
-	 * @return the url
-	 */
+    
 	public String getUrl() {
 		return url;
 	}
 
-	/**
-	 * @return the userName
-	 */
+	
 	public String getUserName() {
 		return userName;
 	}
 
-	/**
-	 * @return the password
-	 */
+	
 	public String getPassword() {
 		return password;
 	}
@@ -71,17 +53,7 @@ public class DBTable extends AbstractDataTable {
 		this.whereCondition = whereCondition;
 	}
 
-	/**
-	 * create Database Data Table
-	 * @param databaseConnection
-	 * @param url
-	 * @param userName
-	 * @param password
-	 * @param tableName
-	 * @param whereCondition
-	 * @return
-	 * @throws SQLException
-	 */
+	
 	public static DBTable createDatabaseDataTableDB(DatabaseConnection databaseConnection,String url, String userName, String password, String tableName, String whereCondition) throws SQLException {
 
 		

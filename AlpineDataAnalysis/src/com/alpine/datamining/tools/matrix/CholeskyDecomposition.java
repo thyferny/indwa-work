@@ -1,54 +1,25 @@
-/**
- * ClassName  CholeskyDecomposition.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.tools.matrix;
 
-   /** Cholesky Decomposition.
-   <P>
-   For a symmetric, positive definite matrix A, the Cholesky decomposition
-   is an lower triangular matrix L so that A = L*L'.
-   <P>
-   If the matrix is not symmetric or positive definite, the constructor
-   returns a partial decomposition and sets an internal flag that may
-   be queried by the isSPD() method.
-   */
+   
 
 public class CholeskyDecomposition implements java.io.Serializable {
 
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 7202464042029734902L;
 
-/** Array for internal storage of decomposition.
-   @serial internal array storage.
-   */
+
    private double[][] L;
 
-   /** Row and column dimension (square matrix).
-   @serial matrix dimension.
-   */
+   
    private int n;
 
-   /** Symmetric and positive definite flag.
-   @serial is symmetric and positive definite flag.
-   */
+   
    private boolean isspd;
 
-/* ------------------------
-   Constructor
- * ------------------------ */
 
-   /** Cholesky algorithm for symmetric and positive definite matrix.
-   @param  A   Square, symmetric matrix.
-   @return     Structure to access L and isspd flag.
-   */
+
+   
 
    public CholeskyDecomposition (Matrix Arg) {
       // Initialize.

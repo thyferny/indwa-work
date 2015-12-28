@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import com.alpine.datamining.db.DBTable;
@@ -20,10 +12,7 @@ import com.alpine.utility.db.DataSourceInfoNZ;
 import com.alpine.utility.db.DataSourceInfoOracle;
 import com.alpine.utility.db.DataSourceInfoPostgres;
 
-/**
- *  <p>This operator calculates a linear regression model. </p>
- *
- */
+
 public class LinearRegressionDB extends Trainer {
 	
 	LinearRegressionParameter para;

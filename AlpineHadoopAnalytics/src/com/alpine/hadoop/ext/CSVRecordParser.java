@@ -1,12 +1,4 @@
-/**
- * ClassName CSVParser.java
- *
- * Version information: 1.00
- *
- * Date: 2012-7-25
- *
- * COPYRIGHT (C) 2020-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.ext;
  
 
@@ -33,123 +25,62 @@ public class CSVRecordParser extends AbstractRecordParser{
 
     final boolean ignoreQuotations;
 
-    /**
-     * The default separator to use if none is supplied to the constructor.
-     */
+    
     public static final char DEFAULT_SEPARATOR = ',';
 
     public static final int INITIAL_READ_SIZE = 128;
 
-    /**
-     * The default quote character to use if none is supplied to the
-     * constructor.
-     */
+    
     public static final char DEFAULT_QUOTE_CHARACTER = '"';
 
 
-    /**
-     * The default escape character to use if none is supplied to the
-     * constructor.
-     */
+    
     public static final char DEFAULT_ESCAPE_CHARACTER = '\\';
 
-    /**
-     * The default strict quote behavior to use if none is supplied to the
-     * constructor
-     */
+    
     public static final boolean DEFAULT_STRICT_QUOTES = false;
 
-    /**
-     * The default leading whitespace behavior to use if none is supplied to the
-     * constructor
-     */
+    
     public static final boolean DEFAULT_IGNORE_LEADING_WHITESPACE = true;
 
-    /**
-     * I.E. if the quote character is set to null then there is no quote character.
-     */
+    
     public static final boolean DEFAULT_IGNORE_QUOTATIONS = false;
 
-    /**
-     * This is the "null" character - if a value is set to this then it is ignored.
-     */
+    
     static final char NULL_CHARACTER = '\0';
 
-    /**
-     * Constructs CSVParser using a comma for the separator.
-     */
+    
     public CSVRecordParser() {
         this(DEFAULT_SEPARATOR, DEFAULT_QUOTE_CHARACTER, DEFAULT_ESCAPE_CHARACTER);
     }
 
-    /**
-     * Constructs CSVParser with supplied separator.
-     *
-     * @param separator the delimiter to use for separating entries.
-     */
+    
     public CSVRecordParser(char separator) {
         this(separator, DEFAULT_QUOTE_CHARACTER, DEFAULT_ESCAPE_CHARACTER);
     }
 
 
-    /**
-     * Constructs CSVParser with supplied separator and quote char.
-     *
-     * @param separator the delimiter to use for separating entries
-     * @param quotechar the character to use for quoted elements
-     */
+    
     public CSVRecordParser(char separator, char quotechar) {
         this(separator, quotechar, DEFAULT_ESCAPE_CHARACTER);
     }
 
-    /**
-     * Constructs CSVReader with supplied separator and quote char.
-     *
-     * @param separator the delimiter to use for separating entries
-     * @param quotechar the character to use for quoted elements
-     * @param escape    the character to use for escaping a separator or quote
-     */
+    
     public CSVRecordParser(char separator, char quotechar, char escape) {
         this(separator, quotechar, escape, DEFAULT_STRICT_QUOTES);
     }
 
-    /**
-     * Constructs CSVParser with supplied separator and quote char.
-     * Allows setting the "strict quotes" flag
-     *
-     * @param separator    the delimiter to use for separating entries
-     * @param quotechar    the character to use for quoted elements
-     * @param escape       the character to use for escaping a separator or quote
-     * @param strictQuotes if true, characters outside the quotes are ignored
-     */
+    
     public CSVRecordParser(char separator, char quotechar, char escape, boolean strictQuotes) {
         this(separator, quotechar, escape, strictQuotes, DEFAULT_IGNORE_LEADING_WHITESPACE);
     }
 
-    /**
-     * Constructs CSVParser with supplied separator and quote char.
-     * Allows setting the "strict quotes" and "ignore leading whitespace" flags
-     *
-     * @param separator               the delimiter to use for separating entries
-     * @param quotechar               the character to use for quoted elements
-     * @param escape                  the character to use for escaping a separator or quote
-     * @param strictQuotes            if true, characters outside the quotes are ignored
-     * @param ignoreLeadingWhiteSpace if true, white space in front of a quote in a field is ignored
-     */
+    
     public CSVRecordParser(char separator, char quotechar, char escape, boolean strictQuotes, boolean ignoreLeadingWhiteSpace) {
         this(separator, quotechar, escape, strictQuotes, ignoreLeadingWhiteSpace, DEFAULT_IGNORE_QUOTATIONS);
     }
 
-    /**
-     * Constructs CSVParser with supplied separator and quote char.
-     * Allows setting the "strict quotes" and "ignore leading whitespace" flags
-     *
-     * @param separator               the delimiter to use for separating entries
-     * @param quotechar               the character to use for quoted elements
-     * @param escape                  the character to use for escaping a separator or quote
-     * @param strictQuotes            if true, characters outside the quotes are ignored
-     * @param ignoreLeadingWhiteSpace if true, white space in front of a quote in a field is ignored
-     */
+    
     public CSVRecordParser(char separator, char quotechar, char escape, boolean strictQuotes, boolean ignoreLeadingWhiteSpace,
                      boolean ignoreQuotations) {
         if (anyCharactersAreTheSame(separator, quotechar, escape)) {
@@ -174,9 +105,7 @@ public class CSVRecordParser extends AbstractRecordParser{
         return c1 != NULL_CHARACTER && c1 == c2;
     }
 
-    /**
-     * @return true if something was left over from last call(s)
-     */
+    
     public boolean isPending() {
         return pending != null;
     }
@@ -187,14 +116,7 @@ public class CSVRecordParser extends AbstractRecordParser{
         return parseLine(nextLine, false);
     }
 
-    /**
-     * Parses an incoming String and returns an array of elements.
-     *
-     * @param nextLine the string to parse
-     * @param multi
-     * @return the comma-tokenized list of elements, or null if nextLine is null
-     * @throws IOException if bad things happen during the read
-     */
+    
     private String[] parseLine(String nextLine, boolean multi) throws IOException {
 
         if (!multi && pending != null) {
@@ -281,40 +203,21 @@ public class CSVRecordParser extends AbstractRecordParser{
 
     }
 
-    /**
-     * precondition: the current character is a quote or an escape
-     *
-     * @param nextLine the current line
-     * @param inQuotes true if the current context is quoted
-     * @param i        current index in line
-     * @return true if the following character is a quote
-     */
+    
     private boolean isNextCharacterEscapedQuote(String nextLine, boolean inQuotes, int i) {
         return inQuotes  // we are in quotes, therefore there can be escaped quotes in here.
                 && nextLine.length() > (i + 1)  // there is indeed another character to check.
                 && nextLine.charAt(i + 1) == quotechar;
     }
 
-    /**
-     * precondition: the current character is an escape
-     *
-     * @param nextLine the current line
-     * @param inQuotes true if the current context is quoted
-     * @param i        current index in line
-     * @return true if the following character is a quote
-     */
+    
     protected boolean isNextCharacterEscapable(String nextLine, boolean inQuotes, int i) {
         return inQuotes  // we are in quotes, therefore there can be escaped quotes in here.
                 && nextLine.length() > (i + 1)  // there is indeed another character to check.
                 && (nextLine.charAt(i + 1) == quotechar || nextLine.charAt(i + 1) == this.escape);
     }
 
-    /**
-     * precondition: sb.length() > 0
-     *
-     * @param sb A sequence of characters to examine
-     * @return true if every character in the sequence is whitespace
-     */
+    
     protected boolean isAllWhiteSpace(CharSequence sb) {
         boolean result = true;
         for (int i = 0; i < sb.length(); i++) {

@@ -1,27 +1,11 @@
-/**
- * ClassName DoubleListAndDoubleData.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.evaluator;
-/*
- * return ROCAUCData to UI to show the ROC curve and AUC value;
- */
+
 import java.util.List;
 
-/***
- * 
- * @author Eason
- *
- */
+
 public class DoubleListAndDoubleData extends EvaluatorResultObjectAdapter {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2277493730307376091L;
 	private double doubleData = 0.0;
 	private List<double[]> listData = null;

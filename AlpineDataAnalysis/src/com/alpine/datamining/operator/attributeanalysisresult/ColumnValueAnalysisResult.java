@@ -1,22 +1,11 @@
-/**
- * ClassName ColumnValueAnalysisResult.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-24
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.attributeanalysisresult;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-/**
- * @author Eason
- * 
- */
+
 @XmlRootElement(name = "ColumnValueAnalysisResult")
 public class ColumnValueAnalysisResult {
 	private String columnName = "";
@@ -165,61 +154,45 @@ public class ColumnValueAnalysisResult {
 		this.negativeValueCount = negativeValueCount;
 	}
 
-	/**
-	 * @return the avg
-	 */
+	
 	public double getAvg() {
 		return avg;
 	}
 
-	/**
-	 * @param avg the avg to set
-	 */
+	
 	@XmlElement
 	public void setAvg(double avg) {
 		this.avg = avg;
 	}
 
-	/**
-	 * @return the min
-	 */
+	
 	public double getMin() {
 		return min;
 	}
 
-	/**
-	 * @param min the min to set
-	 */
+	
 	@XmlElement
 	public void setMin(double min) {
 		this.min = min;
 	}
 
-	/**
-	 * @return the max
-	 */
+	
 	public double getMax() {
 		return max;
 	}
 
-	/**
-	 * @param max the max to set
-	 */
+	
 	@XmlElement
 	public void setMax(double max) {
 		this.max = max;
 	}
 
-	/**
-	 * @return the deviation
-	 */
+	
 	public double getDeviation() {
 		return deviation;
 	}
 
-	/**
-	 * @param deviation the deviation to set
-	 */
+	
 	@XmlElement
 	public void setDeviation(double deviation) {
 		this.deviation = deviation;

@@ -1,12 +1,4 @@
-/**
- * ClassName NaiveBayesParameter.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.bayes;
 
 import com.alpine.datamining.operator.Parameter;

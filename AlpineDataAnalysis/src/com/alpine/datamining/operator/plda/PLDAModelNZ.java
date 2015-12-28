@@ -1,12 +1,4 @@
-/**
-* ClassName PLDAModelNZ.java
-*
-* Version information: 1.00
-*
-* Data: 2012-2-6
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.plda;
@@ -22,21 +14,14 @@ import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
 
-/**
- * @author Shawn
- *
- */
+
 public class PLDAModelNZ extends PLDAModel{
 
     private static Logger itsLogger= Logger.getLogger(PLDAModelNZ.class);
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -4336734865427565039L;
 
-	/**
-	 * @param trainingDataSet
-	 */
+	
 	public PLDAModelNZ(DataSet trainingDataSet) {
 		super(trainingDataSet);
 		// TODO Auto-generated constructor stub

@@ -70,11 +70,7 @@ public class XPathTree {
 	// track/location/text()
 	// track/writers/writer/name/text()
 	// track/writers/writer/age/text()
-	/***
-	 * root -> //@id -> track -> //@length , //location//text() -> writers ->
-	 * writer -> //name/text() ,//age/text()
-	 * 
-	 */
+	
 
 	public XPathTree lightlyColne() {
 		XPathTree clone = new XPathTree(tagName, xpathElement, childXPathTree);

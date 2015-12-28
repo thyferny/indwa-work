@@ -834,7 +834,7 @@ public class ARIMAR extends Trainer {
 	        if (msp > 0) partrans(msp, in_v, params_v);
 	    }
 	    if (ns > 0) {
-	        /* expand out seasonal ARMA models */
+	        
 	        for (i = 0; i < mp; i++) phi[i] = params[i];
 	        for (i = 0; i < mq; i++) theta[i] = params[i + mp];
 	        for (i = mp; i < p; i++) phi[i] = 0.0;
@@ -870,11 +870,9 @@ public class ARIMAR extends Trainer {
 	    double work[] = new double[n];
 
 //	    if(p > 100) error(_("can only transform 100 pars in arima0"));
-	    /* Step one: map (-Inf, Inf) to (-1, 1) via tanh
-	       The parameters are now the pacf phi_{kk} */
+	    
 	    for(j = 0; j < p; j++) work[j] = newdata[j] = Math.tanh(raw[j]);
-	    /* Step two: run the Durbin-Levinson recursions to find phi_{j.},
-	       j = 2, ..., p and phi_{p.} are the autoregression coefficients */
+	    
 	    for(j = 1; j < p; j++) {
 	        a = newdata[j];
 	        for(k = 0; k < j; k++)
@@ -901,7 +899,7 @@ public class ARIMAR extends Trainer {
 	    return (ab);
 	}
 
-	/* based on code from AS154 */
+	
 	static void
 	inclu2(int np, double []xnext, double []xrow, double ynext,
 	       double []d, double []rbar, double []thetab)
@@ -909,8 +907,7 @@ public class ARIMAR extends Trainer {
 	    double cbar, sbar, di, xi, xk, rbthis, dpi;
 	    int i, k, ithisr;
 
-	/*   This subroutine updates d, rbar, thetab by the inclusion
-	     of xnext and ynext. */
+	
 
 	    for (i = 0; i < np; i++) xrow[i] = xnext[i];
 
@@ -975,10 +972,7 @@ public class ARIMAR extends Trainer {
 		return res;
 	    }
 	    if (p > 0) {
-	/*      The set of equations s * vec(P0) = vec(v) is solved for
-		vec(P0).  s is generated row by row in the array xnext.  The
-		order of elements in P is changed, so as to bring more leading
-		zeros into the rows of s. */
+	
 		for (i = 0; i < nrbar; i++) rbar[i] = 0.0;
 		for (i = 0; i < np; i++) {
 		    P[i] = 0.0;
@@ -1026,7 +1020,7 @@ public class ARIMAR extends Trainer {
 		    P[im--] = bi;
 		}
 
-	/*        now re-order p. */
+	
 
 		ind = npr;
 		for (i = 0; i < r; i++) xnext[i] = P[ind++];
@@ -1036,7 +1030,7 @@ public class ARIMAR extends Trainer {
 		for (i = 0; i < r; i++) P[i] = xnext[i];
 	    } else {
 
-	/* P0 is obtained by backsubstitution for a moving average process. */
+	
 
 		indn = np;
 		ind = np;
@@ -1047,7 +1041,7 @@ public class ARIMAR extends Trainer {
 			if (j != 0) P[ind] += P[--indn];
 		    }
 	    }
-	    /* now unpack to a full matrix */
+	    
 	    for (i = r - 1, ind = np; i > 0; i--)
 		for (j = r - 1; j >= i; j--)
 		    P[r * i + j] = P[--ind];
@@ -1179,7 +1173,7 @@ public class ARIMAR extends Trainer {
 	        M;         
 	    int i, j, k, l, nu = 0; 
 	    boolean useResid = (giveResid);
-	    double []rsResid = null /* -Wall */;
+	    double []rsResid = null ;
 	                
 	    anew = new double[rd];
 	    M = new double[rd];
@@ -1218,7 +1212,7 @@ public class ARIMAR extends Trainer {
 	                    }
 	                }
 	            } else {
-	                /* mm = TP */
+	                
 	                for (i = 0; i < r; i++)
 	                    for (j = 0; j < rd; j++) {
 	                        tmp = 0.0;
@@ -1236,7 +1230,7 @@ public class ARIMAR extends Trainer {
 	                    for (j = 0; j < rd; j++)
 	                        mm[r + i + rd * j] = P[r + i - 1 + rd * j];
 
-	                /* Pnew = mmT' */
+	                
 	                for (i = 0; i < r; i++)
 	                    for (j = 0; j < rd; j++) {
 	                        tmp = 0.0;
@@ -1253,7 +1247,7 @@ public class ARIMAR extends Trainer {
 	                for (i = 1; i < d; i++)
 	                    for (j = 0; j < rd; j++)
 	                        Pnew[rd * (r + i) + j] = mm[rd * (r + i - 1) + j];
-	                /* Pnew <- Pnew + (1 theta) %o% (1 theta) */
+	                
 	                for (i = 0; i <= q; i++) {
 	                    vi = (i == 0) ? 1. : theta[i - 1];
 	                    for (j = 0; j <= q; j++)

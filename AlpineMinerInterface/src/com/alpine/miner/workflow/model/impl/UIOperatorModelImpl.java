@@ -1,12 +1,4 @@
-/**
- * ClassName WebOperatorModel.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-26
- *
- * COPYRIGHT   2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.model.impl;
 
 import java.util.ArrayList;
@@ -23,11 +15,7 @@ import com.alpine.miner.workflow.operator.customize.UDFManager;
 import com.alpine.miner.workflow.operator.parameter.OperatorParameter;
 import com.alpine.miner.workflow.operator.parameter.OperatorParameterImpl;
 
-/**
- * 
- * @author jeff
- *
- */
+
 public class UIOperatorModelImpl extends AbstractUIOperatorModel{
 
 	public UIOperatorModelImpl(){
@@ -38,13 +26,7 @@ public class UIOperatorModelImpl extends AbstractUIOperatorModel{
 		this(className, id, udfOperatorName, System.getProperty("user.name"));
 	}
 	
-	/**
-	 * support both Miner and Illuminator
-	 * @param className
-	 * @param id
-	 * @param udfOperatorName
-	 * @param userName
-	 */
+	
 	public UIOperatorModelImpl(String className,String id,String udfOperatorName, String userName){
 		setId(id);
 		setClassName(className);
@@ -83,13 +65,7 @@ public class UIOperatorModelImpl extends AbstractUIOperatorModel{
 		this(className, id, System.getProperty("user.name"), locale);
 	}
 	
-	/**
-	 * support both Miner and Illuminator
-	 * @param className
-	 * @param id
-	 * @param userName
-	 * @param locale
-	 */
+	
 	public UIOperatorModelImpl(String className,String id, String userName, Locale locale) {
 		setId(id);
 		setClassName(className);

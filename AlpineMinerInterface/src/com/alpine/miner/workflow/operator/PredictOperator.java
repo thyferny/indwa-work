@@ -1,12 +1,4 @@
-/**
- * ClassName PredictOperator.java
- *
- * Version information: 1.00
- *
- * Data: 2011-4-12
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator;
 
 import java.util.ArrayList;

@@ -1,21 +1,7 @@
- /**
- * 
-
-* ClassName EMModelPostgres.java
-*
-* Version information: 1.00
-*
-* Data: Jul 30, 2012
-*
-* COPYRIGHT   2011 Alpine Solutions. All Rights Reserved.
-
- */
+ 
 
 package com.alpine.datamining.operator.EMCluster;
-/**
- * @author Shawn
- * 
- */
+
 
 import java.sql.Connection;
 import java.sql.SQLException;

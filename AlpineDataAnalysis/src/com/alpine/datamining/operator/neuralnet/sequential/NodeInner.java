@@ -1,23 +1,12 @@
-/**
- * ClassName NodeInner
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.utility.AlpineRandom;
 
-/**
- */
+
 public class NodeInner extends NNNode{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6260741440827480948L;
 	private double[] weights;
 	private double[] bestErrorWeights;
@@ -113,7 +102,7 @@ public class NodeInner extends NNNode{
 		}
 	}
 
-	/** Overwrites the super method and also adds weight handling. */
+	
 	protected boolean connectInput(NNNode i, int n) {
 		if (!super.connectInput(i, n)) {
 			return false;
@@ -138,7 +127,7 @@ public class NodeInner extends NNNode{
 		return true;
 	}
 
-	/** Overrides super method and also adds weights handling. */
+	
 	protected boolean disconnectInput(NNNode inputNode, int inputNodeOutputIndex) {
 		int deleteIndex = -1;
 		boolean removed = false;

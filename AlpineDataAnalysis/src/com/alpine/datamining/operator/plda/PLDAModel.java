@@ -1,12 +1,4 @@
-/**
-* ClassName PLDAModel.java
-*
-* Version information: 1.00
-*
-* Data: 2012-2-6
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.plda;
@@ -20,20 +12,13 @@ import com.alpine.datamining.exception.OperatorException;
 import com.alpine.datamining.operator.training.Prediction;
 import org.apache.log4j.Logger;
 
-/**
- * @author Shawn
- *
- */
+
 public abstract class PLDAModel extends Prediction{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 3406102217588177652L;
 
-	/**
-	 * @param trainingDataSet
-	 */
+	
 	protected PLDAModel(DataSet trainingDataSet) {
 		super(trainingDataSet);
 		// TODO Auto-generated constructor stub
@@ -61,9 +46,7 @@ public abstract class PLDAModel extends Prediction{
 	private String password;
 	
 	
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.training.Prediction#performPrediction(com.alpine.datamining.db.DataSet, com.alpine.datamining.db.Column)
-	 */
+	
 	@Override
 	public DataSet performPrediction(DataSet dataSet, Column predictedLabel)
 			throws OperatorException {

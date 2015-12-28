@@ -1,26 +1,10 @@
-/**
- * ClassName ValueGoodnessOfFit.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.evaluator;
-/*
- * return goodness of fit for each value;
- */
+
 import com.alpine.datamining.operator.OutputObject;
-/***
- * 
- * @author Eason
- *
- */
+
 public class ValueGoodnessOfFit extends OutputObject {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5087073760994046876L;
 	private String value = null;
 	private double recall = 0;

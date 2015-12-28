@@ -1,12 +1,4 @@
-/**
- * ClassName DBGiniIndexStandard
- *
- * Version information: 1.00
- *
- * Data: 2010-5-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartclassification;
 
 import java.sql.ResultSet;
@@ -32,10 +24,7 @@ import com.alpine.utility.db.MultiDBUtilityFactory;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * Calculates the Gini index for the given split.
- * 
- */
+
 public class DBGiniIndexStandard extends AbstractStandard {
     private static final Logger itsLogger = Logger.getLogger(DBGiniIndexStandard.class);
     List<String> bestValues = null;
@@ -338,7 +327,7 @@ public class DBGiniIndexStandard extends AbstractStandard {
 		return totalEntropy - gain;
 	}
 
-	/** Returns the sum of the given weights. */
+	
 	public double getTotalWeight(double[] weights) {
 		double sum = 0.0d;
 		for (double w : weights)

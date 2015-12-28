@@ -1,61 +1,28 @@
-/**
- * ClassName QRDecomposition.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.tools.matrix;
 
 import com.alpine.datamining.tools.matrix.util.Maths;
 
 
-/** QR Decomposition.
-<P>
-   For an m-by-n matrix A with m >= n, the QR decomposition is an m-by-n
-   orthogonal matrix Q and an n-by-n upper triangular matrix R so that
-   A = Q*R.
-<P>
-   The QR decompostion always exists, even if the matrix does not have
-   full rank, so the constructor will never fail.  The primary use of the
-   QR decomposition is in the least squares solution of nonsquare systems
-   of simultaneous linear equations.  This will fail if isFullRank()
-   returns false.
-*/
+
 
 public class QRDecomposition implements java.io.Serializable {
 
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -4581620444350074295L;
 
-/** Array for internal storage of decomposition.
-   @serial internal array storage.
-   */
+
    private double[][] QR;
 
-   /** Row and column dimensions.
-   @serial column dimension.
-   @serial row dimension.
-   */
+   
    private int m, n;
 
-   /** Array for internal storage of diagonal of R.
-   @serial diagonal of R.
-   */
+   
    private double[] Rdiag;
 
-/* ------------------------
-   Constructor
- * ------------------------ */
 
-   /** QR Decomposition, computed by Householder reflections.
-   @param A    Rectangular matrix
-   @return     Structure to access R and the Householder vectors and compute Q.
-   */
+
+   
 
    public QRDecomposition (Matrix A) {
       // Initialize.
@@ -98,13 +65,9 @@ public class QRDecomposition implements java.io.Serializable {
       }
    }
 
-/* ------------------------
-   Public Methods
- * ------------------------ */
 
-   /** Is the matrix full rank?
-   @return     true if R, and hence A, has full rank.
-   */
+
+   
 
    public boolean isFullRank () {
       for (int j = 0; j < n; j++) {
@@ -114,9 +77,7 @@ public class QRDecomposition implements java.io.Serializable {
       return true;
    }
 
-   /** Return the Householder vectors
-   @return     Lower trapezoidal matrix whose columns define the reflections
-   */
+   
 
    public Matrix getH () {
       Matrix X = new Matrix(m,n);
@@ -133,9 +94,7 @@ public class QRDecomposition implements java.io.Serializable {
       return X;
    }
 
-   /** Return the upper triangular factor
-   @return     R
-   */
+   
 
    public Matrix getR () {
       Matrix X = new Matrix(n,n);
@@ -154,9 +113,7 @@ public class QRDecomposition implements java.io.Serializable {
       return X;
    }
 
-   /** Generate and return the (economy-sized) orthogonal factor
-   @return     Q
-   */
+   
 
    public Matrix getQ () {
       Matrix X = new Matrix(m,n);
@@ -182,12 +139,7 @@ public class QRDecomposition implements java.io.Serializable {
       return X;
    }
 
-   /** Least squares solution of A*X = B
-   @param B    A Matrix with as many rows as A and any number of columns.
-   @return     X that minimizes the two norm of Q*R*X-B.
-   @exception  IllegalArgumentException  Matrix row dimensions must agree.
-   @exception  RuntimeException  Matrix is rank deficient.
-   */
+   
 
    public Matrix solve (Matrix B) {
       if (B.getRowDimension() != m) {

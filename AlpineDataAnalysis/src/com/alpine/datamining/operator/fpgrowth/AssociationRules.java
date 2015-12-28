@@ -1,12 +1,4 @@
-/**
- * ClassName AssociationRules.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import java.sql.SQLException;
@@ -36,16 +28,10 @@ import com.alpine.utility.db.MultiDBUtilityFactory;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * A set of {@link AssociationRule}s which can be constructed from frequent item sets.
- * 
- * @author Eason
- */
+
 public class AssociationRules extends OutputObject implements Iterable<AssociationRule>, Model{
     private static Logger itsLogger= Logger.getLogger(AssociationRules.class);
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -8195196047323913352L;
 
 	private static final int MAXIMUM_NUMBER_OF_RULES_IN_OUTPUT = 100;

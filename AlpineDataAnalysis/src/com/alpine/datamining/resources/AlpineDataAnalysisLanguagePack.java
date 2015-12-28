@@ -1,12 +1,4 @@
-/**
- * ClassName LanguagePack.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-26
- *
- * COPYRIGHT   2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.resources;
 
 import java.text.MessageFormat;
@@ -15,11 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-/**
- * 
- * @author Eason
- *
- */
+
 public class AlpineDataAnalysisLanguagePack {
 	public static final String BundleName="com.alpine.datamining.resources.alpineDataAnalysis" ;
 	

@@ -88,15 +88,6 @@ public class PigValueTypesUtility{
 	        case Double:
 	        case Integer:
 	        	 
-	        	/***To Ninat : please see : pivotal :
-	        	 * https://www.pivotaltracker.com/projects/543851#!/stories/38710875
-	        	 * 
-	        	 * Caused by: java.lang.NumberFormatException: empty String
-	at sun.misc.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:992)
-	at java.lang.Double.valueOf(Double.java:475)
-	at com.alpine.datamining.api.impl.hadoop.utility.PigValueTypesUtility$1.compare(PigValueTypesUtility.java:95)
-	at com.alpine.datamining.api.impl.hadoop.utility.PigValueTypesUtility$1.compare(PigValueTypesUtility.java:1)
-	        	 */
 	        	comps[i]=new Comparator<String>() {
 					@Override
 					public int compare(String o1, String o2) {

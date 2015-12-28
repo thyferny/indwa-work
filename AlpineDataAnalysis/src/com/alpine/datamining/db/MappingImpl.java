@@ -1,12 +1,4 @@
-/**
- * ClassName MappingImpl.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.util.ArrayList;
@@ -19,24 +11,17 @@ import com.alpine.datamining.utility.Tools;
 
 
 
-/**
- * This is an implementation of {@link MappingImpl} which can
- * be used for nominal  .
- * 
- * @author Eason
- */
+
 public class MappingImpl implements Mapping  {
 
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7165849119746756619L;
 
-	/** The map between symbolic values and their indices. */
+	
 	private Map<String, Integer> symbolToIndexMap = new HashMap<String, Integer>();
 
-	/** The map between indices of nominal values and the actual nominal value. */
+	
 	private List<String> indexToSymbolMap = new ArrayList<String>();
 	
 	public MappingImpl() {}
@@ -56,9 +41,7 @@ public class MappingImpl implements Mapping  {
 		return new MappingImpl(this);
 	}
 
-	/**
-	 * Returns the index for the nominal column value <code>str</code>.
-	 */
+	
 	public int mapString(String str) {
 		if (str == null)
 			return -1;
@@ -74,9 +57,7 @@ public class MappingImpl implements Mapping  {
 		return index;
 	}
 
-	/**
-	 * Returns the index of the given nominal value
-	 */
+	
 	public int getIndex(String str) {
 		Integer index = symbolToIndexMap.get(str);
 		if (index == null)
@@ -85,9 +66,7 @@ public class MappingImpl implements Mapping  {
 			return index.intValue();
 	}
 
-	/**
-	 * Returns the column value, that is associated with this index.
-	 */
+	
 	public String mapIndex(int index) {
 		if ((index < 0) || (index >= indexToSymbolMap.size()))
 		{return null;}
@@ -95,8 +74,7 @@ public class MappingImpl implements Mapping  {
 		return indexToSymbolMap.get(index);
 	}
 
-	/** Sets the given mapping. Please note that this will overwrite existing mappings and might
-	 *  cause data changes in this way. */
+	
 	public void setMapping(String nominalValue, int index) {
 		String oldValue = indexToSymbolMap.get(index);
 		indexToSymbolMap.set(index, nominalValue);
@@ -104,12 +82,12 @@ public class MappingImpl implements Mapping  {
 		symbolToIndexMap.put(nominalValue, index);
 	}
 	
-	/** Returns the values of the column as an enumeration of strings. */
+	
 	public List<String> getValues() {
 		return indexToSymbolMap;
 	}
 
-	/** Returns the number of different nominal values. */
+	
 	public int size() {
 		return indexToSymbolMap.size();
 	}

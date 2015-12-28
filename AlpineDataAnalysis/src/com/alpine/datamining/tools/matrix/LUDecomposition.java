@@ -1,51 +1,22 @@
-/**
- * ClassName EigenvalueDecomposition.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.tools.matrix;
 
 import org.apache.log4j.Logger;
 
-   /** LU Decomposition.
-   <P>
-   For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n
-   unit lower triangular matrix L, an n-by-n upper triangular matrix U,
-   and a permutation vector piv of length m so that A(piv,:) = L*U.
-   If m < n, then L is m-by-m and U is m-by-n.
-   <P>
-   The LU decompostion with pivoting always exists, even if the matrix is
-   singular, so the constructor will never fail.  The primary use of the
-   LU decomposition is in the solution of square systems of simultaneous
-   linear equations.  This will fail if isNonsingular() returns false.
-   */
+   
 
 public class LUDecomposition implements java.io.Serializable {
        private static final Logger itsLogger = Logger.getLogger(LUDecomposition.class);
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2828562063585877819L;
 	private Matrix A;
-/** Array for internal storage of decomposition.
-   @serial internal array storage.
-   */
+
    private double[][] LU;
 
-   /** Row and column dimensions, and pivot sign.
-   @serial column dimension.
-   @serial row dimension.
-   @serial pivot sign.
-   */
+   
    private int m, n, pivsign; 
 
-   /** Internal storage of pivot vector.
-   @serial pivot vector.
-   */
+   
    private int[] piv;
    
    private boolean singular = false;
@@ -68,14 +39,9 @@ public void setZeroDiag(boolean[] zeroDiag) {
 	this.zeroDiag = zeroDiag;
 }
 
-/* ------------------------
-   Constructor
- * ------------------------ */
 
-/** LU Decomposition
-   @param  A   Rectangular matrix
-   @return     Structure to access L, U and piv.
-   */
+
+
 
    public LUDecomposition (Matrix A) {
 
@@ -145,72 +111,11 @@ public void setZeroDiag(boolean[] zeroDiag) {
       }
    }
 
-/* ------------------------
-   Temporary, experimental code.
-   ------------------------ *\
 
-   \** LU Decomposition, computed by Gaussian elimination.
-   <P>
-   This constructor computes L and U with the "daxpy"-based elimination
-   algorithm used in LINPACK and MATLAB.  In Java, we suspect the dot-product,
-   Crout algorithm will be faster.  We have temporarily included this
-   constructor until timing experiments confirm this suspicion.
-   <P>
-   @param  A             Rectangular matrix
-   @param  linpackflag   Use Gaussian elimination.  Actual value ignored.
-   @return               Structure to access L, U and piv.
-   *\
 
-   public LUDecomposition (Matrix A, int linpackflag) {
-      // Initialize.
-      LU = A.getArrayCopy();
-      m = A.getRowDimension();
-      n = A.getColumnDimension();
-      piv = new int[m];
-      for (int i = 0; i < m; i++) {
-         piv[i] = i;
-      }
-      pivsign = 1;
-      // Main loop.
-      for (int k = 0; k < n; k++) {
-         // Find pivot.
-         int p = k;
-         for (int i = k+1; i < m; i++) {
-            if (Math.abs(LU[i][k]) > Math.abs(LU[p][k])) {
-               p = i;
-            }
-         }
-         // Exchange if necessary.
-         if (p != k) {
-            for (int j = 0; j < n; j++) {
-               double t = LU[p][j]; LU[p][j] = LU[k][j]; LU[k][j] = t;
-            }
-            int t = piv[p]; piv[p] = piv[k]; piv[k] = t;
-            pivsign = -pivsign;
-         }
-         // Compute multipliers and eliminate k-th column.
-         if (LU[k][k] != 0.0) {
-            for (int i = k+1; i < m; i++) {
-               LU[i][k] /= LU[k][k];
-               for (int j = k+1; j < n; j++) {
-                  LU[i][j] -= LU[i][k]*LU[k][j];
-               }
-            }
-         }
-      }
-   }
 
-\* ------------------------
-   End of temporary code.
- * ------------------------ */
 
-/* ------------------------
-   Public Methods
- * ------------------------ */
-
-   /** Is the matrix nonsingular?
-   @return     true if U, and hence A, is nonsingular.
-   */
+   
 
    public boolean isNonsingular () {
       for (int j = 0; j < n; j++) {
@@ -220,9 +125,7 @@ public void setZeroDiag(boolean[] zeroDiag) {
       return true;
    }
 
-   /** Return lower triangular factor
-   @return     L
-   */
+   
 
    public Matrix getL () {
       Matrix X = new Matrix(m,n);
@@ -241,9 +144,7 @@ public void setZeroDiag(boolean[] zeroDiag) {
       return X;
    }
 
-   /** Return upper triangular factor
-   @return     U
-   */
+   
 
    public Matrix getU () {
       Matrix X = new Matrix(n,n);
@@ -260,9 +161,7 @@ public void setZeroDiag(boolean[] zeroDiag) {
       return X;
    }
 
-   /** Return pivot permutation vector
-   @return     piv
-   */
+   
 
    public int[] getPivot () {
       int[] p = new int[m];
@@ -272,9 +171,7 @@ public void setZeroDiag(boolean[] zeroDiag) {
       return p;
    }
 
-   /** Return pivot permutation vector as a one-dimensional double array
-   @return     (double) piv
-   */
+   
 
    public double[] getDoublePivot () {
       double[] vals = new double[m];
@@ -284,10 +181,7 @@ public void setZeroDiag(boolean[] zeroDiag) {
       return vals;
    }
 
-   /** Determinant
-   @return     det(A)
-   @exception  IllegalArgumentException  Matrix must be square
-   */
+   
 
    public double det () {
       if (m != n) {
@@ -300,12 +194,7 @@ public void setZeroDiag(boolean[] zeroDiag) {
       return d;
    }
 
-   /** Solve A*X = B
-   @param  B   A Matrix with as many rows as A and any number of columns.
-   @return     X so that L*U*X = B(piv,:)
-   @exception  IllegalArgumentException Matrix row dimensions must agree.
-   @exception  RuntimeException  Matrix is singular.
-   */
+   
 
    public Matrix solve1(Matrix B) {
 	   if ( m == 0 || n == 0)

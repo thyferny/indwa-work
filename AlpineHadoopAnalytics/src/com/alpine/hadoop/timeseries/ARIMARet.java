@@ -1,26 +1,11 @@
-/**
- * 
- * ClassName ARIMARet.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 
 import java.io.Serializable;
 
- /**
- * @author Shawn 
- * 
- */
+ 
 public class ARIMARet implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private double[]coef;
 	private double sigma2 ;

@@ -310,9 +310,7 @@ public class CartClassificationDB2 implements ICartClassfication {
 		return countProbability;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.tree.cartclassification.ICartClassfication#genarateProbability(java.lang.String, java.lang.StringBuffer, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	public void genarateProbability(String columnName,
 			StringBuffer countAllSum, StringBuffer countProbability) {{

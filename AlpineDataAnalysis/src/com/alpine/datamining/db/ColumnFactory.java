@@ -1,26 +1,13 @@
-/**
- * ClassName ColumnFactory.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import com.alpine.datamining.utility.DataType;
 
 
 
-/**
- * This class is used to create and clone columns. 
- * 
- * @author  Eason
- *          
- */
+
 public class ColumnFactory {
-	/** Creates a simple column depending on the given value type. */
+	
 	public static Column createColumn(String name, int valueType) {
 		if (DataType.COLUMN_VALUE_TYPE.is(valueType, DataType.BINOMINAL)||
 				DataType.COLUMN_VALUE_TYPE.is(valueType, DataType.NOMINAL) || 
@@ -38,10 +25,7 @@ public class ColumnFactory {
 	}
 
 
-	/**
-	 * Simple clone factory method for columns. Returns the clone of the
-	 * given column.
-	 */
+	
 	public static Column createColumn(Column column, String functionName) {
 		Column result = (Column) column.clone();
 		if (functionName == null) {

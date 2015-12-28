@@ -1,12 +1,4 @@
-/**
- * ClassName NNTrain.java
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.sql.Statement;
@@ -30,8 +22,7 @@ import com.alpine.utility.db.MultiDBUtilityFactory;
 import com.alpine.utility.log.LogUtils;
 import org.apache.log4j.Logger;
 
-/**
- */
+
 public class NNTrain extends Trainer {
 
     private static final Logger itsLogger = Logger.getLogger(NNTrain.class);

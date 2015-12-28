@@ -1,12 +1,4 @@
-/**
- * ClassName Centroid.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-24
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.kmeans;
 
 import java.util.Collection;
@@ -55,9 +47,7 @@ public class Centroid {
 		return stable;
 	}
 
-	/** 
-	 * This method only returns the first 100 columns
-	 */
+	
 	public String toString(Collection<String> dimensionNames) {
 		StringBuffer buffer = new StringBuffer();
 		int i = 0;

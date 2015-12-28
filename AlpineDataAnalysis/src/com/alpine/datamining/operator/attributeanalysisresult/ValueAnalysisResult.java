@@ -1,12 +1,4 @@
-/**
- * ClassName ValueAnalysisResult.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-24
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.attributeanalysisresult;
 
 import java.util.ArrayList;
@@ -15,15 +7,10 @@ import java.util.List;
 import com.alpine.datamining.db.DataSet;
 import com.alpine.datamining.operator.OutputObject;
 
-/**
- * @author Eason
- * 
- */
+
 public class ValueAnalysisResult extends OutputObject {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private String tableName = "";
 	private List<ColumnValueAnalysisResult> valueAnalysisResult = null;

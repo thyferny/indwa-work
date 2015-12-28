@@ -1,12 +1,4 @@
-/**
- * ClassName ConstructTree
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.ResultSet;
@@ -35,10 +27,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.AlpineMath;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * Build a tree from an data set.
- * This class is used for data in database.
- */
+
 public class ConstructTree {
     private static Logger itsLogger= Logger.getLogger(ConstructTree.class);
 
@@ -61,7 +50,7 @@ public class ConstructTree {
 	protected boolean usePrePruning = true;
 	
 
-	/* for data loaded in memory */
+	
 
 	private List<Stop> otherTerminatorsMem;
 
@@ -147,9 +136,7 @@ public class ConstructTree {
 		return root;
 	}
 
-	/** This method calculates the benefit of the given column. This implementation
-	 *  utilizes the defined {@link Standard}. Subclasses might want to override this
-	 *  method in order to calculate the benefit in other ways. */
+	
 	public Score calculateScore(DataSet trainingSet, Column column, boolean loadData) throws OperatorException {	
 		Standard criterionLocal = null;
 		if (loadData)
@@ -440,11 +427,7 @@ public class ConstructTree {
 	}
 
 
-	/**
-	 * @param dataSet
-	 * @return
-	 * @throws OperatorException
-	 */
+	
 	private DataSet getDataSetMem(DataSet dataSet
 			) throws OperatorException {
 					DataSet newDataSet = null;
@@ -507,9 +490,7 @@ public class ConstructTree {
 		return newDataSet;
 	}
 
-	/**
-	 * @param dataSet
-	 */
+	
 	private boolean needLoadData(DataSet dataSet) {
 		boolean loadData = false;
 		if (dataSet.size() * dataSet.getColumns().size() < sizeThreshold)

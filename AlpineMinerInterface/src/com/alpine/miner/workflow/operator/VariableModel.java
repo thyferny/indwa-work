@@ -12,15 +12,7 @@ import org.w3c.dom.Text;
 
 import com.alpine.utility.common.VariableModelUtility;
 
-/**
- * ClassName VariableModel.java
- *
- * Version information: 1.00
- *
- * Data: 2012-4-10
- *
- * COPYRIGHT   2011  Alpine Solutions. All Rights Reserved.
- **/
+
 public class VariableModel {
 	
 	public static String VARIABLE_PREFIX=VariableModelUtility.VARIABLE_PREFIX;

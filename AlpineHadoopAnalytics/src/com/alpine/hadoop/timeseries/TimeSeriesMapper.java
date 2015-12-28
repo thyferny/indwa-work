@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName TimeSeriesMapper.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 
 import java.io.IOException;
@@ -23,10 +13,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import com.alpine.hadoop.TimeSeriesKeySet;
 import com.alpine.hadoop.util.MapReduceHelper;
 
-/**
- * @author Shawn,Peter
- * 
- */
+
 
 public class TimeSeriesMapper extends
 		Mapper<LongWritable, Text, LongSort, Text> {

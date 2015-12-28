@@ -1,12 +1,4 @@
-/**
- * ClassName AdaboostModel.java
- *
- * Version information: 1.00
- *
- * Data: 2011-9-15
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.adaboost;
 
 import java.util.ArrayList;

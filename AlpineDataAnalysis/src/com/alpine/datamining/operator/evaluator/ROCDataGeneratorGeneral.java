@@ -1,12 +1,4 @@
-/**
- * ClassName ROCDataGeneratorDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.evaluator;
 
 import java.io.Serializable;
@@ -31,48 +23,30 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
-/**
- * Helper class containing some methods for ROC plots, threshold finding and
- * area under curve calculation.
- * 
- */
+
 public class ROCDataGeneratorGeneral extends Operator implements Serializable {
     private static Logger itsLogger= Logger.getLogger(ROCDataGeneratorGeneral.class);
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 8812581936833065822L;
 
-	/** Defines the maximum amount of points which is plotted in the ROC curve. */
+	
 	public static final int MAX_ROC_POINTS = 200;
 
 	private double bestThreshold = Double.NaN;
 	
 	EvaluatorParameter para;
-	/**
-	 * @param description
-	 */
+	
 	public ROCDataGeneratorGeneral() {
 		super();
 	}
 
 
-	/**
-	 * The best threshold will automatically be determined during the
-	 * calculation of the ROC data list. Please note that the given weights are
-	 * taken into account (defining the slope.
-	 */
+	
 	public double getBestThreshold() {
 		return bestThreshold;
 	}
 
-	/**
-	 * Creates a list of ROC data points from the given data set. The data
-	 * set must have a label column and confidence values for both
-	 * values, i.e. a model must have been applied on the data.
-	 * 
-	 * @throws OperatorException
-	 */
+	
 	public ROCData createROCData(DataSet dataSet, 
 			String targetClass) throws OperatorException {
 

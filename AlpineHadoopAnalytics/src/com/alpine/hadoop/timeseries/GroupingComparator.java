@@ -1,22 +1,9 @@
-/**
- * 
- * ClassName GroupingComparator.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
-/**
-* @author Shawn 
-* 
-*/
+
 public class GroupingComparator extends WritableComparator {
 	protected GroupingComparator() {
 		super(LongSort.class, true);

@@ -1,12 +1,4 @@
-/**
-* ClassName MultiDBNZ.java
-*
-* Version information: 1.00
-*
-* Data: 29 Dec 2011
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.tree.threshold;
@@ -16,10 +8,7 @@ import java.util.Random;
 import com.alpine.datamining.db.Column;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- *
- */
+
 public class MultiDBSqlNZ implements MultiDBSql{
 	@Override
 	public String generateNumericSql(Column labelColumn,

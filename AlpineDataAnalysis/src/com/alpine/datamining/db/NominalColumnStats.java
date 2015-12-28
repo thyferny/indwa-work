@@ -1,20 +1,10 @@
-/**
- * ClassName NominalColumnStats.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.util.Arrays;
 
 
-/** Column statistics object for category columns. 
- * @author Eason
- */
+
 public class NominalColumnStats implements ColumnStats {
 
 
@@ -30,7 +20,7 @@ public class NominalColumnStats implements ColumnStats {
     
     public NominalColumnStats() {}
     
-    /** Clone constructor. */
+    
     private NominalColumnStats(NominalColumnStats other) {
         this.mode = other.mode;
         this.maxCounter = other.maxCounter;
@@ -42,9 +32,7 @@ public class NominalColumnStats implements ColumnStats {
         column = other.column;
     }
     
-    /** 
-     * Returns a clone of this statistics object. The column is only cloned by reference. 
-     */
+    
     public Object clone() {
         return new NominalColumnStats(this);
     }

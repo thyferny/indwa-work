@@ -1,12 +1,4 @@
-/**
- * ClassName NaiveBayes.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.bayes;
 
 import com.alpine.datamining.db.DBTable;
@@ -20,10 +12,7 @@ import com.alpine.utility.db.DataSourceInfoOracle;
 import com.alpine.utility.log.LogUtils;
 import org.apache.log4j.Logger;
 
-/**
- * Naive Bayes learner.
- * 
- */
+
 public class NaiveBayes extends Trainer {
     private static Logger itsLogger = Logger.getLogger(NaiveBayes.class);
 

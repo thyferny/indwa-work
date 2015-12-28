@@ -1,12 +1,4 @@
-/**
- * ClassName PessimisticPrunerDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.ResultSet;
@@ -29,11 +21,7 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * This class provides a pruner. It cuts the tree
- * to reduce overfitting.
- * This class is used for data in database.
- */
+
 public class DBPrunePessimistic implements Prune {
     private static Logger itsLogger= Logger.getLogger(DBPrunePessimistic.class);
 
@@ -115,10 +103,7 @@ public class DBPrunePessimistic implements Prune {
         }
     }
 
-	/**
-	 * @param currentNodeDataSet
-	 * @return
-	 */
+	
 	private IBuildLeaf getConstLeaf(DataSet currentNodeDataSet) {
 		IBuildLeaf leafCreatorLocal = null;
 		if (loadData(currentNodeDataSet))

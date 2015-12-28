@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName LongSort.java
- *
- * Version information: 1.00
- *
- * Date: Nov 5, 2012
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.timeseries;
 
 import java.io.DataInput;
@@ -18,10 +8,7 @@ import java.io.IOException;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.WritableComparable;
-/**
-* @author Shawn 
-* 
-*/
+
 public class LongSort implements WritableComparable<LongSort> {
 	LongWritable sortKey;
 	IntWritable group;

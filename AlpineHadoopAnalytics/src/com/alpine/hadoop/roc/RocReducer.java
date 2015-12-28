@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName RocReducer.java
- *
- * Version information: 1.00
- *
- * Date: Aug 9, 2012
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.roc;
 
 
@@ -25,10 +15,7 @@ import com.alpine.hadoop.RocKeySet;
 import com.alpine.hadoop.util.MapReduceHelper;
 import com.alpine.hadoop.utily.type.DoubleArrayWritable;
 
-/**
- * @author Peter
- * 
- */
+
 
 public class RocReducer extends
 		Reducer<LongWritable, DoubleArrayWritable, Text, Text> {

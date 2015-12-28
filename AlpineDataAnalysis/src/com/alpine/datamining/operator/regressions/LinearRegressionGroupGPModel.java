@@ -1,16 +1,4 @@
-/**
- * 
 
-* ClassName LinearRegressionGroupGPModel.java
-*
-* Version information: 1.00
-*
-* Data: Jun 15, 2012
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-
-
- */
 package com.alpine.datamining.operator.regressions;
 
 import java.sql.SQLException;
@@ -34,17 +22,11 @@ import com.alpine.resources.AlpineThreadLocal;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- *
- *  
- */
+
 
 public class LinearRegressionGroupGPModel extends LinearRegressionModelDB{
 
-	/**
-	 * 
-	 */
+	
     private static final Logger itsLogger = Logger.getLogger(LinearRegressionGroupGPModel.class);
     private static final long serialVersionUID = 1188841435428609671L;
 

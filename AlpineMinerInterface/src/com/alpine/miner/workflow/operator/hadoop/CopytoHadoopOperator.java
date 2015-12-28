@@ -1,12 +1,4 @@
-/**
- * ClassName :SecurityFilter.java
- *
- * Version information: 2.8
- *
- * Date: 2012-08-22
- *
- * COPYRIGHT (C) 2012 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.hadoop;
 
 import java.util.ArrayList;

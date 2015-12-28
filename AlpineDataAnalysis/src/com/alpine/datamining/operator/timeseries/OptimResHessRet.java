@@ -5,9 +5,7 @@ import java.io.Serializable;
 import com.alpine.datamining.tools.matrix.Matrix;
 
 public class OptimResHessRet  implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private OptimRet res;
 	private Matrix hess;

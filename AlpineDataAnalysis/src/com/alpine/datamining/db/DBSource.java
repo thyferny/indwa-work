@@ -1,12 +1,4 @@
-/**
- * ClassName DBSource.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.SQLException;
@@ -19,9 +11,7 @@ import com.alpine.datamining.operator.Operator;
 import com.alpine.datamining.resources.AlpineAnalysisErrorName;
 import com.alpine.datamining.utility.DatabaseConnection;
 
-/**
- * @author  Eason
- */
+
 public class DBSource extends DataSource {
 	
 	private DatabaseSourceParameter para;
@@ -31,13 +21,7 @@ public class DBSource extends DataSource {
 		super();
 	}
 
-	/**
-	 * @param databaseConnection
-	 * @param tableName
-	 * @param recalculateStatistics
-	 * @return DataSet
-	 * @throws OperatorException
-	 */
+	
 	public DataSet createDataSetUsingExitingDBConnection(DatabaseConnection databaseConnection,
 			String tableName, boolean recalculateStatistics) throws OperatorException {
 		para = (DatabaseSourceParameter)getParameter();
@@ -62,12 +46,7 @@ public class DBSource extends DataSource {
 		}
 	}
 
-	/**
-	 * @param table
-	 * @param operator
-	 * @return DataSet
-	 * @throws OperatorException
-	 */
+	
 	public static DataSet createDataSet(Table table, Operator operator) throws OperatorException {
 		String labelName = ((DatabaseSourceParameter)operator.getParameter()).getLabel();
 		String idName = ((DatabaseSourceParameter)operator.getParameter()).getId();

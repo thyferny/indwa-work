@@ -1,12 +1,4 @@
-/**
- * ClassName AbstractTreeTrainer
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.SQLException;
@@ -23,10 +15,7 @@ import com.alpine.datamining.operator.training.Trainer;
 import com.alpine.datamining.utility.DatabaseConnection;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * This is the abstract super class for decision tree learners for database. 
- * This class is for data in database.
- */
+
 public abstract class AbstractTreeTrainer extends Trainer {
 
 	

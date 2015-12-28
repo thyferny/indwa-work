@@ -1,12 +1,4 @@
-/**
-* ClassName DBChiSquareIndexStandard.java
-*
-* Version information: 1.00
-*
-* Data: 3 Nov 2011
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.tree.cartclassification;
@@ -34,10 +26,7 @@ import com.alpine.utility.db.MultiDBUtilityFactory;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- *
- */
+
 public class DBChiSquareIndexStandard extends AbstractStandard{
     private static final Logger itsLogger = Logger.getLogger(DBChiSquareIndexStandard.class);
 
@@ -393,7 +382,7 @@ public class DBChiSquareIndexStandard extends AbstractStandard{
 		return chiSquareTestValue;
 	}
 
-	/** Returns the sum of the given weights. */
+	
 	public double getTotalNumber(double[] weights) {
 		double sum = 0.0d;
 		for (double w : weights)

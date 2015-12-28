@@ -131,9 +131,7 @@ public class CartClassificationPostgres implements ICartClassfication {
 		return sql.toString();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.tree.cartclassification.ICartClassfication#genarateChiSquareSql(com.alpine.datamining.db.Column, java.lang.String, java.lang.String, java.lang.String, java.lang.String, double)
-	 */
+	
 	@Override
 	public String genarateChiSquareSql(Column labelColumn,
 			String labelColumnName, String columnName, String whereCondition,
@@ -302,9 +300,7 @@ public class CartClassificationPostgres implements ICartClassfication {
 		return countProbability;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.tree.cartclassification.ICartClassfication#genarateProbability(java.lang.String, java.lang.StringBuffer, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	public void genarateProbability(String columnName,
 			StringBuffer countAllSum, StringBuffer countProbability) {{

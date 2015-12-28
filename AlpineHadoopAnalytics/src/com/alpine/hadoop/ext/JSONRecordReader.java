@@ -1,12 +1,4 @@
-/**
- * ClassName JSONRecordReader.java
- *
- * Version information: 1.00
- *
- * Data: 2012-11-5
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.ext;
 
 import java.io.IOException;
@@ -28,10 +20,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.log4j.Logger;
 
-/**
- * @author Jeff Dong
- *
- */
+
 public class JSONRecordReader extends RecordReader<LongWritable, Text> {
 	
 	public static Logger itsLogger = Logger.getLogger(JSONRecordReader.class);

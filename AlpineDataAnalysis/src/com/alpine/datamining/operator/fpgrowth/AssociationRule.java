@@ -1,40 +1,17 @@
-/**
- * ClassName AssociationRule.java
- *
- * Version information: 1.00
- *
- * Data: 2010-4-7
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.fpgrowth;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * An association rule generated from a frequent item set.
- * @author Eason
- */
+
 public class AssociationRule implements Serializable, Comparable<AssociationRule> {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 3871579274858215710L;
-	/**
-	 * Confidence is the ratio of the number of transactions that include all items in the
-	 * consequent as well as the antecedent (namely, the support) to the number
-	 * of transactions that include all items in the antecedent.
-	 * */
+	
 	private double confidence;
-	/***
-	 * The support is
-	 * simply the number of transactions that include all items in the
-	 * antecedent and consequent parts of the rule. (The support is sometimes
-	 * expressed as a percentage of the total number of records in the
-	 * database.)
-	 */
+	
 	private double totalSupport;
 
 	private double lift;

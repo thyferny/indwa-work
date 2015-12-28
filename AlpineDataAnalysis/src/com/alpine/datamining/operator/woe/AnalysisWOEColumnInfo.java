@@ -1,12 +1,4 @@
-/**
- * ClassName WOEInfroList.java
- *
- * Version information: 1.00
- *
- * Data: 31 Oct 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.woe;
 
@@ -16,14 +8,9 @@ import java.util.List;
 
 import com.alpine.utility.common.ListUtility;
 
-/**
- * @author Shawn
- * 
- */
+
 public class AnalysisWOEColumnInfo implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5948250648008756404L;
 	private List<AnalysisWOENode> InforList = new ArrayList<AnalysisWOENode>();
 	// Map <String,Double> WOEValue =new HashMap<String,Double>();

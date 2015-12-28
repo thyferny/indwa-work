@@ -1,12 +1,4 @@
-/**
- * ClassName NBModel.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.bayes;
 
 import java.sql.ResultSet;
@@ -34,15 +26,11 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * 
- */
+
 public class NBModel extends  Prediction{
     private static Logger itsLogger= Logger.getLogger(NBModel.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 8500777461015009912L;
 
 	private static final String UNKNOWN_VALUE_NAME = ALPINE_MINER_CATEGORY_NULL;
@@ -79,19 +67,15 @@ public class NBModel extends  Prediction{
 	
 	protected double[] classWeights;
 	
-	/** 
-	 * dimensions: attribtues, classes, nominal values or value sum and squared value sum
-	 */
+	
 	protected double[][][] weightSums;
 
 	
 
-	/** log a-priori probabilites. */
+	
 	protected double[] priors;
 	
-	/** 
-	 * log a-postiori distributions.attribtues, 2nd: classes, 3nd: nominal values or mean (index=0) and standard deviation (index=1)
-	 */
+	
 	protected double[][][] distributionProperties;
 
 
@@ -167,16 +151,12 @@ public class NBModel extends  Prediction{
 		calculateDistribution();
 	}
 	
-	/**
-	 * @return the updateColumns
-	 */
+	
 	public ArrayList<String> getUpdateColumns() {
 		return updateColumns;
 	}
 
-	/**
-	 * @param updateColumns the updateColumns to set
-	 */
+	
 	public void setUpdateColumns(ArrayList<String> updateColumns) {
 		this.updateColumns = updateColumns;
 	}
@@ -201,10 +181,7 @@ public class NBModel extends  Prediction{
 		return this.columnNames.length;
 	}
 	
-	/**
-	 * Updates the model by counting the occurances of classes and column values
-	 * in combination with the class values.
-	 */
+	
 	public void getWeight(DataSet dataSet) throws OperatorException {
 
 		String weight = "1.0::float";

@@ -1,12 +1,4 @@
-/**
- * ClassName RecordParserFactory.java
- *
- * Version information: 1.00
- *
- * Date: Oct 30, 2012
- *
- * COPYRIGHT (C) 2010-2012 Alpine Data Labs. All Rights Reserved.
- **/
+
 package com.alpine.hadoop.ext;
 
 import java.util.ArrayList;
@@ -16,10 +8,7 @@ import org.apache.hadoop.conf.Configuration;
 
 import com.alpine.hadoop.AlpineHadoopConfKeySet;
 
-/**
- * @author John Zhao
- *
- */
+
 public class RecordParserFactory implements AlpineHadoopConfKeySet{
  
 	

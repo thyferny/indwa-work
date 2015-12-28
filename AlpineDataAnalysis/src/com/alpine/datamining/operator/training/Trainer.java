@@ -1,12 +1,4 @@
-/**
- * ClassName Trainer.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-24
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.training;
 
 import java.util.LinkedList;

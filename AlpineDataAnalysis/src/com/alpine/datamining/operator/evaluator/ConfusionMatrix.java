@@ -3,13 +3,7 @@ package com.alpine.datamining.operator.evaluator;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created with IntelliJ IDEA.
- * User: adehghani
- * Date: 1/25/13
- * Time: 2:18 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class ConfusionMatrix extends  EvaluatorResultObjectAdapter{
 
     private long [][] confMX_; // the actual class counts

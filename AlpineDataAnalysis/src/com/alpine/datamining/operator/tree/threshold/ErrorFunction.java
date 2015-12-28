@@ -1,18 +1,8 @@
-/**
- * ClassName ErrorFunction
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 
-/**
- * @author Eason
- */
+
 public class ErrorFunction {
 
 	protected static final double log2 = Math.log(2.0d);

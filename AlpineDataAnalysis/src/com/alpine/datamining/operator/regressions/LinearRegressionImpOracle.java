@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionImpOracle.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.math.BigDecimal;
@@ -24,10 +16,7 @@ import com.alpine.datamining.tools.matrix.Matrix;
 import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
-/**
- *  <p>This oracle algorithm to calculate a linear regression model.</p>
- * @author Eason
- */
+
 public class LinearRegressionImpOracle extends LinearRegressionImp {
     private static Logger itsLogger= Logger.getLogger(LinearRegressionImpOracle.class);
     public LinearRegressionImpOracle() {

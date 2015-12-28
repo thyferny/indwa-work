@@ -1,12 +1,4 @@
-/**
- * ClassName SVMClassificationModel
- *
- * Version information: 1.00
- *
- * Data: 2011-4-20
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.ResultSet;
@@ -24,9 +16,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * @author Eason
- */
+
 public class SVMClassificationModel extends SVMModel {
     private static final Logger logger = Logger.getLogger(SVMClassificationModel.class);
 

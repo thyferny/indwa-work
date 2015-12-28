@@ -1,12 +1,4 @@
-/**
- * ClassName NewtonMethodOracle
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.regressions;
 
@@ -22,10 +14,7 @@ import com.alpine.datamining.resources.AlpineDataAnalysisConfig;
 import com.alpine.datamining.tools.matrix.Matrix;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
-/**
- * This oracle algorithm to determine a logistic regression model.
- * @author Eason Yu,Jeff Dong
- */
+
 public class NewtonMethodOracle extends NewtonMethod {
     private static final Logger itsLogger = Logger.getLogger(NewtonMethodOracle.class);
     public NewtonMethodOracle() {

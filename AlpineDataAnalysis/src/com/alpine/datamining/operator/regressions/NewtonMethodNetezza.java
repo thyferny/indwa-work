@@ -1,12 +1,4 @@
-/**
- * ClassName NewtonMethodNetezza.java
- *
- * Version information: 1.00
- *
- * Data: 2011-12-20
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.regressions;
 
@@ -25,10 +17,7 @@ import com.alpine.utility.db.ISqlGeneratorMultiDB;
 import com.alpine.utility.db.SqlGeneratorMultiDBFactory;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
-/**
- * This Netezza algorithm to determine a logistic regression model.
- * @author Eason Yu
- */
+
 public class NewtonMethodNetezza extends NewtonMethod {
     private static final Logger itsLogger = Logger.getLogger(NewtonMethodNetezza.class);
     private int aliasCount;

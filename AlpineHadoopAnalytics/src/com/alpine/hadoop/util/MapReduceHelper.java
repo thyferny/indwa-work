@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName AlpineHadoopUtility.java
- *
- * Version information: 1.00
- *
- * Date: Dec 7, 2012
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.util;
 
 import java.io.IOException;
@@ -32,10 +22,7 @@ import com.alpine.hadoop.AlpineHadoopConstants;
 import com.alpine.hadoop.ext.RecordParser;
 import com.alpine.hadoop.ext.RecordParserFactory;
 
-/**
- * @author Peter
- * 
- */
+
 public class MapReduceHelper {
 	
 	private String[] columnTypes;
@@ -88,16 +75,12 @@ public class MapReduceHelper {
 		return involvedColumnIds;
 	}
 
-	/**
-	 * if the algorithm only columns,or update
-	 */
+	
 	public void setInvolvedColumnIds(List<Integer> involvedColumnIds) {
 		this.involvedColumnIds = involvedColumnIds;
 	}
 
-	/**
-	 * if the algorithm columns,interaction
-	 */
+	
 	public void initInvolvedColumnIds(List<Integer> columnIds,
 			List<HadoopInteractionItem> interactionItems) {
 		this.involvedColumnIds = new ArrayList<Integer>();
@@ -116,9 +99,7 @@ public class MapReduceHelper {
 		}
 	}
 
-	/**
-	 * if the algorithm columns,interaction
-	 */
+	
 	public void initInvolvedColumnIds(List<Integer> columnIds,
 			List<HadoopInteractionItem> interactionItems, int dependId) {
 		this.involvedColumnIds = new ArrayList<Integer>();
@@ -241,16 +222,7 @@ public class MapReduceHelper {
 		}
 	}
 
-	/**
-	 * csv log value means line value return 1 size list with column size
-	 * string[] ... (if csv contain head must equals value.toStirng()) json xml
-	 * value means a config max size block return a n size list with column size
-	 * string[]
-	 * 
-	 * if use the strict==false mode byUsedColumnIds would be set or initialize
-	 * first.
-	 * 
-	 */
+	
 
 	public List<String[]> getCleanData(Text value, boolean strict) {
 		if (headerLineValue == null) {
@@ -355,12 +327,7 @@ public class MapReduceHelper {
 		return predictionColumn;
 	}
 	
-	/**
-	 * config.get(interactionKey) should be a List<AnalysisInterActionItem>.toString,such as temperature*humidity or temperature:humidity
-	 * for now the interactionColumn does not support category type
-	 * output List<HadoopInteractionItem>,such as 1*2 or 1:2
-	 * @throws Exception 
-	 */
+	
 	public List<HadoopInteractionItem> getInteractionItems(String interactionKey){
 		List<HadoopInteractionItem> interactionItems = new ArrayList<HadoopInteractionItem>();
 		String interactionString = conf.get(interactionKey);
@@ -481,11 +448,7 @@ public class MapReduceHelper {
 		return true;
 	}
 
-	/**
-	 * writer a csv(\",) for predict
-	 * replace \n with spacechar
-	 * if a element contain "," add a quote char
-	 */
+	
 	public String generateOutputLine(Object[] columnValues) {
 		StringBuffer result = new StringBuffer();
 		for (int i = 0; i < columnValues.length; i++) {

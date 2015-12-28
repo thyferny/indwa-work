@@ -1,21 +1,10 @@
-/**
- * ClassName AbstractCriterion.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cart;
 
 import com.alpine.datamining.db.Column;
 import com.alpine.datamining.db.Data;
 
-/**
- * This standard class can be used for the incremental calculation of benefits.
- * 
- */
+
 public abstract class AbstractStandard implements Standard {
 	
     // data for incremental calculation

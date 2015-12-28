@@ -1,65 +1,29 @@
-/**
- * ClassName SingularValueDecomposition.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.tools.matrix;
 
 import com.alpine.datamining.exception.OperatorException;
 import com.alpine.datamining.tools.matrix.util.Maths;
 
 
-   /** Singular Value Decomposition.
-   <P>
-   For an m-by-n matrix A with m >= n, the singular value decomposition is
-   an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
-   an n-by-n orthogonal matrix V so that A = U*S*V'.
-   <P>
-   The singular values, sigma[k] = S[k][k], are ordered so that
-   sigma[0] >= sigma[1] >= ... >= sigma[n-1].
-   <P>
-   The singular value decompostion always exists, so the constructor will
-   never fail.  The matrix condition number and the effective numerical
-   rank can be computed from this decomposition.
-   */
+   
 
 public class SingularValueDecomposition implements java.io.Serializable {
 
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6144841690262318763L;
 
-/** Arrays for internal storage of U and V.
-   @serial internal storage of U.
-   @serial internal storage of V.
-   */
+
    private double[][] U, V;
 
-   /** Array for internal storage of singular values.
-   @serial internal storage of singular values.
-   */
+   
    private double[] s;
 
-   /** Row and column dimensions.
-   @serial row dimension.
-   @serial column dimension.
-   */
+   
    private int m, n;
 
-/* ------------------------
-   Constructor
- * ------------------------ */
 
-   /** Construct the singular value decomposition
-   @param A    Rectangular matrix
-   @return     Structure to access U, S and V.
- * @throws OperatorException 
-   */
+
+   
 
    public SingularValueDecomposition (Matrix Arg) throws OperatorException {
 
@@ -481,37 +445,27 @@ public class SingularValueDecomposition implements java.io.Serializable {
       }
    }
 
-/* ------------------------
-   Public Methods
- * ------------------------ */
 
-   /** Return the left singular vectors
-   @return     U
-   */
+
+   
 
    public Matrix getU () {
       return new Matrix(U,m,Math.min(m+1,n));
    }
 
-   /** Return the right singular vectors
-   @return     V
-   */
+   
 
    public Matrix getV () {
       return new Matrix(V,n,n);
    }
 
-   /** Return the one-dimensional array of singular values
-   @return     diagonal of S.
-   */
+   
 
    public double[] getSingularValues () {
       return s;
    }
 
-   /** Return the diagonal matrix of singular values
-   @return     S
-   */
+   
 
 //   public Matrix getS () {
 //      Matrix X = new Matrix(n,n);
@@ -525,25 +479,19 @@ public class SingularValueDecomposition implements java.io.Serializable {
 //      return X;
 //   }
 
-   /** Two norm
-   @return     max(S)
-   */
+   
 
    public double norm2 () {
       return s[0];
    }
 
-   /** Two norm condition number
-   @return     max(S)/min(S)
-   */
+   
 
    public double cond () {
       return s[0]/s[Math.min(m,n)-1];
    }
 
-   /** Effective numerical matrix rank
-   @return     Number of nonnegligible singular values.
-   */
+   
 
    public int rank () {
       double eps = Math.pow(2.0,-52.0);

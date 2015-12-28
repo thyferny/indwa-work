@@ -1,12 +1,4 @@
-/**
- * ClassName DataBaseRow.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.sql.ResultSet;
@@ -14,51 +6,34 @@ import java.sql.SQLException;
 
 
 
-/**
- * Reads datarows from a data base.
- * 
- * @author Eason
- */
+
 public class DataBaseRow extends Row {
 
 	private static final long serialVersionUID = -868261000593050878L;
 
-	/** 
-	 * The result set which backs this data row. 
-	 */
+	
 	private transient ResultSet resultSet;
 	
-	/** 
-	 * The current row of the result set.
-	 */
+	
 	private int row;
     
-	/** 
-	 * The last column for which a query should be / was performed. 
-	 */
+	
 	private Column lastColumn = null;
 	
-	/**
-	 * Creates a data row from the given result set. The current row of the
-	 * result set if used as data source.
-	 */
+	
 	public DataBaseRow(ResultSet resultSet) throws SQLException {
 		this.resultSet = resultSet;
 		this.row = resultSet.getRow();
 	}
 
-	/** 
-	 * Ensures that the current row is the current row of the result set. 
-	 */
+	
 	private void ensureRowCorrect() throws SQLException {
 		if (row != resultSet.getRow()) {
 			throw new RuntimeException("ResultSet was modified!");
 		}
 	}
 
-	/**
-	 * Returns the desired data for the given column
-	 */
+	
 	public double get(Column column) {
 		this.lastColumn = column;
 		double value = column.getValue(this);
@@ -108,14 +83,14 @@ public class DataBaseRow extends Row {
 		}
 	}
 	
-	/** Does nothing. */
+	
 	protected void ensureNumberOfColumns(int numberOfColumns) {}
 
 	public String toString() {
 		return "Database Data Row";
 	}
 	
-	/** Reads the data for the given column from the result set. */
+	
 	public static double readColumn(ResultSet resultSet, Column column) throws SQLException {
 		String name = column.getName();		
 		if (column.isNominal()) {

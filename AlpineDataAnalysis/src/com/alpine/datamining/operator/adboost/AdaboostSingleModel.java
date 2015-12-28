@@ -1,26 +1,13 @@
-/**
- * ClassName AdaboostSingleModel.java
- *
- * Version information: 1.00
- *
- * Data: 2011-9-20
- *
- * COPYRIGHT   2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.adboost;
 
 import java.io.Serializable;
 
 import com.alpine.datamining.operator.Model;
-/**
- * @author Shawn
- *
- */
+
 public class AdaboostSingleModel implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -157500056206117067L;
 	private Model model;
 	private String type;

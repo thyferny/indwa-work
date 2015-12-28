@@ -1,12 +1,4 @@
-/**
- * ClassName NBModelDB2.java
- *
- * Version information: 1.00
- *
- * Data: 2011-11-09
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.bayes;
 
 import java.sql.Array;
@@ -29,9 +21,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * @author Eason
- */
+
 public class NBModelDB2 extends NBModel{
     private static Logger itsLogger= Logger.getLogger(NBModelDB2.class);
 
@@ -255,7 +245,7 @@ public class NBModelDB2 extends NBModel{
 
 		sql.append("call alpine_miner_nb_ca_prediction_proc('")
 		.append(newTableName).append("',").append(where).append(",").append("?,?,?,?,?,?,?,?,?)");
-		CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); /* con is the connection */
+		CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); 
 		stpCall.setArray(1, getNominalColumnNamesSqlArray(databaseConnection));
 		stpCall.setArray(2, getNominalColumnsMappingCountSqlArray(databaseConnection));
 		stpCall.setArray(3, getNominalColumnsMappingSqlArray(databaseConnection));
@@ -361,7 +351,7 @@ public void caculateDeviance() throws OperatorException
 		StringBuffer devianceSQL = null;
 		devianceSQL = getDevianceFunction(label, tableName);
 		try {
-			CallableStatement stpCall = databaseConnection.getConnection().prepareCall(devianceSQL.toString()); /* con is the connection */
+			CallableStatement stpCall = databaseConnection.getConnection().prepareCall(devianceSQL.toString()); 
 			stpCall.setArray(1, getNominalColumnNamesSqlArray(databaseConnection));
 			stpCall.setArray(2, getNominalColumnsMappingCountSqlArray(databaseConnection));
 			stpCall.setArray(3, getNominalColumnsMappingSqlArray(databaseConnection));

@@ -1,12 +1,4 @@
-/**
- * ClassName SVMNoveltyDetectionModelNetezza.java
- *
- * Version information: 1.00
- *
- * Data: 2011-12-27
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.ResultSet;
@@ -25,9 +17,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * @author Eason
- */
+
 public class SVMNoveltyDetectionModelNetezza extends SVMNoveltyDetectionModel {
     private static final Logger itsLogger = Logger.getLogger(SVMNoveltyDetectionModelNetezza.class);
 

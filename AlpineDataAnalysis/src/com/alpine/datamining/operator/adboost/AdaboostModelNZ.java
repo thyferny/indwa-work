@@ -1,12 +1,4 @@
-/**
-* ClassName AdaboostModelNZ.java
-*
-* Version information: 1.00
-*
-* Data: 26 Dec 2011
-*
-* COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
-**/
+
 
 
 package com.alpine.datamining.operator.adboost;
@@ -24,28 +16,19 @@ import com.alpine.utility.db.DataSourceInfoNZ;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * @author Shawn
- *
- */
+
 public class AdaboostModelNZ extends AdaboostModel{
-	/**
-	 * 
-	 */
+	
 	private static final Logger itsLogger = Logger.getLogger(AdaboostModelNZ.class);
 	private static final long serialVersionUID = 8307317892655383410L;
 	private String infoTable=new String();
 	private String idTable=new String();
-	/**
-	 * @param paramDataSet
-	 */
+	
 	public AdaboostModelNZ(DataSet paramDataSet) {
 		super(paramDataSet);	
 		}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.adboost.AdaboostModel#adaboostPredictResult(java.lang.String, long, java.lang.String, java.lang.String, java.sql.Statement, java.lang.StringBuffer, double)
-	 */
+	
 	@Override
 	protected void adaboostPredictResult(String outTable, long timeStamp,
 			String tempOutTable, String dependentColumn, Statement st,
@@ -170,9 +153,7 @@ public class AdaboostModelNZ extends AdaboostModel{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.adboost.AdaboostModel#adaboostPredictStep(java.lang.String, java.lang.String, java.lang.String, java.sql.Statement, double, java.util.Iterator, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	protected void adaboostPredictStep(String outTable, String tempOutTable,
 			String dependentColumn, Statement st, double algWeight,
@@ -212,9 +193,7 @@ public class AdaboostModelNZ extends AdaboostModel{
 			st.executeQuery(sql.toString());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.adboost.AdaboostModel#adaboostPredictionInit(java.lang.String, java.lang.String, long, java.lang.String, java.lang.String, java.sql.Statement, java.lang.StringBuffer)
-	 */
+	
 	@Override
 	protected String adaboostPredictionInit(String outTable,
 			String tempOutTable, long timeStamp, String schemaName,
@@ -276,9 +255,7 @@ public class AdaboostModelNZ extends AdaboostModel{
 			return tempOutTable;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.alpine.datamining.operator.adboost.AdaboostModel#spellArray(java.lang.StringBuffer, java.util.Iterator)
-	 */
+	
 	@Override
 	protected StringBuffer spellArray(StringBuffer inforArray,
 			Iterator<String> localIterator) {

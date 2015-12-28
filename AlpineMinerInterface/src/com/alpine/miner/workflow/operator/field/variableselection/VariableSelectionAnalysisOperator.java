@@ -1,12 +1,4 @@
-/**
- * ClassName VariableSelectionOperator.java
- *
- * Version information: 1.00
- *
- * Data: 2011-8-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.miner.workflow.operator.field.variableselection;
 
 import java.util.ArrayList;

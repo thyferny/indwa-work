@@ -1,12 +1,4 @@
-/**
- * ClassName DBCount
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import java.sql.ResultSet;
@@ -22,11 +14,7 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * count frequencies
- * This class is used for data in database.
- * 
- */
+
 public class DBCount implements ICount{
     private static Logger itsLogger= Logger.getLogger(DBCount.class);
 
@@ -127,7 +115,7 @@ public class DBCount implements ICount{
     	return weightCounts;
     }
     
-    /** Returns the sum of the given weights. */
+    
     public double getTotalCount(double[] weights) {
         double sum = 0.0d;
         for (double w : weights)

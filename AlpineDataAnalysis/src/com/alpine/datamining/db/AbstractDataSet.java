@@ -1,12 +1,4 @@
-/**
- * ClassName AbstractDataSet.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.db;
 
 import java.lang.reflect.Constructor;
@@ -22,10 +14,7 @@ import com.alpine.datamining.operator.ConsumerProducer;
 import com.alpine.datamining.operator.OutputObject;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * abstract DataSet
- * @author  Eason
- */
+
 public abstract class AbstractDataSet extends OutputObject implements DataSet {
 
 	private static final long serialVersionUID = 2331863831564857092L;
@@ -70,10 +59,7 @@ public abstract class AbstractDataSet extends OutputObject implements DataSet {
 	}
 
   
-	/**
-	 * Returns true, if all columns including labels and other special
-	 * columns are equal.
-	 */
+	
 	public boolean equals(Object o) {
 		if (!(o instanceof DataSet)) {
 			return false;

@@ -1,20 +1,10 @@
-/**
- * ClassName GiniIndexStandard
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.threshold;
 
 import com.alpine.datamining.db.Column;
 import com.alpine.datamining.db.DataSet;
 
-/**
- * This standard implements the information
- */
+
 public class InformationGainStandard extends AbstractStandard implements StandardI {
     
     private static double LOG_FACTOR = 1d / Math.log(2);

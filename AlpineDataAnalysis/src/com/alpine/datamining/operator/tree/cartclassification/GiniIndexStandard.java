@@ -1,12 +1,4 @@
-/**
- * ClassName GiniIndexStandard
- *
- * Version information: 1.00
- *
- * Data: 2010-5-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartclassification;
 
 import java.util.ArrayList;
@@ -24,10 +16,7 @@ import com.alpine.datamining.operator.tree.cart.AbstractStandard;
 import com.alpine.datamining.operator.tree.cart.Combination;
 import com.alpine.datamining.utility.Tools;
 
-/**
- * Calculates the Gini index for the given split.
- * 
- */
+
 public class GiniIndexStandard extends AbstractStandard {
     
     private ArrayList<String> bestValues = null;
@@ -260,8 +249,7 @@ public class GiniIndexStandard extends AbstractStandard {
 
 	}
 
-/** Returns an array with  size of the number of different label
-  *  values. */
+
  public double[] getLabelWeights(DataSet dataSet) {
      Column label = dataSet.getColumns().getLabel();
 //     Column weightColumn = dataSet.getColumns().getWeight();
@@ -390,7 +378,7 @@ public class GiniIndexStandard extends AbstractStandard {
         }
         return totalEntropy - gain;
     }
-    /** Returns the sum of the given weights. */
+    
     public double getTotalWeight(double[] weights) {
         double sum = 0.0d;
         for (double w : weights)

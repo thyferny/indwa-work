@@ -1,12 +1,4 @@
-/**
- * ClassName SVDLanczosNetezza.java
- *
- * Version Information: 1.00
- *
- * Data: 2011-12-30
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svd;
 
 import java.sql.SQLException;
@@ -18,11 +10,7 @@ import com.alpine.datamining.utility.TableTransferParameter;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- *  <p>This operator calculates SVD for Netezza. </p>
- *  @author Eason
- *
- */
+
 public class SVDLanczosNetezza  extends AbstractSVDLanczos {
     private static final Logger itsLogger = Logger.getLogger(SVDLanczosNetezza.class);
 

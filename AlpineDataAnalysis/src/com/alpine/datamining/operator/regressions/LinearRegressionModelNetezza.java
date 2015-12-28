@@ -1,12 +1,4 @@
-/**
- * ClassName LinearRegressionModelDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.sql.SQLException;
@@ -30,10 +22,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * The model netezza for linear regression.
- *  @author Eason
- */
+
 public class LinearRegressionModelNetezza extends LinearRegressionModelDB {
 
     private static final Logger itsLogger = Logger.getLogger(LinearRegressionModelNetezza.class);

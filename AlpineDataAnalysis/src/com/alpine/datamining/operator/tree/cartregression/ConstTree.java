@@ -1,12 +1,4 @@
-/**
- * ClassName ConstructTree
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartregression;
 
 import java.util.ArrayList;
@@ -35,14 +27,11 @@ import com.alpine.datamining.operator.tree.threshold.Tree;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.AlpineMath;
 
-/**
- * Build a tree from an data set.
- * This class is used for data in database.
- */
+
 public class ConstTree extends AbstractConstructTree{
     private static Logger itsLogger= Logger.getLogger(ConstTree.class);
 
-    /* for data not loaded in memory */
+    
 		
 	public ConstTree(Standard criterion,
 			Standard criterionMem,

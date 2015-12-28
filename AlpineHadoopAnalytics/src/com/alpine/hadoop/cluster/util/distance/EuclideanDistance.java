@@ -1,23 +1,10 @@
-/**
-*
-* ClassName EuclideanDistance.java
-*
-* Version information: 1.00
-*
-* Aug 20, 2012
-* 
-* COPYRIGHT (C) Alpine Data Labs. All Rights Reserved.
-*
-*/
+
 
 package com.alpine.hadoop.cluster.util.distance;
 
 import org.apache.hadoop.io.DoubleWritable;
 
-/**
- * @author Jonathan
- *  
- */
+
 
 public class EuclideanDistance implements Distance {
     public <S> double compute(S[] first, S[] second) {

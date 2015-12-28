@@ -1,12 +1,4 @@
-/**
- * ClassName SVMClassificationLearner.java
- *
- * Version information: 1.00
- *
- * Data: Apr 18, 2011
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.svm;
 
 import java.sql.ResultSet;
@@ -25,11 +17,7 @@ import com.alpine.utility.db.DataSourceInfoFactory;
 import com.alpine.utility.db.DataSourceInfoOracle;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
-/**
- * 
- * @author Eason
- *
- */
+
 public class SVMClassificationLearner extends AbstractSVMLearner {
 //	SVMParameter para;
 private static Logger itsLogger = Logger.getLogger(SVMClassificationLearner.class);

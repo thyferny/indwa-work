@@ -1,12 +1,4 @@
-/**
- * ClassName RegressionTreeModel
- *
- * Version information: 1.00
- *
- * Data: 2010-5-5
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.tree.cartregression;
 
 import java.sql.SQLException;
@@ -24,16 +16,11 @@ import com.alpine.datamining.operator.tree.threshold.Side;
 import com.alpine.datamining.utility.DatabaseConnection;
 import org.apache.log4j.Logger;
 
-/**
- * The tree model is the model created by  cart regression trees.
- * 
- */
+
 public class RegressionTreeModel extends SingleModel {
     private static Logger itsLogger= Logger.getLogger(RegressionTreeModel.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -441861837293501159L;
 
 	public String[] UPDATE;

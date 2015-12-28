@@ -1,14 +1,4 @@
-/**
- * 
- * ClassName LogisticReducer.java
- *
- * Version information: 1.00
- *
- * Date: Aug 9, 2012
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
 
- */
 package com.alpine.hadoop.roc;
 
 import java.io.IOException;
@@ -20,10 +10,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import com.alpine.hadoop.RocKeySet;
 
-/**
- * @author Peter
- * 
- */
+
 
 public class FindMinMaxReducer extends
 		Reducer<LongWritable, DoubleWritable, Text, Text> {

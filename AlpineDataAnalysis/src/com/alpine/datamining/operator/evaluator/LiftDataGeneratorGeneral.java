@@ -1,12 +1,4 @@
-/**
- * ClassName LiftDataGeneratorDB.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-25
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.evaluator;
 
 import java.sql.ResultSet;
@@ -28,19 +20,16 @@ import com.alpine.datamining.utility.DatabaseConnection;
 import com.alpine.utility.tools.StringHandler;
 import org.apache.log4j.Logger;
 
-/**
- * Helper class containing some methods for Lift plots.
- * 
- */
+
 public class LiftDataGeneratorGeneral extends Operator{
     private static final Logger itsLogger = Logger.getLogger(LiftDataGeneratorGeneral.class);
 
-    /** Defines the maximum amount of points which is plotted in the Lift Chart. */
+    
 	public static final int MAX_LIFT_POINTS = 200;
 	EvaluatorParameter para;
 
 
-	/** Creates a new Lift data generator. */
+	
 	public LiftDataGeneratorGeneral() {
 		super();
 	}
@@ -80,13 +69,7 @@ public class LiftDataGeneratorGeneral extends Operator{
 	
 
 
-	/**
-	 * Creates a list of LIFT data points from the given data set. The
-	 * data set must have a label column and confidence values for
-	 * both values, i.e. a model must have been applied on the data.
-	 * 
-	 * @throws OperatorException
-	 */
+	
 	public DoubleListData createLiftDataList(DataSet dataSet, String targetClass)
 			throws OperatorException {
 

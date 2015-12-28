@@ -1,12 +1,4 @@
-/**
- * ClassName NNModellOracle
- *
- * Version information: 1.00
- *
- * Data: 2010-4-30
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.neuralnet.sequential;
 
 import java.sql.ResultSet;
@@ -26,16 +18,11 @@ import com.alpine.datamining.utility.Tools;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
-/**
- * The model of the  neural net.
- * 
- */
+
 public class NNModellOracle extends NNModel {
     private static Logger itsLogger= Logger.getLogger(NNModellOracle.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 4348400661233375023L;
 	public NNModellOracle(DataSet trainingDataSet,DataSet oldDataSet,List<String> columnNamesList) {
 		super( trainingDataSet, oldDataSet, columnNamesList);

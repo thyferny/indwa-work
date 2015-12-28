@@ -1,12 +1,4 @@
-/**
- * ClassName LogisticRegressionModelDBOracle.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.regressions;
 
 import java.sql.SQLException;
@@ -32,17 +24,11 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * The model determined by the {@link LogisticRegressionDBNewton} operator.
- * @author Eason Yu,Jeff Dong
 
- */
 public class LogisticRegressionModelNetezza extends LogisticRegressionModelDB {
     private static final Logger itsLogger = Logger.getLogger(LogisticRegressionModelNetezza.class);
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -3965373796731290645L;
 	private Double[] betas;
 	private String[] columns;

@@ -1,12 +1,4 @@
-/**
- * ClassName Prediction.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-24
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.training;
 
 import java.sql.SQLException;
@@ -26,9 +18,7 @@ import org.apache.log4j.Logger;
 
 
 public abstract class Prediction extends AbstractModel {
-	/**
-	 * 
-	 */
+	
     private static final Logger itsAbstractLogger = Logger.getLogger(Prediction.class);
     private static final long serialVersionUID = 4690086325473178752L;
 	public static final String ALPINE_MINER_CATEGORY_NULL = "alpine_miner_category_null";
@@ -71,7 +61,7 @@ public abstract class Prediction extends AbstractModel {
 		}
 	}
 
-	/** Returns the label column. */
+	
 	public Column getLabel() {
 		return getTrainingHeader().getColumns().getLabel();
 	}

@@ -1,12 +1,4 @@
-/**
- * ClassName NBModelNetezza.java
- *
- * Version information: 1.00
- *
- * Data: 2011-12205
- *
- * COPYRIGHT (C) 2011 Alpine Solutions. All Rights Reserved.
- **/
+
 package com.alpine.datamining.operator.bayes;
 
 import java.sql.ResultSet;
@@ -29,9 +21,7 @@ import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
 
 
-/**
- * @Author: eason
- */
+
 public class NBModelNetezza extends NBModel{
     private static Logger itsLogger= Logger.getLogger(NBModelNetezza.class);
 
@@ -43,9 +33,7 @@ public class NBModelNetezza extends NBModel{
 	private String dependentColumnProTableName;
 	private String numericalColumnsTableName;
 	private String numericalColumnsProTableName;
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2184046417856337653L;
 	
 	private void initTable(Statement st, boolean predict) throws OperatorException{

@@ -1,12 +1,4 @@
-/**
- * ClassName NewtonMethodGreenplum.java
- *
- * Version information: 1.00
- *
- * Data: 2010-3-29
- *
- * COPYRIGHT (C) 2010 Alpine Solutions. All Rights Reserved.
- **/
+
 
 package com.alpine.datamining.operator.regressions;
 
@@ -21,10 +13,7 @@ import com.alpine.datamining.exception.OperatorException;
 import com.alpine.datamining.tools.matrix.Matrix;
 import org.apache.log4j.Logger;
 import com.alpine.utility.tools.StringHandler;
-/**
- * This DB2 algorithm to determine a logistic regression model.
- * @author Eason Yu,Jeff Dong
- */
+
 public class NewtonMethodDB2 extends NewtonMethod {
     private static final Logger itsLogger = Logger.getLogger(NewtonMethodDB2.class);
     CallableStatement stpCall;
@@ -57,7 +46,7 @@ public class NewtonMethodDB2 extends NewtonMethod {
         sql.append(",?").append(")");
 		try {
 			itsLogger.debug("NewtonMethodGreenplum.estimateVarianceFunction():sql="+sql);
-			CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); /* con is the connection */
+			CallableStatement stpCall = databaseConnection.getConnection().prepareCall(sql.toString()); 
 	    	Double[] betas = getBetaDoubleArray();
 	    	String[] columns = getColumnNamesStringArray();
 		    java.sql.Array columnArray =databaseConnection.getConnection().createArrayOf("VARCHAR", columns);
